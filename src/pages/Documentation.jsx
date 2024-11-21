@@ -72,8 +72,8 @@ export default function Documentation() {
                 h2: (props) => <h2 className="text-3xl font-bold mt-12 mb-4" {...props} />,
                 h3: (props) => <h3 className="text-2xl font-bold mt-8 mb-3" {...props} />,
                 p: (props) => <p className="mb-4 text-gray-700 dark:text-gray-300" {...props} />,
-                ul: (props) => <ul className="list-disc pl-6 mb-4" {...props} />,
-                ol: (props) => <ol className="list-decimal pl-6 mb-4" {...props} />,
+                ul: (props) => <ul className="list-disc pl-6 mb-4 text-gray-700 dark:text-gray-300" {...props} />,
+                ol: (props) => <ol className="list-decimal pl-6 mb-4 text-gray-700 dark:text-gray-300" {...props} />,
                 a: (props) => (
                   <a 
                     className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300"
