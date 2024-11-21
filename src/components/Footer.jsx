@@ -17,7 +17,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <a 
-                  href="https://github.com/codegate/codegate"
+                  href="https://github.com/stacklok/codegate"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-500 flex items-center space-x-2"
@@ -28,7 +28,7 @@ export default function Footer() {
               </li>
               <li>
                 <a 
-                  href="https://discord.gg/codegate"
+                  href="https://discord.gg/stacklok"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-500 flex items-center space-x-2"

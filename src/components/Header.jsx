@@ -20,7 +20,7 @@ export default function Header() {
             
             <div className="flex items-center space-x-4">
               <a
-                href="https://github.com/codegate/codegate"
+                href="https://github.com/stacklok/codegate"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary-600 transition-colors"
@@ -29,7 +29,7 @@ export default function Header() {
               </a>
               
               <a
-                href="https://discord.gg/codegate"
+                href="https://discord.gg/stacklok"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary-600 transition-colors"

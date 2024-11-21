@@ -1,92 +1,34 @@
-# Package Security
+# Package security
 
-CodeGate's package security system helps protect your codebase from malicious or vulnerable dependencies.
+## What's the risk?
 
-## Features
+The large language models (LLMs) that drive AI coding assistants are trained at
+a point in time – often months before you use them. But the open source software
+ecosystem moves quickly, and so do malicious actors seeking to exploit the
+software supply chain. LLMs often suggest outdated, vulnerable, or nonexistent
+packages, exposing you and your users to security and privacy risks.
 
-- Automatic package scanning
-- Vulnerability detection
-- License compliance checking
-- Supply chain attack prevention
-- Version pinning recommendations
+## How CodeGate helps
 
-## How It Works
+CodeGate's package security system helps protect your codebase from malicious or
+vulnerable dependencies. It identifies potentially risky packages and suggests
+fixed versions or alternative packages to consider.
 
-The package security system scans:
+These insights are powered by [Trusty](https://www.trustypkg.dev), the open
+source dependency intelligence service from Stacklok.
 
-- Direct dependencies
-- Transitive dependencies
-- Development dependencies
-- Package lockfiles
-- Installation scripts
+## How it works
 
-## Configuration
+CodeGate scans direct, transitive, and development dependencies from package
+definition files and installation scripts in your project.
 
-Enable and configure package security in your `codegate.yaml`:
+To invoke this scan, include your dependencies file (`package-lock.json`,
+`requirements.txt`, `go.mod`, etc.) as context, or mention a package in your
+prompt, and request a dependency security scan using a prompt similar to this:
 
-```yaml
-security:
-  package_scanning:
-    enabled: true
-    scan_depth: full  # or 'direct' for only direct dependencies
-    block_high_severity: true
-    licenses:
-      allowed: ["MIT", "Apache-2.0", "BSD-3-Clause"]
-      blocked: ["GPL-3.0"]
+```plain
+codegate, please scan my dependencies for security risks
 ```
 
-## Vulnerability Detection
-
-CodeGate checks for:
-
-- Known vulnerabilities (CVEs)
-- Malicious code patterns
-- Suspicious installation scripts
-- Outdated dependencies
-- Supply chain risks
-
-## Best Practices
-
-1. Enable automatic scanning
-2. Configure severity thresholds
-3. Maintain an allowed license list
-4. Regular dependency updates
-5. Monitor security advisories
-
-## Example Usage
-
-### Package Installation
-
-```bash
-# CodeGate will scan before installation
-npm install express
-
-# Override for testing
-npm install express --no-codegate
-```
-
-### CI/CD Integration
-
-```yaml
-# GitHub Actions example
-steps:
-  - uses: actions/checkout@v2
-  - name: Setup CodeGate
-    uses: codegate/setup-action@v1
-  - name: Install dependencies
-    run: npm install
-```
-
-## Security Recommendations
-
-1. Use lockfiles
-2. Pin dependency versions
-3. Regular security audits
-4. Monitor dependency updates
-5. Review installation scripts
-
-## Related Topics
-
-- [Secret Filtering](/docs/features/secret-filtering)
-- [Basic Configuration](/docs/configuration/basic)
-- [Advanced Options](/docs/configuration/advanced)
+CodeGate responds with analysis, insights, and recommendations about your
+package dependencies.

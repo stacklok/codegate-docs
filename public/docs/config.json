@@ -1,15 +1,32 @@
 {
   "sidebar": [
     {
-      "title": "Getting Started",
       "items": [
         {
           "title": "Introduction",
-          "path": "getting-started.md"
+          "path": "introduction.md"
+        }
+      ]
+    },
+    {
+      "title": "Getting Started",
+      "items": [
+        {
+          "title": "Quick Start with VS Code",
+          "path": "tutorials/quick-start-vscode.md"
+        }
+      ]
+    },
+    {
+      "title": "Using CodeGate",
+      "items": [
+        {
+          "title": "Install and run CodeGate",
+          "path": "how-to/install.md"
         },
         {
-          "title": "Quick Start",
-          "path": "quick-start.md"
+          "title": "IDE plugin config: Continue",
+          "path": "how-to/configure-continue.md"
         }
       ]
     },
@@ -17,29 +34,29 @@
       "title": "Features",
       "items": [
         {
-          "title": "Secret Filtering",
-          "path": "features/secret-filtering.md"
+          "title": "Code security reviews",
+          "path": "features/security-review.md"
         },
         {
-          "title": "Package Security",
+          "title": "Package security",
           "path": "features/package-security.md"
         },
         {
-          "title": "IDE Integration",
-          "path": "features/ide-integration.md"
+          "title": "Secrets filtering",
+          "path": "features/secrets-filtering.md"
         }
       ]
     },
     {
-      "title": "Configuration",
+      "title": "Reference",
       "items": [
         {
-          "title": "Basic Configuration",
-          "path": "configuration/basic.md"
+          "title": "Basic configuration",
+          "path": "reference/basic-config.md"
         },
         {
-          "title": "Advanced Options",
-          "path": "configuration/advanced.md"
+          "title": "Advanced options",
+          "path": "reference/advanced-options.md"
         }
       ]
     }

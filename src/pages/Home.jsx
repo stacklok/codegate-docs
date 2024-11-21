@@ -3,7 +3,7 @@ import { FaDocker, FaCheck, FaShieldAlt, FaCode } from 'react-icons/fa';
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
-  const dockerCommand = 'docker run -d -p 3000:3000 codegate/codegate';
+  const dockerCommand = 'docker run -d -p 8989:8989 stacklok/codegate';
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(dockerCommand);
@@ -97,7 +97,7 @@ export default function Home() {
               View Documentation
             </a>
             <a
-              href="https://github.com/codegate/codegate"
+              href="https://github.com/stacklok/codegate"
               target="_blank"
               rel="noopener noreferrer"
               className="border border-white btn-primary bg-transparent hover:bg-primary-700"

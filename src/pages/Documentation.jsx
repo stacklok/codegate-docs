@@ -35,11 +35,11 @@ export default function Documentation() {
 
   // Handle redirects
   if (!docPath) {
-    return <Navigate to="/docs/getting-started" replace />;
+    return <Navigate to="/docs/introduction" replace />;
   }
 
   if (error) {
-    return <Navigate to="/docs/getting-started" replace />;
+    return <Navigate to="/docs/introduction" replace />;
   }
 
   return (
