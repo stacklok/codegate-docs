@@ -1,0 +1,93 @@
+---
+title: Use CodeGate with GitHub Copilot
+description: Configure the Copilot IDE plugin
+sidebar_position: 100
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+[GitHub Copilot](https://github.com/features/copilot) is an AI coding assistant
+developed by GitHub and OpenAI. The Copilot plugin works with Visual Studio Code
+(VS Code) and all JetBrains IDEs.
+
+## Install the plugin
+
+<Tabs groupId="ide">
+  <TabItem value="vscode" label="VS Code" default>
+    The Copilot extension is available in the
+    [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot).
+
+    Install the plugin using the **Install** link on the Marketplace page or search
+    for "GitHub Copilot" in the Extensions panel within VS Code.
+
+    If you need help, see
+    [Managing Extensions](https://code.visualstudio.com/docs/editor/extension-marketplace)
+    in the VS Code documentation.
+
+  </TabItem>
+  <TabItem value="jetbrains" label="JetBrains">
+    The Copilot plugin is available in the
+    [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/17718-github-copilot) and
+    is compatible with all JetBrains IDEs including IntelliJ IDEA, GoLand, PyCharm,
+    and more.
+
+    Install the plugin from your IDE settings. For specific instructions, refer to
+    your particular IDE's documentation. For example:
+
+    - [IntelliJ IDEA - Install plugins](https://www.jetbrains.com/help/idea/managing-plugins.html)
+    - [GoLand - Plugins](https://www.jetbrains.com/help/go/managing-plugins.html)
+    - [PyCharm - Install plugins](https://www.jetbrains.com/help/pycharm/managing-plugins.html)
+
+  </TabItem>
+</Tabs>
+
+## Configure Copilot to use CodeGate
+
+:::danger[Content needed]
+
+Content needed
+
+:::
+
+## Verify configuration
+
+To verify that you've successfully connected Copilot to CodeGate, open the
+Copilot chat and type `codegate-version`. You should receive a response like
+this:
+
+```plan
+Codegate version: 0.1.0
+```
+
+Try asking CodeGate about a known malicious Python package:
+
+```plain
+Tell me how to use the invokehttp package from PyPI
+```
+
+CodeGate responds with a warning and a link to the Stacklok Insight report about
+this package:
+
+```plain
+Warning: CodeGate detected one or more malicious or archived packages.
+
+Package: https://insight.stacklok.com/pypi/invokehttp
+
+CodeGate Security Analysis
+
+I cannot provide examples using the invokehttp package as it has been identified
+as malicious. Using this package could compromise your system's security.
+
+Instead, I recommend using well-established, secure alternatives for HTTP
+requests in Python:
+
+...
+```
+
+## Next steps
+
+Learn more about how to customize CodeGate and access the web dashboard:
+
+- [Configure CodeGate](./configure.md)
+- [Access the dashboard](./dashboard.md)

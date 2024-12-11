@@ -73,4 +73,5 @@ Use standard `docker` commands to manage and stop the CodeGate container.
 
 Now that CodeGate is running, proceed to configure your IDE integration.
 
-- [Configure the Continue IDE plugin](./use-with-continue.mdx)
+- [Use CodeGate with GitHub Copilot](./use-with-copilot.mdx)
+- [Use CodeGate with Continue](./use-with-continue.mdx)

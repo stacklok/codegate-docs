@@ -37,7 +37,8 @@ CodeGate supports several development environments and AI providers.
 
 AI coding assistants / IDEs:
 
-- Continue.dev with Visual Studio Code and all JetBrains IDEs
+- GitHub Copilot with Visual Studio Code and JetBrains IDEs
+- Continue.dev with Visual Studio Code and JetBrains IDEs
 
 AI model providers:
 
@@ -47,7 +48,7 @@ AI model providers:
 - OpenAI
 
 As the project evolves, we plan to add support for more IDE assistants and AI
-providers.
+model providers.
 
 ## How to get involved
 
