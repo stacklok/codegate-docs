@@ -1,0 +1,247 @@
+---
+title: Use CodeGate with Continue
+description: Configure the Continue IDE plugin
+sidebar_position: 100
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+[Continue](https://www.continue.dev/) is an open source AI coding assistant for
+your IDE. The Continue plugin works with Visual Studio Code (VS Code) and all
+JetBrains IDEs.
+
+## Install the plugin
+
+<Tabs groupId="ide">
+  <TabItem value="vscode" label="VS Code" default>
+    The Continue extension is available in the
+    [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Continue.continue).
+
+    Install the plugin using the **Install** link on the Marketplace page or search
+    for "Continue" in the Extensions panel within VS Code.
+
+    If you need help, see
+    [Managing Extensions](https://code.visualstudio.com/docs/editor/extension-marketplace)
+    in the VS Code documentation.
+
+  </TabItem>
+  <TabItem value="jetbrains" label="JetBrains">
+    The Continue plugin is available in the
+    [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/22707-continue) and
+    is compatible with all JetBrains IDEs including IntelliJ IDEA, GoLand, PyCharm,
+    and more.
+
+    Install the plugin from your IDE settings. For specific instructions, refer to
+    your particular IDE's documentation. For example:
+
+    - [IntelliJ IDEA - Install plugins](https://www.jetbrains.com/help/idea/managing-plugins.html)
+    - [GoLand - Plugins](https://www.jetbrains.com/help/go/managing-plugins.html)
+    - [PyCharm - Install plugins](https://www.jetbrains.com/help/pycharm/managing-plugins.html)
+
+  </TabItem>
+</Tabs>
+
+## Configure Continue to use CodeGate
+
+Continue stores its configuration in `~/.continue/config.json`. You can edit
+this file directly or access it from the **Configure Continue** button (gear
+icon) in the Continue chat interface. This file may be empty if this is your
+first time using Continue.
+
+CodeGate works with local models via [Ollama](https://ollama.com/) or models
+hosted by a [vLLM](https://docs.vllm.ai/) server,
+[Anthropic](https://console.anthropic.com/), and
+[OpenAI](https://platform.openai.com/docs/overview). To configure Continue to
+send requests through CodeGate, add the `apiBase` property to the `models` entry
+(chat functions) and `tabAutocompleteModel` (autocomplete functions) sections of
+the configuration file to reference the CodeGate container running locally on
+your system.
+
+```json
+"apiBase": "http://127.0.0.1:8989/<provider>/"
+```
+
+If you changed the default API port, replace `8989` with your custom port
+number.
+
+Below are examples of minimum Continue plugin configurations for each provider.
+For each, replace the values in ALL_CAPS. The configuration syntax is the same
+for VS Code and JetBrains IDEs.
+
+:::info[JetBrains note]
+
+JetBrains users may need to restart your IDE after editing the config file.
+
+:::
+
+<Tabs groupId="provider">
+<TabItem value="ollama" label="Ollama" default>
+
+```json title="~/.continue/config.json"
+{
+  "models": [
+    {
+      "title": "CodeGate-Ollama",
+      "provider": "ollama",
+      "model": "MODEL_NAME",
+      "apiBase": "http://localhost:8989/ollama/"
+    }
+  ],
+  "modelRoles": {
+    "default": "CodeGate-Ollama"
+  },
+  "tabAutocompleteModel": {
+    "title": "CodeGate-Ollama",
+    "provider": "ollama",
+    "model": "MODEL_NAME",
+    "apiBase": "http://localhost:8989/ollama/"
+  }
+}
+```
+
+Replace `MODEL_NAME` with the name of a model you have installed locally using
+`ollama pull`, such as `codellama:7b-instruct`.
+
+</TabItem>
+<TabItem value="anthropic" label="Anthropic">
+
+```json title="~/.continue/config.json"
+{
+  "models": [
+    {
+      "title": "CodeGate-Anthropic",
+      "provider": "anthropic",
+      "model": "MODEL_NAME",
+      "apiKey": "YOUR_API_KEY",
+      "apiBase": "http://localhost:8989/anthropic/"
+    }
+  ],
+  "modelRoles": {
+    "default": "CodeGate-Anthropic"
+  },
+  "tabAutocompleteModel": {
+    "title": "CodeGate-Anthropic",
+    "provider": "anthropic",
+    "model": "MODEL_NAME",
+    "apiKey": "YOUR_API_KEY",
+    "apiBase": "http://localhost:8989/anthropic/"
+  }
+}
+```
+
+Replace `MODEL_NAME` with the Anthropic model you want to use, such as
+`claude-3-5-sonnet-latest`, and `YOUR_API_KEY` with your
+[Anthropic API key](https://console.anthropic.com/settings/keys).
+
+</TabItem>
+<TabItem value="openai" label="OpenAI">
+
+```json title="~/.continue/config.json"
+{
+  "models": [
+    {
+      "title": "CodeGate-OpenAI",
+      "provider": "openai",
+      "model": "MODEL_NAME",
+      "apiKey": "YOUR_API_KEY",
+      "apiBase": "http://localhost:8989/openai/"
+    }
+  ],
+  "modelRoles": {
+    "default": "CodeGate-OpenAI"
+  },
+  "tabAutocompleteModel": {
+    "title": "CodeGate-OpenAI",
+    "provider": "openai",
+    "model": "MODEL_NAME",
+    "apiKey": "YOUR_API_KEY",
+    "apiBase": "http://localhost:8989/openai/"
+  }
+}
+```
+
+Replace `MODEL_NAME` with the OpenAI model you want to use, such as `gpt-4o`,
+and `YOUR_API_KEY` with your
+[OpenAI API key](https://platform.openai.com/api-keys).
+
+</TabItem>
+<TabItem value="vllm" label="vLLM">
+
+```json title="~/.continue/config.json"
+{
+  "models": [
+    {
+      "title": "CodeGate-vLLM",
+      "provider": "vllm",
+      "model": "MODEL_NAME",
+      "apiKey": "YOUR_API_KEY",
+      "apiBase": "http://localhost:8989/vllm/"
+    }
+  ],
+  "modelRoles": {
+    "default": "CodeGate-vLLM"
+  },
+  "tabAutocompleteModel": {
+    "title": "CodeGate-vLLM",
+    "provider": "vllm",
+    "model": "MODEL_NAME",
+    "apiKey": "YOUR_API_KEY",
+    "apiBase": "http://localhost:8989/vllm/"
+  }
+}
+```
+
+To use a vLLM server or OpenRouter, you must launch CodeGate with the
+`CODEGATE_VLLM_URL` environment variable set to the URL of your vLLM server. See
+[Configure CodeGate](./configure.md).
+
+Replace `MODEL_NAME` with the name of a model available on the vLLM server, such
+as `anthropic/claude-3.5-sonnet`. If your vLLM server requires an API key,
+replace `YOUR_API_KEY` with the key. Otherwise, remove the `apiKey` parameter
+from both sections.
+
+</TabItem>
+</Tabs>
+
+## Verify configuration
+
+To verify that you've successfully connected Continue to CodeGate, open the
+Continue chat and type `codegate-version`. You should receive a response like
+this:
+
+```plan
+Codegate version: 0.1.0
+```
+
+Try asking CodeGate about a known malicious Python package:
+
+```plain
+Tell me how to use the invokehttp package from PyPI
+```
+
+CodeGate responds with a warning and a link to the Stacklok Insight report about
+this package:
+
+```plain
+Warning: CodeGate detected one or more malicious or archived packages.
+
+Package: https://insight.stacklok.com/pypi/invokehttp
+
+CodeGate Security Analysis
+
+I cannot provide examples using the invokehttp package as it has been identified
+as malicious. Using this package could compromise your system's security.
+
+Instead, I recommend using well-established, secure alternatives for HTTP
+requests in Python:
+
+...
+```
+
+## Next steps
+
+Learn more about how to customize CodeGate and access the web dashboard:
+
+- [Configure CodeGate](./configure.md)
+- [Access the dashboard](./dashboard.md)
