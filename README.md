@@ -1,41 +1,27 @@
-# Website
+# CodeGate docs
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This repository contains the public-facing docs for CodeGate, hosted at
+[https://docs.codegate.ai](https://docs.codegate.ai).
 
-### Installation
+## Local Development
 
-```
-$ yarn
-```
-
-### Local Development
-
-```
-$ yarn start
+```bash
+npm install
+npm run start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+This command starts a local development server and opens up a browser window.
+Most changes are reflected live without having to restart the server.
 
-### Build
+## Build
 
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
+```bash
+npm run build
 ```
 
-Not using SSH:
+This command generates static content into the `build` directory.
 
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
+## About
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+This site is built with [Docusaurus](https://docusaurus.io/), a modern static
+website generator.
