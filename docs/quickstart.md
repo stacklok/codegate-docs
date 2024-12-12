@@ -36,7 +36,7 @@ Download and run the container using Docker:
 
 ```bash
 docker pull ghcr.io/stacklok/codegate:latest
-docker run -d -p 8989:8989 -p 9090:80 ghcr.io/stacklok/codegate:latest
+docker run --name codegate -d -p 8989:8989 -p 9090:80 ghcr.io/stacklok/codegate:latest
 ```
 
 ## Install a CodeGen model
