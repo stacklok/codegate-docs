@@ -11,44 +11,129 @@ import TabItem from '@theme/TabItem';
 developed by GitHub and OpenAI. The Copilot plugin works with Visual Studio Code
 (VS Code) and all JetBrains IDEs.
 
-## Install the plugin
+:::note
 
-<Tabs groupId="ide">
-  <TabItem value="vscode" label="VS Code" default>
-    The Copilot extension is available in the
-    [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot).
-
-    Install the plugin using the **Install** link on the Marketplace page or search
-    for "GitHub Copilot" in the Extensions panel within VS Code.
-
-    If you need help, see
-    [Managing Extensions](https://code.visualstudio.com/docs/editor/extension-marketplace)
-    in the VS Code documentation.
-
-  </TabItem>
-  <TabItem value="jetbrains" label="JetBrains">
-    The Copilot plugin is available in the
-    [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/17718-github-copilot) and
-    is compatible with all JetBrains IDEs including IntelliJ IDEA, GoLand, PyCharm,
-    and more.
-
-    Install the plugin from your IDE settings. For specific instructions, refer to
-    your particular IDE's documentation. For example:
-
-    - [IntelliJ IDEA - Install plugins](https://www.jetbrains.com/help/idea/managing-plugins.html)
-    - [GoLand - Plugins](https://www.jetbrains.com/help/go/managing-plugins.html)
-    - [PyCharm - Install plugins](https://www.jetbrains.com/help/pycharm/managing-plugins.html)
-
-  </TabItem>
-</Tabs>
-
-## Configure Copilot to use CodeGate
-
-:::danger[Content needed]
-
-Content needed
+This guide assumes you have an active subscription to GitHub Copilot and have
+installed the IDE extension.
 
 :::
+
+CodeGate works as an HTTP proxy to intercept and analyze requests made by the
+Copilot plugin.
+
+```mermaid
+flowchart LR
+  Plugin[Copilot IDE<br>Plugin]
+  CodeGate["CodeGate<br>container<br>(localhost)"]
+  Copilot[GitHub<br>Copilot]
+  Plugin -->|"https<br>8990"| CodeGate
+  CodeGate -->|"https<br>443"| Copilot
+```
+
+## Prerequisites
+
+Your system must trust CodeGate's self-signed certificate to maintain a secure
+end-to-end connection with Copilot. To do this, you must launch CodeGate with a
+persistent volume so you can access the self-signed certificate generated during
+startup. This also prevents the certificate from changing on each restart.
+
+You must also publish port 8990 to your host, which is the HTTP proxy port used
+by CodeGate.
+
+This example connects a directory named `codegate_volume` in your current
+working path to `/app/codegate_volume` inside the container and maps the
+container's proxy port to the default 8990 on your host:
+
+```bash {2-3}
+docker run --name codegate -d -p 8989:8989 -p 8991:80 \
+  -p 8990:8990 \
+  -v ./codegate_volume:/app/codegate_volume \
+  ghcr.io/stacklok/codegate/codegate:latest
+```
+
+See [Persisting dashboard data](./dashboard.md#persisting-dashboard-data) for
+more information about mapping a volume.
+
+## Trust the certificate
+
+Add CodeGate's generated CA certificate to your system's trust store. The
+certificate file is located at `certs/ca.crt` within your CodeGate data volume.
+
+<Tabs groupId="os">
+<TabItem value="macos" label="macOS" default>
+Run the following command from a terminal:
+
+```bash
+sudo security add-trusted-cert -d -r trustRoot \
+  -k /Library/Keychains/System.keychain \
+  ./codegate_volume/certs/ca.crt
+```
+
+</TabItem>
+<TabItem value="windows" label="Windows">
+Execute this command from an elevated PowerShell prompt:
+
+```powershell
+Import-Certificate -FilePath ".\codegate_volume\certs\ca.crt" -CertStoreLocation Cert:\LocalMachine\Root
+```
+
+</TabItem>
+<TabItem value="linux" label="Linux">
+Run the following commands from a terminal, depending on your distribution.
+
+Ubuntu/Debian based distributions:
+
+```bash
+sudo cp ./codegate_volume/certs/ca.crt /usr/local/share/ca-certificates/codegate.crt
+sudo update-ca-certificates
+```
+
+RHEL/Fedora and other Enterprise Linux distributions:
+
+```bash
+sudo cp ./codegate_volume/certs/ca.crt /etc/pki/ca-trust/source/anchors/codegate.pem
+sudo update-ca-trust
+```
+
+</TabItem>
+</Tabs>
+
+If you customized the local path to your CodeGate persistent volume, replace
+`./codegate_volume/` in the command with your path.
+
+## Configure your IDE to proxy traffic through CodeGate
+
+Finally, configure your IDE to use CodeGate as an HTTP proxy.
+
+<Tabs groupId="ide">
+<TabItem value="vscode" label="VS Code" default>
+Open your VS Code user settings file using the **Preferences: Open User Settings (JSON)**
+command in the Command Palette (`⇧⌘P` or `Ctrl+Shift+P`) and add the following
+settings:
+
+```json title="settings.json"
+{
+  "http.proxy": "https://localhost:8990",
+  "http.proxyStrictSSL": true,
+  "http.proxySupport": "on",
+  "http.systemCertificates": true,
+  "github.copilot.advanced": {
+    "debug.useNodeFetcher": true,
+    "debug.useElectronFetcher": true,
+    "debug.testOverrideProxyUrl": "https://localhost:8990",
+    "debug.overrideProxyUrl": "https://localhost:8990"
+  }
+}
+```
+
+</TabItem>
+<TabItem value="jetbrains" label="JetBrains" default>
+Coming soon!
+</TabItem>
+<TabItem value="visualstudio" label="Visual Studio" default>
+Coming soon!
+</TabItem>
+</Tabs>
 
 ## Verify configuration
 
