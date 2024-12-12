@@ -46,6 +46,7 @@ AI model providers:
 - vLLM (OpenAI-compatible mode, including OpenRouter)
 - Anthropic
 - OpenAI
+- llama.cpp (locally-hosted models)
 
 As the project evolves, we plan to add support for more IDE assistants and AI
 model providers.

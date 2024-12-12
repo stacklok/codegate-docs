@@ -8,8 +8,8 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [Continue](https://www.continue.dev/) is an open source AI coding assistant for
-your IDE. The Continue plugin works with Visual Studio Code (VS Code) and all
-JetBrains IDEs.
+your IDE that connects to many model providers. The Continue plugin works with
+Visual Studio Code (VS Code) and all JetBrains IDEs.
 
 ## Install the plugin
 
@@ -49,8 +49,9 @@ this file directly or access it from the **Configure Continue** button (gear
 icon) in the Continue chat interface. This file may be empty if this is your
 first time using Continue.
 
-CodeGate works with local models via [Ollama](https://ollama.com/) or models
-hosted by a [vLLM](https://docs.vllm.ai/) server,
+CodeGate works with local models via [Ollama](https://ollama.com/) or
+[llama.cpp](https://github.com/ggerganov/llama.cpp), or models hosted by a
+[vLLM](https://docs.vllm.ai/) server,
 [Anthropic](https://console.anthropic.com/), and
 [OpenAI](https://platform.openai.com/docs/overview). To configure Continue to
 send requests through CodeGate, add the `apiBase` property to the `models` entry
@@ -69,7 +70,7 @@ Below are examples of minimum Continue plugin configurations for each provider.
 For each, replace the values in ALL_CAPS. The configuration syntax is the same
 for VS Code and JetBrains IDEs.
 
-:::info[JetBrains note]
+:::info JetBrains note
 
 JetBrains users may need to restart your IDE after editing the config file.
 
@@ -200,6 +201,33 @@ Replace `MODEL_NAME` with the name of a model available on the vLLM server, such
 as `anthropic/claude-3.5-sonnet`. If your vLLM server requires an API key,
 replace `YOUR_API_KEY` with the key. Otherwise, remove the `apiKey` parameter
 from both sections.
+
+</TabItem>
+<TabItem value="llamacpp" label="llama.cpp">
+```json title="~/.continue/config.json"
+{
+  "models": [
+    {
+      "title": "CodeGate-llama.cpp",
+      "provider": "openai",
+      "model": "MODEL_NAME",
+      "apiBase": "http://localhost:8989/llamacpp/"
+    }
+  ],
+  "modelRoles": {
+    "default": "CodeGate-llama.cpp"
+  },
+  "tabAutocompleteModel": {
+    "title": "CodeGate-llama.cpp",
+    "provider": "openai",
+    "model": "MODEL_NAME",
+    "apiBase": "http://localhost:8989/llamacpp/"
+  }
+}
+```
+
+Replace `MODEL_NAME` with the name of a model you have available locally with
+`llama.cpp`, such as `qwen2.5-coder-1.5b-instruct-q5_k_m`.
 
 </TabItem>
 </Tabs>
