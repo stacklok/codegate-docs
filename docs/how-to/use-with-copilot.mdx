@@ -45,7 +45,7 @@ working path to `/app/codegate_volume` inside the container and maps the
 container's proxy port to the default 8990 on your host:
 
 ```bash {2-3}
-docker run --name codegate -d -p 8989:8989 -p 8991:80 \
+docker run --name codegate -d -p 8989:8989 -p 9090:80 \
   -p 8990:8990 \
   -v ./codegate_volume:/app/codegate_volume \
   ghcr.io/stacklok/codegate:latest

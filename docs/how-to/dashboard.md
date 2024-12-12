@@ -12,13 +12,13 @@ To access the dashboard, ensure port 80 is bound to a port on your local system
 when you launch CodeGate, for example:
 
 ```bash
-docker run --name codegate -d -p 8989:8989 -p 8991:80 ghcr.io/stacklok/codegate:latest
+docker run --name codegate -d -p 8989:8989 -p 9090:80 ghcr.io/stacklok/codegate:latest
 ```
 
-Open [http://localhost:8991](http://localhost:8991) in your web browser to view
+Open [http://localhost:9090](http://localhost:9090) in your web browser to view
 the dashboard.
 
-To use a different listening port on your host, replace `8991` with your desired
+To use a different listening port on your host, replace `9090` with your desired
 port: `-p YOUR_PORT:80`. The dashboard will be available at
 `http://localhost:YOUR_PORT/`.
 
@@ -31,7 +31,7 @@ maps a directory named `codegate_volume` in your current working path to
 `/app/codegate_volume` inside the container:
 
 ```bash {2} title="Example"
-docker run --name codegate -d -p 8989:8989 -p 8991:80 \
+docker run --name codegate -d -p 8989:8989 -p 9090:80 \
   -v ./codegate_volume:/app/codegate_volume \
   ghcr.io/stacklok/codegate:latest
 ```
@@ -49,7 +49,7 @@ To customize the location of the persistent volume on your system, update the
 left side of the `-v` parameter:
 
 ```bash {2} title="Use a custom path"
-docker run --name codegate -d -p 8989:8989 -p 8991:80 \
+docker run --name codegate -d -p 8989:8989 -p 9090:80 \
   -v <YOUR_PATH>:/app/codegate_volume \
   ghcr.io/stacklok/codegate:latest
 ```
