@@ -18,7 +18,7 @@ const config: Config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'stacklok', // Usually your GitHub org/user name.
-  projectName: 'codegate', // Usually your repo name.
+  projectName: 'codegate-docs', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -46,7 +46,7 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/stacklok/codegate/tree/main/docs/docs/',
+          editUrl: 'https://github.com/stacklok/codegate-docs/tree/main/',
         },
         blog: false,
         theme: {
@@ -169,7 +169,7 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
-      additionalLanguages: ['bash', 'json'],
+      additionalLanguages: ['bash', 'json', 'powershell'],
     },
     mermaid: {
       theme: { light: 'neutral', dark: 'dark' },
