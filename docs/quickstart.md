@@ -36,7 +36,7 @@ Download and run the container using Docker:
 
 ```bash
 docker pull ghcr.io/stacklok/codegate/codegate:latest
-docker run -d -p 8989:8989 -p 8990:80 ghcr.io/stacklok/codegate/codegate:latest
+docker run -d -p 8989:8989 -p 8991:80 ghcr.io/stacklok/codegate/codegate:latest
 ```
 
 ## Install a CodeGen model
@@ -140,7 +140,7 @@ code .
 
 ## View the dashboard
 
-Open your web browser to [http://localhost:8990](http://localhost:8990) and
+Open your web browser to [http://localhost:8991](http://localhost:8991) and
 explore the CodeGate dashboard.
 
 The dashboard displays security alerts and history of interactions between your

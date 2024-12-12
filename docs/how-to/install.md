@@ -19,14 +19,16 @@ replace `docker` with `podman` in all commands.
 To download and run the container, run the following from a terminal:
 
 ```bash
-docker run  --name codegate -d -p 8989:8989 -p 8990:80 ghcr.io/stacklok/codegate/codegate:latest
+docker run  --name codegate -d -p 8989:8989 -p 8991:80 ghcr.io/stacklok/codegate/codegate:latest
 ```
 
 The container runs in the background (`-d`) and binds the CodeGate API endpoint
-to port 8989 and the web dashboard on port 8990.
+to port 8989 and the web dashboard to port 8991.
 
-To use different listening ports, modify the `-p` flag(s): `-p YOUR_PORT:8989`
-for the CodeGate API port, and `-p YOUR_PORT:80` for the dashboard.
+To use different listening ports, modify the `-p` flag(s):
+
+- CodeGate API: `-p YOUR_PORT:8989`
+- Dashboard UI: `-p YOUR_PORT:80`
 
 ## View logs
 
@@ -62,7 +64,7 @@ docker rm codegate
 Finally, launch the new version:
 
 ```bash
-docker run --name codegate -d -p 8989:8989 -p 8990:80 ghcr.io/stacklok/codegate/codegate:latest
+docker run --name codegate -d -p 8989:8989 -p 8991:80 ghcr.io/stacklok/codegate/codegate:latest
 ```
 
 ## Manage the CodeGate container
