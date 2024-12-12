@@ -35,8 +35,8 @@ Continue is an open source AI code assistant that supports a wide range of LLMs.
 Download and run the container using Docker:
 
 ```bash
-docker pull ghcr.io/stacklok/codegate/codegate:latest
-docker run -d -p 8989:8989 -p 8991:80 ghcr.io/stacklok/codegate/codegate:latest
+docker pull ghcr.io/stacklok/codegate:latest
+docker run -d -p 8989:8989 -p 8991:80 ghcr.io/stacklok/codegate:latest
 ```
 
 ## Install a CodeGen model

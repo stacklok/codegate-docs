@@ -19,7 +19,7 @@ replace `docker` with `podman` in all commands.
 To download and run the container, run the following from a terminal:
 
 ```bash
-docker run  --name codegate -d -p 8989:8989 -p 8991:80 ghcr.io/stacklok/codegate/codegate:latest
+docker run  --name codegate -d -p 8989:8989 -p 8991:80 ghcr.io/stacklok/codegate:latest
 ```
 
 The container runs in the background (`-d`) and binds the CodeGate API endpoint
@@ -51,7 +51,7 @@ To upgrade CodeGate to the latest version, start by downloading the latest
 image:
 
 ```bash
-docker pull ghcr.io/stacklok/codegate/codegate:latest
+docker pull ghcr.io/stacklok/codegate:latest
 ```
 
 Stop and remove the current container:
@@ -64,7 +64,7 @@ docker rm codegate
 Finally, launch the new version:
 
 ```bash
-docker run --name codegate -d -p 8989:8989 -p 8991:80 ghcr.io/stacklok/codegate/codegate:latest
+docker run --name codegate -d -p 8989:8989 -p 8991:80 ghcr.io/stacklok/codegate:latest
 ```
 
 ## Manage the CodeGate container

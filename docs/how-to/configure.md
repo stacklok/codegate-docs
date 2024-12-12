@@ -11,7 +11,7 @@ extra configuration parameters to the container as environment variables:
 ```bash {2}
 docker run -d -p 8989:8989 -p 8991:80 \
   [-e KEY=VALUE ...] \
-  ghcr.io/stacklok/codegate/codegate
+  ghcr.io/stacklok/codegate
 ```
 
 ## Config parameters
@@ -38,7 +38,7 @@ To use OpenRouter, set the vLLM URL when you launch CodeGate:
 ```bash {2}
 docker run -d -p 8989:8989 -p 8991:80 \
   -e CODEGATE_VLLM_URL=https://openrouter.ai/api \
-  ghcr.io/stacklok/codegate/codegate
+  ghcr.io/stacklok/codegate
 ```
 
 Then, [configure the Continue IDE plugin](./use-with-continue.mdx) to access the
