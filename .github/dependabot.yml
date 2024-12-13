@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    groups:
+      docusaurus:
+        patterns:
+          - "*docusaurus*"
+    ignore:
+      # Pin key docusaurus dependencies to major versions
+      - dependency-name: "@mdx-js/react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "prism-react-renderer"
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
