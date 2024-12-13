@@ -19,8 +19,8 @@ installed the IDE extension.
 
 :::
 
-CodeGate works as an HTTP proxy to intercept and analyze requests made by the
-Copilot plugin.
+CodeGate works as an HTTP proxy to intercept and modify traffic between GitHub
+Copilot and your IDE.
 
 ```mermaid
 flowchart LR
@@ -33,10 +33,11 @@ flowchart LR
 
 ## Prerequisites
 
-Your system must trust CodeGate's self-signed certificate to maintain a secure
-end-to-end connection with Copilot. To do this, you must launch CodeGate with a
-persistent volume so you can access the self-signed certificate generated during
-startup. This also prevents the certificate from changing on each restart.
+Your system must trust CodeGate's self-signed Certificate Authority (CA) to
+maintain a secure end-to-end connection with Copilot. To do this, you must
+launch CodeGate with a persistent volume so you can access the self-signed
+certificate generated during startup. This also prevents the certificate from
+changing on each restart.
 
 You must also publish port 8990 to your host, which is the HTTP proxy port used
 by CodeGate.
@@ -55,7 +56,7 @@ docker run --name codegate -d -p 8989:8989 -p 9090:80 \
 See [Persisting dashboard data](./dashboard.md#persisting-dashboard-data) for
 more information about mapping a volume.
 
-## Trust the certificate
+## Install the CodeGate CA certificate
 
 Add CodeGate's generated CA certificate to your system's trust store. The
 certificate file is located at `certs/ca.crt` within your CodeGate data volume.
@@ -117,10 +118,9 @@ Finally, configure your IDE to use CodeGate as an HTTP proxy.
 
 <Tabs groupId="ide">
 <TabItem value="vscode" label="VS Code" default>
-Open your VS Code user settings file. To do this, open the Command Pallet
-(<kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on macOS or 
-<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on Windows/Linux) and search for
-the **Preferences: Open User Settings (JSON)** command.
+In VS Code, open the Command Pallet (<kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+on macOS or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on Windows/Linux) and
+search for the **Preferences: Open User Settings (JSON)** command.
 
 Append the following settings to your configuration:
 

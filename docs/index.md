@@ -63,8 +63,12 @@ project. Please join us in the `#codegate` channel on the
 
 ## Next steps
 
-Follow the [quickstart guide](quickstart.md) to get up and running quickly using
-VS Code, the Continue IDE plugin, and a local Ollama server.
+Follow one of the the quickstart guides to get up and running quickly:
+
+- [Quickstart guide - GitHub Copilot](quickstart-copilot.mdx) to integrate
+  CodeGate with GitHub Copilot and VS Code
+- [Quickstart guide - Continue](./quickstart-continue.md) to integrate CodeGate
+  with the open source Continue extension, VS Code, and a local Ollama server
 
 Review the [installation instructions](how-to/install.md).
 

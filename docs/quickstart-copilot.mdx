@@ -1,0 +1,312 @@
+---
+title: Quickstart guide - GitHub Copilot
+description: Get up and running with CodeGate and Copilot
+sidebar_label: Quickstart - GitHub Copilot
+sidebar_position: 9
+id: quickstart
+slug: /quickstart
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import ThemedImage from "@theme/ThemedImage";
+
+## Objective
+
+This guide will get you up and running with CodeGate in just a few minutes using
+Visual Studio Code and GitHub Copilot. By the end, you'll have learned how
+CodeGate helps to protect your privacy and improve the security of your
+applications.
+
+## Prerequisites
+
+You must have an active subscription to
+[GitHub Copilot](https://github.com/features/copilot).
+
+CodeGate runs on Windows, macOS (Apple or Intel silicon), or Linux systems.
+
+Required software:
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or Docker
+  Engine on Linux)
+- [VS Code](https://code.visualstudio.com/) with the
+  [GitHub Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+
+## Start the CodeGate container
+
+Run CodeGate using Docker:
+
+```bash
+docker run --name codegate -d -p 8989:8989 -p 9090:80 -p 8990:8990 \
+  -v ./codegate_volume:/app/codegate_volume \
+  ghcr.io/stacklok/codegate:latest
+```
+
+This pulls the latest CodeGate image from the GitHub Container Registry and
+starts the container in detached mode, mapping the necessary ports and mounting
+a volume for persistent data storage to a directory named `codegate_volume` in
+your local working path.
+
+To verify that CodeGate is running, open your web browser and navigate to
+`http://localhost:9090`. You should see the CodeGate dashboard.
+
+## Install the CodeGate CA certificate
+
+To enable CodeGate, you must install its Certificate Authority (CA) into your
+operating system's trust store.
+
+:::info[Why is this needed?]
+
+The CodeGate CA allows your machine to securely intercept and modify traffic
+between GitHub Copilot and your IDE. Decrypted traffic never leaves your local
+machine.
+
+:::
+
+<Tabs groupId="os">
+<TabItem value="macos" label="macOS" default>
+Run the following command from a terminal:
+
+```bash
+sudo security add-trusted-cert -d -r trustRoot \
+  -k /Library/Keychains/System.keychain \
+  ./codegate_volume/certs/ca.crt
+```
+
+</TabItem>
+<TabItem value="windows" label="Windows">
+Execute this command from an elevated PowerShell prompt:
+
+```powershell
+Import-Certificate -FilePath ".\codegate_volume\certs\ca.crt" -CertStoreLocation Cert:\LocalMachine\Root
+```
+
+</TabItem>
+<TabItem value="linux" label="Linux">
+Run the following commands from a terminal, depending on your distribution.
+
+Ubuntu/Debian based distributions:
+
+```bash
+sudo cp ./codegate_volume/certs/ca.crt /usr/local/share/ca-certificates/codegate.crt
+sudo update-ca-certificates
+```
+
+RHEL/Fedora and other Enterprise Linux distributions:
+
+```bash
+sudo cp ./codegate_volume/certs/ca.crt /etc/pki/ca-trust/source/anchors/codegate.pem
+sudo update-ca-trust
+```
+
+</TabItem>
+</Tabs>
+
+## Configure VS Code to use CodeGate
+
+In VS Code, open the Command Pallet (<kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+on macOS or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on Windows/Linux) and
+search for the **Preferences: Open User Settings (JSON)** command.
+
+Append the following settings to your configuration:
+
+```json title="settings.json"
+{
+  // ... Existing settings ... //
+
+  // Note: you may need to add a comma after the last line of your existing settings if not already present
+
+  "http.proxy": "https://localhost:8990",
+  "http.proxyStrictSSL": true,
+  "http.proxySupport": "on",
+  "http.systemCertificates": true,
+  "github.copilot.advanced": {
+    "debug.useNodeFetcher": true,
+    "debug.useElectronFetcher": true,
+    "debug.testOverrideProxyUrl": "https://localhost:8990",
+    "debug.overrideProxyUrl": "https://localhost:8990"
+  }
+}
+```
+
+## Explore CodeGate's key features
+
+To learn more about CodeGate's capabilities, clone the demo repository to a
+local folder on your system.
+
+```bash
+git clone https://github.com/stacklok/codegate-demonstration
+```
+
+:::warning
+
+This repo contains intentionally risky code for demonstration purposes. Do not
+run this in a production environment or use any of the included code in real
+projects.
+
+:::
+
+Open the project folder in VS Code. You can do this from the UI or in the
+terminal:
+
+```bash
+cd codegate-demonstration
+code ./codegate-demonstration
+```
+
+### Protect your secrets
+
+Often while developing, you'll need to work with sensitive information like API
+keys or passwords. You've certainly taken steps to avoid checking these into
+your source repo, but they are fair game for Copilot to send to its language
+models as context.
+
+Open the `conf.ini` or `app.json` file from the demo repo in the VS Code editor.
+In the Copilot chat panel, observe that Copilot has automatically loaded the
+active file as context.
+
+<ThemedImage
+  alt="Copilot chat showing the current file selected"
+  sources={{
+    light: useBaseUrl(
+      "/img/quickstart/quickstart-copilot-secrets-context-light.webp"
+    ),
+    dark: useBaseUrl(
+      "/img/quickstart/quickstart-copilot-secrets-context-dark.webp"
+    ),
+  }}
+  width={"481px"}
+/>
+
+Enter this prompt into the chat:
+
+```
+Explain the current file
+```
+
+CodeGate intercepts the request and transparently encrypts the sensitive data
+before it leaves your machine.
+
+<ThemedImage
+  alt="Copilot results identifying redacted secrets"
+  sources={{
+    light: useBaseUrl(
+      "/img/quickstart/quickstart-copilot-secrets-result-light.webp"
+    ),
+    dark: useBaseUrl(
+      "/img/quickstart/quickstart-copilot-secrets-result-dark.webp"
+    ),
+  }}
+  width={"800px"}
+/>
+
+Learn more in [Secrets encryption](./features/secrets-encryption.md).
+
+### Assess dependency risk
+
+Open the `packages.py` file from the demo repo in the VS Code editor. Confirm
+that it's now the active context file in Copilot.
+
+<ThemedImage
+  alt="Copilot chat showing the current file selected"
+  sources={{
+    light: useBaseUrl(
+      "/img/quickstart/quickstart-copilot-dependencies-context-light.webp"
+    ),
+    dark: useBaseUrl(
+      "/img/quickstart/quickstart-copilot-dependencies-context-dark.webp"
+    ),
+  }}
+  width={"481px"}
+/>
+
+Enter the following prompt into the chat:
+
+```
+Analyze this file
+```
+
+Using its up-to-date knowledge from
+[Stacklok Insight](https://www.insight.stacklok.com/), CodeGate identifies the
+malicious and deprecated packages referenced in the code.
+
+<ThemedImage
+  alt="Copilot results identifying risky dependencies"
+  sources={{
+    light: useBaseUrl(
+      "/img/quickstart/quickstart-copilot-dependencies-result-light.webp"
+    ),
+    dark: useBaseUrl(
+      "/img/quickstart/quickstart-copilot-dependencies-result-dark.webp"
+    ),
+  }}
+  width={"800px"}
+/>
+
+Learn more in [Dependency risk awareness](./features/dependency-risk.md).
+
+### View the dashboard
+
+Open your web browser to [http://localhost:9090](http://localhost:9090) and
+explore the CodeGate dashboard.
+
+The dashboard displays security alerts and history of interactions between your
+AI assistant and the LLM. Several alerts and prompts from the previous steps in
+this tutorial should be visible now. Over time, this helps you understand how
+CodeGate is actively protecting your privacy and security.
+
+![CodeGate dashboard](/img/quickstart/quickstart-dashboard.webp)
+
+## Next steps
+
+Congratulations, CodeGate is now hard at work protecting your privacy and
+enhancing the security of your AI-assisted development!
+
+Check out the rest of the docs to learn more about
+[how to use CodeGate](./how-to/index.mdx) and explore all of its
+[Features](./features/index.mdx).s
+
+We want to hear about your experiences using CodeGate! Join the `#codegate`
+channel on the [Stacklok Community Discord](https://discord.gg/stacklok) server
+to chat about the project, and let us know about any bugs or feature requests
+via [GitHub Issues](https://github.com/stacklok/codegate/issues).
+
+## Clean up your environment
+
+Of course we hope you'll want to continue using CodeGate, but if you want to
+stop using it, follow these steps to clean up your environment.
+
+1. Stop and remove the CodeGate container:
+
+   ```bash
+   docker stop codegate && docker rm codegate
+   ```
+
+2. Delete the `codegate_volume` directory which contains the CodeGate database
+   and certificates.
+
+3. Remove the proxy settings from your VS Code configuration file.
+
+4. Remove the CodeGate CA certificate from your system's trust store.
+
+   - **macOS:**
+     ```bash
+     sudo security delete-certificate -c "CodeGate CA" -t /Library/Keychains/System.keychain`
+     ```
+   - **Windows:**
+     ```powershell
+     # Run from an elevated PowerShell prompt
+     Get-ChildItem Cert:\LocalMachine\Root |
+       Where-Object { $_.Subject -match 'CodeGate CA' } |
+       Remove-Item
+     ```
+   - **Linux:**
+
+     ```bash
+     # Ubuntu/Debian:
+     sudo rm /usr/local/share/ca-certificates/codegate.crt && sudo update-ca-certificates
+
+     # RHEL/Fedora:
+     sudo rm /etc/pki/ca-trust/source/anchors/codegate.pem && sudo update-ca-trust
+     ```

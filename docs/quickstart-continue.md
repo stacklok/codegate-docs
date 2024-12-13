@@ -1,5 +1,7 @@
 ---
-title: Quickstart guide
+title: Quickstart guide - Continue
+description: Get up and running with CodeGate and Continue
+sidebar_label: Quickstart - Continue
 sidebar_position: 10
 ---
 
@@ -22,7 +24,7 @@ Required software:
   Engine on Linux)
 - [Ollama](https://ollama.com/)
 - [VS Code](https://code.visualstudio.com/) with the
-  [Continue](https://www.continue.dev/) plugin
+  [Continue](https://www.continue.dev/) extension
 
 CodeGate works with local and commercially hosted large language models (LLMs).
 In this tutorial, you'll use Ollama to run a code generation model on your local
@@ -38,6 +40,13 @@ Download and run the container using Docker:
 docker pull ghcr.io/stacklok/codegate:latest
 docker run --name codegate -d -p 8989:8989 -p 9090:80 ghcr.io/stacklok/codegate:latest
 ```
+
+This pulls the latest CodeGate image from the GitHub Container Registry and
+starts the container in detached mode, mapping the necessary ports and mounting
+a volume for persistent data storage.
+
+To verify that CodeGate is running, open your web browser and navigate to
+`http://localhost:9090`. You should see the CodeGate dashboard.
 
 ## Install a CodeGen model
 
