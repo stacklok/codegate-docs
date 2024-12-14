@@ -274,3 +274,20 @@ Learn more about how to customize CodeGate and access the web dashboard:
 
 - [Configure CodeGate](./configure.md)
 - [Access the dashboard](./dashboard.md)
+
+## Remove CodeGate
+
+If you decide to stop using CodeGate, follow these steps to remove it and revert
+your environment.
+
+1. Remove the `apiBase` configuration entries from your Continue configuration
+   file.
+
+1. Stop and remove the CodeGate container:
+
+   ```bash
+   docker stop codegate && docker rm codegate
+   ```
+
+1. If you launched CodeGate with a persistent volume, delete the local directory
+   you mapped to remove the CodeGate database and other files.

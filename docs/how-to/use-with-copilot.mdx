@@ -196,3 +196,43 @@ Learn more about how to customize CodeGate and access the web dashboard:
 
 - [Configure CodeGate](./configure.md)
 - [Access the dashboard](./dashboard.md)
+
+## Remove CodeGate
+
+If you decide to stop using CodeGate, follow these steps to remove it and revert
+your environment.
+
+1. Remove the proxy settings from your IDE configuration.
+
+1. Remove the CodeGate CA certificate from your system's trust store:
+
+   - **macOS:**
+     ```bash
+     sudo security delete-certificate -c "CodeGate CA" -t /Library/Keychains/System.keychain`
+     ```
+   - **Windows:**
+     ```powershell
+     # Run from an elevated PowerShell prompt
+     Get-ChildItem Cert:\LocalMachine\Root |
+       Where-Object { $_.Subject -match 'CodeGate CA' } |
+       Remove-Item
+     ```
+   - **Linux:**
+     ```bash
+     # Ubuntu/Debian:
+     sudo rm /usr/local/share/ca-certificates/codegate.crt
+     sudo update-ca-certificates --fresh
+
+     # RHEL/Fedora:
+     sudo rm /etc/pki/ca-trust/source/anchors/codegate.pem
+     sudo update-ca-trust
+     ```
+
+1. Stop and remove the CodeGate container:
+
+   ```bash
+   docker stop codegate && docker rm codegate
+   ```
+
+1. Delete the `codegate_volume` directory which contains the CodeGate database
+   and certificates.

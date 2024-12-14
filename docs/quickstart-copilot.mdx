@@ -302,11 +302,12 @@ stop using it, follow these steps to clean up your environment.
        Remove-Item
      ```
    - **Linux:**
-
      ```bash
      # Ubuntu/Debian:
-     sudo rm /usr/local/share/ca-certificates/codegate.crt && sudo update-ca-certificates
+     sudo rm /usr/local/share/ca-certificates/codegate.crt
+     sudo update-ca-certificates --fresh
 
      # RHEL/Fedora:
-     sudo rm /etc/pki/ca-trust/source/anchors/codegate.pem && sudo update-ca-trust
+     sudo rm /etc/pki/ca-trust/source/anchors/codegate.pem
+     sudo update-ca-trust
      ```
