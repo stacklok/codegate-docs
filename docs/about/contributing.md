@@ -7,31 +7,36 @@ sidebar_position: 30
 CodeGate is an open source (Apache-2.0) project maintained by
 [Stacklok](https://www.stacklok.com), and we welcome community contributions.
 
-:::danger[Content needed]
-
-This is all boilerplate lifted from elsewhere, pending final contributor
-guidelines
-
-:::
-
 ## How to contribute
 
 ### Reporting issues
 
-If you encounter a bug, create a new issue on our GitHub repository with a clear
+If you encounter a bug, create a new issue on the
+[GitHub repository](https://github.com/stacklok/codegate) with a clear
 description, steps to reproduce, and any relevant screenshots or error logs.
 
-Search existing issues to avoid duplicates.
+Please search existing issues to avoid duplicates. If you find an existing issue
+for your bug, give it a :+1: to express your support.
 
 ### Suggesting features
 
-If you have an idea for a new feature, create a new issue labeled "feature
-request" with a detailed explanation of the proposed functionality and its
-benefits.
+If you have an idea for a new feature, create a new issue on the
+[GitHub repository](https://github.com/stacklok/codegate) with a detailed
+explanation of the proposed functionality and its benefits.
+
+Please search existing issues to avoid duplicates. If you find an existing
+feature request for your idea, give it a :+1: to express your support.
+
+### Documentation feedback
+
+Found something wrong, missing, or unclear in the docs? Open an issue or submit
+a pull request on the
+[codegate-docs GitHub repo](https://github.com/stacklok/codegate-docs). You can
+also click the "Edit this page" link at the bottom of every page.
 
 ### Development environment
 
-Refer to the [Developer reference](../development/index.md) section for details
+Refer to the [Developer reference guides](../development/index.md) for details
 about setting up your development environment, building the app, and running
 tests.
 
