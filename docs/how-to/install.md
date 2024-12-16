@@ -30,6 +30,10 @@ To use different listening ports, modify the `-p` flag(s):
 - CodeGate API: `-p YOUR_PORT:8989`
 - Dashboard UI: `-p YOUR_PORT:80`
 
+### Examples
+
+Attach a folder as a persistent volume to the container (see [Persisting dashboard data](./dashboard.md#persisting-dashboard-data))
+
 ## View logs
 
 Use the `docker logs` command to view recent log messages:

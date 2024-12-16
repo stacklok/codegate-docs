@@ -88,7 +88,7 @@ If this is your first time using Continue, paste the following contents into the
 file and save it. If you've previously used Continue and have existing settings,
 insert/update the highlighted portions into your current configuration.
 
-```json {3-8,11,13-18}
+```json {3-8,11,13-18} title="~/.continue/config.json"
 {
   "models": [
     {
@@ -158,7 +158,7 @@ the file to include it as context, and ask Continue to explain the file.
 
 For example, using `conf.ini`:
 
-```plain
+```plain title="Continue chat"
 @conf.ini Explain this file
 ```
 
@@ -173,7 +173,7 @@ Open the `packages.py` file from the demo repo in the VS Code editor and examine
 the import statements at the top. As with the previous step, type `@Files`, this
 time selecting the `packages.py` file to add it to your prompt. Then ask Continue to analyze the file.
 
-```plain
+```plain title="Continue chat"
 @packages.py Please explain this file
 ```
 

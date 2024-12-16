@@ -30,7 +30,7 @@ mount a directory on your host system to the CodeGate container as a
 maps a directory named `codegate_volume` in your current working path to
 `/app/codegate_volume` inside the container:
 
-```bash {2} title="Example"
+```bash {2} title="Example - create/use a folder in the current directory"
 docker run --name codegate -d -p 8989:8989 -p 9090:80 \
   -v ./codegate_volume:/app/codegate_volume \
   ghcr.io/stacklok/codegate:latest

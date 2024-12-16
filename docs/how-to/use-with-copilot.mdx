@@ -152,13 +152,19 @@ Coming soon!
 </TabItem>
 </Tabs>
 
+:::note
+
+Restart your IDE after adding the proxy configuration.
+
+:::
+
 ## Verify configuration
 
 To verify that CodeGate is receiving Copilot traffic as expected, open the
 Copilot chat and type `What do you know about CodeGate?`. You should receive a
 response that starts like this:
 
-```plan
+```plan title="Copilot chat"
 CodeGate is a security-focused AI assistant designed to help with software
 security, package analysis, and providing guidance on secure coding practices.
 
@@ -167,14 +173,14 @@ security, package analysis, and providing guidance on secure coding practices.
 
 Try asking CodeGate about a known malicious Python package:
 
-```plain
+```plain title="Copilot chat"
 Tell me how to use the invokehttp package from PyPI
 ```
 
 CodeGate responds with a warning and a link to the Stacklok Insight report about
 this package:
 
-```plain
+```plain title="Copilot chat"
 Warning: CodeGate detected one or more malicious or archived packages.
 
 Package: https://insight.stacklok.com/pypi/invokehttp
