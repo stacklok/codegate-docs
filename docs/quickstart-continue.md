@@ -122,7 +122,7 @@ returned.
 
 ## Explore CodeGate's features
 
-To learn more about CodeGate's capabilities, clone this example repository to a
+To learn more about CodeGate's capabilities, clone the demo repository to a
 local folder on your system.
 
 ```bash
@@ -137,26 +137,53 @@ projects.
 
 :::
 
-Open the project in VS Code.
+Open the project folder in VS Code. You can do this from the UI or in the
+terminal:
 
 ```bash
 cd codegate-demonstration
-code .
+code ./codegate-demonstration
 ```
-
-:::danger[Content needed]
-
-\<TODO: feature walkthru\>
-
-:::
 
 ### Protect your secrets
 
+Often while developing, you'll need to work with sensitive information like API
+keys or passwords. You've certainly taken steps to avoid checking these into
+your source repo, but they are fair game for LLMs to use as context and
+training.
+
+Open the `conf.ini` or `app.json` file from the demo repo in the VS Code editor
+and examine the contents. In the Continue chat input, type `@Files` and select
+the file to include it as context, and ask Continue to explain the file.
+
+For example, using `conf.ini`:
+
+```plain
+@conf.ini Explain this file
+```
+
+CodeGate intercepts the request and transparently encrypts the sensitive data
+before it leaves your machine.
+
+Learn more in [Secrets encryption](./features/secrets-encryption.md).
+
 ### Assess dependency risk
 
-### Get a code review
+Open the `packages.py` file from the demo repo in the VS Code editor and examine
+the import statements at the top. As with the previous step, type `@Files`, this
+time selecting the `packages.py` file to add it to your prompt. Then ask Continue to analyze the file.
 
-## View the dashboard
+```plain
+@packages.py Please explain this file
+```
+
+Using its up-to-date knowledge from
+[Stacklok Insight](https://www.insight.stacklok.com/), CodeGate identifies the
+malicious and deprecated packages referenced in the code.
+
+Learn more in [Dependency risk awareness](./features/dependency-risk.md).
+
+### View the dashboard
 
 Open your web browser to [http://localhost:9090](http://localhost:9090) and
 explore the CodeGate dashboard.
@@ -164,13 +191,9 @@ explore the CodeGate dashboard.
 The dashboard displays security alerts and history of interactions between your
 AI assistant and the LLM. Several alerts and prompts from the previous steps in
 this tutorial should be visible now. Over time, this helps you understand how
-CodeGate protects your privacy and security.
+CodeGate is actively protecting your privacy and security.
 
-:::danger[Content needed]
-
-\<TODO: screenshot\>
-
-:::
+![CodeGate dashboard](/img/quickstart/quickstart-dashboard.webp)
 
 ## Next steps
 
