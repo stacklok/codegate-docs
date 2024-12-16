@@ -37,19 +37,20 @@ CodeGate supports several development environments and AI providers.
 
 AI coding assistants / IDEs:
 
-- GitHub Copilot with Visual Studio Code and JetBrains IDEs
-- Continue.dev with Visual Studio Code and JetBrains IDEs
+- **[GitHub Copilot](https://github.com/features/copilot)** with Visual Studio Code and JetBrains IDEs
 
-AI model providers:
+- **[Continue](https://www.continue.dev/)** with Visual Studio Code and JetBrains IDEs
 
-- Ollama (locally-hosted models)
-- vLLM (OpenAI-compatible mode, including OpenRouter)
-- Anthropic
-- OpenAI
-- llama.cpp (locally-hosted models)
+  CodeGate supports the following AI model providers with Continue:
+
+  - [Ollama](https://ollama.com/)
+  - [vLLM](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html) (OpenAI-compatible mode, including OpenRouter)
+  - [Anthropic API](https://www.anthropic.com/api)
+  - [OpenAI API](https://openai.com/api/)
+  - [llama.cpp](https://github.com/ggerganov/llama.cpp) (locally-hosted models)
 
 As the project evolves, we plan to add support for more IDE assistants and AI
-model providers.
+models.
 
 ## How to get involved
 

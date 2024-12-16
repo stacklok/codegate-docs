@@ -12,7 +12,18 @@ import TabItem from '@theme/TabItem';
 your IDE that connects to many model providers. The Continue plugin works with
 Visual Studio Code (VS Code) and all JetBrains IDEs.
 
-## Install the plugin
+CodeGate works with the following AI model providers via Continue:
+
+- Local:
+  - [Ollama](https://ollama.com/)
+  - [llama.cpp](https://github.com/ggerganov/llama.cpp)
+- Remote:
+  - [vLLM](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html)
+    (OpenAI-compatible mode, including OpenRouter)
+  - [Anthropic API](https://www.anthropic.com/api)
+  - [OpenAI API](https://openai.com/api/)
+
+## Install the Continue plugin
 
 <Tabs groupId="ide">
   <TabItem value="vscode" label="VS Code" default>
@@ -45,37 +56,42 @@ Visual Studio Code (VS Code) and all JetBrains IDEs.
 
 ## Configure Continue to use CodeGate
 
-Continue stores its configuration in `~/.continue/config.json`. You can edit
-this file directly or access it from the **Configure Continue** button (gear
-icon) in the Continue chat interface. This file may be empty if this is your
-first time using Continue.
+To configure Continue to send requests through CodeGate:
 
-CodeGate works with local models via [Ollama](https://ollama.com/) or
-[llama.cpp](https://github.com/ggerganov/llama.cpp), or models hosted by a
-[vLLM](https://docs.vllm.ai/) server,
-[Anthropic](https://console.anthropic.com/), and
-[OpenAI](https://platform.openai.com/docs/overview). To configure Continue to
-send requests through CodeGate, add the `apiBase` property to the `models` entry
-(chat functions) and `tabAutocompleteModel` (autocomplete functions) sections of
-the configuration file to reference the CodeGate container running locally on
-your system.
+1. Configure the [chat](https://docs.continue.dev/chat/model-setup) and
+   [autocomplete](https://docs.continue.dev/autocomplete/model-setup) settings
+   in Continue for your desired AI model(s).
 
-```json
-"apiBase": "http://127.0.0.1:8989/<provider>/"
-```
+1. Open the Continue [configuration file](https://docs.continue.dev/reference),
+   `~/.continue/config.json`. You can edit this file directly or access it from
+   the gear icon ("Configure Continue") in the Continue chat interface.
 
-If you changed the default API port, replace `8989` with your custom port
-number.
+1. Add the `apiBase` property to the `models` entry (chat) and
+   `tabAutocompleteModel` (autocomplete) sections of the configuration file.
+   This tells Continue to use the CodeGate CodeGate container running locally on
+   your system as the base URL for your LLM API, instead of the default.
 
-Below are examples of minimum Continue plugin configurations for each provider.
-For each, replace the values in ALL_CAPS. The configuration syntax is the same
-for VS Code and JetBrains IDEs.
+   ```json
+   "apiBase": "http://127.0.0.1:8989/<provider>/"
+   ```
 
-:::info JetBrains note
+   Replace `/<provider>/` with `/anthropic/`, `/ollama/`, `/openai/`, or
+   `/vllm/`.
+
+   If you used a different API port when launching the CodeGate container,
+   replace `8989` with your custom port number.
+
+1. Save the configuration file.
+
+:::note
 
 JetBrains users may need to restart your IDE after editing the config file.
 
 :::
+
+Below are examples of complete Continue configurations for each supported
+provider. For each, replace the values in ALL_CAPS. The configuration syntax is
+the same for VS Code and JetBrains IDEs.
 
 <Tabs groupId="provider">
 <TabItem value="ollama" label="Ollama" default>

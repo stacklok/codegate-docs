@@ -26,11 +26,20 @@ Required software:
 - [VS Code](https://code.visualstudio.com/) with the
   [Continue](https://www.continue.dev/) extension
 
-CodeGate works with local and commercially hosted large language models (LLMs).
-In this tutorial, you'll use Ollama to run a code generation model on your local
-machine.
-
 Continue is an open source AI code assistant that supports a wide range of LLMs.
+
+:::info
+
+CodeGate works with multiple local and hosted large language models (LLMs) via
+Continue. In this tutorial, you'll use Ollama to run a code generation model on
+your local machine.
+
+If you have access to a provider like Anthropic or OpenAI, see
+[Use CodeGate with Continue](./how-to/use-with-continue.mdx) for complete
+configuration details, then skip ahead to
+[Explore CodeGate's features](#explore-codegates-features) in this tutorial.
+
+:::
 
 ## Start the CodeGate container
 
