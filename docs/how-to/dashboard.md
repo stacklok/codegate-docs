@@ -22,34 +22,32 @@ To use a different listening port on your host, replace `9090` with your desired
 port: `-p YOUR_PORT:80`. The dashboard will be available at
 `http://localhost:YOUR_PORT/`.
 
-## Persisting dashboard data {#persisting-dashboard-data}
-
-To retain your prompt history and other dashboard metrics between restarts,
-mount a directory on your host system to the CodeGate container as a
-[Docker volume](https://docs.docker.com/engine/storage/volumes/). This example
-maps a directory named `codegate_volume` in your current working path to
-`/app/codegate_volume` inside the container:
-
-```bash {2} title="Example - create/use a folder in the current directory"
-docker run --name codegate -d -p 8989:8989 -p 9090:80 \
-  -v ./codegate_volume:/app/codegate_volume \
-  ghcr.io/stacklok/codegate:latest
-```
-
-Docker creates the directory if it doesn't exist.
-
 :::note
 
-Ensure the volume is mounted to `/app/codegate_volume` inside the container. Do
-not modify the right side of the `-v` parameter in the `docker run` command.
+If you change the web dashboard port, some links returned by CodeGate's
+responses won't work without manually changing the port when they open in your
+browser.
 
 :::
 
-To customize the location of the persistent volume on your system, update the
-left side of the `-v` parameter:
+## Persisting dashboard data {#persisting-dashboard-data}
 
-```bash {2} title="Use a custom path"
+To retain your prompt history and other dashboard metrics between restarts,
+mount a persistent
+[Docker volume](https://docs.docker.com/engine/storage/volumes/) to the CodeGate
+container. The volume destination must be `/app/codegate_volume` inside the
+container. This example creates a volume named `codegate_volume`:
+
+```bash {2}
 docker run --name codegate -d -p 8989:8989 -p 9090:80 \
-  -v <YOUR_PATH>:/app/codegate_volume \
+  --mount type=volume,src=codegate_volume,dst=/app/codegate_volume \
   ghcr.io/stacklok/codegate:latest
 ```
+
+:::note
+
+The volume must be mounted to `/app/codegate_volume` inside the container. Do
+not modify the `dst` value of the `--mount` parameter in the `docker run`
+command.
+
+:::

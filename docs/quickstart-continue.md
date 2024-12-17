@@ -30,9 +30,9 @@ Continue is an open source AI code assistant that supports a wide range of LLMs.
 
 :::info
 
-CodeGate works with multiple local and hosted large language models (LLMs) via
-Continue. In this tutorial, you'll use Ollama to run a code generation model on
-your local machine.
+CodeGate works with multiple local and hosted large language models (LLMs)
+through Continue. In this tutorial, you'll use Ollama to run a code generation
+model on your local machine.
 
 If you have access to a provider like Anthropic or OpenAI, see
 [Use CodeGate with Continue](./how-to/use-with-continue.mdx) for complete
@@ -171,7 +171,8 @@ Learn more in [Secrets encryption](./features/secrets-encryption.md).
 
 Open the `packages.py` file from the demo repo in the VS Code editor and examine
 the import statements at the top. As with the previous step, type `@Files`, this
-time selecting the `packages.py` file to add it to your prompt. Then ask Continue to analyze the file.
+time selecting the `packages.py` file to add it to your prompt. Then ask
+Continue to analyze the file.
 
 ```plain title="Continue chat"
 @packages.py Please explain this file
@@ -211,7 +212,7 @@ how to use those instead of Ollama.
 Finally, we want to hear about your experiences using CodeGate. Join the
 `#codegate` channel on the
 [Stacklok Community Discord](https://discord.gg/stacklok) server to chat about
-the project, and let us know about any bugs or feature requests via
+the project, and let us know about any bugs or feature requests in
 [GitHub Issues](https://github.com/stacklok/codegate/issues).
 
 ## Clean up your environment

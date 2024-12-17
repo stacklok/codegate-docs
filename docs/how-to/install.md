@@ -16,23 +16,72 @@ replace `docker` with `podman` in all commands.
 
 ## Run CodeGate
 
-To download and run the container, run the following from a terminal:
+To download and run the CodeGate container, run the following from a terminal:
 
 ```bash
-docker run --name codegate -d -p 8989:8989 -p 9090:80 ghcr.io/stacklok/codegate:latest
+docker pull ghcr.io/stacklok/codegate:latest
 ```
 
-The container runs in the background (`-d`) and binds the CodeGate API endpoint
-to port 8989 and the web dashboard to port 9090.
-
-To use different listening ports, modify the `-p` flag(s):
-
-- CodeGate API: `-p YOUR_PORT:8989`
-- Dashboard UI: `-p YOUR_PORT:80`
+See the example commands to run the container with the right parameters for your
+scenario.
 
 ### Examples
 
-Attach a folder as a persistent volume to the container (see [Persisting dashboard data](./dashboard.md#persisting-dashboard-data))
+Run with minimal functionality for use with Continue:
+
+```bash
+docker run -d -p 8989:8989 -p 9090:80 ghcr.io/stacklok/codegate:latest
+```
+
+The container runs in the background (`-d`), binds the CodeGate API endpoint to
+port 8989, and the web dashboard to port 9090.
+
+Mount a persistent volume to the container (see
+[Persisting dashboard data](./dashboard.md#persisting-dashboard-data)):
+
+```bash
+docker run --name codegate -d -p 8989:8989 -p 9090:80 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume ghcr.io/stacklok/codegate:latest
+```
+
+Copilot support: enable the HTTP proxy port and mount a persistent volume (see
+[Use CodeGate with GitHub Copilot](./use-with-copilot.mdx)):
+
+```bash
+docker run --name codegate -d -p 8989:8989 -p 9090:80 -p 8990:8990 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume ghcr.io/stacklok/codegate:latest
+```
+
+:::tip
+
+Record the `docker run` command you use to launch CodeGate. It will be a handy
+reference when you [upgrade CodeGate](#upgrade-codegate) in the future or if you
+need to [modify your configuration](./configure.md).
+
+:::
+
+### Networking
+
+CodeGate listens on several network ports:
+
+| Default host port | Container port (internal) | Purpose                                              |
+| :---------------- | :------------------------ | :--------------------------------------------------- |
+| 9090              | 80                        | CodeGate web dashboard                               |
+| 8989              | 8989                      | Model providers API proxy                            |
+| 8990              | 8990                      | HTTP proxy (required for GitHub Copilot integration) |
+
+All of the commands in these docs assume the default ports. To use different
+listening ports, modify the `-p` flag(s):
+
+- Dashboard: `-p YOUR_PORT:80`
+- CodeGate API: `-p YOUR_PORT:8989`
+- HTTP proxy: `-p YOUR_PORT:8990`
+
+:::note
+
+If you change the web dashboard port, some links returned by CodeGate's
+responses won't work without manually changing the port when they open in your
+browser.
+
+:::
 
 ## View logs
 
@@ -51,8 +100,10 @@ docker logs --follow codegate
 
 ## Upgrade CodeGate
 
-To upgrade CodeGate to the latest version, start by downloading the latest
-image:
+To upgrade CodeGate to the latest version, start by reviewing the
+[Changelog](../about/changelog.md) for new features and breaking changes.
+
+Download the latest image:
 
 ```bash
 docker pull ghcr.io/stacklok/codegate:latest
@@ -65,15 +116,13 @@ docker stop codegate
 docker rm codegate
 ```
 
-Finally, launch the new version:
-
-```bash
-docker run --name codegate -d -p 8989:8989 -p 9090:80 ghcr.io/stacklok/codegate:latest
-```
+Finally, launch the new version using the same `docker run` command you used
+originally.
 
 ## Manage the CodeGate container
 
-Use standard `docker` commands to manage and stop the CodeGate container.
+Use standard `docker`/`podman` commands to manage the CodeGate container and
+persistent volume.
 
 ## Next steps
 
@@ -81,3 +130,11 @@ Now that CodeGate is running, proceed to configure your IDE integration.
 
 - [Use CodeGate with GitHub Copilot](./use-with-copilot.mdx)
 - [Use CodeGate with Continue](./use-with-continue.mdx)
+
+## Remove CodeGate
+
+If you decide to stop using CodeGate, follow the removal steps for your IDE
+integration:
+
+- [Remove CodeGate - GitHub Copilot](./use-with-copilot.mdx#remove-codegate)
+- [Remove CodeGate - Continue](./use-with-continue.mdx#remove-codegate)

@@ -1,0 +1,45 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="os">
+<TabItem value="macos" label="macOS" default>
+
+Open the Keychain Access app and delete the "CodeGate CA" certificate from the
+login keychain, or run the following from a terminal:
+
+```bash
+security delete-certificate -c "CodeGate CA" -t ~/Library/Keychains/login.keychain
+```
+
+</TabItem>
+<TabItem value="windows" label="Windows">
+
+Certificates in the CurrentUser\Root certificate store must be deleted from the
+GUI.
+
+1. From the Start menu, search for Manage User Certificates or run `certmgr.msc`
+   to open the user certificate store
+1. Navigate to Trusted Root Certification Authorities / Certificates
+1. Delete the "CodeGate CA" certificate
+
+</TabItem>
+<TabItem value="linux" label="Linux">
+
+Run the following commands from a terminal, depending on your distribution.
+
+Ubuntu/Debian based distributions:
+
+```bash
+sudo rm /usr/local/share/ca-certificates/codegate.crt
+sudo update-ca-certificates --fresh
+```
+
+RHEL/Fedora and other Enterprise Linux distributions:
+
+```bash
+sudo rm /etc/pki/ca-trust/source/anchors/codegate.pem
+sudo update-ca-trust
+```
+
+</TabItem>
+</Tabs>

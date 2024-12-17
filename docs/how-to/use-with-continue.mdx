@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 your IDE that connects to many model providers. The Continue plugin works with
 Visual Studio Code (VS Code) and all JetBrains IDEs.
 
-CodeGate works with the following AI model providers via Continue:
+CodeGate works with the following AI model providers through Continue:
 
 - Local:
   - [Ollama](https://ollama.com/)
@@ -305,5 +305,9 @@ your environment.
    docker stop codegate && docker rm codegate
    ```
 
-1. If you launched CodeGate with a persistent volume, delete the local directory
-   you mapped to remove the CodeGate database and other files.
+1. If you launched CodeGate with a persistent volume, delete it to remove the
+   CodeGate database and other files:
+
+   ```bash
+   docker volume rm codegate_volume
+   ```

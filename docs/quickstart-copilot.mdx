@@ -39,14 +39,13 @@ Run CodeGate using Docker:
 
 ```bash
 docker run --name codegate -d -p 8989:8989 -p 9090:80 -p 8990:8990 \
-  -v ./codegate_volume:/app/codegate_volume \
+  --mount type=volume,src=codegate_volume,dst=/app/codegate_volume \
   ghcr.io/stacklok/codegate:latest
 ```
 
 This pulls the latest CodeGate image from the GitHub Container Registry and
 starts the container in detached mode, mapping the necessary ports and mounting
-a volume for persistent data storage to a directory named `codegate_volume` in
-your local working path.
+a volume for persistent data storage..
 
 To verify that CodeGate is running, open your web browser and navigate to
 `http://localhost:9090`. You should see the CodeGate dashboard.
@@ -54,54 +53,22 @@ To verify that CodeGate is running, open your web browser and navigate to
 ## Install the CodeGate CA certificate
 
 To enable CodeGate, you must install its Certificate Authority (CA) into your
-operating system's trust store.
+certificate trust store.
 
 :::info[Why is this needed?]
 
-The CodeGate CA allows your machine to securely intercept and modify traffic
+The CA certificate allows CodeGate to securely intercept and modify traffic
 between GitHub Copilot and your IDE. Decrypted traffic never leaves your local
 machine.
 
 :::
 
-<Tabs groupId="os">
-<TabItem value="macos" label="macOS" default>
-Run the following command from a terminal:
+To install the CodeGate certificate, open the web dashboard in your browser:
+http://localhost:9090
 
-```bash
-sudo security add-trusted-cert -d -r trustRoot \
-  -k /Library/Keychains/System.keychain \
-  ./codegate_volume/certs/ca.crt
-```
-
-</TabItem>
-<TabItem value="windows" label="Windows">
-Execute this command from an elevated PowerShell prompt:
-
-```powershell
-Import-Certificate -FilePath ".\codegate_volume\certs\ca.crt" -CertStoreLocation Cert:\LocalMachine\Root
-```
-
-</TabItem>
-<TabItem value="linux" label="Linux">
-Run the following commands from a terminal, depending on your distribution.
-
-Ubuntu/Debian based distributions:
-
-```bash
-sudo cp ./codegate_volume/certs/ca.crt /usr/local/share/ca-certificates/codegate.crt
-sudo update-ca-certificates
-```
-
-RHEL/Fedora and other Enterprise Linux distributions:
-
-```bash
-sudo cp ./codegate_volume/certs/ca.crt /etc/pki/ca-trust/source/anchors/codegate.pem
-sudo update-ca-trust
-```
-
-</TabItem>
-</Tabs>
+From the **Certificates** menu choose **Download**, then click the **Download
+Certificate** button. Follow the OS-specific instructions on the page to import
+the certificate to your trust store.
 
 ## Configure VS Code to use CodeGate
 
@@ -271,17 +238,26 @@ enhancing the security of your AI-assisted development!
 
 Check out the rest of the docs to learn more about
 [how to use CodeGate](./how-to/index.mdx) and explore all of its
-[Features](./features/index.mdx).s
+[Features](./features/index.mdx).
 
 We want to hear about your experiences using CodeGate! Join the `#codegate`
 channel on the [Stacklok Community Discord](https://discord.gg/stacklok) server
-to chat about the project, and let us know about any bugs or feature requests
-via [GitHub Issues](https://github.com/stacklok/codegate/issues).
+to chat about the project, and let us know about any bugs or feature requests in
+[GitHub Issues](https://github.com/stacklok/codegate/issues).
 
 ## Clean up your environment
 
 Of course we hope you'll want to continue using CodeGate, but if you want to
 stop using it, follow these steps to clean up your environment.
+
+import RemoveCert from './partials/_remove-cert.mdx';
+
+1. Remove the [proxy settings](#configure-vs-code-to-use-codegate) from your VS
+   Code configuration.
+
+1. Remove the CodeGate CA certificate from your trust store:
+
+   <RemoveCert />
 
 1. Stop and remove the CodeGate container:
 
@@ -289,31 +265,8 @@ stop using it, follow these steps to clean up your environment.
    docker stop codegate && docker rm codegate
    ```
 
-2. Delete the `codegate_volume` directory which contains the CodeGate database
-   and certificates.
+1. Delete the persistent volume:
 
-3. Remove the proxy settings from your VS Code configuration file.
-
-4. Remove the CodeGate CA certificate from your system's trust store.
-
-   - **macOS:**
-     ```bash
-     sudo security delete-certificate -c "CodeGate CA" -t /Library/Keychains/System.keychain`
-     ```
-   - **Windows:**
-     ```powershell
-     # Run from an elevated PowerShell prompt
-     Get-ChildItem Cert:\LocalMachine\Root |
-       Where-Object { $_.Subject -match 'CodeGate CA' } |
-       Remove-Item
-     ```
-   - **Linux:**
-     ```bash
-     # Ubuntu/Debian:
-     sudo rm /usr/local/share/ca-certificates/codegate.crt
-     sudo update-ca-certificates --fresh
-
-     # RHEL/Fedora:
-     sudo rm /etc/pki/ca-trust/source/anchors/codegate.pem
-     sudo update-ca-trust
-     ```
+   ```bash
+   docker volume rm codegate_volume
+   ```

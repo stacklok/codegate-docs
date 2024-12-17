@@ -7,9 +7,9 @@ sidebar_position: 10
 ## What's the risk?
 
 As you interact with an AI coding assistant, sensitive data like passwords and
-access tokens can be unintentionally exposed to third-party providers via the
-code snippets and files you share as context. These secrets may become part of
-the training data used to improve the AI model and potentially be exposed to
+access tokens can be unintentionally exposed to third-party providers through
+the code snippets and files you share as context. These secrets may become part
+of the training data used to improve the AI model and potentially be exposed to
 other users.
 
 ## How CodeGate helps
