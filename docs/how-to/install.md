@@ -30,7 +30,7 @@ scenario.
 Run with minimal functionality for use with **Continue**:
 
 ```bash
-docker run -d -p 8989:8989 -p 9090:80 ghcr.io/stacklok/codegate:latest
+docker run -d -p 8989:8989 -p 9090:80 --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
 The container runs in the background (`-d`), binds the CodeGate API endpoint to
@@ -40,14 +40,14 @@ Mount a **persistent volume** to the container (see
 [Persisting dashboard data](./dashboard.md#persisting-dashboard-data)):
 
 ```bash
-docker run --name codegate -d -p 8989:8989 -p 9090:80 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume ghcr.io/stacklok/codegate:latest
+docker run --name codegate -d -p 8989:8989 -p 9090:80 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
-**Copilot support:** enable the HTTP proxy port and mount a persistent volume (see
-[Use CodeGate with GitHub Copilot](./use-with-copilot.mdx)):
+**Copilot support:** enable the HTTP proxy port and mount a persistent volume
+(see [Use CodeGate with GitHub Copilot](./use-with-copilot.mdx)):
 
 ```bash
-docker run --name codegate -d -p 8989:8989 -p 9090:80 -p 8990:8990 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume ghcr.io/stacklok/codegate:latest
+docker run --name codegate -d -p 8989:8989 -p 9090:80 -p 8990:8990 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
 :::tip
@@ -116,8 +116,8 @@ docker stop codegate
 docker rm codegate
 ```
 
-Finally, launch the new version using the same `docker run` command you used
-originally.
+Finally, launch the new version using the [same `docker run` command](#examples)
+you used originally.
 
 ## Manage the CodeGate container
 

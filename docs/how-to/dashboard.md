@@ -12,7 +12,7 @@ To access the dashboard, ensure port 80 is bound to a port on your local system
 when you launch CodeGate, for example:
 
 ```bash
-docker run --name codegate -d -p 8989:8989 -p 9090:80 ghcr.io/stacklok/codegate:latest
+docker run --name codegate -d -p 8989:8989 -p 9090:80 --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
 Open [http://localhost:9090](http://localhost:9090) in your web browser to view
@@ -41,7 +41,7 @@ container. This example creates a volume named `codegate_volume`:
 ```bash {2}
 docker run --name codegate -d -p 8989:8989 -p 9090:80 \
   --mount type=volume,src=codegate_volume,dst=/app/codegate_volume \
-  ghcr.io/stacklok/codegate:latest
+  --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
 :::note
