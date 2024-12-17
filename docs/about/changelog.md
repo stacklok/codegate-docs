@@ -1,7 +1,8 @@
 ---
 title: Changelog
-description: Updates to the CodeGate project.
+description: History of notable updates and changes to CodeGate
 sidebar_position: 20
 ---
 
-**2024-12-17** - Initial public launch.
+- **Introducing CodeGate** - 17 Dec, 2024\
+  Initial public launch of CodeGate!

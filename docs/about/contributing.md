@@ -5,67 +5,35 @@ sidebar_position: 30
 ---
 
 CodeGate is an open source (Apache-2.0) project maintained by
-[Stacklok](https://www.stacklok.com), and we welcome community contributions.
+[Stacklok](https://www.stacklok.com), and we welcome contributions from the
+community. There are several ways to contribute to CodeGate, including reporting
+bugs, suggesting new features, and submitting pull requests with code changes.
 
-## How to contribute
+## Reporting security vulnerabilities
 
-### Reporting issues
+If you think you have found a security vulnerability in CodeGate, please DO NOT
+disclose it publicly until we've had a chance to fix it. Please don't report
+security vulnerabilities using GitHub issues; instead, please refer to the
+process outlined in the project's
+[security policy](https://github.com/stacklok/codegate/security/policy).
 
-If you encounter a bug, create a new issue on the
-[GitHub repository](https://github.com/stacklok/codegate) with a clear
-description, steps to reproduce, and any relevant screenshots or error logs.
+## Creating GitHub issues
 
-Please search existing issues to avoid duplicates. If you find an existing issue
-for your bug, give it a :+1: to express your support.
+GitHub issues are used to track feature requests and bug reports. If you have a
+general usage question, please ask in the #codegate channel on
+[Discord](https://discord.gg/stacklok). To report a bug or request a feature,
+create a new issue in the
+[CodeGate GitHub repository](https://github.com/stacklok/codegate/issues).
 
-### Suggesting features
+## Contributing code
 
-If you have an idea for a new feature, create a new issue on the
-[GitHub repository](https://github.com/stacklok/codegate) with a detailed
-explanation of the proposed functionality and its benefits.
+If you've found an issue you'd like to work on, you can contribute code to
+CodeGate by submitting a pull request. Before you submit a pull request, please
+review the
+[Pull request process](https://github.com/stacklok/codegate/blob/main/CONTRIBUTING.md#pull-request-process).
 
-Please search existing issues to avoid duplicates. If you find an existing
-feature request for your idea, give it a :+1: to express your support.
+Thank you for taking the time to contribute to CodeGate!
 
-### Documentation feedback
-
-Found something wrong, missing, or unclear in the docs? Open an issue or submit
-a pull request on the
-[codegate-docs GitHub repo](https://github.com/stacklok/codegate-docs). You can
-also click the "Edit this page" link at the bottom of every page.
-
-### Development environment
-
-Refer to the [Developer reference guides](../development/index.md) for details
-about setting up your development environment, building the app, and running
-tests.
-
-### Submitting changes
-
-To contribute code, fork the
-[CodeGate repository](https://github.com/stacklok/codegate) on GitHub to your
-personal account.
-
-Push your changes to your forked repository and open a pull request from your
-branch to the main branch of the original repository.
-
-Provide a detailed description of your changes in the pull request, referencing
-any relevant issues or discussions. Include tests if applicable.
-
-## Communication
-
-### Community discussion
-
-Join the `#codegate` channel on the
-[Stacklok Discord server](https://discord.gg/stacklok) to discuss project ideas,
-ask questions, and share resources.
-
-### Code reviews
-
-Be open to feedback from reviewers during the pull request process and make
-necessary adjustments.
-
-### Respectful communication
-
-Always maintain a respectful and constructive tone in your interactions with
-other contributors and maintainers.
+The full guide to contributing is available in our
+[Contributor Guidelines](https://github.com/stacklok/codegate/blob/main/CONTRIBUTING.md)
+in the CodeGate repository.
