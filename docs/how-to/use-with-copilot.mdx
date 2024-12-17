@@ -85,34 +85,36 @@ container unencrypted.
 <details>
 <summary>More about certificate security</summary>
 
-<h3 id="#is-this-certificate-safe">Is this certificate safe to install on my machine?</h3>
+<h3 id='#is-this-certificate-safe'>
+  Is this certificate safe to install on my machine?
+</h3>
 
 **Local-only:** CodeGate runs entirely on your machine within an isolated
-  container, ensuring all data processing stays local without any external
-  transmissions.
+container, ensuring all data processing stays local without any external
+transmissions.
 
 **Secure certificate handling:** This custom CA is locally generated and
-  managed. CodeGate developers have no access to it.
+managed. CodeGate developers have no access to it.
 
-**No external communications:** CodeGate is designed with no capability to
-  call home or communicate with external servers, outside of those requested by
-  the IDE or Agent.
+**No external communications:** CodeGate is designed with no capability to call
+home or communicate with external servers, outside of those requested by the IDE
+or Agent.
 
-<h3 id="#key-security-features">Key security features</h3>
+<h3 id='#key-security-features'>Key security features</h3>
 
 **Per-domain certificate generation**
 
-Instead of using wildcard certificates, CodeGate generates unique certificates
+Instead of using wildcard certificates, CodeGate generates a unique certificate
 for each domain. This approach minimizes security risks by limiting the impact
 of any single certificate compromise.
 
 **High-strength encryption with 4096-bit RSA keys**
 
 CodeGate utilizes 4096-bit RSA keys for certificate authority operations,
-providing enhanced security compared to the standard 2048-bit keys. The
-increased key length significantly reduces the risk of brute-force attacks,
-ensuring long-term protection for your data. To balance performance, 2048-bit
-keys are used for the server certs.
+providing enhanced security compared to standard 2048-bit keys. The increased
+key length significantly reduces the risk of brute-force attacks, ensuring
+long-term protection for your data. To balance performance, 2048-bit keys are
+used for server certificates.
 
 **Secure SSL/TLS configuration**
 
@@ -123,7 +125,7 @@ secure and efficient encrypted communications.
 **Certificate caching and management**
 
 Certificates are cached efficiently to optimize performance without compromising
-security. Additionally, mechanisms are in place to manage certificate lifecycles
+security. Additionally, mechanisms are in place to manage certificate lifecycle
 and prevent resource exhaustion.
 
 </details>
@@ -198,7 +200,7 @@ Finally, configure your IDE to use CodeGate as an HTTP proxy.
 
 <Tabs groupId="ide">
 <TabItem value="vscode" label="VS Code" default>
-In VS Code, open the Command Pallet (<kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+In VS Code, open the Command Palette (<kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
 on macOS or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on Windows/Linux) and
 search for the **Preferences: Open User Settings (JSON)** command.
 
@@ -225,7 +227,7 @@ Append the following settings to your configuration:
 
 </TabItem>
 <TabItem value="jetbrains" label="JetBrains" default>
-Coming soon!
+Support for JetBrains is [coming soon](https://github.com/stacklok/codegate/issues/383).
 </TabItem>
 </Tabs>
 
@@ -241,7 +243,7 @@ To verify that CodeGate is receiving Copilot traffic as expected, open the
 Copilot chat and type `What do you know about CodeGate?`. You should receive a
 response that starts like this:
 
-```plan title="Copilot chat"
+```plain title="Copilot chat"
 CodeGate is a security-focused AI assistant designed to help with software
 security, package analysis, and providing guidance on secure coding practices.
 
