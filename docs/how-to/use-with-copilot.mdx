@@ -38,14 +38,14 @@ launch CodeGate. If already have CodeGate running, remove the existing container
 first with `docker stop codegate && docker rm codegate`.
 
 1. The CodeGate HTTP proxy port (8990) must be mapped to your host along with
-   the CodeGate API and UI ports. Add `-p 8990:8990` to your `docker run`
-   command.
+   the CodeGate API and UI ports.\
+   Add `-p 8990:8990` to your `docker run` command.
 
 1. CodeGate generates a self-signed Certificate Authority (CA) at startup which
    is used to maintain a secure end-to-end connection with Copilot.
 
    To prevent the certificate from changing on each restart, launch CodeGate
-   with a persistent data volume. To do this, add this parameter to your
+   with a persistent data volume. To do this, add a `--mount` parameter to your
    `docker run` command:
 
    `--mount type=volume,src=codegate_volume,dst=/app/codegate_volume`
