@@ -7,6 +7,8 @@ sidebar_position: 100
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
 
 [Continue](https://www.continue.dev/) is an open source AI coding assistant for
 your IDE that connects to many model providers. The Continue plugin works with
@@ -66,6 +68,15 @@ To configure Continue to send requests through CodeGate:
    `~/.continue/config.json`. You can edit this file directly or access it from
    the gear icon ("Configure Continue") in the Continue chat interface.
 
+   <ThemedImage
+     alt='Continue extension settings'
+     sources={{
+       light: useBaseUrl('/img/quickstart/continue-config-light.webp'),
+       dark: useBaseUrl('/img/quickstart/continue-config-dark.webp'),
+     }}
+     width={'540px'}
+   />
+
 1. Add the `apiBase` property to the `models` entry (chat) and
    `tabAutocompleteModel` (autocomplete) sections of the configuration file.
    This tells Continue to use the CodeGate CodeGate container running locally on
@@ -75,8 +86,8 @@ To configure Continue to send requests through CodeGate:
    "apiBase": "http://127.0.0.1:8989/<provider>/"
    ```
 
-   Replace `/<provider>/` with `/anthropic/`, `/ollama/`, `/openai/`, or
-   `/vllm/`.
+   Replace `/<provider>/` with one of: `/anthropic/`, `/ollama/`, `/openai/`, or
+   `/vllm/` to match your LLM provider.
 
    If you used a different API port when launching the CodeGate container,
    replace `8989` with your custom port number.
@@ -90,8 +101,8 @@ JetBrains users may need to restart your IDE after editing the config file.
 :::
 
 Below are examples of complete Continue configurations for each supported
-provider. For each, replace the values in ALL_CAPS. The configuration syntax is
-the same for VS Code and JetBrains IDEs.
+provider. Replace the values in ALL_CAPS. The configuration syntax is the same
+for VS Code and JetBrains IDEs.
 
 <Tabs groupId="provider">
 <TabItem value="ollama" label="Ollama" default>
@@ -253,11 +264,16 @@ Replace `MODEL_NAME` with the name of a model you have available locally with
 
 To verify that you've successfully connected Continue to CodeGate, open the
 Continue chat and type `codegate-version`. You should receive a response like
-this:
+"CodeGate version 0.1.0":
 
-```plan title="Continue chat"
-Codegate version: 0.1.0
-```
+<ThemedImage
+  alt='Continue extension settings'
+  sources={{
+    light: useBaseUrl('/img/how-to/continue-codegate-version-light.webp'),
+    dark: useBaseUrl('/img/how-to/continue-codegate-version-dark.webp'),
+  }}
+  width={'500px'}
+/>
 
 Try asking CodeGate about a known malicious Python package:
 

@@ -5,6 +5,9 @@ sidebar_label: Quickstart - Continue
 sidebar_position: 10
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
+
 ## Objective
 
 This guide will get you up and running with CodeGate in just a few minutes using
@@ -74,15 +77,24 @@ parameter model. Replace `7b` in these instructions with `13b`.
 
 :::
 
-## Configure the Continue plugin
+## Configure the Continue extension
 
 Next, configure Continue to send model API requests through the local CodeGate
 container.
 
-In VS Code, open the Continue plugin from the sidebar.
+In VS Code, open the Continue extension from the sidebar.
 
 Click the gear icon in the Continue panel to open the configuration file
 (`~/.continue/config.json`).
+
+<ThemedImage
+  alt='Continue extension settings'
+  sources={{
+    light: useBaseUrl('/img/quickstart/continue-config-light.webp'),
+    dark: useBaseUrl('/img/quickstart/continue-config-dark.webp'),
+  }}
+  width={'540px'}
+/>
 
 If this is your first time using Continue, paste the following contents into the
 file and save it. If you've previously used Continue and have existing settings,
@@ -110,7 +122,7 @@ insert/update the highlighted portions into your current configuration.
 }
 ```
 
-The Continue plugin reloads its configuration immediately when you save the
+The Continue extension reloads its configuration immediately when you save the
 file.
 
 You should now see the CodeGate-Quickstart model available in your Continue chat
@@ -165,6 +177,19 @@ For example, using `conf.ini`:
 CodeGate intercepts the request and transparently encrypts the sensitive data
 before it leaves your machine.
 
+<ThemedImage
+  alt='Continue results identifying redacted secrets'
+  sources={{
+    light: useBaseUrl(
+      '/img/quickstart/quickstart-continue-secrets-result-light.webp'
+    ),
+    dark: useBaseUrl(
+      '/img/quickstart/quickstart-continue-secrets-result-dark.webp'
+    ),
+  }}
+  width={'800px'}
+/>
+
 Learn more in [Secrets encryption](./features/secrets-encryption.md).
 
 ### Assess dependency risk
@@ -175,12 +200,25 @@ time selecting the `packages.py` file to add it to your prompt. Then ask
 Continue to analyze the file.
 
 ```plain title="Continue chat"
-@packages.py Please explain this file
+@packages.py Please analyze this file
 ```
 
 Using its up-to-date knowledge from
 [Stacklok Insight](https://www.insight.stacklok.com/), CodeGate identifies the
 malicious and deprecated packages referenced in the code.
+
+<ThemedImage
+  alt='Continue results identifying risky dependencies'
+  sources={{
+    light: useBaseUrl(
+      '/img/quickstart/quickstart-continue-dependencies-result-light.webp'
+    ),
+    dark: useBaseUrl(
+      '/img/quickstart/quickstart-continue-dependencies-result-dark.webp'
+    ),
+  }}
+  width={'800px'}
+/>
 
 Learn more in [Dependency risk awareness](./features/dependency-risk.md).
 
@@ -205,9 +243,9 @@ Check out the rest of the docs to learn more about
 [how to use CodeGate](./how-to/index.mdx) and explore all of its
 [Features](./features/index.mdx).
 
-If you have access to a supported hosted LLM provider like Anthropic or OpenAI,
-see [Configure the Continue IDE plugin](./how-to/use-with-continue.mdx) to learn
-how to use those instead of Ollama.
+If you have access to a hosted LLM provider like Anthropic or OpenAI, see
+[Configure Continue to use CodeGate](./how-to/use-with-continue.mdx#configure-continue-to-use-codegate)
+to learn how to use those instead of Ollama.
 
 Finally, we want to hear about your experiences using CodeGate. Join the
 `#codegate` channel on the
