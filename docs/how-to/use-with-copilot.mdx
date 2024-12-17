@@ -10,7 +10,8 @@ import TabItem from '@theme/TabItem';
 
 [GitHub Copilot](https://github.com/features/copilot) is an AI coding assistant
 developed by GitHub and OpenAI. The Copilot plugin works with Visual Studio Code
-(VS Code). Support for JetBrains is [coming soon](https://github.com/stacklok/codegate/issues/383).
+(VS Code). Support for JetBrains is
+[coming soon](https://github.com/stacklok/codegate/issues/383).
 
 :::note
 
@@ -84,28 +85,28 @@ container unencrypted.
 <details>
 <summary>More about certificate security</summary>
 
-## Is this certificate safe to install on my machine?
+<h3 id="#is-this-certificate-safe">Is this certificate safe to install on my machine?</h3>
 
 **Local-only:** CodeGate runs entirely on your machine within an isolated
-container, ensuring all data processing stays local without any external
-transmissions.
+  container, ensuring all data processing stays local without any external
+  transmissions.
 
 **Secure certificate handling:** This custom CA is locally generated and
-managed. CodeGate developers have no access to it.
+  managed. CodeGate developers have no access to it.
 
-**No external communications:** CodeGate is designed with no capability to call
-home or communicate with external servers, outside of those requested by the IDE
-or Agent.
+**No external communications:** CodeGate is designed with no capability to
+  call home or communicate with external servers, outside of those requested by
+  the IDE or Agent.
 
-## Key security features
+<h3 id="#key-security-features">Key security features</h3>
 
-### Per-domain certificate generation
+**Per-domain certificate generation**
 
 Instead of using wildcard certificates, CodeGate generates unique certificates
 for each domain. This approach minimizes security risks by limiting the impact
 of any single certificate compromise.
 
-### High-strength encryption with 4096-bit RSA keys
+**High-strength encryption with 4096-bit RSA keys**
 
 CodeGate utilizes 4096-bit RSA keys for certificate authority operations,
 providing enhanced security compared to the standard 2048-bit keys. The
@@ -113,13 +114,13 @@ increased key length significantly reduces the risk of brute-force attacks,
 ensuring long-term protection for your data. To balance performance, 2048-bit
 keys are used for the server certs.
 
-### Secure SSL/TLS configuration
+**Secure SSL/TLS configuration**
 
 CodeGate's SSL context is configured to enforce the latest security standards,
 including strong cipher suites and disabling outdated protocols. This ensures
 secure and efficient encrypted communications.
 
-### Certificate caching and management
+**Certificate caching and management**
 
 Certificates are cached efficiently to optimize performance without compromising
 security. Additionally, mechanisms are in place to manage certificate lifecycles
