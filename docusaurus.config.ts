@@ -86,7 +86,13 @@ const config: Config = {
           type: 'doc',
           position: 'left',
           docId: 'quickstart',
-          label: 'Quickstart',
+          label: 'Quickstart (Copilot)',
+        },
+        {
+          type: 'doc',
+          position: 'left',
+          docId: 'quickstart-continue',
+          label: 'Quickstart (Continue)',
         },
         {
           href: 'https://youtube.com/@stacklok',
