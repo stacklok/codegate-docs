@@ -25,7 +25,8 @@ Required software:
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or Docker
   Engine on Linux)
-- [Ollama](https://ollama.com/)
+- [Ollama](https://ollama.com/download)
+  - The Ollama service must be running - `ollama serve`
 - [VS Code](https://code.visualstudio.com/) with the
   [Continue](https://www.continue.dev/) extension
 
@@ -111,7 +112,8 @@ insert/update the highlighted portions into your current configuration.
     }
   ],
   "modelRoles": {
-    "default": "CodeGate-Quickstart"
+    "default": "CodeGate-Quickstart",
+    "summarize": "CodeGate-Quickstart"
   },
   "tabAutocompleteModel": {
     "title": "CodeGate-Quickstart",
