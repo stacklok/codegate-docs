@@ -1,0 +1,35 @@
+{
+  "heading-style": {
+    "style": "atx"
+  },
+  "ul-style": {
+    "style": "dash"
+  },
+  "line-length": {
+    "line_length": 80,
+    "code_blocks": false,
+    "tables": false
+  },
+  "hr-style": {
+    "style": "---"
+  },
+  "proper-names": {
+    "names": ["CodeGate", "Copilot", "GitHub"],
+    "code_blocks": false
+  },
+  "code-block-style": {
+    "style": "fenced"
+  },
+  "code-fence-style": {
+    "style": "backtick"
+  },
+  "emphasis-style": {
+    "style": "underscore"
+  },
+  "strong-style": {
+    "style": "asterisk"
+  },
+  "table-pipe-style": {
+    "style": "leading_and_trailing"
+  }
+}
