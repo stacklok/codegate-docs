@@ -273,8 +273,39 @@ Replace `YOUR_API_KEY` with your
 </TabItem>
 <TabItem value="llamacpp" label="llama.cpp">
 
-Replace `MODEL_NAME` with the name of a model you have available locally with
-`llama.cpp`, such as `qwen2.5-coder-1.5b-instruct-q5_k_m`.
+:::note Performance
+
+Docker containers on macOS cannot access the GPU, which impacts the performance
+of llama.cpp in CodeGate. For better performance on macOS, we recommend using a
+standalone Ollama installation.
+
+:::
+
+CodeGate has built-in support for llama.ccp. This is considered an advanced
+option, best suited to quick experimentation with various coding models.
+
+To use this provider, download your desired model file in GGUF format from the
+[HuggingFace library](https://huggingface.co/models?library=gguf&sort=trending).
+Then copy it into the `/app/codegate_volume/models` directory in the CodeGate
+container. To persist models between restarts, run CodeGate with a Docker
+volume as shown in the [recommended configuration](./install.md#recommended-settings).
+
+Example using huggingface-cli to download our recommended models for chat (at
+least a 7B model is recommended for best results) and autocomplete (a 1.5B or 3B
+model is recommended for performance):
+
+```bash
+# For chat functions
+huggingface-cli download Qwen/Qwen2.5-7B-Instruct-GGUF qwen2.5-7b-instruct-q5_k_m.gguf --local-dir .
+docker cp qwen2.5-7b-instruct-q5_k_m.gguf codegate:/app/codegate_volume/models/
+
+# For autocomplete functions
+huggingface-cli download Qwen/Qwen2.5-1.5B-Instruct-GGUF qwen2.5-1.5b-instruct-q5_k_m.gguf --local-dir .
+docker cp qwen2.5-1.5b-instruct-q5_k_m.gguf codegate:/app/codegate_volume/models/
+```
+
+In the Continue config file, replace `MODEL_NAME` with the file name without the
+.gguf extension, for example `qwen2.5-coder-7b-instruct-q5_k_m`.
 
 ```json title="~/.continue/config.json"
 {
