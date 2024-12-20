@@ -138,16 +138,16 @@ const config: Config = {
           title: 'Links',
           items: [
             {
-              html: '<a href="https://www.stacklok.com" target="_blank" class="navbar__link header-stacklok-link"">&nbsp;&nbsp;Stacklok</a>'
+              html: '<a href="https://www.stacklok.com" target="_blank" class="navbar__link header-stacklok-link"">&nbsp;&nbsp;Stacklok</a>',
             },
             {
-              html: '<a href="https://youtube.com/@stacklok" target="_blank" class="navbar__link header-youtube-link"">&nbsp;&nbsp;YouTube</a>'
+              html: '<a href="https://youtube.com/@stacklok" target="_blank" class="navbar__link header-youtube-link"">&nbsp;&nbsp;YouTube</a>',
             },
             {
-              html: '<a href="https://github.com/stacklok/codegate" target="_blank" class="navbar__link header-github-link">&nbsp;&nbsp;GitHub</a>'
+              html: '<a href="https://github.com/stacklok/codegate" target="_blank" class="navbar__link header-github-link">&nbsp;&nbsp;GitHub</a>',
             },
             {
-              html: '<a href="https://discord.gg/stacklok" target="_blank" class="navbar__link header-discord-link">&nbsp;&nbsp;Discord</a>'
+              html: '<a href="https://discord.gg/stacklok" target="_blank" class="navbar__link header-discord-link">&nbsp;&nbsp;Discord</a>',
             },
           ],
         },
@@ -180,7 +180,7 @@ const config: Config = {
       theme: { light: 'neutral', dark: 'dark' },
       options: {
         themeVariables: {
-          fontFamily: 'Figtree, system-ui, sans-serif'
+          fontFamily: 'Figtree, system-ui, sans-serif',
         },
       },
     },

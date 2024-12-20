@@ -20,7 +20,7 @@ process outlined in the project's
 ## Creating GitHub issues
 
 GitHub issues are used to track feature requests and bug reports. If you have a
-general usage question, please ask in the #codegate channel on
+general usage question, please ask in the `#codegate` channel on
 [Discord](https://discord.gg/stacklok). To report a bug or request a feature,
 create a new issue in the
 [CodeGate GitHub repository](https://github.com/stacklok/codegate/issues).
