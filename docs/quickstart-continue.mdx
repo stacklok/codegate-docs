@@ -11,26 +11,13 @@ import ThemedImage from '@theme/ThemedImage';
 ## Objective
 
 This guide will get you up and running with CodeGate in just a few minutes using
-Visual Studio Code and a locally hosted LLM. By the end, you'll have learned how
-CodeGate helps to protect your privacy and improve the security of your
-applications.
+Visual Studio Code, the open source Continue AI assistant, and a
+locally-hosted LLM. By the end, you'll learn how CodeGate helps protect your
+privacy and improve the security of your applications.
 
 ## Prerequisites
 
-CodeGate runs on Windows, macOS (Apple or Intel silicon), or Linux systems. We
-recommend a system with at least 16GB of RAM, a GPU, and at least 12GB of free
-disk space for best results when running Ollama locally.
-
-Required software:
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or Docker
-  Engine on Linux)
-- [Ollama](https://ollama.com/download)
-  - The Ollama service must be running - `ollama serve`
-- [VS Code](https://code.visualstudio.com/) with the
-  [Continue](https://www.continue.dev/) extension
-
-Continue is an open source AI code assistant that supports a wide range of LLMs.
+CodeGate runs on Windows, macOS (Apple or Intel silicon), or Linux systems.
 
 :::info
 
@@ -45,6 +32,23 @@ configuration details, then skip ahead to
 
 :::
 
+To run Ollama locally. we recommend a system with at least 16GB of RAM, a GPU,
+and at least 12GB of free disk space for best results.
+
+CodeGate itself has modest requirements. It uses less than 1GB of RAM, minimal
+CPU and disk space, and does not require a GPU.
+
+Required software:
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or Docker
+  Engine on Linux)
+- [Ollama](https://ollama.com/download)
+  - The Ollama service must be running - `ollama serve`
+- [VS Code](https://code.visualstudio.com/) with the
+  [Continue](https://www.continue.dev/) extension
+
+Continue is an open source AI code assistant that supports a wide range of LLMs.
+
 ## Start the CodeGate container
 
 Download and run the container using Docker:
@@ -55,28 +59,19 @@ docker run --name codegate -d -p 8989:8989 -p 9090:80 --restart unless-stopped g
 ```
 
 This pulls the latest CodeGate image from the GitHub Container Registry and
-starts the container in detached mode, mapping the necessary ports and mounting
-a volume for persistent data storage.
+starts the container the background with the required port bindings.
 
-To verify that CodeGate is running, open your web browser and navigate to
-`http://localhost:9090`. You should see the CodeGate dashboard.
+To verify that CodeGate is running, open the CodeGate dashboard in your web
+browser: [http://localhost:9090](http://localhost:9090)
 
 ## Install a CodeGen model
 
-Download the Code Llama model using Ollama. The following installs the 7 billion
-parameter (7B) version of the model, which is suitable for systems with 16GB of
-RAM or more:
+Download Continue's recommended models for chat and autocompletion:
 
 ```bash
-ollama pull codellama:7b-instruct
+ollama pull llama3.1:8b
+ollama pull qwen2.5-coder:1.5b
 ```
-
-:::info
-
-If you have at least 32GB of RAM and an 8-core CPU, you can try the 13B
-parameter model. Replace `7b` in these instructions with `13b`.
-
-:::
 
 ## Configure the Continue extension
 
@@ -99,16 +94,16 @@ Click the gear icon in the Continue panel to open the configuration file
 
 If this is your first time using Continue, paste the following contents into the
 file and save it. If you've previously used Continue and have existing settings,
-insert/update the highlighted portions into your current configuration.
+insert or update the highlighted portions into your current configuration.
 
-```json {3-8,11,13-18} title="~/.continue/config.json"
+```json {3-8,11-12,14-18} title="~/.continue/config.json"
 {
   "models": [
     {
       "title": "CodeGate-Quickstart",
       "provider": "ollama",
-      "model": "codellama:7b-instruct",
-      "apiBase": "http://localhost:8989/ollama/"
+      "model": "llama3.1:8b",
+      "apiBase": "http://localhost:8989/ollama"
     }
   ],
   "modelRoles": {
@@ -116,10 +111,10 @@ insert/update the highlighted portions into your current configuration.
     "summarize": "CodeGate-Quickstart"
   },
   "tabAutocompleteModel": {
-    "title": "CodeGate-Quickstart",
+    "title": "CodeGate-Quickstart-Autocomplete",
     "provider": "ollama",
-    "model": "codellama:7b-instruct",
-    "apiBase": "http://localhost:8989/ollama/"
+    "model": "qwen2.5-coder:1.5b",
+    "apiBase": "http://localhost:8989/ollama"
   }
 }
 ```
@@ -130,9 +125,17 @@ file.
 You should now see the CodeGate-Quickstart model available in your Continue chat
 panel.
 
+<ThemedImage
+  alt='Continue chat model'
+  sources={{
+    light: useBaseUrl('/img/quickstart/quickstart-continue-model-light.webp'),
+    dark: useBaseUrl('/img/quickstart/quickstart-continue-model-dark.webp'),
+  }}
+  width={'650px'}
+/>
+
 Enter `codegate-version` in the chat box to confirm that Continue is
-communicating with CodeGate. The version of the CodeGate container should be
-returned.
+communicating with CodeGate. CodeGate responds with its version number.
 
 ## Explore CodeGate's features
 
