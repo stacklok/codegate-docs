@@ -16,25 +16,37 @@ replace `docker` with `podman` in all commands.
 
 ## Run CodeGate
 
-To download and run the CodeGate container, run the following from a terminal:
+### Recommended settings
+
+To download and run CodeGate with the recommended configuration for full
+functionality:
 
 ```bash
-docker pull ghcr.io/stacklok/codegate:latest
+docker run --name codegate -d -p 8989:8989 -p 9090:80 -p 8990:8990 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
-See the example commands to run the container with the right parameters for your
-scenario.
+Parameter reference:
 
-### Examples
+- `-d` - start in detached (background) mode
+- `-p 8989:8989` - bind the CodeGate API to port 8989 on your host
+- `-p 9090:80` - bind the CodeGate web dashboard to port 9090 on your host
+- `-p 8990:8990` - bind the CodeGate secure HTTP proxy to port 8990 on your host
+- `--mount ...` - mount a persistent Docker volume named `codegate_volume` to
+  the required path in the container
+- `--restart unless-stopped` - restart CodeGate after a Docker or system
+  restart, unless you manually stop it
+
+More example run commands to run the container with the right parameters for
+your scenario are found below. To learn how to customize the CodeGate
+application settings, see [Configure CodeGate](./configure.md)
+
+### Alternative run commands {#examples}
 
 Run with minimal functionality for use with **Continue**:
 
 ```bash
 docker run -d -p 8989:8989 -p 9090:80 --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
-
-The container runs in the background (`-d`), binds the CodeGate API endpoint to
-port 8989, and the web dashboard to port 9090.
 
 Mount a **persistent volume** to the container (see
 [Persisting dashboard data](./dashboard.md#persisting-dashboard-data)):
@@ -62,23 +74,23 @@ need to [modify your configuration](./configure.md).
 
 CodeGate listens on several network ports:
 
-| Default host port | Container port (internal) | Purpose                                              |
-| :---------------- | :------------------------ | :--------------------------------------------------- |
-| 9090              | 80                        | CodeGate web dashboard                               |
-| 8989              | 8989                      | Model providers API proxy                            |
-| 8990              | 8990                      | HTTP proxy (required for GitHub Copilot integration) |
+| Default host port | Container port (internal) | Purpose                                        |
+| :---------------- | :------------------------ | :--------------------------------------------- |
+| 9090              | 80                        | CodeGate web dashboard                         |
+| 8989              | 8989                      | CodeGate API                                   |
+| 8990              | 8990                      | Secure HTTP proxy (GitHub Copilot integration) |
 
 All of the commands in these docs assume the default ports. To use different
 listening ports, modify the `-p` flag(s):
 
 - Dashboard: `-p YOUR_PORT:80`
 - CodeGate API: `-p YOUR_PORT:8989`
-- HTTP proxy: `-p YOUR_PORT:8990`
+- Secure HTTP proxy: `-p YOUR_PORT:8990`
 
 :::note
 
 If you change the web dashboard port, some links returned by CodeGate's
-responses won't work without manually changing the port when they open in your
+responses won't work without manually updating the URL that opens in your
 browser.
 
 :::
@@ -116,8 +128,8 @@ docker stop codegate
 docker rm codegate
 ```
 
-Finally, launch the new version using the [same `docker run` command](#examples)
-you used originally.
+Finally, launch the new version using the
+[same `docker run` command](#recommended-settings) you used originally.
 
 ## Manage the CodeGate container
 
