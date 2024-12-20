@@ -15,9 +15,8 @@ import ThemedImage from '@theme/ThemedImage';
 ## Objective
 
 This guide will get you up and running with CodeGate in just a few minutes using
-Visual Studio Code and GitHub Copilot. By the end, you'll have learned how
-CodeGate helps to protect your privacy and improve the security of your
-applications.
+Visual Studio Code and GitHub Copilot. By the end, you'll learn how CodeGate
+helps protect your privacy and improve the security of your applications.
 
 ## Prerequisites
 
@@ -42,11 +41,11 @@ docker run --name codegate -d -p 8989:8989 -p 9090:80 -p 8990:8990 --mount type=
 ```
 
 This pulls the latest CodeGate image from the GitHub Container Registry and
-starts the container in detached mode, mapping the necessary ports and mounting
-a volume for persistent data storage..
+starts the container the background, with the required port bindings and a
+volume for persistent data storage.
 
-To verify that CodeGate is running, open your web browser and navigate to
-`http://localhost:9090`. You should see the CodeGate dashboard.
+To verify that CodeGate is running, open the CodeGate dashboard in your web
+browser: [http://localhost:9090](http://localhost:9090)
 
 ## Install the CodeGate CA certificate
 
@@ -61,26 +60,28 @@ machine.
 
 :::
 
-To install the CodeGate certificate, open the web dashboard in your browser:
-http://localhost:9090
+To install the CodeGate certificate, open the **Certificate download** page in
+the web dashboard:
+[http://localhost:9090/certificates](http://localhost:9090/certificates)
 
-From the **Certificates** menu choose **Download**, then click the **Download
-Certificate** button. Follow the OS-specific instructions on the page to import
-the certificate to your trust store.
+Click the **Download Certificate** button, review the security information, and
+follow the OS-specific instructions on the page to import the certificate to
+your trust store.
 
 ## Configure VS Code to use CodeGate
 
 In VS Code, open the Command Palette (<kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
 on macOS or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on Windows/Linux) and
-search for the **Preferences: Open User Settings (JSON)** command.
+search for the **Preferences: Open User Settings (JSON)** command. Run it to
+open your VS Code settings.json file in the editor.
 
-Append the following settings to your configuration:
+Add the following settings to your configuration:
 
 ```json title="settings.json"
 {
   // ... Existing settings ... //
 
-  // Note: you may need to add a comma after the last line of your existing settings if not already present
+  // Note: you may need to add a comma after the last line of your existing settings if not present
 
   "http.proxy": "https://localhost:8990",
   "http.proxyStrictSSL": true,

@@ -20,8 +20,8 @@ installed the IDE extension.
 
 :::
 
-CodeGate works as an HTTP proxy to intercept and modify traffic between GitHub
-Copilot and your IDE.
+CodeGate works as a secure HTTP proxy to intercept and modify traffic between
+GitHub Copilot and your IDE.
 
 ```mermaid
 flowchart LR
@@ -51,8 +51,8 @@ first with `docker stop codegate && docker rm codegate`.
 
    `--mount type=volume,src=codegate_volume,dst=/app/codegate_volume`
 
-This example maps the container's proxy port to the default 8990 on your host
-and creates a volume named `codegate_volume` mounted to `/app/codegate_volume`
+This example binds the HTTP proxy port to the default 8990 on your host and
+creates a volume named `codegate_volume` mounted to `/app/codegate_volume`
 inside the container:
 
 <Tabs groupId="os">
@@ -77,10 +77,10 @@ docker run --name codegate -d -p 8989:8989 -p 9090:80 `
 
 ## Trust the CodeGate CA certificate
 
-To establish a secure end-to-end connection between your IDE and CodeGate, you
-need to install CodeGate's generated CA certificate to your trust store.
-Decrypted traffic stays on your local machine and never leaves the CodeGate
-container unencrypted.
+To establish a secure end-to-end connection between your IDE, CodeGate, and the
+Copilot service, you need to add CodeGate's CA certificate to your trusted root
+certificates. Decrypted traffic stays on your local machine and never leaves the
+CodeGate container unencrypted.
 
 <details>
 <summary>More about certificate security</summary>
@@ -277,10 +277,10 @@ requests in Python:
 
 ## Next steps
 
-Learn more about how to customize CodeGate and access the web dashboard:
+Learn more about CodeGate's features and how to use them:
 
-- [Configure CodeGate](./configure.md)
 - [Access the dashboard](./dashboard.md)
+- [CodeGate features](../features/index.mdx)
 
 ## Remove CodeGate
 

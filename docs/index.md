@@ -1,17 +1,17 @@
 ---
 title: Introduction
 description:
-  CodeGate is the local, open source proxy that keeps your secrets safe and your
-  code secure.
+  CodeGate is the local, open source prompt gateway that keeps your secrets safe
+  and your code secure.
 sidebar_position: 1
 ---
 
 ## What is CodeGate?
 
-CodeGate is an open source local proxy that works with AI coding assistants in
-your IDE to enhance privacy and security. CodeGate performs code security
-reviews, identifies vulnerabilities in package dependencies, and prevents
-sensitive data like secrets from being shared with AI models.
+CodeGate is local prompt gateway that sits between your AI coding assistant and
+LLM to enhance privacy and security. CodeGate performs code security reviews,
+identifies vulnerabilities in package dependencies, and prevents sensitive data
+like secrets from being shared with AI models.
 
 ```mermaid
 sequenceDiagram
@@ -45,12 +45,14 @@ AI coding assistants / IDEs:
 
   CodeGate supports the following AI model providers with Continue:
 
-  - [Ollama](https://ollama.com/)
-  - [vLLM](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html)
-    (OpenAI-compatible mode, including OpenRouter)
-  - [Anthropic API](https://www.anthropic.com/api)
-  - [OpenAI API](https://openai.com/api/)
-  - [llama.cpp](https://github.com/ggerganov/llama.cpp) (locally-hosted models)
+  - Local / self-managed:
+    - [Ollama](https://ollama.com/)
+    - [llama.cpp](https://github.com/ggerganov/llama.cpp)
+    - [vLLM](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html)
+  - Hosted:
+    - [OpenRouter](https://openrouter.ai/)
+    - [Anthropic](https://www.anthropic.com/api)
+    - [OpenAI](https://openai.com/api/)
 
 As the project evolves, we plan to add support for more IDE assistants and AI
 models.

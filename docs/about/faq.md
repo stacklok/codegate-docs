@@ -7,8 +7,8 @@ sidebar_position: 10
 
 ### Does CodeGate replace my AI code assistant plugin?
 
-No, CodeGate works _with_ your AI code assistant, as a local proxy between your
-client and the LLM it's communicating with.
+No, CodeGate works _with_ your AI code assistant, as a local intermediary
+between your client and the LLM it's communicating with.
 
 ### Does CodeGate work with any plugins other than Copilot and Continue?
 
