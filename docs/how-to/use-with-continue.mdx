@@ -123,8 +123,17 @@ set to the correct URL. See [Configure CodeGate](./configure.md).
 
 Replace `MODEL_NAME` with the names of model(s) you have installed locally using
 `ollama pull`. See Continue's
-[Ollama provider documentation](https://docs.continue.dev/customize/model-providers/ollama)
-for recommendations.
+[Ollama provider documentation](https://docs.continue.dev/customize/model-providers/ollama).
+
+We recommend the [Qwen2.5-Coder](https://ollama.com/library/qwen2.5-coder)
+series of models. Our minimum recommendation is:
+
+- `qwen2.5-coder:7b` for chat
+- `qwen2.5-coder:1.5b` for autocomplete
+
+These models balance performance and quality for typical systems with at least 4
+CPU cores and 16GB of RAM. If you have more compute resources available, our
+experimentation shows that larger models do yield better results.
 
 ```json title="~/.continue/config.json"
 {

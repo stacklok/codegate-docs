@@ -11,9 +11,9 @@ import ThemedImage from '@theme/ThemedImage';
 ## Objective
 
 This guide will get you up and running with CodeGate in just a few minutes using
-Visual Studio Code, the open source Continue AI assistant, and a
-locally-hosted LLM. By the end, you'll learn how CodeGate helps protect your
-privacy and improve the security of your applications.
+Visual Studio Code, the open source Continue AI assistant, and a locally-hosted
+LLM. By the end, you'll learn how CodeGate helps protect your privacy and
+improve the security of your applications.
 
 :::info
 
@@ -32,8 +32,8 @@ configuration details, then skip ahead to
 
 CodeGate runs on Windows, macOS (Apple or Intel silicon), or Linux systems.
 
-To run Ollama locally. we recommend a system with at least 16GB of RAM, a GPU,
-and at least 12GB of free disk space for best results.
+To run Ollama locally, we recommend a system with at least 4 CPU cores, 16GB of
+RAM, a GPU, and at least 12GB of free disk space for best results.
 
 CodeGate itself has modest requirements. It uses less than 1GB of RAM, minimal
 CPU and disk space, and does not require a GPU.
@@ -66,12 +66,17 @@ browser: [http://localhost:9090](http://localhost:9090)
 
 ## Install a CodeGen model
 
-Download Continue's recommended models for chat and autocompletion:
+Download our recommended models for chat and autocompletion, from the
+[Qwen2.5-Coder](https://ollama.com/library/qwen2.5-coder) series:
 
 ```bash
-ollama pull llama3.1:8b
+ollama pull qwen2.5-coder:7b
 ollama pull qwen2.5-coder:1.5b
 ```
+
+These models balance performance and quality for typical systems with at least 4
+CPU cores and 16GB of RAM. If you have more resources available, our
+experimentation shows that larger models do yield better results.
 
 ## Configure the Continue extension
 
@@ -102,7 +107,7 @@ insert or update the highlighted portions into your current configuration.
     {
       "title": "CodeGate-Quickstart",
       "provider": "ollama",
-      "model": "llama3.1:8b",
+      "model": "qwen2.5-coder:7b",
       "apiBase": "http://localhost:8989/ollama"
     }
   ],
