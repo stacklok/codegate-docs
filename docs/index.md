@@ -54,7 +54,13 @@ AI coding assistants / IDEs:
     - Anthropic
     - OpenAI
 
-**[Aider](./how-to/use-with-aider.mdx)** with Ollama and OpenAI
+- **[Aider](./how-to/use-with-aider.mdx)** with Ollama and OpenAI-compatible
+  APIs
+
+- **[Cline](./how-to/use-with-cline.mdx)** with Visual Studio Code
+
+  CodeGate supports Ollama, Anthropic, OpenAI-compatible APIs, and LM Studio
+  with Cline.
 
 As the project evolves, we plan to add support for more IDE assistants and AI
 model providers.

@@ -13,6 +13,11 @@ Major features and changes are noted here. To review all updates, see the
 
 Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
 
+- **Cline support** - 28 Jan, 2025\
+  CodeGate version 0.1.14 adds support for
+  [Cline](https://github.com/cline/cline) with Anthropic, OpenAI, Ollama, and LM
+  Studio. See the [how-to guide](../how-to/use-with-cline.mdx) to learn more.
+
 - **Workspaces** - 22 Jan, 2025\
   Now available in CodeGate v0.1.12, workspaces help you organize and customize
   your AI-assisted development. Learn more in

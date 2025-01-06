@@ -1,0 +1,119 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
+
+import LocalModelRecommendation from './_local-model-recommendation.md';
+
+<Tabs groupId="cline-provider">
+<TabItem value="anthropic" label="Anthropic" default>
+
+You need an [Anthropic API](https://www.anthropic.com/api) account to use this
+provider.
+
+In the Cline settings, choose **Anthropic** as your provider, enter your
+Anthropic API key, and choose your preferred model (we recommend
+`claude-3-5-sonnet-<latest>`).
+
+To enable CodeGate, enable **Use custom base URL** and enter
+`https://localhost:8989/anthropic`.
+
+<ThemedImage
+  alt='Cline settings for Anthropic'
+  sources={{
+    light: useBaseUrl('/img/how-to/cline-provider-anthropic-light.webp'),
+    dark: useBaseUrl('/img/how-to/cline-provider-anthropic-dark.webp'),
+  }}
+  width={'540px'}
+/>
+
+</TabItem>
+<TabItem value="openai" label="OpenAI">
+
+You need an [OpenAI API](https://openai.com/api/) account to use this provider.
+To use a different OpenAI-compatible endpoint, set the `CODEGATE_OPENAI_URL`
+[configuration parameter](../how-to/configure.md) when you launch CodeGate.
+
+In the Cline settings, choose **OpenAI Compatible** as your provider, enter your
+OpenAI API key, and set your preferred model (example: `gpt-4o-mini`).
+
+To enable CodeGate, set the **Base URL** to `https://localhost:8989/openai`.
+
+<ThemedImage
+  alt='Cline settings for OpenAI'
+  sources={{
+    light: useBaseUrl('/img/how-to/cline-provider-openai-light.webp'),
+    dark: useBaseUrl('/img/how-to/cline-provider-openai-dark.webp'),
+  }}
+  width={'540px'}
+/>
+
+</TabItem>
+<TabItem value="ollama" label="Ollama">
+
+You need Ollama installed on your local system with the server running
+(`ollama serve`) to use this provider.
+
+CodeGate connects to `http://host.docker.internal:11434` by default. If you
+changed the default Ollama server port or to connect to a remote Ollama
+instance, launch CodeGate with the `CODEGATE_OLLAMA_URL` environment variable
+set to the correct URL. See [Configure CodeGate](/how-to/configure.md).
+
+In the Cline settings, choose **Ollama** as your provider and set the **Base
+URL** to `http://localhost:8989/ollama`.
+
+For the **Model ID**, provide the name of a coding model you have installed
+locally using `ollama pull`.
+
+<LocalModelRecommendation />
+
+<ThemedImage
+  alt='Cline settings for Ollama'
+  sources={{
+    light: useBaseUrl('/img/how-to/cline-provider-ollama-light.webp'),
+    dark: useBaseUrl('/img/how-to/cline-provider-ollama-dark.webp'),
+  }}
+  width={'540px'}
+/>
+
+</TabItem>
+<TabItem value="lmstudio" label="LM Studio">
+
+You need LM Studio installed on your local system with a server running from LM
+Studio's **Developer** tab to use this provider. See the
+[LM Studio docs](https://lmstudio.ai/docs/api/server) for more information.
+
+Cline uses large prompts, so you will likely need to increase the context length
+for the model you've loaded in LM Studio. In the Developer tab, select the model
+you'll use with CodeGate, open the **Load** tab on the right and increase the
+**Context Length** to _at least_ 18k (18,432) tokens, then reload the model.
+
+<ThemedImage
+  alt='LM Studio dev server'
+  sources={{
+    light: useBaseUrl('/img/how-to/lmstudio-server-light.webp'),
+    dark: useBaseUrl('/img/how-to/lmstudio-server-dark.webp'),
+  }}
+  width={'800px'}
+/>
+
+In the Cline settings, choose LM Studio as your provider and set the **Base
+URL** to `http://localhost:8989/openai`.
+
+Set the **Model ID** to `lm_studio/<MODEL_NAME>`, where `<MODEL_NAME>` is the
+name of the model you're serving through LM Studio (shown in the Developer tab),
+for example `lm_studio/qwen2.5-coder-7b-instruct`.
+
+<LocalModelRecommendation />
+
+<ThemedImage
+  alt='Cline settings for LM Studio'
+  sources={{
+    light: useBaseUrl('/img/how-to/cline-provider-lmstudio-light.webp'),
+    dark: useBaseUrl('/img/how-to/cline-provider-lmstudio-dark.webp'),
+  }}
+  width={'635px'}
+/>
+
+</TabItem>
+</Tabs>

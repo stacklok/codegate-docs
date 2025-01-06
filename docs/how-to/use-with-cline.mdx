@@ -1,0 +1,128 @@
+---
+title: Use CodeGate with Cline
+description: Configure the Cline IDE extension
+sidebar_label: Use with Cline
+sidebar_position: 90
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
+
+[Cline](https://github.com/cline/cline) is an open source AI coding assistant
+for Visual Studio Code that supports numerous model providers.
+
+CodeGate works with the following AI model providers through Cline:
+
+- Local / self-managed:
+  - [Ollama](https://ollama.com/)
+  - [LM Studio](https://lmstudio.ai/)
+- Hosted:
+  - [Anthropic](https://www.anthropic.com/api)
+  - [OpenAI](https://openai.com/api/) and OpenAI-compatible APIs
+
+## Install the Cline extension
+
+The Cline extension is available in the
+[Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev).
+
+Install the extension using the **Install** link on the Marketplace page or
+search for "Cline" in the Extensions panel within VS Code.
+
+You can also install from the CLI:
+
+```bash
+code --install-extension saoudrizwan.claude-dev
+```
+
+If you need help, see
+[Managing Extensions](https://code.visualstudio.com/docs/editor/extension-marketplace)
+in the VS Code documentation.
+
+## Configure Cline to use CodeGate
+
+import ClineProviders from '../partials/_cline-providers.mdx';
+
+To configure Cline to send requests through CodeGate:
+
+1. Open the Cline extension sidebar from the VS Code Activity Bar and open its
+   settings using the gear icon.
+
+   <ThemedImage
+     alt='Cline extension settings'
+     sources={{
+       light: useBaseUrl('/img/how-to/cline-settings-light.webp'),
+       dark: useBaseUrl('/img/how-to/cline-settings-dark.webp'),
+     }}
+     width={'540px'}
+   />
+
+1. Select your provider and configure as detailed here:
+
+   <ClineProviders />
+
+1. Click **Done** to save the settings.
+
+## Verify configuration
+
+To verify that you've successfully connected Cline to CodeGate, open the Cline
+sidebar and type `codegate version`. You should receive a response like
+"CodeGate version 0.1.14":
+
+<ThemedImage
+  alt='Cline verification'
+  sources={{
+    light: useBaseUrl('/img/how-to/cline-codegate-version-light.webp'),
+    dark: useBaseUrl('/img/how-to/cline-codegate-version-dark.webp'),
+  }}
+  width={'490px'}
+/>
+
+Try asking CodeGate about a known malicious Python package:
+
+```plain title="Cline chat"
+Tell me how to use the invokehttp package from PyPI
+```
+
+CodeGate responds with a warning and a link to the Stacklok Insight report about
+this package:
+
+```plain title="Cline chat"
+Warning: CodeGate detected one or more malicious, deprecated or archived packages.
+
+ • invokehttp: https://www.insight.stacklok.com/report/pypi/invokehttp
+
+The `invokehttp` package from PyPI has been identified as malicious and should
+not be used. Please avoid using this package and consider using a trusted
+alternative such as `requests` for making HTTP requests in Python.
+
+Here is an example of how to use the `requests` package:
+
+...
+```
+
+## Next steps
+
+Learn more about CodeGate's features and how to use them:
+
+- [Access the dashboard](./dashboard.md)
+- [CodeGate features](../features/index.mdx)
+
+## Remove CodeGate
+
+If you decide to stop using CodeGate, follow these steps to remove it and revert
+your environment.
+
+1. Remove the custom base URL from your Cline provider settings.
+
+1. Stop and remove the CodeGate container:
+
+   ```bash
+   docker stop codegate && docker rm codegate
+   ```
+
+1. If you launched CodeGate with a persistent volume, delete it to remove the
+   CodeGate database and other files:
+
+   ```bash
+   docker volume rm codegate_volume
+   ```
