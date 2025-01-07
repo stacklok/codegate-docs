@@ -18,11 +18,7 @@ jobs:
         run: npm run eslint
 
       - name: Run markdownlint
-        uses: DavidAnson/markdownlint-cli2-action@a23dae216ce3fee4db69da41fed90d2a4af801cf # v19
-        with:
-          globs: |
-            **/*.md
-            !node_modules
+        run: npm run markdownlint
 
       - name: Run Prettier
         run: npm run prettier
