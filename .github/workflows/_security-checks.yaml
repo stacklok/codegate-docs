@@ -1,0 +1,37 @@
+name: Security checks
+
+on:
+  workflow_call:
+
+jobs:
+  trivy:
+    name: Trivy scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Scan repo
+        uses: aquasecurity/trivy-action@0.29.0
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          scanners: 'vuln,secret,config'
+          exit-code: '1'
+          ignore-unfixed: 'true'
+          severity: 'MEDIUM,HIGH,CRITICAL'
+
+  npm-audit:
+    name: NPM audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run npm audit
+        run: npm audit --omit=dev --audit-level=moderate
