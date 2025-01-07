@@ -1,0 +1,13 @@
+name: On PR
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static-checks:
+    name: Static checks
+    uses: ./.github/workflows/_static-checks.yaml
+    secrets: inherit
