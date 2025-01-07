@@ -22,14 +22,14 @@ To download and run CodeGate with the recommended configuration for full
 functionality:
 
 ```bash
-docker run --name codegate -d -p 8989:8989 -p 9090:80 -p 8990:8990 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
+docker run --name codegate -d -p 8989:8989 -p 9090:9090 -p 8990:8990 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
 Parameter reference:
 
 - `-d` - start in detached (background) mode
 - `-p 8989:8989` - bind the CodeGate API to port 8989 on your host
-- `-p 9090:80` - bind the CodeGate web dashboard to port 9090 on your host
+- `-p 9090:9090` - bind the CodeGate web dashboard to port 9090 on your host
 - `-p 8990:8990` - bind the CodeGate secure HTTP proxy to port 8990 on your host
 - `--mount ...` - mount a persistent Docker volume named `codegate_volume` to
   the required path in the container
@@ -45,21 +45,21 @@ application settings, see [Configure CodeGate](./configure.md)
 Run with minimal functionality for use with **Continue**:
 
 ```bash
-docker run -d -p 8989:8989 -p 9090:80 --restart unless-stopped ghcr.io/stacklok/codegate:latest
+docker run -d -p 8989:8989 -p 9090:9090 --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
 Mount a **persistent volume** to the container (see
 [Persisting dashboard data](./dashboard.md#persisting-dashboard-data)):
 
 ```bash
-docker run --name codegate -d -p 8989:8989 -p 9090:80 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
+docker run --name codegate -d -p 8989:8989 -p 9090:9090 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
 **Copilot support:** enable the HTTP proxy port and mount a persistent volume
 (see [Use CodeGate with GitHub Copilot](./use-with-copilot.mdx)):
 
 ```bash
-docker run --name codegate -d -p 8989:8989 -p 9090:80 -p 8990:8990 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
+docker run --name codegate -d -p 8989:8989 -p 9090:9090 -p 8990:8990 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
 :::tip
@@ -76,14 +76,14 @@ CodeGate listens on several network ports:
 
 | Default host port | Container port (internal) | Purpose                                        |
 | :---------------- | :------------------------ | :--------------------------------------------- |
-| 9090              | 80                        | CodeGate web dashboard                         |
+| 9090              | 9090                      | CodeGate web dashboard                         |
 | 8989              | 8989                      | CodeGate API                                   |
 | 8990              | 8990                      | Secure HTTP proxy (GitHub Copilot integration) |
 
 All of the commands in these docs assume the default ports. To use different
 listening ports, modify the `-p` flag(s):
 
-- Dashboard: `-p YOUR_PORT:80`
+- Dashboard: `-p YOUR_PORT:9090`
 - CodeGate API: `-p YOUR_PORT:8989`
 - Secure HTTP proxy: `-p YOUR_PORT:8990`
 

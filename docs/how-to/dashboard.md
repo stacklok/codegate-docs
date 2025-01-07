@@ -10,20 +10,20 @@ CodeGate includes a web dashboard that lets you view the security risks that
 CodeGate has detected and a history of interactions between your AI coding
 assistant and your LLM.
 
-To access the dashboard, ensure port 80 is bound to a port on your local system
-when you launch CodeGate, for example:
+To access the dashboard, ensure port 9090 is bound to a port on your local
+system when you launch CodeGate, for example:
 
 ```bash {2}
 docker run --name codegate -d -p 8989:8989 \
-  -p 9090:80 \
+  -p 9090:9090 \
   --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
 Open [http://localhost:9090](http://localhost:9090) in your web browser to view
 the dashboard.
 
-To use a different listening port on your host, replace `9090` with your desired
-port, like `-p YOUR_PORT:80`. The dashboard will be available at
+To use a different listening port on your host, replace the first `9090` with
+your desired port, like `-p YOUR_PORT:9090`. The dashboard will be available at
 `http://localhost:YOUR_PORT/`.
 
 :::note
@@ -43,7 +43,7 @@ container. The volume destination must be `/app/codegate_volume` inside the
 container. This example creates a volume named `codegate_volume`:
 
 ```bash {2}
-docker run --name codegate -d -p 8989:8989 -p 9090:80 \
+docker run --name codegate -d -p 8989:8989 -p 9090:9090 \
   --mount type=volume,src=codegate_volume,dst=/app/codegate_volume \
   --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```

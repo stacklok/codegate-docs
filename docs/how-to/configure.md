@@ -11,7 +11,7 @@ and OpenAI APIs with typical settings. To customize the behavior, you can supply
 extra configuration parameters to the container as environment variables:
 
 ```bash {2}
-docker run --name codegate -d -p 8989:8989 -p 9090:80 \
+docker run --name codegate -d -p 8989:8989 -p 9090:9090 \
   [-e KEY=VALUE ...] \
   --restart unless-stopped ghcr.io/stacklok/codegate
 ```
@@ -38,7 +38,7 @@ Continue IDE plugin.
 To use OpenRouter, set the vLLM URL when you launch CodeGate:
 
 ```bash {2}
-docker run --name codegate -d -p 8989:8989 -p 9090:80 \
+docker run --name codegate -d -p 8989:8989 -p 9090:9090 \
   -e CODEGATE_VLLM_URL=https://openrouter.ai/api \
   --restart unless-stopped ghcr.io/stacklok/codegate
 ```

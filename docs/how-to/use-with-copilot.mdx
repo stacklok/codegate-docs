@@ -58,7 +58,7 @@ inside the container:
 <Tabs groupId="os">
 <TabItem value="macos" label="macOS / Linux" default>
 ```bash {2-3}
-docker run --name codegate -d -p 8989:8989 -p 9090:80 \
+docker run --name codegate -d -p 8989:8989 -p 9090:9090 \
   -p 8990:8990 \
   --mount type=volume,src=codegate_volume,dst=/app/codegate_volume \
   --restart unless-stopped ghcr.io/stacklok/codegate:latest
@@ -66,7 +66,7 @@ docker run --name codegate -d -p 8989:8989 -p 9090:80 \
 </TabItem>
 <TabItem value="windows" label="Windows (PowerShell)">
 ```shell {2-3}
-docker run --name codegate -d -p 8989:8989 -p 9090:80 `
+docker run --name codegate -d -p 8989:8989 -p 9090:9090 `
   -p 8990:8990 `
   --mount type=volume,src=codegate_volume,dst=/app/codegate_volume `
   --restart unless-stopped ghcr.io/stacklok/codegate:latest
