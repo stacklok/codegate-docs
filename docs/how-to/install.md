@@ -48,7 +48,7 @@ Run with minimal functionality for use with **Continue**:
 docker run -d -p 8989:8989 -p 9090:9090 --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
-Mount a **persistent volume** to the container (see
+**Mount a persistent volume** to the container (see
 [Persisting dashboard data](./dashboard.md#persisting-dashboard-data)):
 
 ```bash
@@ -61,6 +61,16 @@ docker run --name codegate -d -p 8989:8989 -p 9090:9090 --mount type=volume,src=
 ```bash
 docker run --name codegate -d -p 8989:8989 -p 9090:9090 -p 8990:8990 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
+
+**Install a specific version:** starting with v0.1.4 you can optionally run a
+specific version of CodeGate using sematic version tags:
+
+- Patch version: `ghcr.io/stacklok/codegate:v0.1.4` (exact)
+- Minor version: `ghcr.io/stacklok/codegate:v0.1` (latest v0.1.x release)
+- Major version: `ghcr.io/stacklok/codegate:v0` (latest v0.x.x release)
+
+See the [GitHub releases](https://github.com/stacklok/codegate/releases) page
+for available versions.
 
 :::tip
 
