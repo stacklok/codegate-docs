@@ -10,6 +10,7 @@
     "code_blocks": false,
     "tables": false
   },
+  "no-bare-urls": false,
   "hr-style": {
     "style": "---"
   },
