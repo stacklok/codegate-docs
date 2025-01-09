@@ -14,4 +14,3 @@ jobs:
   static-checks:
     name: Static checks
     uses: ./.github/workflows/_static-checks.yaml
-    secrets: inherit
