@@ -3,6 +3,9 @@ name: Security checks
 on:
   workflow_call:
 
+permissions:
+  contents: read
+
 jobs:
   trivy:
     name: Trivy scan
