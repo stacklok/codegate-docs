@@ -11,6 +11,13 @@ Major features and changes are noted here. To review all updates, see the
 
 :::
 
+Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
+
+- **Aider support** - 13 Jan, 2025\
+  CodeGate version 0.1.6 adds support for [Aider](https://aider.chat/), an LLM
+  pair programmer in your terminal. See the
+  [how-to guide](../how-to/use-with-aider.mdx) to learn more.
+
 - **Semantic versioning for container image** - 8 Jan, 2025\
   Starting with v0.1.4, the CodeGate container image is published with semantic
   version tags corresponding to

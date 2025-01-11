@@ -1,0 +1,120 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="aider-provider">
+<TabItem value="openai" label="OpenAI" default>
+
+You need an [OpenAI API](https://openai.com/api/) account to use this provider.
+
+Before you run Aider, set environment variables for your API key and to set the
+API base URL to CodeGate's API port. Alternately, use one of Aider's other
+[supported configuration methods](https://aider.chat/docs/config/api-keys.html)
+to set the corresponding values.
+
+<Tabs groupId="os">
+<TabItem value="macos" label="macOS / Linux" default>
+
+```bash
+export OPENAI_API_KEY=<YOUR_API_KEY>
+export OPENAI_API_BASE=http://localhost:8989/openai
+```
+
+:::note
+
+To persist these variables, add them to your shell profile (e.g., `~/.bashrc` or
+`~/.zshrc`).
+
+:::
+
+</TabItem>
+<TabItem value="windows" label="Windows">
+
+```bash
+setx OPENAI_API_KEY <YOUR_API_KEY>
+setx OPENAI_API_BASE http://localhost:8989/openai
+```
+
+:::note
+
+Restart your shell after running `setx`.
+
+:::
+
+</TabItem>
+</Tabs>
+
+Replace `<YOUR_API_KEY>` with your
+[OpenAI API key](https://platform.openai.com/api-keys).
+
+Then run `aider` as normal. For more information, see the
+[Aider docs for connecting to OpenAI](https://aider.chat/docs/llms/openai.html).
+
+</TabItem>
+<TabItem value="ollama" label="Ollama">
+
+You need Ollama installed on your local system with the server running
+(`ollama serve`) to use this provider.
+
+CodeGate connects to `http://host.docker.internal:11434` by default. If you
+changed the default Ollama server port or to connect to a remote Ollama
+instance, launch CodeGate with the `CODEGATE_OLLAMA_URL` environment variable
+set to the correct URL. See [Configure CodeGate](/how-to/configure.md).
+
+Before you run Aider, set the Ollama base URL to CodeGate's API port using an
+environment variable. Alternately, use one of Aider's other
+[supported configuration methods](https://aider.chat/docs/config/api-keys.html)
+to set the corresponding values.
+
+<Tabs groupId="os">
+<TabItem value="macos" label="macOS / Linux" default>
+
+```bash
+export OLLAMA_API_BASE=http://localhost:8989/ollama
+```
+
+:::note
+
+To persist this setting, add it to your shell profile (e.g., `~/.bashrc` or
+`~/.zshrc`) or use one of Aider's other
+[supported configuration methods](https://aider.chat/docs/config/api-keys.html).
+
+:::
+
+</TabItem>
+<TabItem value="windows" label="Windows">
+
+```bash
+setx OLLAMA_API_BASE http://localhost:8989/ollama
+```
+
+:::note
+
+Restart your shell after running `setx`.
+
+:::
+
+</TabItem>
+</Tabs>
+
+Then run Aider:
+
+```bash
+aider --model ollama/<MODEL_NAME>
+```
+
+Replace `<MODEL_NAME>` with the name of a coding model you have installed
+locally using `ollama pull`.
+
+We recommend the [Qwen2.5-Coder](https://ollama.com/library/qwen2.5-coder)
+series of models. Our minimum recommendation for quality results is the 7
+billion parameter (7B) version, `qwen2.5-coder:7b`.
+
+This model balances performance and quality for typical systems with at least 4
+CPU cores and 16GB of RAM. If you have more compute resources available, our
+experimentation shows that larger models do yield better results.
+
+For more information, see the
+[Aider docs for connecting to Ollama](https://aider.chat/docs/llms/ollama.html).
+
+</TabItem>
+</Tabs>

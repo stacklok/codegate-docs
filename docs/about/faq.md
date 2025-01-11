@@ -10,7 +10,8 @@ sidebar_position: 10
 No, CodeGate works _with_ your AI code assistant, as a local intermediary
 between your client and the LLM it's communicating with.
 
-### Does CodeGate work with any plugins other than Copilot and Continue?
+### Does CodeGate work with any other IDE plugins or coding assistants?
 
-Currently, CodeGate works with GitHub Copilot and Continue. We are actively
-exploring additional integrations based on user feedback.
+We are actively exploring additional integrations based on user feedback.
+[Join the community on Discord](https://discord.gg/stacklok) to let us know
+about your favorite AI coding tool!

@@ -1,0 +1,73 @@
+---
+title: Use CodeGate with Aider
+description: Configure the Aider for CodeGate
+sidebar_label: Use with Aider
+sidebar_position: 90
+---
+
+import AiderProviders from '../partials/_aider-providers.mdx';
+
+[Aider](https://aider.chat/) is an open source AI coding assistant that lets you
+pair program with LLMs in your terminal.
+
+CodeGate works with the following AI model providers through Aider:
+
+- Local / self-managed:
+  - [Ollama](https://ollama.com/)
+- Hosted:
+  - [OpenAI](https://openai.com/api/)
+
+:::note
+
+This guide assumes you have already installed Aider using their
+[installation instructions](https://aider.chat/docs/install.html).
+
+:::
+
+## Configure Aider to use CodeGate
+
+To configure Aider to send requests through CodeGate:
+
+<AiderProviders />
+
+## Verify configuration
+
+To verify that you've successfully connected Aider to CodeGate, type
+`/ask codegate-version` into the Aider chat in your terminal. You should receive
+a response like "CodeGate version 0.1.0":
+
+## Next steps
+
+Learn more about CodeGate's features:
+
+- [Access the dashboard](./dashboard.md)
+- [CodeGate features](../features/index.mdx)
+
+## Remove CodeGate
+
+If you decide to stop using CodeGate, follow these steps to remove it and revert
+your environment.
+
+1. Stop Aider and unset the environment variables you set during the
+   configuration process:
+
+   **OpenAI:** `unset OPENAI_API_BASE` (macOS/Linux) or
+   `setx OPENAI_API_BASE ""` (Windows)
+
+   **Ollama:** `unset OLLAMA_API_BASE` (macOS/Linux) or
+   `setx OLLAMA_API_BASE ""` (Windows)
+
+1. Re-launch Aider.
+
+1. Stop and remove the CodeGate container:
+
+   ```bash
+   docker stop codegate && docker rm codegate
+   ```
+
+1. If you launched CodeGate with a persistent volume, delete it to remove the
+   CodeGate database and other files:
+
+   ```bash
+   docker volume rm codegate_volume
+   ```
