@@ -47,7 +47,7 @@
     "markdownlint-cli2": "^0.17.1",
     "prettier": "^3.4.2",
     "typescript": "~5.7.3",
-    "typescript-eslint": "^8.19.1"
+    "typescript-eslint": "^8.20.0"
   },
   "browserslist": {
     "production": [
