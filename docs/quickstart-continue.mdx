@@ -174,7 +174,7 @@ keys or passwords. You've certainly taken steps to avoid checking these into
 your source repo, but they are fair game for LLMs to use as context and
 training.
 
-Open the `conf.ini` or `app.json` file from the demo repo in the VS Code editor
+Open the `conf.ini` or `eth/app.json` file from the demo repo in the VS Code editor
 and examine the contents. In the Continue chat input, type `@Files` and select
 the file to include it as context, and ask Continue to explain the file.
 
@@ -204,13 +204,13 @@ Learn more in [Secrets encryption](./features/secrets-encryption.md).
 
 ### Assess dependency risk
 
-Open the `packages.py` file from the demo repo in the VS Code editor and examine
+Open the `python/app.py` file from the demo repo in the VS Code editor and examine
 the import statements at the top. As with the previous step, type `@Files`, this
-time selecting the `packages.py` file to add it to your prompt. Then ask
+time selecting the `python/app.py` file to add it to your prompt. Then ask
 Continue to analyze the file.
 
 ```plain title="Continue chat"
-@packages.py Please analyze this file
+@app.py Please analyze this file
 ```
 
 Using its up-to-date knowledge from
