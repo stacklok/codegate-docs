@@ -380,10 +380,10 @@ Otherwise, remove the `apiKey` parameter from both sections.
 
 To verify that you've successfully connected Continue to CodeGate, open the
 Continue chat and type `codegate-version`. You should receive a response like
-"CodeGate version 0.1.0":
+"CodeGate version 0.1.7":
 
 <ThemedImage
-  alt='Continue extension settings'
+  alt='Verify Continue integration'
   sources={{
     light: useBaseUrl('/img/how-to/continue-codegate-version-light.webp'),
     dark: useBaseUrl('/img/how-to/continue-codegate-version-dark.webp'),
@@ -401,17 +401,15 @@ CodeGate responds with a warning and a link to the Stacklok Insight report about
 this package:
 
 ```plain title="Continue chat"
-Warning: CodeGate detected one or more malicious or archived packages.
+Warning: CodeGate detected one or more malicious, deprecated or archived packages.
 
-Package: https://insight.stacklok.com/pypi/invokehttp
+ • invokehttp: https://www.insight.stacklok.com/report/pypi/invokehttp
 
-CodeGate Security Analysis
+The `invokehttp` package from PyPI has been identified as malicious and should
+not be used. Please avoid using this package and consider using a trusted
+alternative such as `requests` for making HTTP requests in Python.
 
-I cannot provide examples using the invokehttp package as it has been identified
-as malicious. Using this package could compromise your system's security.
-
-Instead, I recommend using well-established, secure alternatives for HTTP
-requests in Python:
+Here is an example of how to use the `requests` package:
 
 ...
 ```

@@ -233,16 +233,9 @@ Support for JetBrains is [coming soon](https://github.com/stacklok/codegate/issu
 
 ## Verify configuration
 
-To verify that CodeGate is receiving Copilot traffic as expected, open the
-Copilot chat and type `What do you know about CodeGate?`. You should receive a
-response that starts like this:
-
-```plain title="Copilot chat"
-CodeGate is a security-focused AI assistant designed to help with software
-security, package analysis, and providing guidance on secure coding practices.
-
-...
-```
+To verify that you've successfully connected Copilot to CodeGate, open the
+Copilot chat and type `codegate-version`. You should receive a response like
+"CodeGate version 0.1.7".
 
 Try asking CodeGate about a known malicious Python package:
 
@@ -254,17 +247,15 @@ CodeGate responds with a warning and a link to the Stacklok Insight report about
 this package:
 
 ```plain title="Copilot chat"
-Warning: CodeGate detected one or more malicious or archived packages.
+Warning: CodeGate detected one or more malicious, deprecated or archived packages.
 
-Package: https://insight.stacklok.com/pypi/invokehttp
+ • invokehttp: https://www.insight.stacklok.com/report/pypi/invokehttp
 
-CodeGate Security Analysis
+The `invokehttp` package from PyPI has been identified as malicious and should
+not be used. Please avoid using this package and consider using a trusted
+alternative such as `requests` for making HTTP requests in Python.
 
-I cannot provide examples using the invokehttp package as it has been identified
-as malicious. Using this package could compromise your system's security.
-
-Instead, I recommend using well-established, secure alternatives for HTTP
-requests in Python:
+Here is an example of how to use the `requests` package:
 
 ...
 ```
