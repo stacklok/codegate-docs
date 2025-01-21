@@ -143,7 +143,7 @@ Use the `restore` command to recover an [archived](#archive) workspace. Once
 restored, a workspace will appear in your available [workspace list](#list) and
 can be [activated](#activate).
 
-```bash
+```plain
 codegate workspace restore WORKSPACE_NAME
 ```
 
@@ -153,7 +153,7 @@ Replace `WORKSPACE_NAME` with the name of the workspace to restore.
 
 The `delete-archived` command permanently deletes an archived workspace.
 
-```bash
+```plain
 codegate workspace delete-archived WORKSPACE_NAME
 ```
 
