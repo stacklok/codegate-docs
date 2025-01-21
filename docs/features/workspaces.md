@@ -1,135 +1,176 @@
 ---
 title: Workspaces
-description: Codegate workspaces
+description: Organize and customize your project environments
 sidebar_position: 40
 ---
 
 ## Overview
 
-The "Workspaces" feature in CodeGate is designed to help users organize and
-customize their interactions with large language models (LLMs). Each workspace
-acts as a distinct environment with its own configurations and resources,
-allowing for personalized settings and efficient management of different
-projects or tasks.
+_Workspaces_ in CodeGate allow you to organize and customize your interactions
+with large language models (LLMs). Each workspace is a distinct environment with
+its own configurations and resources, enabling personalized settings and
+efficient management of different projects or tasks.
 
-## Key Features
+## Key features
 
-- **Custom Configurations**: Each workspace can have its own settings and system
+- **Custom configurations**: Each workspace can have its own settings and system
   prompts for interacting with LLMs, enabling tailored responses and behaviors.
-- **Resource Management**: Workspaces act as containers for bucketing resources
-  within CodeGate, making it easier to manage and switch between different projects.
-- **Isolation and Independence**: Configurations in one workspace do not affect
+- **Resource management**: Workspaces act as containers for organizing resources
+  within CodeGate, making it easier to manage and switch between different
+  projects.
+- **Isolation and independence**: Configurations in one workspace do not affect
   others, providing clarity and precision in how settings are applied.
 
-## Working with Workspaces
+## Working with workspaces
 
-### Creating a Workspace
+:::info Default workspace
 
-To create a new workspace, use the following command from your chat prompt interface:
+CodeGate ships with a default workspace named `default`. This workspace cannot
+be renamed, archived, or deleted.
 
-```bash
-codegate workspace add $NAME
+:::
+
+You can manage workspaces using `codegate workspace` commands sent through your
+AI assistant's chat interface. To see all available commands:
+
+```plain
+codegate workspace -h
 ```
 
-This initializes a new workspace with the specified name.
+:::note
 
-Note that workspace names may only contain alphanumeric characters with dashes.
+Currently, workspaces are not shown in the CodeGate dashboard. Stay tuned!
 
-### Switching Workspaces
+:::
 
-To switch between workspaces, you can activate a different workspace by using:
+### Create a workspace {#add}
 
-```bash
-codegate workspace activate $NAME
+To create a new workspace:
+
+```plain
+codegate workspace add WORKSPACE_NAME
 ```
 
-The active workspace is the current environment for commands and configurations.
+Replace `WORKSPACE_NAME` with a name for the new workspace. Names can only
+contain alphanumeric characters, hyphens (`-`), and underscores (`_`).
 
-### Listing Workspaces
+:::note
 
-For a quickly accessible overview of all workspaces, including which is currently
-active, use:
+Workspace names are case-sensitive.
 
-```bash
+:::
+
+### List workspaces {#list}
+
+Get a list of all non-archived workspaces:
+
+```plain
 codegate workspace list
 ```
 
-### Customizing System Prompts
+The currently active workspace is indicated as **(active)** in the list.
 
-One of the key advantages of workspaces is the ability to set a custom system
-prompt. This can be done using the following command:
+### Activate a workspace {#activate}
 
-```bash
-codegate system-prompt -w $WORKSPACE_NAME set $SYSTEM_PROMPT
+Switch between workspaces using the `activate` command. The active workspace is
+the current environment for commands and configuration.
+
+```plain
+codegate workspace activate WORKSPACE_NAME
 ```
 
-Replace `$WORKSPACE_NAME` with your desired workspace and `$SYSTEM_PROMPT` with
-your custom prompt text.
+Replace `WORKSPACE_NAME` with the name of the workspace to activate
+(case-sensitive).
 
-Note that if you don't specify a workspace explicitly, the command will take an
-the active workspace into use.
+### Customize the system prompt {#system-prompt}
 
-#### Example
+One of the key advantages of workspaces is the ability to customize the system
+prompt with extra project-specific context or instructions.
 
-Suppose you want to set a custom system prompt for a workspace named "project-alpha":
+```plain
+codegate system-prompt [-w WORKSPACE_NAME] set SYSTEM_PROMPT
+```
 
-```bash
+Replace `SYSTEM_PROMPT` with your custom prompt text.
+
+Optionally, specify the workspace to modify with `-w WORKSPACE_NAME`. If you
+don't explicitly set a workspace, the currently active workspace is modified.
+
+**Example**: Set a custom system prompt for the workspace named "project-alpha":
+
+```plain
 codegate system-prompt -w project-alpha set Start each conversation with "Welcome to Project Alpha Assistant. How can I help today?"
 ```
 
-This will enhance your prompt when you're working in that workspace.
+### Rename a workspace {#rename}
 
-### Archiving a workspace
+To change the name of an existing workspace:
 
-In order to "archive" a workspace, use the following command in your prompt:
-
-```bash
-codegate workspace remove $WORKSPACE_NAME
+```plain
+codegate workspace rename WORKSPACE_NAME NEW_WORKSPACE_NAME
 ```
 
-This will not fully delete the workspace, but will set it in "archived mode". You
-may still recover an archived workspace.
+Replace `WORKSPACE_NAME` with the current name of the workspace, and
+`NEW_WORKSPACE_NAME` with the new name to set.
 
-### Listing Archived Workspaces
+### Archive a workspace {#archive}
 
-To view a list of all archived workspaces, use the following command:
+You can mark a workspace as archived without permanently deleting it. This is
+useful in situations when you are not actively working on a project but may want
+to come back to it later.
 
-```bash
+```plain
+codegate workspace remove WORKSPACE_NAME
+```
+
+Replace `WORKSPACE_NAME` with the name of the workspace to archive. Archived
+workspaces can be [restored](#restore) later or [permanently deleted](#delete).
+
+### List archived workspaces {#list-archived}
+
+Get a list of all archived workspaces:
+
+```plain
 codegate workspace list-archived
 ```
 
-This command will display all workspaces that have been archived, allowing you
-to review which projects are stored for potential future use.
+Archived workspaces can be [restored](#restore) or
+[permanently deleted](#delete), but cannot be activated.
 
-### Restoring an Archived Workspace
+### Restore an archived workspace {#restore}
 
-If you need to reactivate an archived workspace, you can restore it using the
-following command:
-
-```bash
-codegate workspace restore $WORKSPACE_NAME
-```
-
-Replace `$WORKSPACE_NAME` with the name of the workspace you wish to restore.
-Once restored, it will appear in your active workspace list.
-
-### Deleting an Archived Workspace
-
-In cases where an archived workspace is no longer needed and can be safely removed,
-you can permanently delete it with:
+Use the `restore` command to recover an [archived](#archive) workspace. Once
+restored, a workspace will appear in your available [workspace list](#list) and
+can be [activated](#activate).
 
 ```bash
-codegate workspace delete-archived $WORKSPACE_NAME
+codegate workspace restore WORKSPACE_NAME
 ```
 
-Make sure to double-check before executing this command, as it will permanently
-remove the specified workspace from your system.
+Replace `WORKSPACE_NAME` with the name of the workspace to restore.
 
-## Best Practices
+### Permanently delete a workspace {#delete}
 
-- Utilize workspaces to separate different projects or objectives, ensuring each
-  has a dedicated configuration.
-- Regularly review and update the system prompts to align with the evolving needs
-  of your projects.
+The `delete-archived` command permanently deletes an archived workspace.
+
+```bash
+codegate workspace delete-archived WORKSPACE_NAME
+```
+
+Replace `WORKSPACE_NAME` with the name of the workspace to delete.
+
+:::warning
+
+Deletion is permanent. Ensure that the workspace is no longer needed and can be
+safely removed. There is no confirmation when you run this command.
+
+:::
+
+## Recommendations
+
+- Use workspaces to separate different projects or objectives, ensuring each has
+  a dedicated configuration.
+- Regularly review and update the system prompts to align with the evolving
+  needs of your projects.
 - Use resource bucketing to keep assets organized and easily accessible within
   their respective workspaces.
