@@ -73,15 +73,16 @@ project. Please join us in the `#codegate` channel on the
 
 Follow one of the the quickstart guides to get up and running quickly:
 
-- [Quickstart guide - GitHub Copilot](quickstart-copilot.mdx) to integrate
+- [Quickstart guide - GitHub Copilot](./quickstart-copilot.mdx) to integrate
   CodeGate with GitHub Copilot and VS Code
 - [Quickstart guide - Continue](./quickstart-continue.mdx) to integrate CodeGate
   with the open source Continue extension, VS Code, and a local Ollama server
 
-Review the [installation instructions](how-to/install.md).
+Review the [installation instructions](./how-to/install.md).
 
 Learn more about CodeGate's features:
 
-- [Secrets encryption](features/secrets-encryption.md)
-- [Dependency risk awareness](features/dependency-risk.md)
-- [Security reviews](features/security-reviews.md)
+- [Secrets encryption](./features/secrets-encryption.md)
+- [Dependency risk awareness](./features/dependency-risk.md)
+- [Security reviews](./features/security-reviews.md)
+- [Workspaces](./features/workspaces.mdx)

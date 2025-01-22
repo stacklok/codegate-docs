@@ -13,6 +13,11 @@ Major features and changes are noted here. To review all updates, see the
 
 Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
 
+- **Workspaces** - 22 Jan, 2025\
+  Now available in CodeGate v0.1.12, workspaces help you organize and customize
+  your AI-assisted development. Learn more in
+  [Workspaces](../features/workspaces.mdx).
+
 - **Aider support** - 13 Jan, 2025\
   CodeGate version 0.1.6 adds support for [Aider](https://aider.chat/), an LLM
   pair programmer in your terminal. See the
