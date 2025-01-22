@@ -25,13 +25,13 @@ more secure recommendations and code suggestions.
 
 ### Example prompts
 
-```plain
+```text
 Review the following Python files for potential security vulnerabilities:
 
 @app.py
 @main.py
 ```
 
-```plain
+```text
 Analyze the AuthUser function in @login.py for any security issues
 ```
