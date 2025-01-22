@@ -43,6 +43,12 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+/* Enables GitHub-style light/dark mode switching without the ThemedImage component */
+[data-theme='light'] img[src$='#gh-dark-mode-only'],
+[data-theme='dark'] img[src$='#gh-light-mode-only'] {
+  display: none;
+}
+
 html[data-theme='dark'] {
   --ifm-background-color: #111827;
   --ifm-color-content: #d1d5db;
