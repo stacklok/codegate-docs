@@ -31,17 +31,11 @@ be renamed, archived, or deleted.
 :::
 
 You can manage workspaces using `codegate workspace` commands sent through your
-AI assistant's chat interface. To see all available commands:
+AI assistant's chat interface. To see all available commands, run:
 
 ```plain
 codegate workspace -h
 ```
-
-:::note
-
-Currently, workspaces are not shown in the CodeGate dashboard. Stay tuned!
-
-:::
 
 ### Create a workspace {#add}
 
@@ -53,12 +47,6 @@ codegate workspace add WORKSPACE_NAME
 
 Replace `WORKSPACE_NAME` with a name for the new workspace. Names can only
 contain alphanumeric characters, hyphens (`-`), and underscores (`_`).
-
-:::note
-
-Workspace names are case-sensitive.
-
-:::
 
 ### List workspaces {#list}
 
@@ -79,16 +67,17 @@ the current environment for commands and configuration.
 codegate workspace activate WORKSPACE_NAME
 ```
 
-Replace `WORKSPACE_NAME` with the name of the workspace to activate
-(case-sensitive).
+Replace `WORKSPACE_NAME` with the name of the workspace to activate.
 
 ### Customize the system prompt {#system-prompt}
 
 One of the key advantages of workspaces is the ability to customize the system
-prompt with extra project-specific context or instructions.
+prompt with extra project-specific instructions.
+
+To add custom instructions to your system prompt:
 
 ```plain
-codegate system-prompt [-w WORKSPACE_NAME] set SYSTEM_PROMPT
+codegate custom-instructions [-w WORKSPACE_NAME] set SYSTEM_PROMPT
 ```
 
 Replace `SYSTEM_PROMPT` with your custom prompt text.
@@ -100,6 +89,18 @@ don't explicitly set a workspace, the currently active workspace is modified.
 
 ```plain
 codegate system-prompt -w project-alpha set Start each conversation with "Welcome to Project Alpha Assistant. How can I help today?"
+```
+
+To show the current custom instructions on a workspace:
+
+```plain
+codegate custom-instructions [-w WORKSPACE_NAME] show
+```
+
+To reset (clear) the custom instructions for a workspace:
+
+```plain
+codegate custom-instructions [-w WORKSPACE_NAME] reset
 ```
 
 ### Rename a workspace {#rename}
@@ -120,7 +121,7 @@ useful in situations when you are not actively working on a project but may want
 to come back to it later.
 
 ```plain
-codegate workspace remove WORKSPACE_NAME
+codegate workspace archive WORKSPACE_NAME
 ```
 
 Replace `WORKSPACE_NAME` with the name of the workspace to archive. Archived
@@ -162,7 +163,7 @@ Replace `WORKSPACE_NAME` with the name of the workspace to delete.
 :::warning
 
 Deletion is permanent. Ensure that the workspace is no longer needed and can be
-safely removed. There is no confirmation when you run this command.
+safely removed.
 
 :::
 
