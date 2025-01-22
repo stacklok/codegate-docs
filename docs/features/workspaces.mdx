@@ -1,0 +1,247 @@
+---
+title: Workspaces
+description: Organize and customize your project environments
+sidebar_position: 40
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
+
+## Overview
+
+_Workspaces_ in CodeGate allow you to organize and customize your interactions
+with large language models (LLMs). Each workspace is a distinct environment with
+its own configuration and history, enabling personalized settings and efficient
+management of your projects or tasks.
+
+Examples might include workspaces for different projects you're working on, or
+for specific tasks like code reviews or generating documentation. You can add
+custom instructions to each workspace to customize its behavior suitable to the
+task at hand.
+
+## Key features
+
+Workspaces offer several key features:
+
+- **Custom instructions**: Customize your interactions with LLMs by augmenting
+  your AI assistant's system prompt, enabling tailored responses and behaviors
+  for different types of tasks.
+
+- **Prompt and alert history**: Your LLM interactions (prompt history) and
+  CodeGate security detections (alert history) are recorded in the active
+  workspace, allowing you to track and review past interactions.
+
+- **Isolation**: Configurations and data in one workspace do not affect others,
+  providing clarity when reviewing your AI-assisted coding history and precision
+  in tailoring your custom instructions.
+
+:::tip Recommendations
+
+- Use workspaces to separate different projects or objectives, with customized
+  instructions to optimize your work in each focus area.
+- Switch your active workspace as you move between projects or tasks. This helps
+  you maintain your prompt and alert history for each project.
+- Regularly review and update your custom instructions to align with the
+  evolving needs of your projects.
+
+:::
+
+## Working with workspaces
+
+You can view and manage your workspaces from the
+[CodeGate dashboard](../how-to/dashboard.md)
+([http://localhost:9090](http://localhost:9090)) or using commands in your AI
+assistant's chat interface.
+
+:::info Default workspace
+
+CodeGate ships with a default workspace named `default`. This workspace cannot
+be renamed, archived, or deleted.
+
+:::
+
+Only one workspace is active at any one time, and all AI assistant interactions
+occur within that workspace.
+
+You can perform several actions on workspaces:
+
+- **Activate**: Activate a workspace for use. Only one workspace can be active
+  at a time.
+- **Add**: Create a new workspace.
+- **Rename**: Change the name of a workspace.
+- **Custom instructions**: Add custom instructions to augment your AI
+  assistant's system prompt.
+- **Archive**: Mark a workspace as archived without permanently deleting it. The
+  workspace is hidden from the available workspaces list, but can be restored
+  later. This is useful when you are not actively working on a project but may
+  want to come back to it in the future.
+- **Delete**: Permanently delete an archived workspace (CLI only).
+
+## Manage workspaces using the dashboard
+
+### Select the active workspace
+
+The currently active workspace is displayed at the top of the CodeGate dashboard
+interface. You can change the active workspace by expanding the workspace
+drop-down menu. Select the workspace you want to activate. You can also search
+by name to quickly find the desired workspace.
+
+<ThemedImage
+  alt='The workspace drop-down menu in the CodeGate dashboard'
+  sources={{
+    light: useBaseUrl('/img/features/workspace-menu-light.webp'),
+    dark: useBaseUrl('/img/quickstart/workspace-menu-dark.webp'),
+  }}
+  title='Workspace menu'
+  width={'800px'}
+/>
+_The workspace menu in the CodeGate dashboard_
+
+### Manage workspaces
+
+To manage all your workspaces, select **Manage Workspaces** in the workspace
+menu.
+
+Click **Create Workspace** to add a new workspace. Workspace names can contain
+alphanumeric characters, hyphens (`-`), and underscores (`_`). Names are
+converted to lowercase, and must be unique.
+
+In the workspace list, click the **Settings** button next to a workspace to open
+the workspace settings screen. From here you can rename the workspace, set the
+custom prompt instructions, or archive the workspace. Archived workspaces can be
+restored from the Manage Workspaces screen, or permanently deleted
+[using the CLI](#delete).
+
+## Manage workspaces using the chat CLI
+
+You can manage workspaces using `codegate workspace` commands sent through your
+AI assistant's chat interface. To see all available commands, run:
+
+```text
+codegate workspace -h
+```
+
+### Create a workspace \{#add}
+
+To create a new workspace:
+
+```text
+codegate workspace add WORKSPACE_NAME
+```
+
+Replace `WORKSPACE_NAME` with a name for the new workspace. Names can only
+contain alphanumeric characters, hyphens (`-`), and underscores (`_`).
+
+### List workspaces \{#list}
+
+Get a list of all non-archived workspaces:
+
+```text
+codegate workspace list
+```
+
+The currently active workspace is indicated as **(active)** in the list.
+
+### Activate a workspace \{#activate}
+
+Switch between workspaces using the `activate` command. The active workspace is
+the current environment for commands and configuration.
+
+```text
+codegate workspace activate WORKSPACE_NAME
+```
+
+Replace `WORKSPACE_NAME` with the name of the workspace to activate.
+
+### Customize the system prompt \{#custom-instructions}
+
+To add custom instructions to your system prompt:
+
+```text
+codegate custom-instructions [-w WORKSPACE_NAME] set SYSTEM_PROMPT
+```
+
+Replace `SYSTEM_PROMPT` with your custom prompt text. Optionally, specify the
+workspace to modify with `-w WORKSPACE_NAME`. If you don't explicitly set a
+workspace, the currently active workspace is modified.
+
+**Example**: Set a custom system prompt for the workspace named "project-alpha":
+
+```text
+codegate custom-instructions -w project-alpha set Start each conversation with "Welcome to Project Alpha Assistant. How can I help today?"
+```
+
+To show the current custom instructions on a workspace:
+
+```text
+codegate custom-instructions [-w WORKSPACE_NAME] show
+```
+
+To reset (clear) the custom instructions for a workspace:
+
+```text
+codegate custom-instructions [-w WORKSPACE_NAME] reset
+```
+
+### Rename a workspace \{#rename}
+
+To change the name of an existing workspace:
+
+```text
+codegate workspace rename WORKSPACE_NAME NEW_WORKSPACE_NAME
+```
+
+Replace `WORKSPACE_NAME` with the current name of the workspace, and
+`NEW_WORKSPACE_NAME` with the new name to set.
+
+### Archive a workspace \{#archive}
+
+To archive a workspace:
+
+```text
+codegate workspace archive WORKSPACE_NAME
+```
+
+Replace `WORKSPACE_NAME` with the name of the workspace to archive. You cannot
+archive the currently active workspace. Archived workspaces can be
+[restored](#restore) later or [permanently deleted](#delete).
+
+### List archived workspaces \{#list-archived}
+
+Get a list of all archived workspaces:
+
+```text
+codegate workspace list-archived
+```
+
+Archived workspaces can be [restored](#restore) or
+[permanently deleted](#delete), but cannot be activated.
+
+### Restore an archived workspace \{#restore}
+
+Use the `restore` command to recover an [archived](#archive) workspace. Once
+restored, a workspace will appear in your available [workspace list](#list) and
+can be [activated](#activate).
+
+```text
+codegate workspace restore WORKSPACE_NAME
+```
+
+Replace `WORKSPACE_NAME` with the name of the workspace to restore.
+
+### Permanently delete a workspace \{#delete}
+
+The `delete-archived` command permanently deletes an archived workspace.
+
+```text
+codegate workspace delete-archived WORKSPACE_NAME
+```
+
+Replace `WORKSPACE_NAME` with the name of the workspace to delete.
+
+:::warning
+
+Deletion is permanent. Ensure that the workspace is no longer needed and can be
+safely removed.
+
+:::
