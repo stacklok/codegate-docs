@@ -8,10 +8,10 @@ sidebar_position: 1
 
 ## What is CodeGate?
 
-CodeGate is local prompt gateway that sits between your AI coding assistant and
-LLM to enhance privacy and security. CodeGate performs code security reviews,
-identifies vulnerabilities in package dependencies, and prevents sensitive data
-like secrets from being shared with AI models.
+CodeGate is a local prompt gateway that sits between your AI coding assistant
+and LLM to enhance privacy and security. CodeGate performs code security
+reviews, identifies vulnerabilities in package dependencies, and prevents
+sensitive data like secrets from being shared with AI models.
 
 ```mermaid
 sequenceDiagram
@@ -54,7 +54,7 @@ AI coding assistants / IDEs:
     - Anthropic
     - OpenAI
 
-**[Aider](./how-to/use-with-aider.mdx)** with Ollama and OpenAI
+- **[Aider](./how-to/use-with-aider.mdx)** with Ollama and OpenAI
 
 As the project evolves, we plan to add support for more IDE assistants and AI
 model providers.
