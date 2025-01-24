@@ -42,7 +42,7 @@ application settings, see [Configure CodeGate](./configure.md)
 
 ### Alternative run commands {#examples}
 
-Run with minimal functionality for use with **Continue** or **Aider**:
+Run with minimal functionality for use with **Continue** or **aider**:
 
 ```bash
 docker run -d -p 8989:8989 -p 9090:9090 --restart unless-stopped ghcr.io/stacklok/codegate:latest
@@ -151,8 +151,8 @@ persistent volume.
 Now that CodeGate is running, proceed to configure your IDE integration.
 
 - [Use CodeGate with GitHub Copilot](./use-with-copilot.mdx)
+- [Use CodeGate with aider](./use-with-aider.mdx)
 - [Use CodeGate with Continue](./use-with-continue.mdx)
-- [Use CodeGate with Aider](./use-with-aider.mdx)
 
 ## Remove CodeGate
 
@@ -160,5 +160,5 @@ If you decide to stop using CodeGate, follow the removal steps for your IDE
 integration:
 
 - [Remove CodeGate - GitHub Copilot](./use-with-copilot.mdx#remove-codegate)
+- [Remove CodeGate - aider](./use-with-aider.mdx#remove-codegate)
 - [Remove CodeGate - Continue](./use-with-continue.mdx#remove-codegate)
-- [Remove CodeGate - Aider](./use-with-aider.mdx#remove-codegate)

@@ -210,6 +210,9 @@ sentence.
 
 ### Products/brands
 
+**aider** - an open source AI pair programmer in your terminal. It's written
+lowercase unless it starts a sentence.
+
 **Continue** - an open source AI coding assistant for IDEs that connects to many
 model providers. It's written as just "Continue" (not "Continue.dev", which is
 their website).

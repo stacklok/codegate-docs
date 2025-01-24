@@ -19,7 +19,7 @@ Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
   [Workspaces](../features/workspaces.mdx).
 
 - **Aider support** - 13 Jan, 2025\
-  CodeGate version 0.1.6 adds support for [Aider](https://aider.chat/), an LLM
+  CodeGate version 0.1.6 adds support for [aider](https://aider.chat/), an AI
   pair programmer in your terminal. See the
   [how-to guide](../how-to/use-with-aider.mdx) to learn more.
 
