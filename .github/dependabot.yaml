@@ -3,16 +3,21 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
     groups:
       docusaurus:
         patterns:
           - '*docusaurus*'
-      eslint:
+      linters:
         patterns:
-          - '*eslint*'
+          - '*lint*'
+          - 'globals'
+          - 'husky'
+          - 'prettier'
     ignore:
       # Pin key docusaurus dependencies to major versions
+      - dependency-name: 'react'
+        update-types: ['version-update:semver-major']
       - dependency-name: '@mdx-js/react'
         update-types: ['version-update:semver-major']
       - dependency-name: 'prism-react-renderer'
@@ -20,4 +25,4 @@ updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
