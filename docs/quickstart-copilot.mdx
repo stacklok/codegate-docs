@@ -172,8 +172,8 @@ Learn more in [Secrets encryption](./features/secrets-encryption.md).
 
 ### Assess dependency risk
 
-Open the `python/app.py` file from the demo repo in the VS Code editor. Confirm
-that it's now the active context file in Copilot.
+Open the `javascript/App.js` file from the demo repo in the VS Code editor.
+Confirm that it's now the active context file in Copilot.
 
 <ThemedImage
   alt='Copilot chat showing the current file selected'
@@ -185,13 +185,13 @@ that it's now the active context file in Copilot.
       '/img/quickstart/quickstart-copilot-dependencies-context-dark.webp'
     ),
   }}
-  width={'481px'}
+  width={'450px'}
 />
 
 Enter the following prompt into the chat:
 
 ```plain title="Copilot chat"
-Analyze this file
+Review this file
 ```
 
 Using its up-to-date knowledge from
@@ -208,7 +208,7 @@ malicious and deprecated packages referenced in the code.
       '/img/quickstart/quickstart-copilot-dependencies-result-dark.webp'
     ),
   }}
-  width={'800px'}
+  width={'820px'}
 />
 
 Learn more in [Dependency risk awareness](./features/dependency-risk.md).
@@ -223,7 +223,14 @@ AI assistant and the LLM. Several alerts and prompts from the previous steps in
 this tutorial should be visible now. Over time, this helps you understand how
 CodeGate is actively protecting your privacy and security.
 
-![CodeGate dashboard](/img/quickstart/quickstart-dashboard.webp)
+<ThemedImage
+  alt='CodeGate dashboard'
+  sources={{
+    light: useBaseUrl('/img/quickstart/quickstart-dashboard-light.webp'),
+    dark: useBaseUrl('/img/quickstart/quickstart-dashboard-dark.webp'),
+  }}
+  width={'1000px'}
+/>
 
 ## Next steps
 

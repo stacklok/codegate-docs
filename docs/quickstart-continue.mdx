@@ -204,13 +204,13 @@ Learn more in [Secrets encryption](./features/secrets-encryption.md).
 
 ### Assess dependency risk
 
-Open the `python/app.py` file from the demo repo in the VS Code editor and
-examine the import statements at the top. As with the previous step, type
-`@Files`, this time selecting the `python/app.py` file to add it to your prompt.
-Then ask Continue to analyze the file.
+Open the `javascript/App.js` file from the demo repo in the VS Code editor and
+examine the `require` statements at the top. In the VS Code file browser,
+right-click the file and choose **Select Files as Context**. Then ask Continue
+to review the file.
 
 ```plain title="Continue chat"
-@app.py Please analyze this file
+@App.js Review this file
 ```
 
 Using its up-to-date knowledge from
@@ -242,7 +242,14 @@ AI assistant and the LLM. Several alerts and prompts from the previous steps in
 this tutorial should be visible now. Over time, this helps you understand how
 CodeGate is actively protecting your privacy and security.
 
-![CodeGate dashboard](/img/quickstart/quickstart-dashboard.webp)
+<ThemedImage
+  alt='CodeGate dashboard'
+  sources={{
+    light: useBaseUrl('/img/quickstart/quickstart-dashboard-light.webp'),
+    dark: useBaseUrl('/img/quickstart/quickstart-dashboard-dark.webp'),
+  }}
+  width={'1000px'}
+/>
 
 ## Next steps
 
