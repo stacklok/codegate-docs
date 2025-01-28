@@ -20,14 +20,15 @@ docker run --name codegate -d -p 8989:8989 -p 9090:9090 \
 
 CodeGate supports the following parameters:
 
-| Parameter                | Default value                       | Description                                                                                                   |
-| :----------------------- | :---------------------------------- | :------------------------------------------------------------------------------------------------------------ |
-| `CODEGATE_OLLAMA_URL`    | `http://host.docker.internal:11434` | Specifies the URL of an Ollama instance. Used when the provider in your plugin config is `ollama`.            |
-| `CODEGATE_VLLM_URL`      | `http://localhost:8000`             | Specifies the URL of a model hosted by a vLLM server. Used when the provider in your plugin config is `vllm`. |
-| `CODEGATE_ANTHROPIC_URL` | `https://api.anthropic.com/v1`      | Specifies the Anthropic engine API endpoint URL.                                                              |
-| `CODEGATE_OPENAI_URL`    | `https://api.openai.com/v1`         | Specifies the OpenAI engine API endpoint URL.                                                                 |
-| `CODEGATE_APP_LOG_LEVEL` | `WARNING`                           | Sets the logging level. Valid values: `ERROR`, `WARNING`, `INFO`, `DEBUG` (case sensitive)                    |
-| `CODEGATE_LOG_FORMAT`    | `TEXT`                              | Type of log formatting. Valid values: `TEXT`, `JSON` (case sensitive)                                         |
+| Parameter                | Default value                       | Description                                                                                |
+| :----------------------- | :---------------------------------- | :----------------------------------------------------------------------------------------- |
+| `CODEGATE_APP_LOG_LEVEL` | `WARNING`                           | Sets the logging level. Valid values: `ERROR`, `WARNING`, `INFO`, `DEBUG` (case sensitive) |
+| `CODEGATE_LOG_FORMAT`    | `TEXT`                              | Type of log formatting. Valid values: `TEXT`, `JSON` (case sensitive)                      |
+| `CODEGATE_ANTHROPIC_URL` | `https://api.anthropic.com/v1`      | Specifies the Anthropic engine API endpoint URL.                                           |
+| `CODEGATE_LM_STUDIO_URL` | `http://host.docker.internal:1234`  | Specifies the URL of your LM Studio server.                                                |
+| `CODEGATE_OLLAMA_URL`    | `http://host.docker.internal:11434` | Specifies the URL of your Ollama instance.                                                 |
+| `CODEGATE_OPENAI_URL`    | `https://api.openai.com/v1`         | Specifies the OpenAI engine API endpoint URL.                                              |
+| `CODEGATE_VLLM_URL`      | `http://localhost:8000`             | Specifies the URL of the vLLM server to use.                                               |
 
 ## Example: Use CodeGate with OpenRouter
 

@@ -97,6 +97,11 @@ you'll use with CodeGate, open the **Load** tab on the right and increase the
   width={'800px'}
 />
 
+CodeGate connects to `http://host.docker.internal:1234` by default. If you
+changed the default LM Studio server port, launch CodeGate with the
+`CODEGATE_LM_STUDIO_URL` environment variable set to the correct URL. See
+[Configure CodeGate](/how-to/configure.md).
+
 In the Cline settings, choose LM Studio as your provider and set the **Base
 URL** to `http://localhost:8989/openai`.
 
