@@ -1,6 +1,6 @@
 ---
 title: Contributing
-description: How to contribute to the project.
+description: How to contribute to CodeGate
 sidebar_position: 30
 ---
 
@@ -25,7 +25,13 @@ general usage question, please ask in the `#codegate` channel on
 create a new issue in the
 [CodeGate GitHub repository](https://github.com/stacklok/codegate/issues).
 
-## Contributing code
+## Contributing code or docs
+
+CodeGate's code and docs are managed in several repositories:
+
+- Main repo: https://github.com/stacklok/codegate
+- Dashboard UI: https://github.com/stacklok/codegate-ui
+- Docs: https://github.com/stacklok/codegate-docs
 
 If you've found an issue you'd like to work on, you can contribute code to
 CodeGate by submitting a pull request. Before you submit a pull request, please
