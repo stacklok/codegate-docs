@@ -48,8 +48,8 @@ first with `docker stop codegate && docker rm codegate`.
    is used to maintain a secure end-to-end connection with Copilot.
 
    To prevent the certificate from changing on each restart, launch CodeGate
-   with a persistent data volume. To do this, add a `--mount` parameter to your
-   `docker run` command:
+   with a persistent data volume. To do this, make sure your `docker run`
+   command includes the `--mount` parameter:
 
    `--mount type=volume,src=codegate_volume,dst=/app/codegate_volume`
 
