@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/how-to/(use-with-):path(aider|cline|continue|copilot)",
+      "destination": "/integrations/:path",
+      "permanent": true
+    }
+  ]
+}

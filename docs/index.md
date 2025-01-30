@@ -37,10 +37,10 @@ CodeGate supports several development environments and AI providers.
 
 AI coding assistants / IDEs:
 
-- **[GitHub Copilot](./how-to/use-with-copilot.mdx)** with Visual Studio Code
+- **[GitHub Copilot](./integrations/copilot.mdx)** with Visual Studio Code
   (JetBrains coming soon!)
 
-- **[Continue](./how-to/use-with-continue.mdx)** with Visual Studio Code and
+- **[Continue](./integrations/continue.mdx)** with Visual Studio Code and
   JetBrains IDEs
 
   CodeGate supports the following AI model providers with Continue:
@@ -54,10 +54,9 @@ AI coding assistants / IDEs:
     - Anthropic
     - OpenAI
 
-- **[Aider](./how-to/use-with-aider.mdx)** with Ollama and OpenAI-compatible
-  APIs
+- **[Aider](./integrations/aider.mdx)** with Ollama and OpenAI-compatible APIs
 
-- **[Cline](./how-to/use-with-cline.mdx)** with Visual Studio Code
+- **[Cline](./integrations/cline.mdx)** with Visual Studio Code
 
   CodeGate supports Ollama, Anthropic, OpenAI-compatible APIs, and LM Studio
   with Cline.

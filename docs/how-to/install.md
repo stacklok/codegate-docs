@@ -27,10 +27,13 @@ docker run --name codegate -d -p 8989:8989 -p 9090:9090 -p 8990:8990 --mount typ
 
 Parameter reference:
 
+- `--name codegate` - give the container a friendly name for easy reference
 - `-d` - start in detached (background) mode
-- `-p 8989:8989` - bind the CodeGate API to port 8989 on your host
+- `-p 8989:8989` - bind the CodeGate API to port 8989 on your host (required)
 - `-p 9090:9090` - bind the CodeGate web dashboard to port 9090 on your host
+  (recommended)
 - `-p 8990:8990` - bind the CodeGate secure HTTP proxy to port 8990 on your host
+  (required for Copilot)
 - `--mount ...` - mount a persistent Docker volume named `codegate_volume` to
   the required path in the container
 - `--restart unless-stopped` - restart CodeGate after a Docker or system
@@ -40,33 +43,34 @@ More example run commands to run the container with the right parameters for
 your scenario are found below. To learn how to customize the CodeGate
 application settings, see [Configure CodeGate](./configure.md)
 
+:::warning
+
+If you omit the persistent volume mount, your
+[workspace configurations](../features/workspaces.mdx) and prompt history are
+lost when you stop or restart CodeGate.
+
+:::
+
 ### Alternative run commands {#examples}
 
 Run with minimal functionality for use with **Continue**, **aider**, or
-**Cline**:
-
-```bash
-docker run -d -p 8989:8989 -p 9090:9090 --restart unless-stopped ghcr.io/stacklok/codegate:latest
-```
-
-**Mount a persistent volume** to the container (see
-[Persisting dashboard data](./dashboard.md#persisting-dashboard-data)):
+**Cline** (omits the HTTP proxy port needed by Copilot):
 
 ```bash
 docker run --name codegate -d -p 8989:8989 -p 9090:9090 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
-**Copilot support:** enable the HTTP proxy port and mount a persistent volume
-(see [Use CodeGate with GitHub Copilot](./use-with-copilot.mdx)):
+**Restrict ports:** Docker publishes ports to all interfaces on your host by
+default. This example publishes only on your `localhost` interface:
 
 ```bash
-docker run --name codegate -d -p 8989:8989 -p 9090:9090 -p 8990:8990 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
+docker run --name codegate -d -p 127.0.0.1:8989:8989 -p 127.0.0.1:9090:9090 -p 127.0.0.1:8990:8990 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
 ```
 
 **Install a specific version:** starting with v0.1.4 you can optionally run a
 specific version of CodeGate using sematic version tags:
 
-- Patch version: `ghcr.io/stacklok/codegate:v0.1.4` (exact)
+- Patch version: `ghcr.io/stacklok/codegate:v0.1.15` (exact)
 - Minor version: `ghcr.io/stacklok/codegate:v0.1` (latest v0.1.x release)
 - Major version: `ghcr.io/stacklok/codegate:v0` (latest v0.x.x release)
 
@@ -91,12 +95,20 @@ CodeGate listens on several network ports:
 | 8989              | 8989                      | CodeGate API                                   |
 | 8990              | 8990                      | Secure HTTP proxy (GitHub Copilot integration) |
 
+Docker publishes ports to all network interfaces on your system by default. This
+can unintentionally expose your CodeGate installation to other systems on the
+same network. To restrict this, add `127.0.0.1` IP to the publish flags:
+
+- API: `-p 127.0.0.1:8989:8989`
+- HTTPS proxy: `-p 127.0.0.1:8990:8990`
+- Dashboard: `-p 127.0.0.1:9090:9090`
+
 All of the commands in these docs assume the default ports. To use different
 listening ports, modify the `-p` flag(s):
 
+- API: `-p YOUR_PORT:8989`
+- HTTPS proxy: `-p YOUR_PORT:8990`
 - Dashboard: `-p YOUR_PORT:9090`
-- CodeGate API: `-p YOUR_PORT:8989`
-- Secure HTTP proxy: `-p YOUR_PORT:8990`
 
 :::note
 
@@ -149,19 +161,16 @@ persistent volume.
 
 ## Next steps
 
-Now that CodeGate is running, proceed to configure your IDE integration.
-
-- [Use CodeGate with aider](./use-with-aider.mdx)
-- [Use CodeGate with Cline](./use-with-cline.mdx)
-- [Use CodeGate with Continue](./use-with-continue.mdx)
-- [Use CodeGate with GitHub Copilot](./use-with-copilot.mdx)
+Now that CodeGate is running, proceed to
+[configure your AI assistant/agent](../integrations/index.mdx).
 
 ## Remove CodeGate
 
-If you decide to stop using CodeGate, follow the removal steps for your IDE
-integration:
+If you decide to stop using CodeGate, follow the removal steps for your
+[integration](../integrations/index.mdx), then stop and remove the CodeGate
+container and volume:
 
-- [Remove CodeGate - aider](./use-with-aider.mdx#remove-codegate)
-- [Remove CodeGate - Cline](./use-with-cline.mdx#remove-codegate)
-- [Remove CodeGate - Continue](./use-with-continue.mdx#remove-codegate)
-- [Remove CodeGate - GitHub Copilot](./use-with-copilot.mdx#remove-codegate)
+```bash
+docker stop codegate && docker rm codegate
+docker volume rm codegate_volume
+```

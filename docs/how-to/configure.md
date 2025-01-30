@@ -7,12 +7,13 @@ sidebar_position: 20
 ## Customize CodeGate's behavior
 
 The CodeGate container runs with default settings to support Ollama, Anthropic,
-and OpenAI APIs with typical settings. To customize the behavior, you can supply
+and OpenAI APIs with typical settings. To customize the behavior, you can add
 extra configuration parameters to the container as environment variables:
 
 ```bash {2}
 docker run --name codegate -d -p 8989:8989 -p 9090:9090 \
   [-e KEY=VALUE ...] \
+  --mount type=volume,src=codegate_volume,dst=/app/codegate_volume \
   --restart unless-stopped ghcr.io/stacklok/codegate
 ```
 
@@ -41,9 +42,11 @@ To use OpenRouter, set the vLLM URL when you launch CodeGate:
 ```bash {2}
 docker run --name codegate -d -p 8989:8989 -p 9090:9090 \
   -e CODEGATE_VLLM_URL=https://openrouter.ai/api \
+  --mount type=volume,src=codegate_volume,dst=/app/codegate_volume \
   --restart unless-stopped ghcr.io/stacklok/codegate
 ```
 
-Then, [configure the Continue IDE plugin](./use-with-continue.mdx) to access the
-vLLM endpoint (`http://localhost:8989/vllm/`) along with the model you'd like to
-use and your OpenRouter API key.
+Then,
+[configure the Continue IDE plugin](../integrations/continue.mdx?provider=vllm)
+to use CodeGate's vLLM endpoint (`http://localhost:8989/vllm`) along with the
+model you'd like to use and your OpenRouter API key.

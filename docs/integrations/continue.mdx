@@ -1,8 +1,8 @@
 ---
 title: Use CodeGate with Continue
 description: Configure the Continue IDE plugin
-sidebar_label: Use with Continue
-sidebar_position: 100
+sidebar_label: Continue
+sidebar_position: 30
 ---
 
 import Tabs from '@theme/Tabs';
@@ -110,7 +110,7 @@ Below are examples of complete Continue configurations for each supported
 provider. Replace the values in ALL_CAPS. The configuration syntax is the same
 for VS Code and JetBrains IDEs.
 
-<Tabs groupId="provider">
+<Tabs groupId="provider" queryString="provider">
 <TabItem value="ollama" label="Ollama" default>
 
 You need Ollama installed on your local system with the server running
@@ -119,7 +119,7 @@ You need Ollama installed on your local system with the server running
 CodeGate connects to `http://host.docker.internal:11434` by default. If you
 changed the default Ollama server port or to connect to a remote Ollama
 instance, launch CodeGate with the `CODEGATE_OLLAMA_URL` environment variable
-set to the correct URL. See [Configure CodeGate](./configure.md).
+set to the correct URL. See [Configure CodeGate](../how-to/configure.md).
 
 Replace `MODEL_NAME` with the names of model(s) you have installed locally using
 `ollama pull`. See Continue's
@@ -288,7 +288,8 @@ To use this provider, download your desired model file in GGUF format from the
 [Hugging Face library](https://huggingface.co/models?library=gguf&sort=trending).
 Then copy it into the `/app/codegate_volume/models` directory in the CodeGate
 container. To persist models between restarts, run CodeGate with a Docker volume
-as shown in the [recommended configuration](./install.md#recommended-settings).
+as shown in the
+[recommended configuration](../how-to/install.md#recommended-settings).
 
 Example using huggingface-cli to download our recommended models for chat (at
 least a 7B model is recommended for best results) and autocomplete (a 1.5B or 3B
@@ -340,7 +341,7 @@ running locally or access to a remote server to use this provider.
 CodeGate connects to `http://localhost:8000` by default. If you changed the
 default Ollama server port or to connect to a remote Ollama instance, launch
 CodeGate with the `CODEGATE_VLLM_URL` environment variable set to the correct
-URL. See [Configure CodeGate](./configure.md).
+URL. See [Configure CodeGate](../how-to/configure.md).
 
 A vLLM server hosts a single model. Continue automatically selects the available
 model, so the `model` parameter is not required. See Continue's
@@ -385,8 +386,8 @@ Continue chat and type `codegate version`. You should receive a response like
 <ThemedImage
   alt='Verify Continue integration'
   sources={{
-    light: useBaseUrl('/img/how-to/continue-codegate-version-light.webp'),
-    dark: useBaseUrl('/img/how-to/continue-codegate-version-dark.webp'),
+    light: useBaseUrl('/img/integrations/continue-codegate-version-light.webp'),
+    dark: useBaseUrl('/img/integrations/continue-codegate-version-dark.webp'),
   }}
   width={'494px'}
 />
@@ -418,7 +419,7 @@ Here is an example of how to use the `requests` package:
 
 Learn more about CodeGate's features and how to use them:
 
-- [Access the dashboard](./dashboard.md)
+- [Access the dashboard](../how-to/dashboard.md)
 - [CodeGate features](../features/index.mdx)
 
 ## Remove CodeGate

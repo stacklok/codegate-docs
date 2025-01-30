@@ -16,7 +16,7 @@ Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
 - **Cline support** - 28 Jan, 2025\
   CodeGate version 0.1.14 adds support for
   [Cline](https://github.com/cline/cline) with Anthropic, OpenAI, Ollama, and LM
-  Studio. See the [how-to guide](../how-to/use-with-cline.mdx) to learn more.
+  Studio. See the [how-to guide](../integrations/cline.mdx) to learn more.
 
 - **Workspaces** - 22 Jan, 2025\
   Now available in CodeGate v0.1.12, workspaces help you organize and customize
@@ -26,7 +26,7 @@ Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
 - **Aider support** - 13 Jan, 2025\
   CodeGate version 0.1.6 adds support for [aider](https://aider.chat/), an AI
   pair programmer in your terminal. See the
-  [how-to guide](../how-to/use-with-aider.mdx) to learn more.
+  [how-to guide](../integrations/aider.mdx) to learn more.
 
 - **Semantic versioning for container image** - 8 Jan, 2025\
   Starting with v0.1.4, the CodeGate container image is published with semantic
