@@ -70,8 +70,8 @@ const config: Config = {
   themeConfig: {
     colorMode: {
       defaultMode: 'light',
-      disableSwitch: true,
-      respectPrefersColorScheme: false,
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
     },
     // Replace with your project's social card
     // image: 'img/docusaurus-social-card.jpg',
@@ -104,19 +104,19 @@ const config: Config = {
         },
         {
           href: 'https://youtube.com/@stacklok',
-          className: 'header-youtube-link',
+          className: 'youtube-link',
           position: 'right',
           'aria-label': 'YouTube channel',
         },
         {
           href: 'https://github.com/stacklok/codegate',
-          className: 'header-github-link',
+          className: 'github-link',
           position: 'right',
           'aria-label': 'GitHub repository',
         },
         {
           href: 'https://discord.gg/stacklok',
-          className: 'header-discord-link',
+          className: 'discord-link',
           position: 'right',
           'aria-label': 'Discord community',
         },
@@ -135,9 +135,9 @@ const config: Config = {
             },
             {
               html: `<div style="display: flex; padding: 20px 0px;">
-                       <a href="https://youtube.com/@stacklok" target="_blank" class="footer__icon__custom navbar__link header-youtube-link" style="padding-left: 0px;"></a>
-                       <a href="https://github.com/stacklok/codegate" target="_blank" class="footer__icon__custom navbar__link header-github-link"></a>
-                       <a href="https://discord.gg/stacklok" target="_blank" class="footer__icon__custom navbar__link header-discord-link"></a>
+                       <a href="https://youtube.com/@stacklok" target="_blank" class="footer__icon__custom navbar__link youtube-link" style="padding-left: 0px;"></a>
+                       <a href="https://github.com/stacklok/codegate" target="_blank" class="footer__icon__custom navbar__link github-link"></a>
+                       <a href="https://discord.gg/stacklok" target="_blank" class="footer__icon__custom navbar__link discord-link"></a>
                      </div>`,
             },
           ],
@@ -146,16 +146,16 @@ const config: Config = {
           title: 'Links',
           items: [
             {
-              html: '<a href="https://www.stacklok.com" target="_blank" class="navbar__link header-stacklok-link"">&nbsp;&nbsp;Stacklok</a>',
+              html: '<a href="https://www.stacklok.com" target="_blank" class="navbar__link stacklok-link"">&nbsp;&nbsp;Stacklok</a>',
             },
             {
-              html: '<a href="https://youtube.com/@stacklok" target="_blank" class="navbar__link header-youtube-link"">&nbsp;&nbsp;YouTube</a>',
+              html: '<a href="https://youtube.com/@stacklok" target="_blank" class="navbar__link youtube-link"">&nbsp;&nbsp;YouTube</a>',
             },
             {
-              html: '<a href="https://github.com/stacklok/codegate" target="_blank" class="navbar__link header-github-link">&nbsp;&nbsp;GitHub</a>',
+              html: '<a href="https://github.com/stacklok/codegate" target="_blank" class="navbar__link github-link">&nbsp;&nbsp;GitHub</a>',
             },
             {
-              html: '<a href="https://discord.gg/stacklok" target="_blank" class="navbar__link header-discord-link">&nbsp;&nbsp;Discord</a>',
+              html: '<a href="https://discord.gg/stacklok" target="_blank" class="navbar__link discord-link">&nbsp;&nbsp;Discord</a>',
             },
           ],
         },
@@ -176,12 +176,12 @@ const config: Config = {
       copyright: `<hr style="margin: 24px 0px 40px;">
                   <div style="display: flex;">
                     <div>Copyright © ${new Date().getFullYear()} CodeGate, All Rights Reserved</div>
-                    <div style="margin-left: auto; text-transform: uppercase; font-size: 14px; font-weight: 600;">Powered by <img src="/img/stacklok-logo-black.svg" height="24px" style="margin-left: 1rem;" /></div>
+                    <div class="footer__powered_by">Powered by <img src="/img/stacklok-logo-black.svg" height="24px" style="margin-left: 1rem; vertical-align:middle;" /></div>
                   </div>`,
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      darkTheme: prismThemes.vsDark,
       additionalLanguages: ['bash', 'json', 'powershell', 'docker', 'lua'],
     },
     mermaid: {
