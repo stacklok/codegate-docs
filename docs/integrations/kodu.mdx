@@ -42,15 +42,6 @@ OpenAI-compatible endpoint such as OpenRouter, set the `CODEGATE_OPENAI_URL`
 1. Open the Claude Coder extension sidebar from the VS Code Activity Bar and
    open its settings using the gear icon.
 
-   <ThemedImage
-     alt='Claude Coder extension settings'
-     sources={{
-       light: useBaseUrl('/img/integrations/kodu-settings-light.webp'),
-       dark: useBaseUrl('/img/integrations/kodu-settings-dark.webp'),
-     }}
-     width={'540px'}
-   />
-
 1. On the **Preferences** tab, scroll down and click the link next to "Want to
    use a custom provider?"
 
@@ -59,13 +50,36 @@ OpenAI-compatible endpoint such as OpenRouter, set the `CODEGATE_OPENAI_URL`
 
 1. Enter the **Model ID** (example: `gpt-4o-mini`) and your API key.
 
+   <Columns>
+     <Column className='text--left'>
+       <ThemedImage
+         alt='Claude Coder extension settings step 1'
+         sources={{
+           light: useBaseUrl('/img/integrations/kodu-settings-1-light.webp'),
+           dark: useBaseUrl('/img/integrations/kodu-settings-1-dark.webp'),
+         }}
+         width={'600px'}
+       />
+     </Column>
+     <Column className='text--left'>
+       <ThemedImage
+         alt='Claude Coder extension settings step 2'
+         sources={{
+           light: useBaseUrl('/img/integrations/kodu-settings-2-light.webp'),
+           dark: useBaseUrl('/img/integrations/kodu-settings-2-dark.webp'),
+         }}
+         width={'600px'}
+       />
+     </Column>
+   </Columns>
+
 1. Click **Save Settings** and confirm that you want to apply the model.
 
 ## Verify configuration
 
 To verify that you've successfully connected Claude Coder / Kodu to CodeGate,
-open the Claude Coder sidebar and type `codegate version`. You should receive a
-response like "CodeGate version: v0.1.15":
+start a new task in the Claude Coder sidebar and type `codegate version`. You
+should receive a response like "CodeGate version: v0.1.15":
 
 <ThemedImage
   alt='Claude Coder verification'
@@ -73,7 +87,7 @@ response like "CodeGate version: v0.1.15":
     light: useBaseUrl('/img/integrations/kodu-codegate-version-light.webp'),
     dark: useBaseUrl('/img/integrations/kodu-codegate-version-dark.webp'),
   }}
-  width={'490px'}
+  width={'520px'}
 />
 
 Start a new task and try asking CodeGate about a known malicious Python package:
