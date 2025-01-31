@@ -1,0 +1,45 @@
+{/* This content is pulled out as an include because Prettier can't handle the indentation needed to get this to appear in the right spot under a list item. */}
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="provider" queryString="provider">
+<TabItem value="mux" label="CodeGate muxing" default>
+First, configure your [provider(s)](../features/muxing.md#add-a-provider) and
+select a model for each of your
+[workspace(s)](../features/workspaces.mdx#manage-workspaces) in the CodeGate dashboard.
+
+In the **Provider Settings** settings, select **OpenAI Compatible**. Set the
+**Base URL** to `http://localhost:8989/v1/mux`.
+
+Enter anything you want into the Model ID and API key fields; these are not used
+since the actual provider and model is determined by your CodeGate workspace.
+
+</TabItem>
+<TabItem value="openai" label="OpenAI">
+
+You need an [OpenAI API](https://openai.com/api/) account to use this provider.
+To use a different OpenAI-compatible endpoint, set the `CODEGATE_OPENAI_URL`
+[configuration parameter](../how-to/configure.md) when you launch CodeGate.
+
+In the **Provider Settings** settings, select **OpenAI Compatible**. Set the
+**Base URL** to `http://localhost:8989/openai`.
+
+Enter the **Model ID** and your
+[OpenAI API key](https://platform.openai.com/api-keys). A reasoning model like
+`o1-mini` or `o3-mini` is recommended.
+
+</TabItem>
+<TabItem value="openrouter" label="OpenRouter">
+
+You need an [OpenRouter](https://openrouter.ai/) account to use this provider.
+
+In the **Provider Settings** settings, select **OpenAI Compatible**. Set the
+**Base URL** to `http://localhost:8989/openrouter`.
+
+Enter your [preferred model](https://openrouter.ai/models) for the **Model ID**
+(example: `anthropic/claude-3.5-sonnet`) and add your
+[OpenRouter API key](https://openrouter.ai/keys).
+
+</TabItem>
+</Tabs>

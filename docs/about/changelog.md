@@ -13,11 +13,16 @@ Major features and changes are noted here. To review all updates, see the
 
 Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
 
-- **New integration: Open Interpreter** - xx Feb\
-  2025 CodeGate v0.1.16 introduces support for
+- **New integration: Open Interpreter** - 4 Feb, 2025\
+  CodeGate v0.1.16 added support for
   [Open Interpreter](https://github.com/openinterpreter/open-interpreter) with
   OpenAI-compatible APIs. Review the
   [integration guide](../integrations/open-interpreter.mdx) to get started.
+
+- **New integration: Claude Coder** - 28 Jan, 2025\
+  CodeGate v0.1.14 also introduced support for Kodu's
+  [Claude Coder](https://www.kodu.ai/extension) extension. See the
+  [integration guide](../integrations/kodu.mdx) to learn more.
 
 - **New integration: Cline** - 28 Jan, 2025\
   CodeGate version 0.1.14 adds support for [Cline](https://cline.bot/) with

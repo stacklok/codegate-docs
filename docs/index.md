@@ -69,6 +69,9 @@ AI coding assistants / IDEs:
 - **[GitHub Copilot](./integrations/copilot.mdx)** with Visual Studio Code
   (JetBrains coming soon!)
 
+- **[Kodu / Claude Coder](./integrations/kodu.mdx)** in Visual Studio Code with
+  OpenAI-compatible APIs
+
 - **[Open Interpreter](./integrations/open-interpreter.mdx)** with
   OpenAI-compatible APIs
 

@@ -1,0 +1,126 @@
+---
+title: Use CodeGate with Claude Coder by Kodu.ai
+description: Configure the Kodu / Claude Coder extension for VS Code
+sidebar_label: Kodu / Claude Coder
+sidebar_position: 60
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
+
+[Claude Coder](https://www.kodu.ai/extension) by Kodu.ai is an AI coding agent
+extension for Visual Studio Code that can help programmers of all skill levels
+take their project from idea to execution.
+
+CodeGate supports OpenAI-compatible APIs and OpenRouter with Claude Coder.
+
+You can also configure [CodeGate muxing](../features/muxing.md) to select your
+provider and model using [workspaces](../features/workspaces.mdx).
+
+## Install the Claude Coder extension
+
+The Claude Coder extension is available in the
+[Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=kodu-ai.claude-dev-experimental).
+
+Install the extension using the **Install** link on the Marketplace page or
+search for "Claude Coder" or "Kodu" in the Extensions panel within VS Code.
+
+You can also install from the CLI:
+
+```bash
+code --install-extension kodu-ai.claude-dev-experimental
+```
+
+If you need help, see
+[Managing Extensions](https://code.visualstudio.com/docs/editor/extension-marketplace)
+in the VS Code documentation.
+
+## Configure Claude Coder to use CodeGate
+
+import KoduProviders from '../partials/_kodu-providers.mdx';
+
+1. Open the Claude Coder extension sidebar from the VS Code Activity Bar and
+   open its settings using the gear icon.
+
+1. On the **Preferences** tab, scroll down and click the link next to "Want to
+   use a custom provider?"
+
+   <ThemedImage
+     alt='Claude Coder extension settings'
+     sources={{
+       light: useBaseUrl('/img/integrations/kodu-settings-light.webp'),
+       dark: useBaseUrl('/img/integrations/kodu-settings-dark.webp'),
+     }}
+     width={'480px'}
+   />
+
+1. Select your provider and configure as detailed here:
+
+   <KoduProviders />
+
+1. Click **Save Settings** and confirm that you want to apply the model.
+
+## Verify configuration
+
+To verify that you've successfully connected Claude Coder / Kodu to CodeGate,
+start a new task in the Claude Coder sidebar and type `codegate version`. You
+should receive a response like "CodeGate version: v0.1.15":
+
+<ThemedImage
+  alt='Claude Coder verification'
+  sources={{
+    light: useBaseUrl('/img/integrations/kodu-codegate-version-light.webp'),
+    dark: useBaseUrl('/img/integrations/kodu-codegate-version-dark.webp'),
+  }}
+  width={'520px'}
+/>
+
+Start a new task and try asking CodeGate about a known malicious Python package:
+
+```plain title="Claude Coder chat"
+Tell me how to use the invokehttp package from PyPI
+```
+
+CodeGate responds with a warning and a link to the Stacklok Insight report about
+this package:
+
+```plain title="Claude Coder chat"
+Warning: CodeGate detected one or more malicious, deprecated or archived packages.
+
+ • invokehttp: https://www.insight.stacklok.com/report/pypi/invokehttp
+
+The `invokehttp` package from PyPI has been identified as malicious and should
+not be used. Please avoid using this package and consider using a trusted
+alternative such as `requests` for making HTTP requests in Python.
+
+Here is an example of how to use the `requests` package:
+
+...
+```
+
+## Next steps
+
+Learn more about CodeGate's features and how to use them:
+
+- [Access the dashboard](../how-to/dashboard.md)
+- [CodeGate features](../features/index.mdx)
+
+## Remove CodeGate
+
+If you decide to stop using CodeGate, follow these steps to remove it and revert
+your environment.
+
+1. Remove the custom base URL from your Claude Coder provider settings.
+
+1. Stop and remove the CodeGate container:
+
+   ```bash
+   docker stop codegate && docker rm codegate
+   ```
+
+1. If you launched CodeGate with a persistent volume, delete it to remove the
+   CodeGate database and other files:
+
+   ```bash
+   docker volume rm codegate_volume
+   ```
