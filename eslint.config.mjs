@@ -10,10 +10,13 @@ export default [
   { ignores: ['.docusaurus/', 'build/', 'node_modules/'] },
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
   { languageOptions: { globals: globals.node } },
+
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   eslintConfigPrettier,
+
+  // Configs for .mdx files
   {
     ...mdx.flat,
     processor: mdx.createRemarkProcessor({
@@ -23,8 +26,19 @@ export default [
     rules: {
       ...mdx.flat.rules,
       'react/no-unescaped-entities': 'off',
+      'react/jsx-no-undef': ['error', { allowGlobals: true }],
+    },
+    languageOptions: {
+      ...mdx.flat.languageOptions,
+      globals: {
+        ...mdx.flat.languageOptions.globals,
+        // Add global components from src/theme/MDXComponents.tsx here
+        Columns: 'readonly',
+        Column: 'readonly',
+      },
     },
   },
+
   {
     settings: {
       react: {
