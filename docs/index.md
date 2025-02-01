@@ -38,7 +38,6 @@ CodeGate supports several development environments and AI providers.
 AI coding assistants / IDEs:
 
 - **[GitHub Copilot](./integrations/copilot.mdx)** with Visual Studio Code
-  (JetBrains coming soon!)
 
 - **[Continue](./integrations/continue.mdx)** with Visual Studio Code and
   JetBrains IDEs

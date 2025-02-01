@@ -12,10 +12,19 @@ import ThemedImage from '@theme/ThemedImage';
 
 [GitHub Copilot](https://github.com/features/copilot) is an AI coding assistant
 developed by GitHub and OpenAI. The Copilot plugin works with Visual Studio Code
-(VS Code). Support for JetBrains is
-[coming soon](https://github.com/stacklok/codegate/issues/383).
+(VS Code) and JetBrains IDEs.
 
 :::note
+
+Currently, CodeGate only works with Copilot in VS Code. JetBrains IDEs do not
+support HTTPS proxy configurations. If you would like to use CodeGate with
+Copilot in JetBrains IDEs, please add a :+1: to
+[this issue](https://github.com/stacklok/codegate/issues/383) or let us know on
+[Discord](https://discord.gg/stacklok).
+
+:::
+
+:::info
 
 This guide assumes you have an active subscription to GitHub Copilot and have
 installed the IDE extension.
@@ -194,8 +203,6 @@ certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n CodeGate-CA -i ./codegate.crt
 
 Finally, configure VS Code to use CodeGate as an HTTP proxy.
 
-<Tabs groupId="ide">
-<TabItem value="vscode" label="VS Code" default>
 In VS Code, open the Command Palette (<kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
 on macOS or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on Windows/Linux) and
 search for the **Preferences: Open User Settings (JSON)** command.
@@ -220,12 +227,6 @@ Append the following settings to your configuration:
   }
 }
 ```
-
-</TabItem>
-<TabItem value="jetbrains" label="JetBrains" default>
-Support for JetBrains is [coming soon](https://github.com/stacklok/codegate/issues/383).
-</TabItem>
-</Tabs>
 
 ## Verify configuration
 
