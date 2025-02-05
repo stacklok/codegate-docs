@@ -13,6 +13,12 @@ Major features and changes are noted here. To review all updates, see the
 
 Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
 
+- **New integration: Open Interpreter** - xx Feb\
+  2025 CodeGate v0.1.16 introduces support for
+  [Open Interpreter](https://github.com/openinterpreter/open-interpreter) with
+  OpenAI-compatible APIs. Review the
+  [integration guide](../integrations/open-interpreter.mdx) to get started.
+
 - **New integration: Cline** - 28 Jan, 2025\
   CodeGate version 0.1.14 adds support for [Cline](https://cline.bot/) with
   Anthropic, OpenAI, Ollama, and LM Studio. See the

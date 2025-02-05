@@ -60,6 +60,9 @@ AI coding assistants / IDEs:
   CodeGate supports Ollama, Anthropic, OpenAI-compatible APIs, and LM Studio
   with Cline.
 
+- **[Open Interpreter](./integrations/open-interpreter.mdx)** with
+  OpenAI-compatible APIs
+
 As the project evolves, we plan to add support for more IDE assistants and AI
 model providers.
 
