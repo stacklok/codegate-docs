@@ -25,7 +25,9 @@ Workspaces offer several key features:
 
 - **Custom instructions**: Customize your interactions with LLMs by augmenting
   your AI assistant's system prompt, enabling tailored responses and behaviors
-  for different types of tasks.
+  for different types of tasks. CodeGate includes a library of community prompts
+  that can be easily customized for specific tasks. You can also create your
+  own.
 
 - **Prompt and alert history**: Your LLM interactions (prompt history) and
   CodeGate security detections (alert history) are recorded in the active
@@ -79,7 +81,7 @@ You can perform several actions on workspaces:
 
 ## Manage workspaces using the dashboard
 
-### Select the active workspace
+### Change the active workspace
 
 The currently active workspace is displayed at the top of the CodeGate dashboard
 interface. You can change the active workspace by expanding the workspace
@@ -102,15 +104,18 @@ _The workspace menu in the CodeGate dashboard_
 To manage all your workspaces, select **Manage Workspaces** in the workspace
 menu.
 
-Click **Create Workspace** to add a new workspace. Workspace names can contain
+Click **Create** to add a new workspace. Workspace names can contain
 alphanumeric characters, hyphens (`-`), and underscores (`_`). Names are
 converted to lowercase, and must be unique.
 
-In the workspace list, click the **Settings** button next to a workspace to open
-the workspace settings screen. From here you can rename the workspace, set the
-custom prompt instructions, or archive the workspace. Archived workspaces can be
-restored from the Manage Workspaces screen, or permanently deleted
-[using the CLI](#delete).
+In the workspace list, open the menu (**...**) next to a workspace to
+**Activate**, **Edit**, or **Archive** the workspace.
+
+**Edit** opens the workspace settings page. From here you can rename the
+workspace, set the custom prompt instructions, or archive the workspace.
+
+**Archived** workspaces can be restored or permanently deleted from the
+workspace list or workspace settings screen.
 
 ## Manage workspaces using the chat CLI
 
