@@ -8,6 +8,14 @@ const config: Config = {
   title: 'CodeGate',
   tagline: 'Privacy-first AI code generation',
   favicon: 'img/favicon.png',
+  plugins: [
+    [
+      'vercel-analytics',
+      {
+        debug: false,
+      },
+    ],
+  ],
 
   // Set the production url of your site here
   url: 'https://docs.codegate.ai',
