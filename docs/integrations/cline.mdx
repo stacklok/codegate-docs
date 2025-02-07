@@ -18,7 +18,8 @@ CodeGate works with the following AI model providers through Cline:
   - [LM Studio](https://lmstudio.ai/)
 - Hosted:
   - [Anthropic](https://www.anthropic.com/api)
-  - [OpenAI](https://openai.com/api/) and OpenAI-compatible APIs
+  - [OpenAI](https://openai.com/api/) and compatible APIs
+  - [OpenRouter](https://openrouter.ai/)
 
 ## Install the Cline extension
 
@@ -42,10 +43,36 @@ in the VS Code documentation.
 
 import ClineProviders from '../partials/_cline-providers.mdx';
 
+:::note
+
+Cline has two modes: Plan and Act. Each mode can be uniquely configured with a
+different provider and model, so you need to configure both.
+
+:::
+
 To configure Cline to send requests through CodeGate:
 
-1. Open the Cline extension sidebar from the VS Code Activity Bar and open its
-   settings using the gear icon.
+1. Open the Cline extension sidebar from the VS Code Activity Bar. Note your
+   current mode, Plan or Act.
+
+   <ThemedImage
+     alt='Cline mode - plan'
+     sources={{
+       light: useBaseUrl('/img/integrations/cline-mode-plan-light.webp'),
+       dark: useBaseUrl('/img/integrations/cline-mode-plan-dark.webp'),
+     }}
+     width={'400px'}
+   />
+   <ThemedImage
+     alt='Cline mode - act'
+     sources={{
+       light: useBaseUrl('/img/integrations/cline-mode-act-light.webp'),
+       dark: useBaseUrl('/img/integrations/cline-mode-act-dark.webp'),
+     }}
+     width={'400px'}
+   />
+
+1. Open the Cline settings using the gear icon.
 
    <ThemedImage
      alt='Cline extension settings'
@@ -60,7 +87,10 @@ To configure Cline to send requests through CodeGate:
 
    <ClineProviders />
 
-1. Click **Done** to save the settings.
+1. Click **Done** to save the settings for your current mode.
+
+1. Switch your Cline mode from Act to Plan or vice-versa, open the settings, and
+   repeat the configuration for your desired provider & model.
 
 ## Verify configuration
 

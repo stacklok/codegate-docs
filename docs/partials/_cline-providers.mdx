@@ -51,6 +51,28 @@ To enable CodeGate, set the **Base URL** to `https://localhost:8989/openai`.
 />
 
 </TabItem>
+<TabItem value="openrouter" label="OpenRouter">
+
+You need an [OpenRouter](https://openrouter.ai/) account to use this provider.
+
+In the Cline settings, choose **OpenAI Compatible** as your provider (NOT
+OpenRouter), enter your
+[OpenRouter API key](https://openrouter.ai/settings/keys), and set your
+[preferred model](https://openrouter.ai/models) (example:
+`anthropic/claude-3.5-sonnet`).
+
+To enable CodeGate, set the **Base URL** to `https://localhost:8989/openrouter`.
+
+<ThemedImage
+  alt='Cline settings for OpenRouter'
+  sources={{
+    light: useBaseUrl('/img/integrations/cline-provider-openrouter-light.webp'),
+    dark: useBaseUrl('/img/integrations/cline-provider-openrouter-dark.webp'),
+  }}
+  width={'540px'}
+/>
+
+</TabItem>
 <TabItem value="ollama" label="Ollama">
 
 You need Ollama installed on your local system with the server running

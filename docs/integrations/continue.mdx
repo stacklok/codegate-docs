@@ -18,12 +18,12 @@ CodeGate works with the following AI model providers through Continue:
 
 - Local / self-managed:
   - [Ollama](https://ollama.com/)
-  - [llama.cpp](https://github.com/ggerganov/llama.cpp)
   - [vLLM](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html)
+  - [llama.cpp](https://github.com/ggerganov/llama.cpp) (advanced)
 - Hosted:
-  - [OpenRouter](https://openrouter.ai/)
   - [Anthropic](https://www.anthropic.com/api)
   - [OpenAI](https://openai.com/api/)
+  - [OpenRouter](https://openrouter.ai/)
 
 ## Install the Continue plugin
 
@@ -92,8 +92,8 @@ To configure Continue to send requests through CodeGate:
    "apiBase": "http://127.0.0.1:8989/<provider>"
    ```
 
-   Replace `/<provider>` with one of: `/anthropic`, `/ollama`, `/openai`, or
-   `/vllm` to match your LLM provider.
+   Replace `/<provider>` with one of: `/anthropic`, `/ollama`, `/openai`,
+   `/openrouter`, or `/vllm` to match your LLM provider.
 
    If you used a different API port when launching the CodeGate container,
    replace `8989` with your custom port number.
@@ -111,6 +111,43 @@ provider. Replace the values in ALL_CAPS. The configuration syntax is the same
 for VS Code and JetBrains IDEs.
 
 <Tabs groupId="provider" queryString="provider">
+<TabItem value="anthropic" label="Anthropic">
+
+You need an [Anthropic API](https://www.anthropic.com/api) account to use this
+provider.
+
+Replace `MODEL_NAME` with the Anthropic model you want to use. We recommend
+`claude-3-5-sonnet-latest`.
+
+Replace `YOUR_API_KEY` with your
+[Anthropic API key](https://console.anthropic.com/settings/keys).
+
+```json title="~/.continue/config.json"
+{
+  "models": [
+    {
+      "title": "CodeGate-Anthropic",
+      "provider": "anthropic",
+      "model": "MODEL_NAME",
+      "apiKey": "YOUR_API_KEY",
+      "apiBase": "http://localhost:8989/anthropic"
+    }
+  ],
+  "modelRoles": {
+    "default": "CodeGate-Anthropic",
+    "summarize": "CodeGate-Anthropic"
+  },
+  "tabAutocompleteModel": {
+    "title": "CodeGate-Anthropic-Autocomplete",
+    "provider": "anthropic",
+    "model": "MODEL_NAME",
+    "apiKey": "YOUR_API_KEY",
+    "apiBase": "http://localhost:8989/anthropic"
+  }
+}
+```
+
+</TabItem>
 <TabItem value="ollama" label="Ollama" default>
 
 You need Ollama installed on your local system with the server running
@@ -159,43 +196,6 @@ experimentation shows that larger models do yield better results.
 ```
 
 </TabItem>
-<TabItem value="anthropic" label="Anthropic">
-
-You need an [Anthropic API](https://www.anthropic.com/api) account to use this
-provider.
-
-Replace `MODEL_NAME` with the Anthropic model you want to use. We recommend
-`claude-3-5-sonnet-latest`.
-
-Replace `YOUR_API_KEY` with your
-[Anthropic API key](https://console.anthropic.com/settings/keys).
-
-```json title="~/.continue/config.json"
-{
-  "models": [
-    {
-      "title": "CodeGate-Anthropic",
-      "provider": "anthropic",
-      "model": "MODEL_NAME",
-      "apiKey": "YOUR_API_KEY",
-      "apiBase": "http://localhost:8989/anthropic"
-    }
-  ],
-  "modelRoles": {
-    "default": "CodeGate-Anthropic",
-    "summarize": "CodeGate-Anthropic"
-  },
-  "tabAutocompleteModel": {
-    "title": "CodeGate-Anthropic-Autocomplete",
-    "provider": "anthropic",
-    "model": "MODEL_NAME",
-    "apiKey": "YOUR_API_KEY",
-    "apiBase": "http://localhost:8989/anthropic"
-  }
-}
-```
-
-</TabItem>
 <TabItem value="openai" label="OpenAI">
 
 You need an [OpenAI API](https://openai.com/api/) account to use this provider.
@@ -234,13 +234,26 @@ Replace `YOUR_API_KEY` with your
 </TabItem>
 <TabItem value="openrouter" label="OpenRouter">
 
-CodeGate's vLLM provider supports OpenRouter, a unified interface for hundreds
-of commercial and open source models. You need an
-[OpenRouter](https://openrouter.ai/) account to use this provider.
+OpenRouter is a unified interface for hundreds of commercial and open source
+models. You need an [OpenRouter](https://openrouter.ai/) account to use this
+provider.
+
+:::info Known issues
+
+**Auto-completion support**: currently, CodeGate's `/openrouter` endpoint does
+not work with Continue's `tabAutocompleteModel` setting for fill-in-the-middle
+(FIM). We are
+[working to resolve this issue](https://github.com/stacklok/codegate/issues/980).
+
+**DeepSeek models**: there is a bug in the current release version of Continue
+affecting DeepSeek models (ex: `deepseek/deepseek-r1`), you need to run the
+pre-release version of the Continue extension.
+
+:::
 
 Replace `MODEL_NAME` with one of the
 [available models](https://openrouter.ai/models), for example
-`qwen/qwen-2.5-coder-32b-instruct`.
+`anthropic/claude-3.5-sonnet`.
 
 Replace `YOUR_API_KEY` with your
 [OpenRouter API key](https://openrouter.ai/keys).
@@ -250,20 +263,56 @@ Replace `YOUR_API_KEY` with your
   "models": [
     {
       "title": "CodeGate-OpenRouter",
-      "provider": "vllm",
+      "provider": "openrouter",
       "model": "MODEL_NAME",
       "apiKey": "YOUR_API_KEY",
-      "apiBase": "http://localhost:8989/vllm"
+      "apiBase": "http://localhost:8989/openrouter"
     }
   ],
   "modelRoles": {
     "default": "CodeGate-OpenRouter",
     "summarize": "CodeGate-OpenRouter"
+  }
+}
+```
+
+</TabItem>
+<TabItem value="vllm" label="vLLM">
+
+You need a
+[vLLM server](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html)
+running locally or access to a remote server to use this provider.
+
+CodeGate connects to `http://localhost:8000` by default. If you changed the
+default Ollama server port or to connect to a remote Ollama instance, launch
+CodeGate with the `CODEGATE_VLLM_URL` environment variable set to the correct
+URL. See [Configure CodeGate](../how-to/configure.md).
+
+A vLLM server hosts a single model. Continue automatically selects the available
+model, so the `model` parameter is not required. See Continue's
+[vLLM provider guide](https://docs.continue.dev/customize/model-providers/more/vllm)
+for more information.
+
+If your server requires an API key, replace `YOUR_API_KEY` with the key.
+Otherwise, remove the `apiKey` parameter from both sections.
+
+```json title="~/.continue/config.json"
+{
+  "models": [
+    {
+      "title": "CodeGate-vLLM",
+      "provider": "vllm",
+      "apiKey": "YOUR_API_KEY",
+      "apiBase": "http://localhost:8989/vllm"
+    }
+  ],
+  "modelRoles": {
+    "default": "CodeGate-vLLM",
+    "summarize": "CodeGate-vLLM"
   },
   "tabAutocompleteModel": {
-    "title": "CodeGate-OpenRouter-Autocomplete",
+    "title": "CodeGate-vLLM-Autocomplete",
     "provider": "vllm",
-    "model": "MODEL_NAME",
     "apiKey": "YOUR_API_KEY",
     "apiBase": "http://localhost:8989/vllm"
   }
@@ -327,49 +376,6 @@ In the Continue config file, replace `MODEL_NAME` with the file name without the
     "provider": "openai",
     "model": "MODEL_NAME",
     "apiBase": "http://localhost:8989/llamacpp"
-  }
-}
-```
-
-</TabItem>
-<TabItem value="vllm" label="vLLM">
-
-You need a
-[vLLM server](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html)
-running locally or access to a remote server to use this provider.
-
-CodeGate connects to `http://localhost:8000` by default. If you changed the
-default Ollama server port or to connect to a remote Ollama instance, launch
-CodeGate with the `CODEGATE_VLLM_URL` environment variable set to the correct
-URL. See [Configure CodeGate](../how-to/configure.md).
-
-A vLLM server hosts a single model. Continue automatically selects the available
-model, so the `model` parameter is not required. See Continue's
-[vLLM provider guide](https://docs.continue.dev/customize/model-providers/more/vllm)
-for more information.
-
-If your server requires an API key, replace `YOUR_API_KEY` with the key.
-Otherwise, remove the `apiKey` parameter from both sections.
-
-```json title="~/.continue/config.json"
-{
-  "models": [
-    {
-      "title": "CodeGate-vLLM",
-      "provider": "vllm",
-      "apiKey": "YOUR_API_KEY",
-      "apiBase": "http://localhost:8989/vllm"
-    }
-  ],
-  "modelRoles": {
-    "default": "CodeGate-vLLM",
-    "summarize": "CodeGate-vLLM"
-  },
-  "tabAutocompleteModel": {
-    "title": "CodeGate-vLLM-Autocomplete",
-    "provider": "vllm",
-    "apiKey": "YOUR_API_KEY",
-    "apiBase": "http://localhost:8989/vllm"
   }
 }
 ```

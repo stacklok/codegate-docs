@@ -55,8 +55,8 @@ AI coding assistants / IDEs:
 
 - **[Cline](./integrations/cline.mdx)** in Visual Studio Code
 
-  CodeGate supports Ollama, Anthropic, OpenAI-compatible APIs, and LM Studio
-  with Cline
+  CodeGate supports Ollama, Anthropic, OpenAI and compatible APIs, OpenRouter,
+  and LM Studio with Cline
 
 - **[Continue](./integrations/continue.mdx)** with Visual Studio Code and
   JetBrains IDEs
@@ -64,7 +64,7 @@ AI coding assistants / IDEs:
   CodeGate supports the following AI model providers with Continue:
 
   - Local / self-managed: Ollama, llama.cpp, vLLM
-  - Hosted: Anthropic, OpenAI and OpenAI-compatible APIs like OpenRouter
+  - Hosted: Anthropic, OpenAI and compatible APIs, and OpenRouter
 
 - **[GitHub Copilot](./integrations/copilot.mdx)** with Visual Studio Code
   (JetBrains coming soon!)
