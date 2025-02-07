@@ -25,9 +25,13 @@ Workspaces offer several key features:
 
 - **Custom instructions**: Customize your interactions with LLMs by augmenting
   your AI assistant's system prompt, enabling tailored responses and behaviors
-  for different types of tasks. CodeGate includes a library of community prompts
-  that can be easily customized for specific tasks. You can also create your
-  own.
+  for different types of tasks. Choose from CodeGate's library of community
+  prompts or create your own.
+
+- [**Model muxing**](./muxing.md): Configure the LLM provider/model for each
+  workspace, allowing you to configure your AI assistant/agent once and switch
+  between different models on the fly. This is useful when working on multiple
+  projects or tasks that require different AI models.
 
 - **Prompt and alert history**: Your LLM interactions (prompt history) and
   CodeGate security detections (alert history) are recorded in the active
@@ -112,7 +116,8 @@ In the workspace list, open the menu (**...**) next to a workspace to
 **Activate**, **Edit**, or **Archive** the workspace.
 
 **Edit** opens the workspace settings page. From here you can rename the
-workspace, set the custom prompt instructions, or archive the workspace.
+workspace, select the LLM provider and model (see [Model muxing](./muxing.md)),
+set the custom prompt instructions, or archive the workspace.
 
 **Archived** workspaces can be restored or permanently deleted from the
 workspace list or workspace settings screen.

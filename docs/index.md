@@ -31,6 +31,20 @@ sequenceDiagram
     deactivate CodeGate
 ```
 
+## Key features
+
+CodeGate includes several key features for privacy, security, and coding
+efficiency, including:
+
+- [Secrets encryption](./features/secrets-encryption.md) to protect your
+  sensitive credentials
+- [Dependency risk awareness](./features/dependency-risk.md) to update the LLM's
+  knowledge of malicious or deprecated open source packages
+- [Model muxing](./features/muxing.md) to quickly select the best LLM
+  provider/model for your current task
+- [Workspaces](./features/workspaces.mdx) to organize and customize your LLM
+  interactions
+
 ## Supported environments
 
 CodeGate supports several development environments and AI providers.
