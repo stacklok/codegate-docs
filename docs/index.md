@@ -55,6 +55,9 @@ AI coding assistants / IDEs:
 - **[GitHub Copilot](./integrations/copilot.mdx)** with Visual Studio Code
   (JetBrains coming soon!)
 
+- **[Open Interpreter](./integrations/open-interpreter.mdx)** with
+  OpenAI-compatible APIs
+
 We're continuing to add more AI assistants/agents and model providers based on
 community feedback.
 
