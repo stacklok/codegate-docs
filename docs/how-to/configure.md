@@ -1,14 +1,15 @@
 ---
-title: Configure CodeGate
+title: Advanced configuration
 description: Customizing CodeGate's application settings
-sidebar_position: 20
+sidebar_position: 30
 ---
 
 ## Customize CodeGate's behavior
 
-The CodeGate container runs with default settings to support Ollama, Anthropic,
-and OpenAI APIs with typical settings. To customize the behavior, you can add
-extra configuration parameters to the container as environment variables:
+The CodeGate container runs with defaults that work with supported LLM providers
+using typical settings. To customize CodeGate's application settings like
+provider endpoints and logging level, you can add extra configuration parameters
+to the container as environment variables:
 
 ```bash {2}
 docker run --name codegate -d -p 8989:8989 -p 9090:9090 \

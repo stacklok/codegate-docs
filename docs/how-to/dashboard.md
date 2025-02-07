@@ -1,7 +1,7 @@
 ---
 title: Access the dashboard
 description: View alerts and usage history
-sidebar_position: 30
+sidebar_position: 20
 ---
 
 ## Enable dashboard access
