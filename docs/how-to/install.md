@@ -147,8 +147,7 @@ docker pull ghcr.io/stacklok/codegate:latest
 Stop and remove the current container:
 
 ```bash
-docker stop codegate
-docker rm codegate
+docker rm --force codegate
 ```
 
 Finally, launch the new version using the
@@ -171,6 +170,6 @@ If you decide to stop using CodeGate, follow the removal steps for your
 container and volume:
 
 ```bash
-docker stop codegate && docker rm codegate
+docker rm -f codegate
 docker volume rm codegate_volume
 ```

@@ -47,7 +47,7 @@ flowchart LR
 
 Several additional Docker parameters are required for Copilot support when you
 launch CodeGate. If already have CodeGate running, remove the existing container
-first with `docker stop codegate && docker rm codegate`.
+first with `docker rm -f codegate`.
 
 1. The CodeGate HTTP proxy port (8990) must be mapped to your host along with
    the CodeGate API and UI ports.\
@@ -289,7 +289,7 @@ import RemoveCert from '../partials/_remove-cert.mdx';
 1. Stop and remove the CodeGate container:
 
    ```bash
-   docker stop codegate && docker rm codegate
+   docker rm -f codegate
    ```
 
 1. Delete the persistent volume:

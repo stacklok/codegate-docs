@@ -263,7 +263,7 @@ import RemoveCert from './partials/_remove-cert.mdx';
 1. Stop and remove the CodeGate container:
 
    ```bash
-   docker stop codegate && docker rm codegate
+   docker rm -f codegate
    ```
 
 1. Delete the persistent volume:
