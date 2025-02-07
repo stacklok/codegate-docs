@@ -5,55 +5,23 @@ import TabItem from '@theme/TabItem';
 
 import LocalModelRecommendation from './_local-model-recommendation.md';
 
-<Tabs groupId="aider-provider" queryString="provider">
-<TabItem value="openai" label="OpenAI" default>
+<Tabs groupId="provider" queryString="provider">
+<TabItem value="mux" label="CodeGate muxing" default>
+First, configure your [provider(s)](../features/muxing.md#add-a-provider) and
+select a model for each of your
+[workspace(s)](../features/workspaces.mdx#manage-workspaces) in the CodeGate dashboard.
 
-You need an [OpenAI API](https://openai.com/api/) account to use this provider.
-To use a different OpenAI-compatible endpoint, set the `CODEGATE_OPENAI_URL`
-[configuration parameter](../how-to/configure.md#config-parameters).
+Run aider with the OpenAI base URL set to `http://localhost:8989/v1/mux`. You
+can do this with the `OPENAI_API_BASE` environment variable or on the command
+line as shown below.
 
-Before you run aider, set environment variables for your API key and to set the
-API base URL to CodeGate's API port. Alternately, use one of aider's other
-[supported configuration methods](https://aider.chat/docs/config/api-keys.html)
-to set the corresponding values.
-
-<Tabs groupId="os">
-<TabItem value="macos" label="macOS / Linux" default>
-
-```bash
-export OPENAI_API_KEY=<YOUR_API_KEY>
-export OPENAI_API_BASE=http://localhost:8989/openai
-```
-
-:::note
-
-To persist these variables, add them to your shell profile (e.g., `~/.bashrc` or
-`~/.zshrc`).
-
-:::
-
-</TabItem>
-<TabItem value="windows" label="Windows">
+The `--openai-api-key` parameter is required but the value is not used. The
+`--model` setting must start with `openai/` but the actual model is determined
+by your CodeGate workspace.
 
 ```bash
-setx OPENAI_API_KEY <YOUR_API_KEY>
-setx OPENAI_API_BASE http://localhost:8989/openai
+aider --openai-api-base http://localhost:8989/v1/mux --openai-api-key fake-value-not-used --model openai/fake-value-not-used
 ```
-
-:::note
-
-Restart your shell after running `setx`.
-
-:::
-
-</TabItem>
-</Tabs>
-
-Replace `<YOUR_API_KEY>` with your
-[OpenAI API key](https://platform.openai.com/api-keys).
-
-Then run `aider` as normal. For more information, see the
-[aider docs for connecting to OpenAI](https://aider.chat/docs/llms/openai.html).
 
 </TabItem>
 <TabItem value="ollama" label="Ollama">
@@ -115,6 +83,56 @@ locally using `ollama pull`.
 
 For more information, see the
 [aider docs for connecting to Ollama](https://aider.chat/docs/llms/ollama.html).
+
+</TabItem>
+<TabItem value="openai" label="OpenAI">
+
+You need an [OpenAI API](https://openai.com/api/) account to use this provider.
+To use a different OpenAI-compatible endpoint, set the `CODEGATE_OPENAI_URL`
+[configuration parameter](../how-to/configure.md#config-parameters).
+
+Before you run aider, set environment variables for your API key and to set the
+API base URL to CodeGate's API port. Alternately, use one of aider's other
+[supported configuration methods](https://aider.chat/docs/config/api-keys.html)
+to set the corresponding values.
+
+<Tabs groupId="os">
+<TabItem value="macos" label="macOS / Linux" default>
+
+```bash
+export OPENAI_API_KEY=<YOUR_API_KEY>
+export OPENAI_API_BASE=http://localhost:8989/openai
+```
+
+:::note
+
+To persist these variables, add them to your shell profile (e.g., `~/.bashrc` or
+`~/.zshrc`).
+
+:::
+
+</TabItem>
+<TabItem value="windows" label="Windows">
+
+```bash
+setx OPENAI_API_KEY <YOUR_API_KEY>
+setx OPENAI_API_BASE http://localhost:8989/openai
+```
+
+:::note
+
+Restart your shell after running `setx`.
+
+:::
+
+</TabItem>
+</Tabs>
+
+Replace `<YOUR_API_KEY>` with your
+[OpenAI API key](https://platform.openai.com/api-keys).
+
+Then run `aider` as normal. For more information, see the
+[aider docs for connecting to OpenAI](https://aider.chat/docs/llms/openai.html).
 
 </TabItem>
 </Tabs>

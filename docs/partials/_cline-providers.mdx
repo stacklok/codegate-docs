@@ -7,8 +7,28 @@ import ThemedImage from '@theme/ThemedImage';
 
 import LocalModelRecommendation from './_local-model-recommendation.md';
 
-<Tabs groupId="cline-provider" queryString="provider">
-<TabItem value="anthropic" label="Anthropic" default>
+<Tabs groupId="provider" queryString="provider">
+<TabItem value="mux" label="CodeGate muxing" default>
+First, configure your [provider(s)](../features/muxing.md#add-a-provider) and
+select a model for each of your
+[workspace(s)](../features/workspaces.mdx#manage-workspaces) in the CodeGate dashboard.
+
+In the Cline settings, choose **OpenAI Compatible** as your provider. Set the
+**Base URL** to `http://localhost:8989/v1/mux`. Enter anything you want into the
+API key and model ID fields; these are required but not used since the actual
+provider and model is determined by your CodeGate workspace.
+
+<ThemedImage
+  alt='Cline settings for muxing'
+  sources={{
+    light: useBaseUrl('/img/integrations/cline-provider-mux-light.webp'),
+    dark: useBaseUrl('/img/integrations/cline-provider-mux-dark.webp'),
+  }}
+  width={'540px'}
+/>
+
+</TabItem>
+<TabItem value="anthropic" label="Anthropic">
 
 You need an [Anthropic API](https://www.anthropic.com/api) account to use this
 provider.
@@ -25,77 +45,6 @@ To enable CodeGate, enable **Use custom base URL** and enter
   sources={{
     light: useBaseUrl('/img/integrations/cline-provider-anthropic-light.webp'),
     dark: useBaseUrl('/img/integrations/cline-provider-anthropic-dark.webp'),
-  }}
-  width={'540px'}
-/>
-
-</TabItem>
-<TabItem value="openai" label="OpenAI">
-
-You need an [OpenAI API](https://openai.com/api/) account to use this provider.
-To use a different OpenAI-compatible endpoint, set the `CODEGATE_OPENAI_URL`
-[configuration parameter](../how-to/configure.md) when you launch CodeGate.
-
-In the Cline settings, choose **OpenAI Compatible** as your provider, enter your
-OpenAI API key, and set your preferred model (example: `gpt-4o-mini`).
-
-To enable CodeGate, set the **Base URL** to `https://localhost:8989/openai`.
-
-<ThemedImage
-  alt='Cline settings for OpenAI'
-  sources={{
-    light: useBaseUrl('/img/integrations/cline-provider-openai-light.webp'),
-    dark: useBaseUrl('/img/integrations/cline-provider-openai-dark.webp'),
-  }}
-  width={'540px'}
-/>
-
-</TabItem>
-<TabItem value="openrouter" label="OpenRouter">
-
-You need an [OpenRouter](https://openrouter.ai/) account to use this provider.
-
-In the Cline settings, choose **OpenAI Compatible** as your provider (NOT
-OpenRouter), enter your
-[OpenRouter API key](https://openrouter.ai/settings/keys), and set your
-[preferred model](https://openrouter.ai/models) (example:
-`anthropic/claude-3.5-sonnet`).
-
-To enable CodeGate, set the **Base URL** to `https://localhost:8989/openrouter`.
-
-<ThemedImage
-  alt='Cline settings for OpenRouter'
-  sources={{
-    light: useBaseUrl('/img/integrations/cline-provider-openrouter-light.webp'),
-    dark: useBaseUrl('/img/integrations/cline-provider-openrouter-dark.webp'),
-  }}
-  width={'540px'}
-/>
-
-</TabItem>
-<TabItem value="ollama" label="Ollama">
-
-You need Ollama installed on your local system with the server running
-(`ollama serve`) to use this provider.
-
-CodeGate connects to `http://host.docker.internal:11434` by default. If you
-changed the default Ollama server port or to connect to a remote Ollama
-instance, launch CodeGate with the `CODEGATE_OLLAMA_URL` environment variable
-set to the correct URL. See [Configure CodeGate](/how-to/configure.md).
-
-In the Cline settings, choose **Ollama** as your provider and set the **Base
-URL** to `http://localhost:8989/ollama`.
-
-For the **Model ID**, provide the name of a coding model you have installed
-locally using `ollama pull`.
-
-<LocalModelRecommendation />
-
-<ThemedImage
-  alt='Cline settings for Ollama'
-  sources={{
-    light: useBaseUrl('/img/integrations/cline-provider-ollama-light.webp'),
-    dark: useBaseUrl('/img/integrations/cline-provider-ollama-dark.webp'),
   }}
   width={'540px'}
 />
@@ -142,6 +91,77 @@ for example `lm_studio/qwen2.5-coder-7b-instruct`.
     dark: useBaseUrl('/img/integrations/cline-provider-lmstudio-dark.webp'),
   }}
   width={'635px'}
+/>
+
+</TabItem>
+<TabItem value="ollama" label="Ollama">
+
+You need Ollama installed on your local system with the server running
+(`ollama serve`) to use this provider.
+
+CodeGate connects to `http://host.docker.internal:11434` by default. If you
+changed the default Ollama server port or to connect to a remote Ollama
+instance, launch CodeGate with the `CODEGATE_OLLAMA_URL` environment variable
+set to the correct URL. See [Configure CodeGate](/how-to/configure.md).
+
+In the Cline settings, choose **Ollama** as your provider and set the **Base
+URL** to `http://localhost:8989/ollama`.
+
+For the **Model ID**, provide the name of a coding model you have installed
+locally using `ollama pull`.
+
+<LocalModelRecommendation />
+
+<ThemedImage
+  alt='Cline settings for Ollama'
+  sources={{
+    light: useBaseUrl('/img/integrations/cline-provider-ollama-light.webp'),
+    dark: useBaseUrl('/img/integrations/cline-provider-ollama-dark.webp'),
+  }}
+  width={'540px'}
+/>
+
+</TabItem>
+<TabItem value="openai" label="OpenAI">
+
+You need an [OpenAI API](https://openai.com/api/) account to use this provider.
+To use a different OpenAI-compatible endpoint, set the `CODEGATE_OPENAI_URL`
+[configuration parameter](../how-to/configure.md) when you launch CodeGate.
+
+In the Cline settings, choose **OpenAI Compatible** as your provider, enter your
+OpenAI API key, and set your preferred model (example: `gpt-4o-mini`).
+
+To enable CodeGate, set the **Base URL** to `http://localhost:8989/openai`.
+
+<ThemedImage
+  alt='Cline settings for OpenAI'
+  sources={{
+    light: useBaseUrl('/img/integrations/cline-provider-openai-light.webp'),
+    dark: useBaseUrl('/img/integrations/cline-provider-openai-dark.webp'),
+  }}
+  width={'540px'}
+/>
+
+</TabItem>
+<TabItem value="openrouter" label="OpenRouter">
+
+You need an [OpenRouter](https://openrouter.ai/) account to use this provider.
+
+In the Cline settings, choose **OpenAI Compatible** as your provider (NOT
+OpenRouter), enter your
+[OpenRouter API key](https://openrouter.ai/settings/keys), and set your
+[preferred model](https://openrouter.ai/models) (example:
+`anthropic/claude-3.5-sonnet`).
+
+To enable CodeGate, set the **Base URL** to `http://localhost:8989/openrouter`.
+
+<ThemedImage
+  alt='Cline settings for OpenRouter'
+  sources={{
+    light: useBaseUrl('/img/integrations/cline-provider-openrouter-light.webp'),
+    dark: useBaseUrl('/img/integrations/cline-provider-openrouter-dark.webp'),
+  }}
+  width={'540px'}
 />
 
 </TabItem>

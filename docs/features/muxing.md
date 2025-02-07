@@ -121,8 +121,8 @@ making any changes.
 ## Configure your client
 
 Configure the OpenAI-compatible API base URL of your AI coding assistant/agent
-to `http://localhost/v1/mux`. If your client requires a model name and/or API
-key, you can enter any values since CodeGate manages the model selection and
+to `http://localhost:8989/v1/mux`. If your client requires a model name and/or
+API key, you can enter any values since CodeGate manages the model selection and
 authentication.
 
 For specific instructions, see the

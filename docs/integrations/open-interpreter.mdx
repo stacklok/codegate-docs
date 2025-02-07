@@ -11,8 +11,11 @@ import TabItem from '@theme/TabItem';
 [Open Interpreter](https://github.com/openinterpreter/open-interpreter) lets
 LLMs run code locally through a ChatGPT-like interface in your terminal.
 
-CodeGate works with [OpenAI](https://openai.com/api/) and OpenAI-compatible APIs
+CodeGate works with [OpenAI](https://openai.com/api/) and compatible APIs
 through Open Interpreter.
+
+You can also configure [CodeGate muxing](../features/muxing.md) to select your
+provider and model using [workspaces](../features/workspaces.mdx).
 
 :::note
 
@@ -26,33 +29,66 @@ This guide assumes you have already installed Open Interpreter using their
 To configure Open Interpreter to send requests through CodeGate, run
 `interpreter` with the
 [API base setting](https://docs.openinterpreter.com/settings/all-settings#api-base)
-set to CodeGate's local API port, `http://localhost:8989/openai`.
+set to CodeGate's local API port, `http://localhost:8989/<provider>`.
 
-By default, CodeGate connects to the [OpenAI API](https://openai.com/api/). To
-use a different OpenAI-compatible endpoint, set the `CODEGATE_OPENAI_URL`
-[configuration parameter](../how-to/configure.md#config-parameters) when you run
-CodeGate.
+<Tabs groupId="provider" queryString="provider">
+<TabItem value="mux" label="CodeGate muxing" default>
+First, configure your [provider(s)](../features/muxing.md#add-a-provider) and
+select a model for each of your
+[workspace(s)](../features/workspaces.mdx#manage-workspaces) in the CodeGate dashboard.
 
-<Tabs>
-  <TabItem value="current" label="Open Interpreter v0.4.x" default>
-    ```bash
-    interpreter --api_base http://localhost:8989/openai --api_key YOUR_API_KEY --model MODEL_NAME
-    ```
+When you run `interpreter`, the API key parameter is required but the value is
+not used. The `--model` setting must start with `openai/` but the actual model
+is determined by your CodeGate workspace.
 
-  </TabItem>
-  <TabItem value="dev" label="v1.0 dev branch">
-    If you are running Open Interpreter's v1.0
-    [development branch](https://github.com/OpenInterpreter/open-interpreter/tree/development):
+  <Tabs groupId="interpreter-version">
+    <TabItem value="current" label="Open Interpreter v0.4.x" default>
+      ```bash
+      interpreter --api_base http://localhost:8989/v1/mux --api_key fake-value-not-used --model openai/fake-value-not-used
+      ```
 
-    ```bash
-    interpreter --api-base http://localhost:8989/openai --api-key YOUR_API_KEY --model MODEL_NAME
-    ```
+    </TabItem>
+    <TabItem value="dev" label="v1.0 dev branch">
+      If you are running Open Interpreter's v1.0
+      [development branch](https://github.com/OpenInterpreter/open-interpreter/tree/development):
 
-  </TabItem>
-</Tabs>
+      ```bash
+      interpreter --api-base http://localhost:8989/v1/mux --api-key fake-value-not-used --model openai/fake-value-not-used
+      ```
+
+    </TabItem>
+
+  </Tabs>
+</TabItem>
+<TabItem value="openai" label="OpenAI">
+You need an [OpenAI API](https://openai.com/api/) account to use this provider.
+To use a different OpenAI-compatible endpoint, set the `CODEGATE_OPENAI_URL`
+[configuration parameter](../how-to/configure.md) when you launch CodeGate.
+
+  <Tabs groupId="interpreter-version">
+    <TabItem value="current" label="Open Interpreter v0.4.x" default>
+      ```bash
+      interpreter --api_base http://localhost:8989/openai --api_key YOUR_API_KEY --model MODEL_NAME
+      ```
+
+    </TabItem>
+    <TabItem value="dev" label="v1.0 dev branch">
+      If you are running Open Interpreter's v1.0
+      [development branch](https://github.com/OpenInterpreter/open-interpreter/tree/development):
+
+      ```bash
+      interpreter --api-base http://localhost:8989/openai --api-key YOUR_API_KEY --model MODEL_NAME
+      ```
+
+    </TabItem>
+
+  </Tabs>
 
 Replace `YOUR_API_KEY` with your OpenAI API key, and `MODEL_NAME` with your
 desired model, like `openai/gpt-4o-mini`.
+
+</TabItem>
+</Tabs>
 
 :::info
 

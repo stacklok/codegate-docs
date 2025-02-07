@@ -25,6 +25,9 @@ CodeGate works with the following AI model providers through Continue:
   - [OpenAI](https://openai.com/api/)
   - [OpenRouter](https://openrouter.ai/)
 
+You can also configure [CodeGate muxing](../features/muxing.md) to select your
+provider and model using [workspaces](../features/workspaces.mdx).
+
 ## Install the Continue plugin
 
 <Tabs groupId="ide">
@@ -92,8 +95,9 @@ To configure Continue to send requests through CodeGate:
    "apiBase": "http://127.0.0.1:8989/<provider>"
    ```
 
-   Replace `/<provider>` with one of: `/anthropic`, `/ollama`, `/openai`,
-   `/openrouter`, or `/vllm` to match your LLM provider.
+   Replace `/<provider>` with one of: `/v1/mux` (for CodeGate muxing),
+   `/anthropic`, `/ollama`, `/openai`, `/openrouter`, or `/vllm` to match your
+   LLM provider.
 
    If you used a different API port when launching the CodeGate container,
    replace `8989` with your custom port number.
@@ -111,6 +115,42 @@ provider. Replace the values in ALL_CAPS. The configuration syntax is the same
 for VS Code and JetBrains IDEs.
 
 <Tabs groupId="provider" queryString="provider">
+<TabItem value="mux" label="CodeGate muxing" default>
+
+First, configure your [provider(s)](../features/muxing.md#add-a-provider) and
+select a model for each of your
+[workspace(s)](../features/workspaces.mdx#manage-workspaces) in the CodeGate
+dashboard.
+
+Configure Continue as shown. Note, the `model` and `apiKey` settings are
+required by Continue, but their value is not used.
+
+```json title="~/.continue/config.json"
+{
+  "models": [
+    {
+      "title": "CodeGate-Mux",
+      "provider": "openai",
+      "model": "fake-value-not-used",
+      "apiKey": "fake-value-not-used",
+      "apiBase": "http://localhost:8989/v1/mux"
+    }
+  ],
+  "modelRoles": {
+    "default": "CodeGate-Mux",
+    "summarize": "CodeGate-Mux"
+  },
+  "tabAutocompleteModel": {
+    "title": "CodeGate-Mux-Autocomplete",
+    "provider": "openai",
+    "model": "fake-value-not-used",
+    "apiKey": "fake-value-not-used",
+    "apiBase": "http://localhost:8989/v1/mux"
+  }
+}
+```
+
+</TabItem>
 <TabItem value="anthropic" label="Anthropic">
 
 You need an [Anthropic API](https://www.anthropic.com/api) account to use this
@@ -148,7 +188,7 @@ Replace `YOUR_API_KEY` with your
 ```
 
 </TabItem>
-<TabItem value="ollama" label="Ollama" default>
+<TabItem value="ollama" label="Ollama">
 
 You need Ollama installed on your local system with the server running
 (`ollama serve`) to use this provider.
