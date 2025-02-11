@@ -1,7 +1,6 @@
 ---
 title: Model muxing
 description: Configure a per-workspace LLM
-sidebar_position: 35
 ---
 
 ## Overview
