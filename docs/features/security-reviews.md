@@ -1,7 +1,6 @@
 ---
 title: Security reviews
 description: Enhanced secure coding guidance
-sidebar_position: 30
 ---
 
 ## What's the risk?

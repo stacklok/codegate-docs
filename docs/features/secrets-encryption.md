@@ -1,34 +1,34 @@
 ---
-title: Secrets encryption
+title: Secrets encryption and PII redaction
 description: Keep your secrets a secret
-sidebar_position: 10
 ---
 
 ## What's the risk?
 
-As you interact with an AI coding assistant, sensitive data like passwords and
-access tokens can be unintentionally exposed to third-party providers through
-the code snippets and files you share as context. These secrets may become part
-of the training data used to improve the AI model and potentially be exposed to
-other users.
+As you interact with an AI coding assistant, sensitive data like passwords
+access tokens, and even personally identifiable information (PII) can be
+unintentionally exposed to third-party providers through the code and files you
+share as context. Besides the privacy and regulatory implications of exposing
+this information, it may become part of the AI model's training data and
+potentially be exposed to future users.
 
 ## How CodeGate helps
 
 CodeGate helps you protect sensitive information from being accidentally exposed
 to AI models and third-party AI provider systems by redacting detected secrets
-from your prompts using encryption.
+and PII found in your prompts.
 
 ## How it works
 
-CodeGate automatically scans all prompts for secrets such as:
+CodeGate automatically scans all prompts for secrets and PII. This happens
+transparently without requiring a specific prompt. Without interrupting your
+development flow, CodeGate protects your data by encrypting secrets and
+anonymizing PII. These changes are made before the prompt is sent to the LLM and
+are restored when the result is returned to your machine.
 
-- API keys and tokens
-- Private keys and certificates
-- Database credentials
-- SSH keys
-- Cloud provider credentials
-
-This scan happens transparently without requiring a specific prompt.
+When a secret or PII is detected, CodeGate adds a message to the LLM's output
+and an alert is recorded in the [dashboard](../how-to/dashboard.md) (PII alerts
+in the dashboard are coming soon).
 
 :::info
 
@@ -36,27 +36,55 @@ Since CodeGate runs locally, your secrets never leave your system unprotected.
 
 :::
 
-CodeGate transparently encrypts secrets before sending the prompt to the LLM.
-This way, CodeGate protects your sensitive data without blocking your
-development flow. This is performed on the fly using AES256-GCM encryption with
-a temporary per-session key that is securely erased from memory after the
-response is delivered to your plugin.
-
 ```mermaid
 sequenceDiagram
     participant Client as AI coding<br>assistant
     participant CodeGate as CodeGate<br>(local)
     participant LLM as AI model<br>(remote)
 
-    Client ->> CodeGate: Prompt with<br>plaintext secrets
+    Client ->> CodeGate: Prompt with<br>plaintext secrets/PII
     activate CodeGate
-    CodeGate ->> LLM: Prompt with<br>encrypted secrets
+    CodeGate ->> LLM: Prompt with<br>redacted secrets/PII
     deactivate CodeGate
     activate LLM
-    note right of LLM: LLM only sees<br>encrypted values
-    LLM -->> CodeGate: Response with<br>encrypted secrets
+    note right of LLM: LLM only sees<br>redacted values
+    LLM -->> CodeGate: Response with<br>redacted data
     deactivate LLM
     activate CodeGate
-    CodeGate -->> Client: Response with<br>plaintext secrets
+    CodeGate -->> Client: Response with<br>original data
     deactivate CodeGate
 ```
+
+### Secrets encryption
+
+CodeGate uses pattern matching to detect secrets such as:
+
+- API keys and tokens
+- Private keys and certificates
+- Database credentials
+- SSH keys
+- Cloud provider credentials
+- ...and more - see the
+  [signatures file](https://github.com/stacklok/codegate/blob/main/signatures.yaml)
+  in the project repo
+
+CodeGate transparently encrypts secrets before sending the prompt to the LLM.
+This is performed on the fly using AES256-GCM encryption with a temporary
+per-session key. When the LLM returns a response, CodeGate decrypts the secret
+before delivering it to your coding assistant, then securely erases the
+temporary key from memory.
+
+### PII redaction
+
+CodeGate scans for common types of PII like:
+
+- Email addresses
+- Phone numbers
+- Government identification numbers
+- Credit card numbers
+- Bank accounts and crypto wallet IDs
+
+CodeGate anonymizes PII by replacing each string with a unique identifier before
+sending the prompt to the LLM. This way, CodeGate protects your sensitive data
+without blocking your development flow. When the LLM returns a response,
+CodeGate matches up the identifier and replaces it with the original value.
