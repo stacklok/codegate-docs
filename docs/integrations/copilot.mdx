@@ -273,27 +273,11 @@ Learn more about CodeGate's features and how to use them:
 - [Access the dashboard](../how-to/dashboard.md)
 - [CodeGate features](../features/index.mdx)
 
-## Remove CodeGate
-
-If you decide to stop using CodeGate, follow these steps to remove it and revert
-your environment.
+## Remove the CodeGate CA certificate
 
 import RemoveCert from '../partials/_remove-cert.mdx';
 
-1. Remove the proxy settings from your IDE configuration.
+If you decide to stop using CodeGate, remove the proxy settings from your
+configuration and follow these steps to remove the CA certificate:
 
-1. Remove the CodeGate CA certificate from your trust store:
-
-   <RemoveCert />
-
-1. Stop and remove the CodeGate container:
-
-   ```bash
-   docker rm -f codegate
-   ```
-
-1. Delete the persistent volume:
-
-   ```bash
-   docker volume rm codegate_volume
-   ```
+<RemoveCert />

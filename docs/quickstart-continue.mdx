@@ -270,15 +270,16 @@ Finally, we want to hear about your experiences using CodeGate. Join the
 the project, and let us know about any bugs or feature requests in
 [GitHub Issues](https://github.com/stacklok/codegate/issues).
 
-## Clean up your environment
+## Removing CodeGate
 
 Of course we hope you'll want to continue using CodeGate, but if you want to
 stop using it, follow these steps to clean up your environment.
 
-1. Stop and remove the CodeGate container:
+1. Stop and remove the CodeGate container and persistent data volume:
 
    ```bash
    docker rm -f codegate
+   docker volume rm codegate_volume
    ```
 
 2. Remove the `apiBase` configuration entries from your Continue configuration
