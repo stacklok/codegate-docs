@@ -16,6 +16,11 @@ replace `docker` with `podman` in all commands.
 
 ## Run CodeGate
 
+By default the CodeGate Docker container expects to be run on and be accessed
+from _localhost_. In case you want to deploy CodeGate on a remote host, follow
+the instructions given
+[here](../about/faq.md#how-can-i-run-codegate-on-a-remote-host).
+
 ### Recommended settings
 
 To download and run CodeGate with the recommended configuration for full
