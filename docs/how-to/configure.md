@@ -68,20 +68,21 @@ following steps as a reference and adjust them for your own setup:
    cd codegate
    ```
 
-2. Edit `./Dockerfile` by adding (replace `<remote-host>` with the domain name
-   or IP address of the remote host which should provide CodeGate):
+2. Edit `./Dockerfile` to add the `VITE_BASE_API_URL` environment variable
+   _before_ the web dashboard build step:
 
-   ```Dockerfile
-   ENV VITE_BASE_API_URL=http://<remote-host>:8989
-   ```
+   ```dockerfile {1-3} title="./Dockerfile"
+   # Customize the API base URL
+   ENV VITE_BASE_API_URL=http://<REMOTE_HOST>:8989
+   # End customization
 
-   before the CodeGate web dashboard is built:
-
-   ```Dockerfile
    # Install the webapp dependencies and build it
    RUN npm install
    RUN npm run build
    ```
+
+   Replace `<REMOTE_HOST>` with the IP or DNS name of the remote host where
+   CodeGate will run.
 
 3. Build the customized Docker image on the remote host:
 
@@ -89,8 +90,8 @@ following steps as a reference and adjust them for your own setup:
    make image-build
    ```
 
-4. Run the customized locally built Docker image:
+4. Run the customized Docker image (built locally as `codegate:latest`):
 
    ```shell
-   docker run --name codegate -p 8989:8989 -p 9090:9090 codegate:latest
+   docker run --name codegate -d -p 8989:8989 -p 9090:9090 -p 8990:8990 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped codegate:latest
    ```

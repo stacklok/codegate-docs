@@ -23,8 +23,8 @@ supposed to bind to _localhost_ (`127.0.0.1`) and remain inaccessible from
 remote hosts.
 
 If you are an advanced user who wants to run CodeGate on a remote host in a
-secured/local network, consider the information given
-[here](./configure.md#run-codegate-on-a-remote-host).
+secured/local network, see
+[Run CodeGate on a remote host](./configure.md#run-codegate-on-a-remote-host).
 
 ### Recommended settings
 
