@@ -42,3 +42,55 @@ docker run --name codegate -d -p 8989:8989 -p 9090:9090 \
   --mount type=volume,src=codegate_volume,dst=/app/codegate_volume \
   --restart unless-stopped ghcr.io/stacklok/codegate
 ```
+
+## Run CodeGate on a remote host
+
+:::warning
+
+Keep security aspects in mind and run CodeGate only on a remote host within a
+local or otherwise secured network. CodeGate should not be run on a remote host
+that is directly accessible from the Internet!
+
+:::
+
+The CodeGate web dashboard provided in the Docker container expects the CodeGate
+API to be available on _localhost_ port 8989. Currently this is statically set
+during build time and cannot be changed with a runtime configuration parameter.
+
+Hence to run CodeGate on a remote host you need to build your own appropriately
+customized Docker container image from the CodeGate GitHub repository. Use the
+following steps as a reference and adjust them for your own setup:
+
+1. Clone the CodeGate GitHub repository:
+
+   ```shell
+   git clone https://github.com/stacklok/codegate.git
+   cd codegate
+   ```
+
+2. Edit `./Dockerfile` by adding (replace `<remote-host>` with the domain name
+   or IP address of the remote host which should provide CodeGate):
+
+   ```Dockerfile
+   ENV VITE_BASE_API_URL=http://<remote-host>:8989
+   ```
+
+   before the CodeGate web dashboard is built:
+
+   ```Dockerfile
+   # Install the webapp dependencies and build it
+   RUN npm install
+   RUN npm run build
+   ```
+
+3. Build the customized Docker image on the remote host:
+
+   ```shell
+   make image-build
+   ```
+
+4. Run the customized locally built Docker image:
+
+   ```shell
+   docker run --name codegate -p 8989:8989 -p 9090:9090 codegate:latest
+   ```
