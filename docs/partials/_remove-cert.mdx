@@ -26,20 +26,10 @@ GUI.
 </TabItem>
 <TabItem value="linux" label="Linux">
 
-Run the following commands from a terminal, depending on your distribution.
-
-Ubuntu/Debian based distributions:
+Run the following command from a terminal, then restart VS Code.
 
 ```bash
-sudo rm /usr/local/share/ca-certificates/codegate.crt
-sudo update-ca-certificates --fresh
-```
-
-RHEL/Fedora and other Enterprise Linux distributions:
-
-```bash
-sudo rm /etc/pki/ca-trust/source/anchors/codegate.pem
-sudo update-ca-trust
+certutil -d sql:$HOME/.pki/nssdb -D -n CodeGate-CA
 ```
 
 </TabItem>

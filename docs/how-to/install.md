@@ -173,11 +173,11 @@ persistent volume.
 Now that CodeGate is running, proceed to
 [configure your AI assistant/agent](../integrations/index.mdx).
 
-## Remove CodeGate
+## Uninstall
 
-If you decide to stop using CodeGate, follow the removal steps for your
-[integration](../integrations/index.mdx), then stop and remove the CodeGate
-container and volume:
+If you decide to stop using CodeGate, undo the configuration changes you made to
+your [integration](../integrations/index.mdx) (usually by removing the API base
+URL setting or env var), then remove the CodeGate container and volume:
 
 ```bash
 docker rm -f codegate
