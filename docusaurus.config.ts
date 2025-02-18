@@ -182,7 +182,7 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
-      additionalLanguages: ['bash', 'json', 'powershell', 'docker'],
+      additionalLanguages: ['bash', 'json', 'powershell', 'docker', 'lua'],
     },
     mermaid: {
       theme: { light: 'neutral', dark: 'dark' },
