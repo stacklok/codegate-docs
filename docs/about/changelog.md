@@ -13,6 +13,11 @@ Major features and changes are noted here. To review all updates, see the
 
 Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
 
+- **Muxing filter rules** - 18 Feb, 2025\
+  CodeGate v0.1.23 adds filter rules for model muxing, allowing you to define
+  which model should be used for a given file type. See the
+  [model muxing docs](../features/muxing.mdx) for more.
+
 - **PII redaction:** - 10 Feb, 2025\
   Starting with v0.1.18, CodeGate now redacts personally identifiable
   information (PII) found in LLM prompts and context. See the
