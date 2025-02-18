@@ -1,0 +1,79 @@
+---
+title: Use CodeGate with avante.nvim
+description: Configure the `avante.nvim` plugin for Neovim
+sidebar_label: avante.nvim
+sidebar_position: 15
+---
+
+**[avante.nvim](https://github.com/yetone/avante.nvim)** is a Neovim plugin that
+provides a Cursor-like user experience. It integrates with multiple AI providers
+(e.g. Claude and OpenAI).
+
+## Install avante.nvim
+
+Install the **avante.nvim** plugin using your preferred plugin manager. For
+instructions, consult **avante.nvim**'s
+[documentation](https://github.com/yetone/avante.nvim?tab=readme-ov-file#installation).
+
+## Configure CodeGate with avante.nvim
+
+Consult **avante.nvim**'s documentation for specific examples on customizing
+your configuration using your preferred plugin manager.
+
+Using `lazy.nvim` (recommended) add the following configuration to enable
+CodeGate with **avante.nvim**:
+
+```lua
+{
+    "yetone/avante.nvim",
+    -- ... etc ...
+    opts = {
+      -- your provider configuration ...
+      provider = "openai",
+      openai = {
+        endpoint = "http://localhost:8989/openai", -- use the endpoint matching your LLM provider
+        model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+        timeout = 30000, -- timeout in milliseconds
+        temperature = 0, -- adjust if needed
+        max_tokens = 4096,
+      },
+    },
+    -- ... etc ...
+}
+```
+
+:::note
+
+**avante.nvim** does not yet support _fill-in-the-middle_ completions. You have
+to configure your fill-in-the-middle completion plugin separately.
+
+:::
+
+### Verifying configuration
+
+To verify the configuration, type `:AvanteChat` to start the **avante.nvim**
+plugin. You should see the **avante.nvim** UI appear in the Neovim window.
+
+Type and send the following message:
+
+```
+codegate version
+```
+
+If CodeGate is configured correctly, you should see a response from the CodeGate
+server.
+
+### Model muxing
+
+To take advantage of CodeGate's [model muxing feature](../features/muxing.md),
+use **avante.nvim**'s OpenAI provider with the following configuration:
+
+```lua
+openai = {
+  endpoint = "http://localhost:8989/v1/mux", -- CodeGate's mux endpoint
+  model = "gpt-4o", -- the actual model is determined by your CodeGate workspace
+  timeout = 30000, -- timeout in milliseconds
+  temperature = 0, -- adjust if needed
+  max_tokens = 4096,
+},
+```
