@@ -1,7 +1,6 @@
 ---
 title: Dependency risk awareness
 description: Protection from malicious or vulnerable dependencies
-sidebar_position: 20
 ---
 
 ## What's the risk?
@@ -9,7 +8,7 @@ sidebar_position: 20
 The large language models (LLMs) that drive AI coding assistants are incredibly
 costly and time-consuming to train. That's why each one has a "knowledge cutoff
 date" which is often months or even years in the past. For example, GPT-4o's
-training cutoff was October 2023\.
+training cutoff was October 2023.
 
 But the open source software ecosystem moves quickly, and so do malicious actors
 seeking to exploit the software supply chain. LLMs often suggest outdated,
