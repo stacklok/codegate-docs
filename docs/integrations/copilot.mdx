@@ -236,7 +236,11 @@ a response like "CodeGate version 0.1.13".
 
 :::note
 
-Make sure you have no open files when running the `codegate version` command, otherwise Copilot will make comments based on the file you have open.
+There is a [known issue](https://github.com/stacklok/codegate/issues/1061) with
+`codegate` commands in Copilot chat if you have a file included in the context.
+Close all open files or use the eye icon in the chat input to disable the
+current file context, otherwise Copilot responds based on the file you have open
+instead of returning the command result.
 
 :::
 
