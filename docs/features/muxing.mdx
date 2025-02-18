@@ -1,7 +1,10 @@
 ---
 title: Model muxing
-description: Configure a per-workspace LLM
+description: Pick the right LLM for the job
 ---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
 
 ## Overview
 
@@ -11,12 +14,13 @@ and models without reconfiguring your development environment. This feature is
 especially useful when you're working on multiple projects or tasks that require
 different AI models.
 
-For each CodeGate workspace, you can select the AI provider and model
-combination you want to use. Then, configure your AI coding tool to use the
+In each of your CodeGate workspaces, you can select the AI provider and model
+combinations to use, even dynamically switching the active model based on file
+types found in your prompt. Then, configure your AI coding tool to use the
 CodeGate muxing endpoint `http://localhost:8989/v1/mux` as an OpenAI-compatible
 API provider.
 
-To change the model currently in use, simply switch your active CodeGate
+To change the model(s) currently in use, simply switch your active CodeGate
 workspace.
 
 ```mermaid
@@ -44,6 +48,9 @@ flowchart LR
 - You have a project that requires a specific model for a particular task, but
   you also need to switch between different models during the course of your
   work.
+- You're working in a monorepo with several different languages/file types and
+  want to dynamically switch to an optimal model as you move between different
+  parts of the codebase.
 - You want to experiment with different LLM providers and models without having
   to reconfigure your AI assistant/agent every time you switch.
 - Your AI coding assistant doesn't support a particular provider or model that
@@ -58,7 +65,7 @@ flowchart LR
 ## Configure muxing
 
 To use muxing with your AI coding assistant, you need to add one or more AI
-providers to CodeGate, then select the model you want to use on a workspace.
+providers to CodeGate, then select the model(s) you want to use on a workspace.
 
 CodeGate supports the following LLM providers for muxing:
 
@@ -93,13 +100,44 @@ For locally-hosted models, you must use `http://host.docker.internal` instead of
 
 :::
 
-### Select the model for a workspace
+### Configure workspace models
 
 Open the settings of one of your [workspaces](./workspaces.mdx) from the
-Workspace selection menu or the
+workspace selection menu or the
 [Manage Workspaces](http://localhost:9090/workspaces) screen.
 
-In the **Preferred Model** section, select the model to use with the workspace.
+In the **Model Muxing** section, select the default ("catch-all") model to use
+with the workspace.
+
+To assign a different model based on filename, click **Add Filter**. In the
+**Filter by** column, enter a file name or extension string to match. This is a
+simple substring match, wildcards are not supported. For example, to match
+Python files, enter `.py`. Then select the model to use with that file type.
+
+Filter rules are evaluated top-down. CodeGate selects the active model for a
+request using the first matching rule. If the prompt contains multiple files in
+context, the first rule that matches _any_ of the files is used. If no filter is
+matched, the catch-all rule applies.
+
+<ThemedImage
+  alt='An example showing several muxing rules for different file types'
+  sources={{
+    light: useBaseUrl('/img/features/muxing-rules-light.webp'),
+    dark: useBaseUrl('/img/quickstart/muxing-rules-dark.webp'),
+  }}
+  title='Example muxing rules'
+  width={'800px'}
+/>
+_An example showing several muxing rules for different file types_
+
+Breaking down the above example:
+
+- Markdown files (`.md`) use the gpt-4o-mini model from the OpenAI provider.
+- JavaScript and TypeScript files (`.js` and `.ts`, which also matches `.jsx`
+  and `.tsx`) use anthropic/claude-3.5-sonnet via OpenRouter.
+- All other requests use Ollama.
+- A request containing both a JavaScript and Markdown file will match the `.md`
+  rule first and use OpenAI.
 
 ### Manage existing providers
 

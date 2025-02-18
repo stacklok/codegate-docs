@@ -41,7 +41,7 @@ efficiency, including:
   information
 - [Dependency risk awareness](./features/dependency-risk.md) to update the LLM's
   knowledge of malicious or deprecated open source packages
-- [Model muxing](./features/muxing.md) to quickly select the best LLM
+- [Model muxing](./features/muxing.mdx) to quickly select the best LLM
   provider/model for your current task
 - [Workspaces](./features/workspaces.mdx) to organize and customize your LLM
   interactions

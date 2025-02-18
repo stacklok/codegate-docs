@@ -21,7 +21,7 @@ Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
 - **Model muxing** - 7 Feb, 2025\
   With CodeGate v0.1.17 you can use the new `/v1/mux` endpoint to configure
   model selection based on your workspace! Learn more in the
-  [model muxing guide](../features/muxing.md).
+  [model muxing guide](../features/muxing.mdx).
 
 - **OpenRouter endpoint** - 7 Feb, 2025\
   CodeGate v0.1.17 adds a dedicated `/openrouter` provider endpoint for
