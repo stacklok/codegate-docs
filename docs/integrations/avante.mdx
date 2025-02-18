@@ -71,7 +71,7 @@ use **avante.nvim**'s OpenAI provider with the following configuration:
 ```lua
 openai = {
   endpoint = "http://localhost:8989/v1/mux", -- CodeGate's mux endpoint
-  model = "gpt-4o",
+  model = "gpt-4o", -- the actual model is determined by your CodeGate workspace
   timeout = 30000, -- timeout in milliseconds
   temperature = 0, -- adjust if needed
   max_tokens = 4096,
