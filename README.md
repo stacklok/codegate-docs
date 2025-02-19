@@ -1,5 +1,7 @@
 # CodeGate docs <!-- omit in toc -->
 
+[![GitHub deployments](https://img.shields.io/github/deployments/stacklok/codegate-docs/Production?logo=vercel&style=flat&label=Vercel%20deployment)](https://github.com/stacklok/codegate-docs/deployments/Production)
+
 This repository contains the public-facing docs for CodeGate, hosted at
 [https://docs.codegate.ai](https://docs.codegate.ai).
 
@@ -19,6 +21,12 @@ Please review the [style guide](./STYLE-GUIDE.md) for help with voice, tone, and
 formatting.
 
 ## Local development
+
+You'll need Node.js available (v22 recommended) or VS Code with the
+[Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+extension and Docker.
+
+[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/stacklok/codegate-docs)
 
 ```bash
 npm install
