@@ -5,75 +5,104 @@ sidebar_label: avante.nvim
 sidebar_position: 15
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 **[avante.nvim](https://github.com/yetone/avante.nvim)** is a Neovim plugin that
-provides a Cursor-like user experience. It integrates with multiple AI providers
-(e.g. Claude and OpenAI).
+provides a Cursor-like user experience with multiple AI providers.
+
+CodeGate works with [OpenAI](https://openai.com/api/) and compatible APIs
+through Avante.
+
+You can also use [CodeGate muxing](../features/muxing.mdx) to select your
+provider and model using [workspaces](../features/workspaces.mdx).
 
 ## Install avante.nvim
 
-Install the **avante.nvim** plugin using your preferred plugin manager. For
-instructions, consult **avante.nvim**'s
+Install the `avante.nvim` plugin using your preferred NeoVim plugin manager. For
+detailed installation instructions, refer to `avante.nvim`'s
 [documentation](https://github.com/yetone/avante.nvim?tab=readme-ov-file#installation).
 
-## Configure CodeGate with avante.nvim
+## Configure avante.nvim to use CodeGate
 
-Consult **avante.nvim**'s documentation for specific examples on customizing
-your configuration using your preferred plugin manager.
+Configure `avante.nvim` to route requests through CodeGate by setting its
+provider endpoint to `http://localhost:8989/<provider>`.
 
-Using `lazy.nvim` (recommended) add the following configuration to enable
-CodeGate with **avante.nvim**:
+Using [lazy.nvim](https://lazy.folke.io/) (recommended), configure the
+`avante.nvim` provider as shown:
 
-```lua
+<Tabs groupId="provider" queryString="provider">
+<TabItem value="mux" label="CodeGate muxing" default>
+First, configure your [provider(s)](../features/muxing.mdx#add-a-provider) and
+select a model for each of your
+[workspace(s)](../features/workspaces.mdx#manage-workspaces) in the CodeGate dashboard.
+
+Then configure `avante.nvim` to use the CodeGate mux endpoint:
+
+```lua title="~/.config/nvim/lua/plugins/avante.lua"
 {
-    "yetone/avante.nvim",
-    -- ... etc ...
-    opts = {
-      -- your provider configuration ...
-      provider = "openai",
-      openai = {
-        endpoint = "http://localhost:8989/openai", -- use the endpoint matching your LLM provider
-        model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-        timeout = 30000, -- timeout in milliseconds
-        temperature = 0, -- adjust if needed
-        max_tokens = 4096,
-      },
+  "yetone/avante.nvim",
+  -- ... etc ...
+  opts = {
+    provider = "openai",
+    openai = {
+      endpoint = "http://localhost:8989/v1/mux", -- CodeGate's mux endpoint
+      model = "gpt-4o", -- the actual model is determined by your CodeGate workspace
+      timeout = 30000, -- timeout in milliseconds
+      temperature = 0, -- adjust if needed
+      max_tokens = 4096,
     },
-    -- ... etc ...
+  },
+  -- ... etc ...
 }
 ```
 
+</TabItem>
+<TabItem value="openai" label="OpenAI">
+You need an [OpenAI API](https://openai.com/api/) account to use this provider.
+To use a different OpenAI-compatible endpoint, set the `CODEGATE_OPENAI_URL`
+[configuration parameter](../how-to/configure.md) when you launch CodeGate.
+
+```lua title="~/.config/nvim/lua/plugins/avante.lua"
+{
+  "yetone/avante.nvim",
+  -- ... etc ...
+  opts = {
+    provider = "openai",
+    openai = {
+      endpoint = "http://localhost:8989/openai", -- CodeGate's OpenAI endpoint
+      model = "gpt-4o", -- your desired model
+      timeout = 30000, -- timeout in milliseconds
+      temperature = 0, -- adjust if needed
+      max_tokens = 4096,
+    },
+  },
+  -- ... etc ...
+}
+```
+
+</TabItem>
+</Tabs>
+
 :::note
 
-**avante.nvim** does not yet support _fill-in-the-middle_ completions. You have
-to configure your fill-in-the-middle completion plugin separately.
+`avante.nvim` does not yet support _fill-in-the-middle_ (FIM) completions. You
+have to configure your FIM completion plugin separately.
 
 :::
 
-### Verifying configuration
+## Verify configuration
 
-To verify the configuration, type `:AvanteChat` to start the **avante.nvim**
-plugin. You should see the **avante.nvim** UI appear in the Neovim window.
+To verify your setup:
 
-Type and send the following message:
+1. Type `:AvanteChat` to launch the `avante.nvim `interface
+2. Enter the following command in the chat:
+   ```
+   codegate version
+   ```
+3. You should receive a response showing the current CodeGate version number
 
-```
-codegate version
-```
+## Next steps
 
-If CodeGate is configured correctly, you should see a response from the CodeGate
-server.
-
-### Model muxing
-
-To take advantage of CodeGate's [model muxing feature](../features/muxing.mdx),
-use **avante.nvim**'s OpenAI provider with the following configuration:
-
-```lua
-openai = {
-  endpoint = "http://localhost:8989/v1/mux", -- CodeGate's mux endpoint
-  model = "gpt-4o", -- the actual model is determined by your CodeGate workspace
-  timeout = 30000, -- timeout in milliseconds
-  temperature = 0, -- adjust if needed
-  max_tokens = 4096,
-},
-```
+Learn more about [CodeGate's features](../features/index.mdx) and explore the
+[dashboard](../how-to/dashboard.md).
