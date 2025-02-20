@@ -15,7 +15,7 @@ Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
 
 - **New integration: Open Interpreter** - 20 Feb, 2025\
   CodeGate v0.1.24 adds support for the
-  [avante.nvim](https://github.com/yetone/avante.nvim) plugin for NeoVim with
+  [avante.nvim](https://github.com/yetone/avante.nvim) plugin for Neovim with
   OpenAI and CodeGate muxing. See the
   [integration guide](../integrations/avante.mdx) to get started.
 
