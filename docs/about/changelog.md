@@ -13,6 +13,12 @@ Major features and changes are noted here. To review all updates, see the
 
 Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
 
+- **New integration: Open Interpreter** - 20 Feb, 2025\
+  CodeGate v0.1.24 adds support for the
+  [avante.nvim](https://github.com/yetone/avante.nvim) plugin for NeoVim with
+  OpenAI and CodeGate muxing. See the
+  [integration guide](../integrations/avante.mdx) to get started.
+
 - **Muxing filter rules** - 18 Feb, 2025\
   CodeGate v0.1.23 adds filter rules for model muxing, allowing you to define
   which model should be used for a given file type. See the
