@@ -19,7 +19,7 @@ provider and model using [workspaces](../features/workspaces.mdx).
 
 ## Install avante.nvim
 
-Install the `avante.nvim` plugin using your preferred NeoVim plugin manager. For
+Install the `avante.nvim` plugin using your preferred Neovim plugin manager. For
 detailed installation instructions, refer to `avante.nvim`'s
 [documentation](https://github.com/yetone/avante.nvim?tab=readme-ov-file#installation).
 
@@ -29,7 +29,7 @@ Configure `avante.nvim` to route requests through CodeGate by setting its
 provider endpoint to `http://localhost:8989/<provider>`.
 
 Using [lazy.nvim](https://lazy.folke.io/) (recommended), configure the
-`avante.nvim` provider as shown:
+`avante.nvim` provider settings as shown:
 
 <Tabs groupId="provider" queryString="provider">
 <TabItem value="mux" label="CodeGate muxing" default>
@@ -95,12 +95,12 @@ have to configure your FIM completion plugin separately.
 
 To verify your setup:
 
-1. Type `:AvanteChat` to launch the `avante.nvim `interface
-2. Enter the following command in the chat:
+1. In Neovim, type `:AvanteChat` to launch the `avante.nvim `interface.
+2. Enter the following prompt in the chat:
    ```
    codegate version
    ```
-3. You should receive a response showing the current CodeGate version number
+3. You should receive a response like like "CodeGate version 0.1.24".
 
 ## Next steps
 

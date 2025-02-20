@@ -54,7 +54,7 @@ AI coding assistants / IDEs:
 
 - **[Aider](./integrations/aider.mdx)** with Ollama and OpenAI-compatible APIs
 
-- **[avante.nvim](./integrations/avante.mdx)** (NeoVim plugin) with OpenAI
+- **[avante.nvim](./integrations/avante.mdx)** (Neovim plugin) with OpenAI
 
 - **[Cline](./integrations/cline.mdx)** in Visual Studio Code
 
