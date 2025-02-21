@@ -276,6 +276,29 @@ Here is an example of how to use the `requests` package:
 ...
 ```
 
+## Troubleshooting
+
+<details>
+  <summary>**Issue**: Copilot in VS Code does not work with Dev Containers</summary>
+
+**Details:** The Copilot extensions load within the Dev Container context by
+default, but the container cannot reach the CodeGate proxy directly and does not
+trust the CodeGate certificate.
+
+**Solution:** The simplest solution which doesn't require modifications to the
+devcontainer configuration in your project is to force the Copilot extensions to
+run in the UI context instead of remotely. Add the following to your **VS Code
+User Settings** file:
+
+```json title="settings.json"
+  "remote.extensionKind": {
+    "GitHub.copilot": ["ui"],
+    "GitHub.copilot-chat": ["ui"]
+  }
+```
+
+</details>
+
 ## Next steps
 
 Learn more about CodeGate's features and how to use them:
