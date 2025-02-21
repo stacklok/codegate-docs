@@ -106,9 +106,18 @@ To verify your setup:
 1. In Neovim, type `:AvanteChat` to launch the Avante interface.
 2. Enter the following prompt in the chat:
    ```
-   codegate version
+   add a variable AWS_ACCESS_KEY_ID="AKIAIOSFODNN7EXAMPLE"
    ```
-3. You should receive a response like like "CodeGate version 0.1.24".
+3. The response should indicate that CodeGate redacted the secret, and an alert
+   is logged in the [dashboard](http://localhost:9090).
+
+:::info Known issue
+
+`codegate` commands like `codegate version` are not currently working with
+avante.nvim. We are
+[tracking this issue here](https://github.com/stacklok/codegate-ui/issues/346).
+
+:::
 
 ## Next steps
 
