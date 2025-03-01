@@ -13,6 +13,10 @@ Major features and changes are noted here. To review all updates, see the
 
 Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
 
+- **Request type muxing** - 26 Feb, 2025\
+  Workspace model muxing now supports filtering based on chat and FIM request
+  types. Check the [model muxing docs](../features/muxing.mdx) to learn more.
+
 - **New integration: Open Interpreter** - 20 Feb, 2025\
   CodeGate v0.1.24 adds support for the
   [avante.nvim](https://github.com/yetone/avante.nvim) plugin for Neovim with
