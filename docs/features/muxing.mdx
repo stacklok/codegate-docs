@@ -131,6 +131,19 @@ request using the first matching rule. If the prompt contains multiple files in
 context, the first rule that matches _any_ of the files is used. If no filter is
 matched, the catch-all rule applies.
 
+:::note More about precedence
+
+The order of the rules is important. If you have a more specific rule that
+should take precedence over a general rule, place it higher in the list.
+
+Keep substring matching in mind. For example, if you have a filter for `.ts`
+files placed above a rule for `.tsx` files, the `.tsx` rule cannot be reached
+because the `.ts` filter matches first.
+
+:::
+
+#### Example configuration
+
 <ThemedImage
   alt='An example showing several muxing rules for different file types'
   sources={{
