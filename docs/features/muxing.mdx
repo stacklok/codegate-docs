@@ -121,8 +121,8 @@ In the **Request Type** column, select the type of prompt to match:
 - `Chat` matches chat prompts
 
 In the **Filter by** column, enter a file name or extension string to match.
-This is a simple substring match, wildcards are not supported. For example, to
-match Python files, enter `.py`.
+This is an exact or `endswith` match, wildcards are not supported. For example,
+to match Python files, enter `.py`.
 
 Finally, select the model to use for prompts that match the rule.
 
@@ -130,17 +130,6 @@ Filter rules are evaluated top-down. CodeGate selects the active model for a
 request using the first matching rule. If the prompt contains multiple files in
 context, the first rule that matches _any_ of the files is used. If no filter is
 matched, the catch-all rule applies.
-
-:::note More about precedence
-
-The order of the rules is important. If you have a more specific rule that
-should take precedence over a general rule, place it higher in the list.
-
-Keep substring matching in mind. For example, if you have a filter for `.ts`
-files placed above a rule for `.tsx` files, the `.tsx` rule cannot be reached
-because the `.ts` filter matches first.
-
-:::
 
 #### Example configuration
 
@@ -159,7 +148,7 @@ Breaking down the above example:
 
 - Markdown files (`.md`) use the gpt-4o-mini model from the OpenAI provider for
   all request types.
-- Chat prompts for JavaScript files (`.js`, which also matches `.jsx`) use
+- Chat prompts for JavaScript files (`.js`, but NOT `.jsx`) use
   anthropic/claude-3.7-sonnet via OpenRouter.
 - FIM requests for all files (except `.md` since it's higher in the list) use
   Ollama with the qwen2.5-coder:1.5b model.
