@@ -11,7 +11,7 @@ Major features and changes are noted here. To review all updates, see the
 
 :::
 
-Related: [Upgrade CodeGate](../how-to/install.md#upgrade-codegate)
+Related: [Upgrade CodeGate](../how-to/install.mdx#upgrade-codegate)
 
 - **Request type muxing** - 26 Feb, 2025\
   Workspace model muxing now supports filtering based on chat and FIM request

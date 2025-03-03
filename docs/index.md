@@ -100,7 +100,7 @@ Follow one of the the quickstart guides to get up and running quickly:
 - [Quickstart guide - Continue](./quickstart-continue.mdx) to integrate CodeGate
   with the open source Continue extension, VS Code, and a local Ollama server
 
-Review the [installation instructions](./how-to/install.md).
+Review the [installation instructions](./how-to/install.mdx).
 
 Learn more about CodeGate's features:
 
