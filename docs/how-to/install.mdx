@@ -4,6 +4,8 @@ description: Install and upgrade CodeGate using Docker
 sidebar_position: 10
 ---
 
+import DefaultRunCommand from '../partials/_default-run-command.md';
+
 ## Prerequisites
 
 CodeGate is distributed as a Docker container. You need a container runtime like
@@ -31,9 +33,7 @@ secured/local network, see
 To download and run CodeGate with the recommended configuration for full
 functionality:
 
-```bash
-docker run --name codegate -d -p 8989:8989 -p 9090:9090 -p 8990:8990 --mount type=volume,src=codegate_volume,dst=/app/codegate_volume --restart unless-stopped ghcr.io/stacklok/codegate:latest
-```
+<DefaultRunCommand />
 
 Parameter reference:
 
@@ -61,7 +61,7 @@ lost when you stop or restart CodeGate.
 
 :::
 
-### Alternative run commands {#examples}
+### Alternative run commands \{#examples}
 
 Run with minimal functionality for use with **Continue**, **aider**, or
 **Cline** (omits the HTTP proxy port needed by Copilot):
@@ -143,6 +143,8 @@ flag:
 docker logs --follow codegate
 ```
 
+To update the logging verbosity, see [Advanced configuration](./configure.md).
+
 ## Upgrade CodeGate
 
 To upgrade CodeGate to the latest version, start by reviewing the
@@ -160,8 +162,16 @@ Stop and remove the current container:
 docker rm --force codegate
 ```
 
-Finally, launch the new version using the
-[same `docker run` command](#recommended-settings) you used originally.
+Re-launch with the new image:
+
+<DefaultRunCommand />
+
+:::note
+
+If you customized your `docker run` command, use the same command you used
+originally.
+
+:::
 
 ## Manage the CodeGate container
 
