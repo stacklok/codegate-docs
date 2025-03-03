@@ -13,8 +13,8 @@ Docker Desktop or Docker Engine. Podman and Podman Desktop are also supported.
 Windows, macOS, and Linux operating systems are all supported with x86_64 and
 arm64 (ARM and Apple Silicon) CPU architectures.
 
-These instructions assume the `docker` CLI is available. If you use Podman,
-replace `docker` with `podman` in all commands.
+These instructions assume you have the `docker` CLI available. If you use
+Podman, replace `docker` with `podman` in all commands.
 
 ## Run CodeGate
 
@@ -78,7 +78,7 @@ docker run --name codegate -d -p 127.0.0.1:8989:8989 -p 127.0.0.1:9090:9090 -p 1
 ```
 
 **Install a specific version:** starting with v0.1.4 you can optionally run a
-specific version of CodeGate using sematic version tags:
+specific version of CodeGate using semantic version tags:
 
 - Patch version: `ghcr.io/stacklok/codegate:v0.1.15` (exact)
 - Minor version: `ghcr.io/stacklok/codegate:v0.1` (latest v0.1.x release)
