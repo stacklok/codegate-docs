@@ -25,7 +25,7 @@ workspace.
 
 ```mermaid
 flowchart LR
-    Client(AI Assistant/Agent)
+    Client(AI Assistant<br>or Agent)
     CodeGate{CodeGate}
     WS1[Workspace-A]
     WS2[Workspace-B]
@@ -98,7 +98,7 @@ available models.
 :::note
 
 For locally-hosted models, you must use `http://host.docker.internal` instead of
-`http://localhost`
+`http://localhost` when running CodeGate with Docker Desktop.
 
 :::
 
@@ -120,9 +120,13 @@ In the **Request Type** column, select the type of prompt to match:
 - `FIM` matches fill-in-the-middle (completion) requests
 - `Chat` matches chat prompts
 
-In the **Filter by** column, enter a file name or extension string to match.
-This is an exact or `endswith` match, wildcards are not supported. For example,
-to match Python files, enter `.py`.
+In the **Filter by** column, enter a pattern for file name matching. Filters can
+be an exact match or Unix shell-style wildcards
+([reference](https://docs.python.org/3/library/fnmatch.html)). Common examples:
+
+- Match a specific file extension: `*.go`
+- Match files ending in ".ts" and ".tsx": `*.ts*`
+- Match all Python files starting with "test*": `test*\*.py`
 
 Finally, select the model to use for prompts that match the rule.
 
@@ -140,19 +144,19 @@ matched, the catch-all rule applies.
     dark: useBaseUrl('/img/features/muxing-rules-dark.webp'),
   }}
   title='Example muxing rules'
-  width={'800px'}
+  width={'800'}
 />
-_An example showing several muxing rules for different file types_
+_An example showing muxing rules for several file types_
 
 Breaking down the above example:
 
-- Markdown files (`.md`) use the gpt-4o-mini model from the OpenAI provider for
-  all request types.
-- Chat prompts for JavaScript files (`.js`, but NOT `.jsx`) use
-  anthropic/claude-3.7-sonnet via OpenRouter.
-- FIM requests for all files (except `.md` since it's higher in the list) use
+- All requests for Markdown files (`*.md`) use the gpt-4o-mini model via the
+  OpenAI provider.
+- Chat prompts for JavaScript and JSX files (`*.js*`) use claude-3.7-sonnet from
+  Anthropic.
+- FIM requests for all files _except_ `*.md` (since it's higher in the list) use
   Ollama with the qwen2.5-coder:1.5b model.
-- All other requests use anthropic/claude-3.5-sonnet via OpenRouter.
+- All other requests use deepseek-r1 via OpenRouter.
 - A request containing both a JavaScript and Markdown file will match the `.md`
   rule first and use OpenAI.
 
