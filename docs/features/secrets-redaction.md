@@ -27,8 +27,7 @@ anonymizing PII. These changes are made before the prompt is sent to the LLM and
 are restored when the result is returned to your machine.
 
 When a secret or PII is detected, CodeGate adds a message to the LLM's output
-and an alert is recorded in the [dashboard](../how-to/dashboard.md) (PII alerts
-in the dashboard are coming soon).
+and an alert is recorded in the [dashboard](../how-to/dashboard.md).
 
 :::info
 
