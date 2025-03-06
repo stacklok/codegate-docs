@@ -31,7 +31,7 @@ Related: [Upgrade CodeGate](../how-to/install.mdx#upgrade-codegate)
 - **PII redaction:** - 10 Feb, 2025\
   Starting with v0.1.18, CodeGate now redacts personally identifiable
   information (PII) found in LLM prompts and context. See the
-  [feature page](../features/secrets-encryption.md) to learn more.
+  [feature page](../features/secrets-redaction.md) to learn more.
 
 - **Model muxing** - 7 Feb, 2025\
   With CodeGate v0.1.17 you can use the new `/v1/mux` endpoint to configure

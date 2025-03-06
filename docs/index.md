@@ -36,9 +36,8 @@ sequenceDiagram
 CodeGate includes several key features for privacy, security, and coding
 efficiency, including:
 
-- [Secrets encryption and PII redaction](./features/secrets-encryption.md) to
-  protect your sensitive credentials and anonymize personally identifiable
-  information
+- [Secrets PII redaction](./features/secrets-redaction.md) to protect your
+  sensitive credentials and anonymize personally identifiable information
 - [Dependency risk awareness](./features/dependency-risk.md) to update the LLM's
   knowledge of malicious or deprecated open source packages
 - [Model muxing](./features/muxing.mdx) to quickly select the best LLM
@@ -104,7 +103,7 @@ Review the [installation instructions](./how-to/install.mdx).
 
 Learn more about CodeGate's features:
 
-- [Secrets and PII redaction](./features/secrets-encryption.md)
+- [Secrets and PII redaction](./features/secrets-redaction.md)
 - [Dependency risk awareness](./features/dependency-risk.md)
 - [Security reviews](./features/security-reviews.md)
 - [Workspaces](./features/workspaces.mdx)

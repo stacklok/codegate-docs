@@ -1,5 +1,5 @@
 ---
-title: Secrets encryption and PII redaction
+title: Secrets and PII redaction
 description: Keep your secrets a secret
 ---
 
@@ -22,7 +22,7 @@ and PII found in your prompts.
 
 CodeGate automatically scans all prompts for secrets and PII. This happens
 transparently without requiring a specific prompt. Without interrupting your
-development flow, CodeGate protects your data by encrypting secrets and
+development flow, CodeGate protects your data by redacting secrets and
 anonymizing PII. These changes are made before the prompt is sent to the LLM and
 are restored when the result is returned to your machine.
 
@@ -55,36 +55,32 @@ sequenceDiagram
     deactivate CodeGate
 ```
 
-### Secrets encryption
+CodeGate redacts secrets and anonymizes PII by replacing each string with a
+unique identifier on the fly, before sending the prompt to the LLM. This way,
+CodeGate protects your sensitive data without blocking your development flow.
+When the LLM returns a response, CodeGate matches up the identifier and replaces
+it with the original value.
 
-CodeGate uses pattern matching to detect secrets such as:
+### Secrets filtering
+
+CodeGate uses pattern matching to detect secrets like:
 
 - API keys and tokens
-- Private keys and certificates
-- Database credentials
-- SSH keys
 - Cloud provider credentials
-- ...and more - see the
-  [signatures file](https://github.com/stacklok/codegate/blob/main/signatures.yaml)
-  in the project repo
+- Database credentials
+- Private keys and certificates
+- SSH keys
 
-CodeGate transparently encrypts secrets before sending the prompt to the LLM.
-This is performed on the fly using AES256-GCM encryption with a temporary
-per-session key. When the LLM returns a response, CodeGate decrypts the secret
-before delivering it to your coding assistant, then securely erases the
-temporary key from memory.
+For the full list of detected patterns, see the
+[signatures file](https://github.com/stacklok/codegate/blob/main/signatures.yaml)
+in the project repo.
 
 ### PII redaction
 
-CodeGate scans for common types of PII like:
+CodeGate scans for common types of PII including:
 
 - Email addresses
 - Phone numbers
 - Government identification numbers
 - Credit card numbers
 - Bank accounts and crypto wallet IDs
-
-CodeGate anonymizes PII by replacing each string with a unique identifier before
-sending the prompt to the LLM. This way, CodeGate protects your sensitive data
-without blocking your development flow. When the LLM returns a response,
-CodeGate matches up the identifier and replaces it with the original value.

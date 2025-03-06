@@ -4,6 +4,11 @@
       "source": "/how-to/(use-with-):path(aider|cline|continue|copilot)",
       "destination": "/integrations/:path",
       "permanent": true
+    },
+    {
+      "source": "/features/secrets-encryption",
+      "destination": "/features/secrets-redaction",
+      "permanent": true
     }
   ]
 }
