@@ -192,6 +192,12 @@ const config: Config = {
         },
       },
     },
+    algolia: {
+      appId: 'RQNQH0ZYGQ',
+      apiKey: '333af1abd30c6160f08eb0b4813b16c5',
+      indexName: 'codegate',
+      contextualSearch: true,
+    },
   } satisfies Preset.ThemeConfig,
 };
 
