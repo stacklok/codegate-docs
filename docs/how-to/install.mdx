@@ -18,16 +18,6 @@ Podman, replace `docker` with `podman` in all commands.
 
 ## Run CodeGate
 
-CodeGate is primarily intended as a single-user system. There is no
-authentication when using the CodeGate API or the CodeGate web dashboard which
-are both operating over unencrypted HTTP. Hence all CodeGate components are
-supposed to bind to _localhost_ (`127.0.0.1`) and remain inaccessible from
-remote hosts.
-
-If you are an advanced user who wants to run CodeGate on a remote host in a
-secured/local network, see
-[Run CodeGate on a remote host](./configure.md#run-codegate-on-a-remote-host).
-
 ### Recommended settings
 
 To download and run CodeGate with the recommended configuration for full
@@ -58,6 +48,17 @@ application settings, see [Configure CodeGate](./configure.md)
 If you omit the persistent volume mount, your
 [workspace configurations](../features/workspaces.mdx) and prompt history are
 lost when you stop or restart CodeGate.
+
+:::
+
+:::info
+
+CodeGate is primarily intended as a single-user system. The CodeGate API and web
+dashboard operate over unencrypted HTTP and with no authentication.
+
+If you are an advanced user who want to run CodeGate on a remote host in a
+secured/local network, see
+[Run CodeGate on a remote host](./configure.md#run-on-remote-host).
 
 :::
 
