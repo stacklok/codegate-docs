@@ -33,7 +33,7 @@ CodeGate supports the following parameters:
 | `CODEGATE_VLLM_URL`      | `http://localhost:8000`             | Specifies the URL of the vLLM server to use.                                                                                          |
 | `DASHBOARD_BASE_API_URL` | `http://localhost:8989`             | Overrides the base URL of the CodeGate API referenced by the dashboard UI (see [run CodeGate on a remote host](#run-on-remote-host)). |
 
-## Example: Use CodeGate with a remote Ollama server
+### Example: Use CodeGate with a remote Ollama server
 
 Set the Ollama server's URL when you launch CodeGate:
 
@@ -44,7 +44,7 @@ docker run --name codegate -d -p 8989:8989 -p 9090:9090 \
   --restart unless-stopped ghcr.io/stacklok/codegate
 ```
 
-## Example: run CodeGate on a remote host {#run-on-remote-host}
+### Example: run CodeGate on a remote host {#run-on-remote-host}
 
 :::warning
 
@@ -69,3 +69,32 @@ docker run --name codegate -d -p 8989:8989 -p 9090:9090 \
 
 Replace `<REMOTE_HOST>` with the IP or DNS name of your remote CodeGate host as
 reachable from your client / web browser.
+
+## Back up and restore the database
+
+CodeGate stores workspace configurations and event data in a SQLite database
+file located in the `/app/codegate_volume/db` directory inside the container.
+This database file is mounted to the persistent Docker volume on your host
+system. This means that the database file is not lost when you stop or remove
+the container, but it is still a good idea to back up the database file
+regularly.
+
+To back up the database, you can use the `docker cp` command to copy the
+database file from the container to your host system. For example, if you want
+to back up the database to your current working directory, you can run the
+following command:
+
+```bash
+docker cp codegate:/app/codegate_volume/db/codegate.db ./codegate.db
+```
+
+This copies the database file from the container to your current working
+directory. You can then copy it to a safe location.
+
+You can also use this command to restore the database from a backup. For
+example, if you have a backup of the database file in your current working
+directory, you can restore it to the container by running:
+
+```bash
+docker cp ./codegate.db codegate:/app/codegate_volume/db/codegate.db
+```
