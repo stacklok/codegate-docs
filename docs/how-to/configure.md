@@ -85,6 +85,7 @@ to back up the database to your current working directory, you can run the
 following command:
 
 ```bash
+# Copy the database file from the container to your host system
 docker cp codegate:/app/codegate_volume/db/codegate.db ./codegate.db
 ```
 
@@ -96,5 +97,12 @@ example, if you have a backup of the database file in your current working
 directory, you can restore it to the container by running:
 
 ```bash
+# Copy the backup file to the container
 docker cp ./codegate.db codegate:/app/codegate_volume/db/codegate.db
+
+# Reset file ownership
+docker exec -u root codegate sh -c "chown codegate:codegate /app/codegate_volume/db/codegate.db"
+
+# Restart CodeGate
+docker restart codegate
 ```
