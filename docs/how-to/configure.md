@@ -77,7 +77,16 @@ file located in the `/app/codegate_volume/db` directory inside the container.
 This database file is mounted to the persistent Docker volume on your host
 system. This means that the database file is not lost when you stop or remove
 the container, but it is still a good idea to back up the database file
-regularly.
+regularly. You might also want to copy or move your configuration to a different
+system.
+
+:::note
+
+The CodeGate container must be running to use these commands.
+
+:::
+
+### Back up
 
 To back up the database, you can use the `docker cp` command to copy the
 database file from the container to your host system. For example, if you want
@@ -91,6 +100,8 @@ docker cp codegate:/app/codegate_volume/db/codegate.db ./codegate.db
 
 This copies the database file from the container to your current working
 directory. You can then copy it to a safe location.
+
+### Restore
 
 You can also use this command to restore the database from a backup. For
 example, if you have a backup of the database file in your current working
