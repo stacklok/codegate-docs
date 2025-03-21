@@ -11,3 +11,5 @@ in the main CodeGate GitHub repo.
 - [CLI commands and flags](https://github.com/stacklok/codegate/blob/main/docs/cli.md)
 - [Configuration system](https://github.com/stacklok/codegate/blob/main/docs/configuration.md)
 - [Logging system](https://github.com/stacklok/codegate/blob/main/docs/logging.md)
+- [Debugging clients](https://github.com/stacklok/codegate/blob/main/docs/debugging_clients.md)
+- [Workspaces](https://github.com/stacklok/codegate/blob/main/docs/workspaces.md)
