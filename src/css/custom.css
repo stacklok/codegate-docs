@@ -25,13 +25,13 @@
   --ifm-menu-color: #5d6982;
   --ifm-toc-link-color: #5d6982;
 
-  --ifm-color-primary: #5058ff;
-  --ifm-color-primary-dark: #2f38ff;
-  --ifm-color-primary-darker: #1e28ff;
-  --ifm-color-primary-darkest: #000beb;
-  --ifm-color-primary-light: #7278ff;
-  --ifm-color-primary-lighter: #8288ff;
-  --ifm-color-primary-lightest: #b4b8ff;
+  --ifm-color-primary: #e31c79;
+  --ifm-color-primary-dark: #cc196d;
+  --ifm-color-primary-darker: #c11867;
+  --ifm-color-primary-darkest: #9f1455;
+  --ifm-color-primary-light: #e63386;
+  --ifm-color-primary-lighter: #e73e8d;
+  --ifm-color-primary-lightest: #eb60a1;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
@@ -42,13 +42,13 @@
   --ifm-menu-color: #9399ac;
   --ifm-toc-link-color: #9399ac;
 
-  --ifm-color-primary: #87a5ef;
-  --ifm-color-primary-dark: #668ceb;
-  --ifm-color-primary-darker: #5680e8;
-  --ifm-color-primary-darkest: #245be2;
-  --ifm-color-primary-light: #a8bef3;
-  --ifm-color-primary-lighter: #b9caf6;
-  --ifm-color-primary-lightest: #eaeffc;
+  --ifm-color-primary: #e31c79;
+  --ifm-color-primary-dark: #cc196d;
+  --ifm-color-primary-darker: #c11867;
+  --ifm-color-primary-darkest: #9f1455;
+  --ifm-color-primary-light: #e63386;
+  --ifm-color-primary-lighter: #e73e8d;
+  --ifm-color-primary-lightest: #eb60a1;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
@@ -70,6 +70,11 @@ html[data-theme='dark'] {
 
 [data-theme='dark'] .theme-doc-sidebar-container {
   background-color: #1a1c1f;
+}
+
+/* Mermaid flowchart labels */
+[data-theme='dark'] .edgeLabel p {
+  background-color: var(--ifm-background-color) !important;
 }
 
 .tabs-container {
