@@ -25,14 +25,14 @@ workspace.
 
 ```mermaid
 flowchart LR
-    Client(AI Assistant<br>or Agent)
-    CodeGate{CodeGate}
-    WS1[Workspace-A]
-    WS2[Workspace-B]
-    WS3[Workspace-C]
-    LLM1(OpenAI/<br>o3-mini)
-    LLM2(Ollama/<br>deepseek-r1)
-    LLM3(OpenRouter/<br>claude-35-sonnet)
+    Client(AI Assistant<br>or Agent):::secondary
+    CodeGate{CodeGate}:::primary
+    WS1[Workspace-A]:::primary
+    WS2[Workspace-B]:::primary
+    WS3[Workspace-C]:::primary
+    LLM1(OpenAI/<br>o3-mini):::tertiary
+    LLM2(Ollama/<br>deepseek-r1):::tertiary
+    LLM3(OpenRouter/<br>claude-35-sonnet):::tertiary
 
     Client ---|/v1/mux| CodeGate
     CodeGate --> WS1
@@ -43,6 +43,10 @@ flowchart LR
     WS2 --> |.md files| LLM2
     WS2 --> |.js files| LLM3
     WS3 --> |All prompts| LLM3
+
+    classDef primary fill:#E31C79,stroke:#E31C79,color:#FFFFFF,stroke-width:2px
+    classDef secondary fill:#FFFFFF,stroke:#E31C79,color:#333333,stroke-width:2px
+    classDef tertiary fill:#D0D0D0,stroke:#E31C79,color:#333333,stroke-width:2px
 ```
 
 ## Use cases
