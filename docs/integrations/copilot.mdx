@@ -36,11 +36,16 @@ GitHub Copilot and your IDE.
 
 ```mermaid
 flowchart LR
-  Plugin[Copilot IDE<br>Plugin]
-  CodeGate["CodeGate<br>container<br>(localhost)"]
-  Copilot[GitHub<br>Copilot]
+  Plugin[Copilot IDE<br>Plugin]:::secondary
+  CodeGate["CodeGate<br>container<br>(localhost)"]:::primary
+  Copilot[GitHub<br>Copilot]:::tertiary
+
   Plugin -->|"https<br>8990"| CodeGate
   CodeGate -->|"https<br>443"| Copilot
+
+  classDef primary fill:#E31C79,stroke:#E31C79,color:#FFFFFF,stroke-width:2px
+  classDef secondary fill:#FFFFFF,stroke:#E31C79,color:#333333,stroke-width:2px
+  classDef tertiary fill:#E8E8E8,stroke:#E31C79,color:#333333,stroke-width:2px
 ```
 
 ## Launch parameters

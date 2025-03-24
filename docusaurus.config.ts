@@ -189,6 +189,23 @@ const config: Config = {
       options: {
         themeVariables: {
           fontFamily: 'Figtree, system-ui, sans-serif',
+          primaryColor: '#E31C79',
+          primaryBorderColor: '#E31C79',
+          lineColor: '#E31C79',
+          secondaryColor: '#F3E6EE',
+          tertiaryColor: '#FAF0F6',
+          mainBkg: '#E31C79',
+          noteBkgColor: '#444444',
+          noteTextColor: '#FFFFFF',
+          // BEGIN sequenceDiagram styles
+          actorBorder: '#E31C79',
+          actorLineColor: '#E31C79',
+          actorTextColor: '#FFFFFF',
+          activationBkgColor: '#E31C79',
+          activationBorderColor: '#E31C79',
+          labelBoxBkgColor: '#444444',
+          labelTextColor: '#FFFFFF',
+          // END sequenceDiagram styles
         },
       },
     },
