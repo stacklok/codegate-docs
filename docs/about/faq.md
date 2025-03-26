@@ -58,7 +58,7 @@ If you encounter issues with CodeGate, please check the following:
   `docker logs codegate` to view the logs. You can also increase the logging
   verbosity by re-launching CodeGate with `CODEGATE_APP_LOG_LEVEL` set to `INFO`
   or `DEBUG` (see [advanced configuration](../how-to/configure.md)).
-- Search the [GitHub Issues](https://github.com/codegate/codegate/issues) for
+- Search the [GitHub Issues](https://github.com/stacklok/codegate/issues) for
   similar issues or report a new issue if you can't find a solution.
 - Join our [Discord server](https://discord.gg/stacklok) to ask for help from
   the community or the CodeGate team.
