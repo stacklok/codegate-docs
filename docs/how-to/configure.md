@@ -31,7 +31,7 @@ CodeGate supports the following parameters:
 | `CODEGATE_OLLAMA_URL`    | `http://host.docker.internal:11434` | Specifies the URL of your Ollama instance.                                                                                            |
 | `CODEGATE_OPENAI_URL`    | `https://api.openai.com/v1`         | Specifies the OpenAI engine API endpoint URL.                                                                                         |
 | `CODEGATE_VLLM_URL`      | `http://localhost:8000`             | Specifies the URL of the vLLM server to use.                                                                                          |
-| `DASHBOARD_BASE_API_URL` | `http://localhost:8989`             | Overrides the base URL of the CodeGate API referenced by the dashboard UI (see [run CodeGate on a remote host](#run-on-remote-host)). |
+| `DASHBOARD_API_BASE_URL` | `http://localhost:8989`             | Overrides the base URL of the CodeGate API referenced by the dashboard UI (see [run CodeGate on a remote host](#run-on-remote-host)). |
 
 ### Example: Use CodeGate with a remote Ollama server
 
@@ -57,12 +57,12 @@ that is directly accessible from the Internet!
 The CodeGate web dashboard provided in the Docker container makes client-side
 API calls from your web browser, and expects the CodeGate API to be available on
 _localhost_ port 8989 by default. To run CodeGate on a different host from your
-client/browser, you can override this using the `DASHBOARD_BASE_API_URL`
+client/browser, you can override this using the `DASHBOARD_API_BASE_URL`
 environment variable (available since CodeGate v0.1.28):
 
 ```bash {2}
 docker run --name codegate -d -p 8989:8989 -p 9090:9090 \
-  -e DASHBOARD_BASE_API_URL=http://<REMOTE_HOST>:8989 \
+  -e DASHBOARD_API_BASE_URL=http://<REMOTE_HOST>:8989 \
   --mount type=volume,src=codegate_volume,dst=/app/codegate_volume \
   --restart unless-stopped ghcr.io/stacklok/codegate
 ```
