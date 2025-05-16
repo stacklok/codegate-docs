@@ -1,0 +1,58 @@
+/* Footer classes to match the style of codegate.ai */
+
+.footer {
+  padding: 20px 16px 40px;
+}
+
+.footer .container {
+  margin: auto;
+  padding: 0;
+  max-width: 1200px;
+}
+
+.footer__title {
+  text-transform: uppercase;
+}
+
+.footer__copyright {
+  color: #9399ac;
+  text-align: left;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.footer__item {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.footer__item:not(:last-child) {
+  padding-bottom: 10px;
+}
+
+.footer__icon__custom {
+  padding: 0px 12px;
+}
+
+.footer__link-item {
+  line-height: 24px;
+  --ifm-link-hover-decoration: none;
+}
+
+.footer__col:first-child {
+  max-width: 400px;
+  margin-right: auto;
+}
+
+.footer__col:last-child,
+.footer__col:nth-last-child(2) {
+  max-width: 160px;
+  margin-right: 0px;
+}
+
+.footer__powered_by {
+  margin-left: auto;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+}
