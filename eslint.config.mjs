@@ -33,8 +33,8 @@ export default [
       globals: {
         ...mdx.flat.languageOptions.globals,
         // Add global components from src/theme/MDXComponents.tsx here
-        Columns: 'readonly',
-        Column: 'readonly',
+        //Columns: 'readonly',
+        //Column: 'readonly',
       },
     },
   },
