@@ -1,5 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg">
-    <path fill="currentColor" d="m8.337 13.213 8.287-8.287v5.297l-2.99 2.99H8.337ZM8.287.788 0 9.074V3.777L2.99.787h5.297ZM16.623 4.926 16.62.787H12.48l-4.14 4.14h8.283Z"></path>
-    <path fill="currentColor" d="m0 9.074.005 4.14h4.138l4.14-4.14H0ZM12.48 9.07V4.925h4.143L12.48 9.069Z"></path>
-    <path fill="currentColor" d="M4.143 4.93v4.144H0l4.143-4.143Z"></path>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1247.24 1247.24">
+  <!-- Generator: Adobe Illustrator 29.0.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 192)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <rect class="st0" y="0" width="1247.24" height="1247.24"/>
+  <path d="M253.05,476.36h0c0,146.8,119.01,265.81,265.81,265.81h209.49c15.87,0,28.74,12.87,28.74,28.74s-12.87,28.74-28.74,28.74H253.05v237.1h475.26c146.84,0,265.87-119.04,265.87-265.88h0c0-146.8-119.01-265.81-265.81-265.81h-209.49c-15.87,0-28.74-12.87-28.74-28.74s12.87-28.74,28.74-28.74h475.29v-237.1h-475.26c-146.84,0-265.88,119.04-265.88,265.88Z"/>
 </svg>
