@@ -11,7 +11,7 @@
       "permanent": true
     },
     {
-      "source": "/:path((?:about|development|features|how-to|integrations|partials|quickstart-).*)*",
+      "source": "/:path((?:about|development|features|how-to|integrations|partials|quickstart).*)*",
       "destination": "/codegate/:path*",
       "permanent": true,
       "has": [
