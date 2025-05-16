@@ -81,7 +81,7 @@ const config: Config = {
         alt: 'Stacklok logo',
         src: 'img/stacklok-wordmark-black.svg',
         srcDark: 'img/stacklok-wordmark-white.svg',
-        href: 'https://docs.stacklok.com',
+        href: '/',
       },
       items: [
         {
