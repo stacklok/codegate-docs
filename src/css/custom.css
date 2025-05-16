@@ -6,6 +6,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
+@import './icons.css';
+@import './footer.css';
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-font-family-base: 'Figtree', 'system-ui', 'sans-serif';
@@ -16,30 +19,37 @@
   --ifm-footer-color: #0f172a;
   --ifm-footer-title-color: #64748b;
   --ifm-footer-link-color: #334155;
-  --ifm-footer-link-hover-color: #5058ff;
+  --ifm-footer-link-hover-color: #e31c79;
   --ifm-navbar-link-color: #334155;
+  --ifm-navbar-background-color: #f8fafc;
+  --ifm-menu-color: #5d6982;
+  --ifm-toc-link-color: #5d6982;
 
-  --ifm-color-primary: #5058ff;
-  --ifm-color-primary-dark: #2f38ff;
-  --ifm-color-primary-darker: #1e28ff;
-  --ifm-color-primary-darkest: #000beb;
-  --ifm-color-primary-light: #7278ff;
-  --ifm-color-primary-lighter: #8288ff;
-  --ifm-color-primary-lightest: #b4b8ff;
+  --ifm-color-primary: #e31c79;
+  --ifm-color-primary-dark: #cc196d;
+  --ifm-color-primary-darker: #c11867;
+  --ifm-color-primary-darkest: #9f1455;
+  --ifm-color-primary-light: #e63386;
+  --ifm-color-primary-lighter: #e73e8d;
+  --ifm-color-primary-lightest: #eb60a1;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-navbar-background-color: #111827;
-  --ifm-color-primary: #38bdf8;
-  --ifm-color-primary-dark: #1bb3f7;
-  --ifm-color-primary-darker: #0caef6;
-  --ifm-color-primary-darkest: #0791ce;
-  --ifm-color-primary-light: #55c7f9;
-  --ifm-color-primary-lighter: #64ccfa;
-  --ifm-color-primary-lightest: #90dafb;
+  --ifm-navbar-background-color: #1a1c1f;
+  --ifm-navbar-link-color: #9399ac;
+  --ifm-menu-color: #9399ac;
+  --ifm-toc-link-color: #9399ac;
+
+  --ifm-color-primary: #e31c79;
+  --ifm-color-primary-dark: #cc196d;
+  --ifm-color-primary-darker: #c11867;
+  --ifm-color-primary-darkest: #9f1455;
+  --ifm-color-primary-light: #e63386;
+  --ifm-color-primary-lighter: #e73e8d;
+  --ifm-color-primary-lightest: #eb60a1;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
@@ -50,140 +60,50 @@
 }
 
 html[data-theme='dark'] {
-  --ifm-background-color: #111827;
-  --ifm-color-content: #d1d5db;
+  --ifm-background-color: #101114;
+  /* --ifm-color-content: #9399ac; */
+  --ifm-color-content: #c7ccdc;
+}
+
+.theme-doc-sidebar-container {
+  background-color: #f8fafc;
+}
+
+[data-theme='dark'] .theme-doc-sidebar-container {
+  background-color: #1a1c1f;
+}
+
+/* Mermaid flowchart labels */
+[data-theme='dark'] .edgeLabel p {
+  background-color: var(--ifm-background-color) !important;
+}
+
+.tabs-container {
+  background-color: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-table-border-color);
+  border-radius: var(--ifm-card-border-radius);
+  margin-bottom: 1rem;
+}
+
+.tabs-container > ul {
+  background-color: #f8fafc;
+}
+
+[data-theme='dark'] .tabs-container > ul {
+  background-color: #1a1c1f;
+  border-color: #1a1a1c;
+}
+
+.tabs-container > ul {
+  border-bottom: 1px solid #f0f0f0;
+  border-top-left-radius: var(--ifm-card-border-radius);
+  border-top-right-radius: var(--ifm-card-border-radius);
+}
+
+.tabs__item {
+  border-radius: 0;
 }
 
 div[role='tabpanel'] {
-  border-style: solid;
-  border-color: var(--ifm-table-border-color);
-  border-width: var(--ifm-table-border-width);
-  border-radius: var(--ifm-global-radius);
   padding: var(--ifm-global-spacing);
-  box-shadow: var(--ifm-global-shadow-lw);
-}
-
-.footer {
-  padding: 20px 16px 40px;
-}
-
-.footer .container {
-  margin: auto;
-  padding: 0;
-  max-width: 1200px;
-}
-
-.footer__title {
-  text-transform: uppercase;
-}
-
-.footer__copyright {
-  color: #64748b;
-  text-align: left;
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.footer__item {
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.footer__item:not(:last-child) {
-  padding-bottom: 16px;
-}
-
-.footer__icon__custom {
-  padding: 0.25rem 12px;
-}
-
-.footer__link-item {
-  line-height: 24px;
-  --ifm-link-hover-decoration: none;
-}
-
-.footer__col:first-child {
-  max-width: 400px;
-  margin-right: auto;
-}
-
-.footer__col:last-child,
-.footer__col:nth-last-child(2) {
-  max-width: 160px;
-  margin-right: 0px;
-}
-
-/**
- * Navbar & footer icon classes
- */
-.header-github-link::before {
-  content: '';
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  vertical-align: middle;
-  background-color: rgb(51, 65, 85);
-  mask-image: url('/img/github-brands-solid.svg');
-  mask-repeat: no-repeat;
-  transition: background-color var(--ifm-transition-fast)
-    var(--ifm-transition-timing-default);
-}
-
-.header-github-link:hover::before {
-  background-color: var(--ifm-navbar-link-hover-color);
-}
-
-.header-discord-link::before {
-  content: '';
-  width: 20px;
-  height: 16px;
-  display: inline-block;
-  vertical-align: middle;
-  background-color: rgb(51, 65, 85);
-  mask-image: url('/img/discord-brands-solid.svg');
-  mask-repeat: no-repeat;
-  mask-position: 0% 50%;
-  mask-repeat: no-repeat;
-  transition: background-color var(--ifm-transition-fast)
-    var(--ifm-transition-timing-default);
-}
-
-.header-discord-link:hover::before {
-  background-color: var(--ifm-navbar-link-hover-color);
-}
-
-.header-youtube-link::before {
-  content: '';
-  width: 18px;
-  height: 16px;
-  display: inline-block;
-  vertical-align: middle;
-  background-color: rgb(51, 65, 85);
-  mask-image: url('/img/youtube-brands-solid.svg');
-  mask-position: 0% 50%;
-  mask-repeat: no-repeat;
-  transition: background-color var(--ifm-transition-fast)
-    var(--ifm-transition-timing-default);
-}
-
-.header-youtube-link:hover::before {
-  background-color: var(--ifm-navbar-link-hover-color);
-}
-
-.header-stacklok-link::before {
-  content: '';
-  width: 18px;
-  height: 16px;
-  display: inline-block;
-  vertical-align: middle;
-  background-color: rgb(51, 65, 85);
-  mask-image: url('/img/stacklok-icon-black.svg');
-  mask-position: 0% 50%;
-  mask-repeat: no-repeat;
-  transition: background-color var(--ifm-transition-fast)
-    var(--ifm-transition-timing-default);
-}
-
-.header-stacklok-link:hover::before {
-  background-color: var(--ifm-navbar-link-hover-color);
 }
