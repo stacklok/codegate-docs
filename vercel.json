@@ -17,7 +17,7 @@
       "has": [
         {
           "type": "host",
-          "value": "docs.codegate.ai"
+          "value": "codegate-docs-git-website-refactor-stacklok.vercel.app"
         }
       ]
     }
