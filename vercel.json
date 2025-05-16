@@ -2,13 +2,24 @@
   "redirects": [
     {
       "source": "/how-to/(use-with-):path(aider|cline|continue|copilot)",
-      "destination": "/integrations/:path",
+      "destination": "/codegate/integrations/:path",
       "permanent": true
     },
     {
       "source": "/features/secrets-encryption",
-      "destination": "/features/secrets-redaction",
+      "destination": "/codegate/features/secrets-redaction",
       "permanent": true
+    },
+    {
+      "source": "/:path((?:about|development|features|how-to|integrations|partials|quickstart-).*)*",
+      "destination": "/codegate/:path*",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "docs.codegate.ai"
+        }
+      ]
     }
   ]
 }
