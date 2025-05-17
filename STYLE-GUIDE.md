@@ -1,8 +1,8 @@
-# Style guide for CodeGate docs <!-- omit in toc -->
+# Style guide for Stacklok docs <!-- omit in toc -->
 
 This style guide is a reference for anyone who contributes to the user-facing
-CodeGate docs contained in this repository. By adhering to these guidelines, we
-aim to deliver clear, concise, and valuable information to CodeGate users.
+Stacklok docs contained in this repository. By adhering to these guidelines, we
+aim to deliver clear, concise, and valuable information to project users.
 
 ## Contents <!-- omit in toc -->
 
@@ -17,6 +17,7 @@ aim to deliver clear, concise, and valuable information to CodeGate users.
   - [Formatting](#formatting)
 - [Screenshots and images](#screenshots-and-images)
 - [Markdown style](#markdown-style)
+- [Projects](#projects)
 - [Word list \& glossary](#word-list--glossary)
   - [Products/brands](#productsbrands)
 
@@ -60,7 +61,7 @@ person ("we", "our") and third person ("the user", "a developer").
 ### Capitalization
 
 Capitalize **proper nouns** like names, companies, and products. Generally,
-**don't** capitalize features or generic terms. For non-CodeGate terms, follow
+**don't** capitalize features or generic terms. For non-Stacklok terms, follow
 the norms of the third-party project/company (ex: npm is stylized in lowercase,
 even when it begins a sentence).
 
@@ -137,7 +138,7 @@ Considerations for screenshots and other images:
 - Use alt text to describe images for readers using screen readers and to assist
   search engines.
 - Be consistent when taking screenshots - use the same OS if possible (macOS has
-  been used in CodeGate docs to date) and zoom level (ex: zoom twice in VS Code,
+  been used in Stacklok docs to date) and zoom level (ex: zoom twice in VS Code,
   125% in browsers).
 - Crop screenshots to the relevant portion of the interface.
 - Use the primary brand color (`#5058ff`) for annotations like callouts and
@@ -193,12 +194,29 @@ Specific guidelines for Docusaurus:
   to provide both light and dark mode screenshots for apps/UIs that support
   both.
 
+## Projects
+
+These are the projects we work on, and a short description of each one.
+
+**CodeGate**: [CodeGate](https://github.com/stacklok/codegate) is a local prompt
+gateway that sits between your AI coding assistant and LLM to enhance privacy
+and security. CodeGate performs code security reviews, identifies
+vulnerabilities in package dependencies, and prevents sensitive data like
+secrets from being shared with AI models. It's written bi-capitalized as one
+word (not "Codegate" or "Code Gate").
+
+**ToolHive**: [ToolHive](https://github.com/stacklok/toolhive) is a lightweight
+utility designed to simplify the deployment and management of MCP (Model Context
+Protocol) servers, ensuring ease of use, consistency, and security. It's the
+simplest and safest way to use MCP (Model Context Protocol). Start from a set of
+curated MCP images and run MCP clients in lightweight, locked-down containers
+that give you control of permissions (cause you don’t want those MCP clients
+digging around anywhere they don’t belong). It's written bi-capitalized as one
+word (not "Toolhive" or "Tool Hive").
+
 ## Word list & glossary
 
-Common terms used in CodeGate content:
-
-**CodeGate**: this project! It's written bi-capitalized as one word (not
-"Codegate" or "Code Gate").
+Common terms used in Stacklok content:
 
 **open source**: we prefer using two words over the hyphenated form (not
 "open-source"). It's not a proper noun, so don't capitalize unless it starts a
@@ -206,7 +224,8 @@ sentence.
 
 **OSS**: abbreviation for "open source software".
 
-**Stacklok**: the company that makes CodeGate.
+**Stacklok**: our company! It's written as one word with a single capital (not
+"StackLok" or "Stacklock").
 
 ### Products/brands
 
@@ -233,11 +252,22 @@ IDEA, PyCharm, GoLand, and more. It's written bi-capitalized as one word (not
 "Jet Brains" or "Jetbrains"). It's proper to reference a specific JetBrains IDE
 when needed, or simply refer to "all JetBrains IDEs".
 
+**LLM**: large language model, a type of machine learning model designed for
+natural language processing tasks. LLM is an abbreviation, so it's written in
+all caps. Written out, it is lower-cased.
+
+**MCP**: Model Context Protocol. MCP is an open protocol that standardizes how
+applications provide context to LLMs. MCP is an abbreviation, so it's written in
+all caps. Written out, it is proper-cased.
+
 **npm**: the registry for JavaScript packages (the "npm registry"), and the
 default package manager for JavaScript. Since it's both the registry _and_ the
 package manager, it may be useful to disambiguate "the npm registry". It's not
 an abbreviation, so it's not capitalized; it's written all lowercase (not
 "NPM").
+
+**OpenAI**: the company behind the GPT models and ChatGPT. It's written
+bi-capitalized as one word (not "Open AI" or "Openai").
 
 **Visual Studio Code**: a very popular free integrated development environment
 (IDE) from Microsoft. Per Microsoft's
