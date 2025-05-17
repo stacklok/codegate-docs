@@ -1,9 +1,9 @@
-# CodeGate docs <!-- omit in toc -->
+# Stacklok docs <!-- omit in toc -->
 
-[![GitHub deployments](https://img.shields.io/github/deployments/stacklok/codegate-docs/Production?logo=vercel&style=flat&label=Vercel%20deployment)](https://github.com/stacklok/codegate-docs/deployments/Production)
+[![GitHub deployments](https://img.shields.io/github/deployments/stacklok/docs-website/Production?logo=vercel&style=flat&label=Vercel%20deployment)](https://github.com/stacklok/docs-website/deployments/Production)
 
-This repository contains the public-facing docs for CodeGate, hosted at
-[https://docs.codegate.ai](https://docs.codegate.ai).
+This repository contains the public-facing docs for Stacklok's projects, hosted
+at [https://docs.stacklok.com](https://docs.stacklok.com).
 
 - [Contributing to docs](#contributing-to-docs)
 - [Local development](#local-development)
@@ -14,7 +14,7 @@ This repository contains the public-facing docs for CodeGate, hosted at
 
 ## Contributing to docs
 
-We welcome contributions to the CodeGate documentation - if you find something
+We welcome contributions to the Stacklok documentation - if you find something
 missing, wrong, or unclear, please let us know via an issue or open a PR!
 
 Please review the [style guide](./STYLE-GUIDE.md) for help with voice, tone, and
@@ -26,7 +26,7 @@ You'll need Node.js available (v22 recommended) or VS Code with the
 [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 extension and Docker.
 
-[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/stacklok/codegate-docs)
+[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/stacklok/docs-website)
 
 ```bash
 npm install
@@ -67,11 +67,10 @@ for broken links, so it's recommended to run this before submitting a PR.
 
 ## Deployment
 
-The `docs.codegate.ai` site is published using Vercel. Automatic previews for
+The `docs.stacklok.com` site is published using Vercel. Automatic previews for
 branches and pull requests are enabled. The production site is published from
 the `main` branch.
 
 ## About
 
-This site is built with [Docusaurus](https://docusaurus.io/), a modern static
-website generator.
+This site is built with [Docusaurus](https://docusaurus.io/).

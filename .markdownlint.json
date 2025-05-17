@@ -22,7 +22,7 @@
   "no-bare-urls": false,
   "proper-names": {
     "code_blocks": false,
-    "names": ["CodeGate", "Copilot", "GitHub"]
+    "names": ["CodeGate", "Copilot", "GitHub", "ToolHive"]
   },
   "strong-style": {
     "style": "asterisk"
