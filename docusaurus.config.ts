@@ -65,6 +65,21 @@ const config: Config = {
         },
       } satisfies Preset.Options,
     ],
+    [
+      'redocusaurus',
+      {
+        specs: [
+          {
+            id: 'codegate-api',
+            spec: 'https://raw.githubusercontent.com/stacklok/codegate/refs/heads/main/api/openapi.json',
+          },
+        ],
+        theme: {
+          primaryColor: '#e31c79',
+          primaryColorDark: '#e31c79',
+        },
+      },
+    ],
   ],
 
   themeConfig: {
