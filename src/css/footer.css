@@ -1,28 +1,18 @@
-/* Footer classes to match the style of codegate.ai */
+/* Footer classes to match the style of stacklok.com */
 
-.footer {
-  padding: 20px 16px 40px;
-}
-
-.footer .container {
-  margin: auto;
-  padding: 0;
-  max-width: 1200px;
-}
-
-.footer__title {
-  text-transform: uppercase;
+[data-theme='dark'] .footer__logo--custom {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
 }
 
 .footer__copyright {
-  color: #9399ac;
   text-align: left;
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 .footer__item {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -30,7 +20,7 @@
   padding-bottom: 10px;
 }
 
-.footer__icon__custom {
+.footer__icon--custom {
   padding: 0px 12px;
 }
 
@@ -44,15 +34,7 @@
   margin-right: auto;
 }
 
-.footer__col:last-child,
-.footer__col:nth-last-child(2) {
-  max-width: 160px;
+.footer__col:last-child {
+  max-width: 200px;
   margin-right: 0px;
-}
-
-.footer__powered_by {
-  margin-left: auto;
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 600;
 }

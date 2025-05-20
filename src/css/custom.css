@@ -4,53 +4,68 @@
  * work well for content-centric websites.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 @import './icons.css';
 @import './footer.css';
+@import './landing-page.css';
 
-/* You can override the default Infima variables here. */
+/* Default Infima variable overrides. */
 :root {
   --ifm-font-family-base: 'Figtree', 'system-ui', 'sans-serif';
-  --ifm-color-content: #0f172a;
+  --ifm-heading-font-family: 'Inter', 'system-ui', 'sans-serif';
+  --ifm-color-content: #111111;
   --ifm-color-content-secondary: #334155;
 
-  --ifm-footer-background-color: #f8fafc;
-  --ifm-footer-color: #0f172a;
-  --ifm-footer-title-color: #64748b;
-  --ifm-footer-link-color: #334155;
-  --ifm-footer-link-hover-color: #e31c79;
-  --ifm-navbar-link-color: #334155;
-  --ifm-navbar-background-color: #f8fafc;
-  --ifm-menu-color: #5d6982;
-  --ifm-toc-link-color: #5d6982;
+  --ifm-footer-background-color: #f4f4f4;
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-navbar-height: 6rem;
+  --ifm-navbar-padding-horizontal: 2rem;
+  --ifm-menu-color: #111111;
+  --ifm-menu-color-background-active: #f5f5f5;
+  --ifm-menu-color-background-hover: #f5f5f5;
+  --ifm-toc-link-color: #808080;
+  --ifm-breadcrumb-color-active: #111111;
+  --ifm-breadcrumb-item-background-active: rgba(40, 9, 165, 0.1);
 
-  --ifm-color-primary: #e31c79;
-  --ifm-color-primary-dark: #cc196d;
-  --ifm-color-primary-darker: #c11867;
-  --ifm-color-primary-darkest: #9f1455;
-  --ifm-color-primary-light: #e63386;
-  --ifm-color-primary-lighter: #e73e8d;
-  --ifm-color-primary-lightest: #eb60a1;
+  --ifm-color-primary: #2809a5;
+  --ifm-color-primary-dark: #240894;
+  --ifm-color-primary-darker: #22088c;
+  --ifm-color-primary-darkest: #1c0674;
+  --ifm-color-primary-light: #2c0ab6;
+  --ifm-color-primary-lighter: #2e0abe;
+  --ifm-color-primary-lightest: #340cd7;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Overrides for dark mode. */
 [data-theme='dark'] {
-  --ifm-navbar-background-color: #1a1c1f;
-  --ifm-navbar-link-color: #9399ac;
-  --ifm-menu-color: #9399ac;
-  --ifm-toc-link-color: #9399ac;
+  --ifm-footer-background-color: #151515;
+  --ifm-navbar-background-color: #151515;
+  --ifm-menu-color: #ffffff;
+  --ifm-menu-color-background-active: #242424;
+  --ifm-menu-color-background-hover: #242424;
+  --ifm-toc-link-color: #cccccc;
+  --ifm-breadcrumb-color-active: #ffffff;
+  --ifm-breadcrumb-item-background-active: rgba(122, 183, 255, 0.1);
 
-  --ifm-color-primary: #e31c79;
-  --ifm-color-primary-dark: #cc196d;
-  --ifm-color-primary-darker: #c11867;
-  --ifm-color-primary-darkest: #9f1455;
-  --ifm-color-primary-light: #e63386;
-  --ifm-color-primary-lighter: #e73e8d;
-  --ifm-color-primary-lightest: #eb60a1;
+  --ifm-color-primary: #7ab7ff;
+  --ifm-color-primary-dark: #54a3ff;
+  --ifm-color-primary-darker: #4198ff;
+  --ifm-color-primary-darkest: #097aff;
+  --ifm-color-primary-light: #a0cbff;
+  --ifm-color-primary-lighter: #b3d6ff;
+  --ifm-color-primary-lightest: #ebf4ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* We need to set these specifically to the html element to get correct
+ * behavior with the dark mode toggle. */
+html[data-theme='dark'] {
+  --ifm-background-color: #111111;
+  --ifm-color-content: #ffffff;
+  --ifm-color-content-secondary: #cccccc;
 }
 
 /* Enables GitHub-style light/dark mode switching without the ThemedImage component */
@@ -59,24 +74,93 @@
   display: none;
 }
 
-html[data-theme='dark'] {
-  --ifm-background-color: #101114;
-  /* --ifm-color-content: #9399ac; */
-  --ifm-color-content: #c7ccdc;
+/* Custom classes for the navbar links */
+.navbar__product-link--custom {
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
 }
 
-.theme-doc-sidebar-container {
-  background-color: #f8fafc;
+.navbar__product-link--custom:hover,
+.navbar__link--active {
+  box-sizing: border-box;
+  border-radius: var(--ifm-breadcrumb-border-radius);
+  background: #f2f2f2;
 }
 
-[data-theme='dark'] .theme-doc-sidebar-container {
-  background-color: #1a1c1f;
+[data-theme='dark'] .navbar__product-link--custom:hover,
+[data-theme='dark'] .navbar__link--active {
+  background: rgba(122, 183, 255, 0.1);
+}
+
+/* Lighter color for sidebar menu child links */
+.theme-doc-sidebar-item-link:not(.theme-doc-sidebar-item-link-level-1)
+  .menu__link:not(.menu__link--active) {
+  color: #808080;
+}
+
+[data-theme='dark']
+  .theme-doc-sidebar-item-link:not(.theme-doc-sidebar-item-link-level-1)
+  .menu__link:not(.menu__link--active) {
+  color: #cccccc;
+}
+
+[data-theme='dark'] .pagination-nav__link {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Custom styles for the DocSearch component */
+
+.DocSearch {
+  font-family: var(--ifm-font-family-base);
+  --docsearch-text-color: var(--ifm-font-color-base);
+  --docsearch-muted-color: var(--ifm-color-secondary-darkest);
+  --docsearch-container-background: rgba(94, 100, 112, 0.7);
+  --docsearch-modal-background: #ffffff;
+  --docsearch-searchbox-background: #f2f2f2;
+  --docsearch-searchbox-focus-background: var(--ifm-color-white);
+  --docsearch-hit-color: var(--ifm-font-color-base);
+  --docsearch-hit-active-color: var(--ifm-color-white);
+  --docsearch-hit-background: var(--ifm-color-emphasis-100);
+  --docsearch-footer-background: var(--ifm-background-surface-color);
+}
+
+[data-theme='dark'] .DocSearch {
+  --docsearch-container-background: rgba(47, 55, 69, 0.7);
+  --docsearch-modal-background: var(--ifm-background-color);
+  --docsearch-searchbox-background: #111111;
+  --docsearch-searchbox-focus-background: var(--ifm-color-black);
+  --docsearch-key-gradient: linear-gradient(
+    -26.5deg,
+    var(--ifm-color-emphasis-200) 0%,
+    var(--ifm-color-emphasis-100) 100%
+  );
+}
+
+.navbar .DocSearch-Button {
+  border-style: solid;
+  border-width: 1px;
+  height: 40px;
+}
+
+.navbar .DocSearch-Button {
+  border-color: #dcdcdc;
+}
+
+[data-theme='dark'] .navbar .DocSearch-Button {
+  border-color: #333333;
 }
 
 /* Mermaid flowchart labels */
+.edgeLabel p {
+  color: var(--ifm-color-content) !important;
+}
+
 [data-theme='dark'] .edgeLabel p {
+  color: var(--ifm-color-content) !important;
   background-color: var(--ifm-background-color) !important;
 }
+
+/* Tab components */
 
 .tabs-container {
   background-color: var(--ifm-card-background-color);

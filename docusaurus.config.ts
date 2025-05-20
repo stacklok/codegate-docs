@@ -104,18 +104,26 @@ const config: Config = {
           sidebarId: 'codegateSidebar',
           position: 'left',
           label: 'CodeGate',
+          className: 'navbar__product-link--custom',
         },
         {
           type: 'docSidebar',
           sidebarId: 'toolhiveSidebar',
           position: 'left',
           label: 'ToolHive',
+          className: 'navbar__product-link--custom',
         },
         {
           href: 'https://github.com/stacklok',
           className: 'github-link',
           position: 'right',
           'aria-label': 'GitHub',
+        },
+        {
+          href: 'https://linkedin.com/company/stacklok/',
+          className: 'linkedin-link',
+          position: 'right',
+          'aria-label': 'LinkedIn',
         },
         {
           href: 'https://discord.gg/stacklok',
@@ -132,42 +140,24 @@ const config: Config = {
       ],
     },
     footer: {
-      style: 'dark',
       links: [
         {
           items: [
             {
+              // Black logo will be inverted in dark mode (via CSS)
+              html: `<a href="https://stacklok.com/"><img src="/img/stacklok-wordmark-black.svg" alt="Stacklok Logo" width="150px" class="footer__logo--custom" /></a>`,
+            },
+          ],
+        },
+        {
+          items: [
+            {
               html: `<div style="display: flex;">
-                       <a href="https://stacklok.com/"><img src="/img/stacklok-wordmark-white.svg" alt="Stacklok Logo" width="150px" /></a>
-                       <a href="https://github.com/stacklok" target="_blank" class="footer__icon__custom navbar__link github-link" style="padding-left: 30px;"></a>
-                       <a href="https://discord.gg/stacklok" target="_blank" class="footer__icon__custom navbar__link discord-link"></a>
-                       <a href="https://youtube.com/@stacklok" target="_blank" class="footer__icon__custom navbar__link youtube-link"></a>
+                       <a href="https://github.com/stacklok" target="_blank" class="footer__icon--custom navbar__link github-link"></a>
+                       <a href="https://linkedin.com/company/stacklok" target="_blank" class="footer__icon--custom navbar__link linkedin-link"></a>
+                       <a href="https://discord.gg/stacklok" target="_blank" class="footer__icon--custom navbar__link discord-link"></a>
+                       <a href="https://youtube.com/@stacklok" target="_blank" class="footer__icon--custom navbar__link youtube-link"></a>
                      </div>`,
-            },
-            {
-              html: `We build solutions that help developers create more safe and sustainable code.`,
-            },
-          ],
-        },
-        {
-          title: 'Projects',
-          items: [
-            {
-              html: '<a href="https://github.com/stacklok" target="_blank" class="footer__link-item github-link">&nbsp;&nbsp;CodeGate</a>',
-            },
-            {
-              html: '<a href="https://github.com/stacklok" target="_blank" class="footer__link-item github-link">&nbsp;&nbsp;ToolHive</a>',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              html: '<a href="https://discord.gg/stacklok" target="_blank" class="footer__link-item discord-link">&nbsp;&nbsp;Discord</a>',
-            },
-            {
-              html: '<a href="https://youtube.com/@stacklok" target="_blank" class="footer__link-item youtube-link"">&nbsp;&nbsp;YouTube</a>',
             },
           ],
         },
@@ -184,23 +174,25 @@ const config: Config = {
       options: {
         themeVariables: {
           fontFamily: 'Figtree, system-ui, sans-serif',
-          primaryColor: '#E31C79',
-          primaryBorderColor: '#E31C79',
-          lineColor: '#E31C79',
+          primaryColor: '#5750FF',
+          primaryBorderColor: '#5750FF',
+          primaryTextColor: '#FFFFFF',
+          lineColor: '#5750FF',
           secondaryColor: '#F3E6EE',
           tertiaryColor: '#FAF0F6',
-          mainBkg: '#E31C79',
+          mainBkg: '#5750FF',
           noteBkgColor: '#444444',
           noteTextColor: '#FFFFFF',
+          // BEGIN flowchart styles
+          nodeTextColor: '#FFFFFF',
           // BEGIN sequenceDiagram styles
-          actorBorder: '#E31C79',
-          actorLineColor: '#E31C79',
+          actorBorder: '#5750FF',
+          actorLineColor: '#5750FF',
           actorTextColor: '#FFFFFF',
-          activationBkgColor: '#E31C79',
-          activationBorderColor: '#E31C79',
+          activationBkgColor: '#5750FF',
+          activationBorderColor: '#5750FF',
           labelBoxBkgColor: '#444444',
           labelTextColor: '#FFFFFF',
-          // END sequenceDiagram styles
         },
       },
     },

@@ -3,19 +3,15 @@
  */
 .github-link::before {
   content: '';
-  width: 16px;
-  height: 16px;
+  height: 19px;
+  width: 19px;
   display: inline-block;
   vertical-align: middle;
-  background-color: var(--ifm-footer-link-color);
+  background-color: var(--ifm-navbar-link-color);
   mask-image: url('/img/github-brands-solid.svg');
   mask-repeat: no-repeat;
   transition: background-color var(--ifm-transition-fast)
     var(--ifm-transition-timing-default);
-}
-
-[data-theme='dark'] .navbar__item.github-link::before {
-  background-color: var(--ifm-color-content);
 }
 
 .github-link:hover::before {
@@ -24,11 +20,11 @@
 
 .discord-link::before {
   content: '';
-  width: 20px;
-  height: 16px;
+  height: 20px;
+  width: 21px;
   display: inline-block;
   vertical-align: middle;
-  background-color: var(--ifm-footer-link-color);
+  background-color: var(--ifm-navbar-link-color);
   mask-image: url('/img/discord-brands-solid.svg');
   mask-repeat: no-repeat;
   mask-position: 0% 50%;
@@ -37,21 +33,17 @@
     var(--ifm-transition-timing-default);
 }
 
-[data-theme='dark'] .navbar__item.discord-link::before {
-  background-color: var(--ifm-color-content);
-}
-
 .discord-link:hover::before {
   background-color: var(--ifm-navbar-link-hover-color) !important;
 }
 
 .youtube-link::before {
   content: '';
-  width: 18px;
   height: 16px;
+  width: 20px;
   display: inline-block;
   vertical-align: middle;
-  background-color: var(--ifm-footer-link-color);
+  background-color: var(--ifm-navbar-link-color);
   mask-image: url('/img/youtube-brands-solid.svg');
   mask-position: 0% 50%;
   mask-repeat: no-repeat;
@@ -59,32 +51,23 @@
     var(--ifm-transition-timing-default);
 }
 
-[data-theme='dark'] .navbar__item.youtube-link::before {
-  background-color: var(--ifm-color-content);
-}
-
 .youtube-link:hover::before {
   background-color: var(--ifm-navbar-link-hover-color) !important;
 }
 
-.stacklok-link::before {
+.linkedin-link::before {
   content: '';
+  height: 18px;
   width: 18px;
-  height: 16px;
   display: inline-block;
   vertical-align: middle;
-  background-color: var(--ifm-footer-link-color);
-  mask-image: url('/img/stacklok-icon-black.svg');
-  mask-position: 0% 50%;
+  background-color: var(--ifm-navbar-link-color);
+  mask-image: url('/img/linkedin-brands.svg');
   mask-repeat: no-repeat;
   transition: background-color var(--ifm-transition-fast)
     var(--ifm-transition-timing-default);
 }
 
-[data-theme='dark'] .navbar__item.stacklok-link::before {
-  background-color: var(--ifm-color-content);
-}
-
-.stacklok-link:hover::before {
+.linkedin-link:hover::before {
   background-color: var(--ifm-navbar-link-hover-color) !important;
 }

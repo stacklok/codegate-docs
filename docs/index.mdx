@@ -7,56 +7,60 @@ description:
   confidence.
 displayed_sidebar: null
 hide_table_of_contents: true
+custom_edit_url: null
 ---
-
-import Columns from '@site/src/components/Columns';
-import Column from '@site/src/components/Column';
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import ThemedImage from '@theme/ThemedImage';
 
-Stacklok helps developers use AI code generation tools with more control and
-confidence.
+<h1 className='text--center'>Our Projects</h1>
 
-Explore our projects:
+<div className='landing-subtitle'>
+  Stacklok helps developers use AI code generation tools with more control and
+  confidence.
+</div>
 
-<Columns>
-<Column className='text--left'>
+<div className="product-nav">
+  <a className="product-nav__item" href='/codegate/'>
+    <div>
+      <ThemedImage alt='CodeGate logo' title='CodeGate logo'
+        sources={{
+          light: useBaseUrl('/img/codegate-wordmark-black.svg'),
+          dark: useBaseUrl('/img/codegate-wordmark-white.svg'),
+        }}
+        class='product-nav__logo'
+      />
+    </div>
 
-[<ThemedImage alt='CodeGate logo' sources={{
-    light: useBaseUrl('/img/codegate-wordmark-black.svg'),
-    dark: useBaseUrl('/img/codegate-wordmark-white.svg'),
-  }} title='CodeGate logo' height={'60'} />](./codegate/index.mdx)
+    <div className="product-nav__body">
+      CodeGate is a local prompt gateway that sits between your AI coding assistant
+      and LLM to enhance privacy and security. CodeGate performs code security
+      reviews, identifies vulnerabilities in package dependencies, and prevents
+      sensitive data like secrets from being shared with AI models.
+    </div>
 
-[CodeGate](./codegate/index.mdx) is a local prompt gateway that sits between
-your AI coding assistant and LLM to enhance privacy and security. CodeGate
-performs code security reviews, identifies vulnerabilities in package
-dependencies, and prevents sensitive data like secrets from being shared with AI
-models.
+    <div className="product-nav__link">Read documentation</div>
 
-Quick links:
+  </a>
 
-- [Introduction](./codegate/index.mdx)
-- [Quickstart - Copilot](./codegate/quickstart-copilot.mdx)
-- [Quickstart - Continue](./codegate/quickstart-continue.mdx)
-- [Installation](./codegate/how-to/install.mdx)
-- [Features](./codegate/features/index.mdx)
+  <a className="product-nav__item" href='/toolhive'>
+    <div>
+      <ThemedImage alt='ToolHive logo' title='ToolHive logo'
+        sources={{
+          light: useBaseUrl('/img/toolhive-wordmark-black.svg'),
+          dark: useBaseUrl('/img/toolhive-wordmark-white.svg'),
+        }}
+        class='product-nav__logo'
+      />
+    </div>
 
-</Column>
-<Column className='text--left'>
+    <div className='product-nav__body'>
+      ToolHive is a lightweight utility designed to simplify the deployment and
+      management of MCP (Model Context Protocol) servers, ensuring ease of use,
+      consistency, and security.
+    </div>
 
-[<ThemedImage alt='ToolHive logo' sources={{
-    light: useBaseUrl('/img/toolhive-wordmark-black.svg'),
-    dark: useBaseUrl('/img/toolhive-wordmark-white.svg'),
-  }} title='ToolHive logo' height={'60'} />](./toolhive/index.mdx)
+    <div className='product-nav__link'>Read documentation</div>
 
-[ToolHive](./toolhive/index.mdx) is a lightweight utility designed to simplify
-the deployment and management of MCP (Model Context Protocol) servers, ensuring
-ease of use, consistency, and security.
-
-Quick links:
-
-- [Introduction](./toolhive/index.mdx)
-
-</Column>
-</Columns>
+  </a>
+</div>

@@ -1,0 +1,77 @@
+.landing-subtitle {
+  color: var(--ifm-color-content-secondary);
+  font-size: 1.2rem;
+  max-width: 45ch;
+  margin: auto;
+  text-align: center;
+}
+
+/* Landing page product card styles. These began as a copy of the pagination-nav classes. */
+
+.product-nav {
+  margin-top: 3rem;
+  display: grid;
+  gap: var(--ifm-spacing-horizontal);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.product-nav__item {
+  background-color: #ededed;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  line-height: var(--ifm-heading-line-height);
+  padding: 32px;
+  transition: border-color var(--ifm-transition-fast)
+    var(--ifm-transition-timing-default);
+}
+
+[data-theme='dark'] .product-nav__item {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.product-nav__item:hover {
+  border-color: var(--ifm-color-primary);
+  background-color: var(--ifm-color-emphasis-100);
+  background-image: url('/img/product-card-hover.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #ffffff;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.product-nav__logo {
+  max-height: 24px;
+}
+
+[data-theme='light'] .product-nav__item:hover .product-nav__logo {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
+
+.product-nav__body {
+  color: var(--ifm-color-content-secondary);
+  font-size: var(--ifm-h5-font-size);
+  font-weight: var(--ifm-font-weight-semibold);
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.product-nav__item:hover .product-nav__body {
+  color: #ffffff;
+}
+
+.product-nav__link {
+  font-size: var(--ifm-font-size-base);
+  font-weight: var(--ifm-font-weight-normal);
+  margin-top: auto;
+  word-break: break-word;
+}
+
+.product-nav__item .product-nav__link::after {
+  content: ' ↗';
+}
