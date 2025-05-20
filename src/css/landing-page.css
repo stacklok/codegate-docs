@@ -44,8 +44,8 @@
   text-decoration: none;
 }
 
-.product-nav__logo {
-  max-height: 24px;
+.product-nav__logo > img {
+  height: 24px;
 }
 
 [data-theme='light'] .product-nav__item:hover .product-nav__logo {

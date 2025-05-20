@@ -21,6 +21,7 @@
   --ifm-navbar-background-color: #ffffff;
   --ifm-navbar-height: 6rem;
   --ifm-navbar-padding-horizontal: 2rem;
+
   --ifm-menu-color: #111111;
   --ifm-menu-color-background-active: #f5f5f5;
   --ifm-menu-color-background-hover: #f5f5f5;
@@ -40,9 +41,14 @@
 }
 
 /* Overrides for dark mode. */
-[data-theme='dark'] {
+html[data-theme='dark'] {
+  --ifm-color-content: #ffffff;
+  --ifm-color-content-secondary: #cccccc;
+
+  --ifm-background-color: #111111;
   --ifm-footer-background-color: #151515;
   --ifm-navbar-background-color: #151515;
+
   --ifm-menu-color: #ffffff;
   --ifm-menu-color-background-active: #242424;
   --ifm-menu-color-background-hover: #242424;
@@ -58,14 +64,6 @@
   --ifm-color-primary-lighter: #b3d6ff;
   --ifm-color-primary-lightest: #ebf4ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-}
-
-/* We need to set these specifically to the html element to get correct
- * behavior with the dark mode toggle. */
-html[data-theme='dark'] {
-  --ifm-background-color: #111111;
-  --ifm-color-content: #ffffff;
-  --ifm-color-content-secondary: #cccccc;
 }
 
 /* Enables GitHub-style light/dark mode switching without the ThemedImage component */
@@ -93,7 +91,8 @@ html[data-theme='dark'] {
 }
 
 /* Lighter color for sidebar menu child links */
-.theme-doc-sidebar-item-link:not(.theme-doc-sidebar-item-link-level-1)
+[data-theme='light']
+  .theme-doc-sidebar-item-link:not(.theme-doc-sidebar-item-link-level-1)
   .menu__link:not(.menu__link--active) {
   color: #808080;
 }
