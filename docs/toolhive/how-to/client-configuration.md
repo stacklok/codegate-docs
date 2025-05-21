@@ -1,20 +1,13 @@
 ---
 title: Client configuration
 description:
-  How to configure AI assistant clients to work with ToolHive MCP servers.
+  How to configure AI agent clients to work with ToolHive MCP servers.
 sidebar_position: 40
 ---
 
-This guide shows you how to configure AI assistant clients to work with ToolHive
-MCP servers.
-
-## Prerequisites
-
-Before you begin, make sure you have:
-
-- ToolHive installed
-- At least one supported client installed (VS Code with Copilot, Cursor, or Roo
-  Code)
+ToolHive can automatically configure supported AI clients to work with MCP
+servers. This guide explains how to set up and manage client configurations for
+ToolHive.
 
 ## Understanding client configuration
 
@@ -34,11 +27,19 @@ automatically when you start or remove an MCP server. For a complete list of
 supported clients and compatibility details, check the
 [Client compatibility reference](../reference/client-compatibility.md).
 
-## Using auto-discovery
+:::note
 
-Auto-discovery is the simplest way to configure supported clients.
+Automatic configuration is only supported on macOS and Linux. If you are running
+ToolHive on Windows using WSL, you can still use ToolHive to run MCP servers,
+but you will need to manually configure your Windows-based client(s).
 
-### Step 1: Enable auto-discovery
+:::
+
+## Enable auto-discovery
+
+Auto-discovery is the simplest way to configure supported clients. When enabled,
+ToolHive automatically detects and configures supported clients on your system
+when you run an MCP server.
 
 Enable auto-discovery with the following command:
 
@@ -46,27 +47,33 @@ Enable auto-discovery with the following command:
 thv config auto-discovery true
 ```
 
-### Step 2: Run an MCP server
+Going forward, any new servers you start with `thv run` will be automatically
+configured in your client.
 
-Run an MCP server:
+:::note
+
+When you enable auto-discovery, ToolHive does not add existing MCP servers to
+your client configuration. It only configures new servers that you start with
+`thv run`. If you want to add existing servers you can either:
+
+1. Stop and restart each server with `thv stop` and `thv restart` (see
+   [Lifecycle management](./manage-mcp-servers.md#lifecycle-management)), or
+2. Manually register your client(s) with
+   `thv config register-client <client-name>`, which adds all existing servers
+   to the client configuration.
+
+:::
+
+To disable auto-discovery:
 
 ```bash
-thv run fetch
+thv config auto-discovery false
 ```
 
-ToolHive configures any supported clients it finds on your system automatically.
+## Manually register clients
 
-### Step 3: Restart your client
-
-You may need to restart your client application (VS Code, Cursor, etc.) for the
-configuration to take effect.
-
-## Manually registering clients
-
-If auto-discovery doesn't work for your setup or you want more control, you can
-manually register clients.
-
-### Step 1: Register a client
+If you want more control over client auto-configuration, you can manually
+register clients.
 
 Use the following command to register a client:
 
@@ -92,42 +99,21 @@ thv config register-client vscode
 Run `thv config register-client --help` for the latest list of supported
 clients.
 
-### Step 2: Verify the client is registered
-
-List all registered clients:
+To list currently registered clients:
 
 ```bash
 thv config list-registered-clients
 ```
 
-Your client should appear in the list. Repeat the registration step for any
-additional clients you want to configure.
-
-### Step 3: Run an MCP server
-
-Run an MCP server:
-
-```bash
-thv run fetch
-```
-
-### Step 4: Restart your client
+Repeat the registration step for any additional clients you want to configure.
 
 You may need to restart your client application for the configuration to take
 effect.
-
-## Removing client configurations
 
 To remove a client configuration:
 
 ```bash
 thv config remove-client <client-name>
-```
-
-To disable auto-discovery if you enabled it:
-
-```bash
-thv config auto-discovery false
 ```
 
 ## Other clients or tools
@@ -173,8 +159,8 @@ Example output:
 }
 ```
 
-Next, configure your client or library to connect to the MCP server using the
-URL provided by ToolHive.
+Configure your client or library to connect to the MCP server using the URL
+provided by ToolHive.
 
 ## Troubleshooting
 
@@ -207,23 +193,22 @@ If your client can't connect to the MCP server:
    thv list
    ```
 
-2. Check the client configuration:
+2. If auto-discovery is not enabled, check if the client is registered:
 
    ```bash
    thv config list-registered-clients
    ```
 
-3. Ensure the URL is correct and accessible. Use `curl` to test the connection,
-   for example (replace the URL with your actual MCP server URL):
+3. Ensure the URL is correct and accessible. Use `curl` to test the connection:
 
    ```bash
-   curl http://localhost:43832/sse\#fetch
+   curl <url-from-thv-list>
    ```
 
 4. Restart your client application
 
 ## Related information
 
-- [thv config command reference](../reference/cli/thv_config.md)
+- [`thv config` command reference](../reference/cli/thv_config.md)
 - [Client compatibility](../reference/client-compatibility.md)
-- [Run and manage MCP servers](run-mcp-servers.mdx)
+- [Run MCP servers](run-mcp-servers.mdx)
