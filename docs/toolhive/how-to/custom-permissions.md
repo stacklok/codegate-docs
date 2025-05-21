@@ -232,4 +232,4 @@ If your MCP server can't connect to external services:
 ## Related information
 
 - [`thv run` command reference](../reference/cli/thv_run.md)
-- [Run and manage MCP servers](run-mcp-servers.mdx)
+- [Run MCP servers](run-mcp-servers.mdx)

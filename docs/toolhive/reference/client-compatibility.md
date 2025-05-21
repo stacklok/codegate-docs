@@ -202,4 +202,4 @@ If your client connects to the MCP server but tools aren't available:
 ## Related information
 
 - [Client configuration](../how-to/client-configuration.md)
-- [Run and manage MCP servers](../how-to/run-mcp-servers.mdx)
+- [Run MCP servers](../how-to/run-mcp-servers.mdx)

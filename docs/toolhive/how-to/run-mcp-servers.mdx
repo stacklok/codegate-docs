@@ -1,73 +1,22 @@
 ---
-title: Run and manage MCP servers
-description: How to find, run, monitor, and manage MCP servers with ToolHive.
+title: Run MCP servers
+description: How to run MCP servers with the ToolHive CLI.
 sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This guide explains how to find, run, monitor, and manage MCP servers with
-ToolHive.
+This guide explains the process of running Model Context Protocol (MCP) servers
+using ToolHive. It covers how to run servers from the ToolHive registry,
+customize server settings, and run custom servers using Docker images or
+protocol schemes.
 
-## MCP server registry
+## Run a server from the registry
 
-ToolHive includes a curated registry of MCP servers that you can browse and
-search.
-
-### List all servers
-
-To list all MCP servers in the registry:
-
-```bash
-thv registry list
-```
-
-This command displays a list of servers with their names and descriptions.
-
-### Search for a server
-
-To find servers related to a specific topic or capability:
-
-```bash
-thv search <term>
-```
-
-For example, to locate servers related to GitHub:
-
-```bash
-thv search github
-```
-
-### View server details
-
-To view detailed information about a specific MCP server:
-
-```bash
-thv registry info <server-name>
-```
-
-For example:
-
-```bash
-thv registry info github
-```
-
-ToolHive provides the server's description, available tools, configuration
-options, and other metadata.
-
-See [`thv registry info --help`](../reference/cli/thv_registry_info.md) for more
-options.
-
-## Running MCP servers
-
-Below are the most common scenarios for running MCP servers using the ToolHive
-CLI. For more options, run `thv run --help` or see the
-[`thv run` command reference](../reference/cli/thv_run.md).
-
-### Run a server from the registry
-
-To run an MCP server from the ToolHive registry:
+To run an MCP server from the [ToolHive registry](./registry.md), use the
+`thv run` command with the name of the server you want to run. The server name
+is the same as its name in the registry.
 
 ```bash
 thv run <server-name>
@@ -79,16 +28,39 @@ For example:
 thv run fetch
 ```
 
-ToolHive pulls the container image (if needed) and starts the server with
-default settings as defined in the registry.
+:::info What's happening?
 
-See [Running custom MCP servers](#running-custom-mcp-servers) to run a server
-that is not in the registry.
+When you run an MCP server from the registry, ToolHive:
+
+1. Pulls the image and launches a container using the configuration from the
+   registry.
+2. Launches an HTTP proxy on a random port to forward client requests to the
+   container.
+3. Labels the container so it can be tracked by ToolHive:
+   ```yaml
+   toolhive: true
+   toolhive-name: <server-name>
+   ```
+
+:::
+
+See [Running custom MCP servers](#run-a-custom-mcp-server) to run a server that
+is not in the registry.
+
+## Customize server settings
+
+You may need to customize the behavior of an MCP server, such as changing the
+port, mounting a local directory, or passing secrets. ToolHive provides several
+options to customize the server's configuration when you run it.
+
+For a complete list of options, run `thv run --help` or see the
+[`thv run` command reference](../reference/cli/thv_run.md).
 
 ### Run a server with a custom name
 
-By default, the container name matches the MCP server's name in the registry. To
-give your server instance a custom name:
+By default, the container name matches the MCP server's name in the registry or
+is automatically generated from the image name when you run a custom server. To
+give your server instance a custom name, use the `--name` option:
 
 ```bash
 thv run --name my-custom-name <server-name>
@@ -111,6 +83,10 @@ To pass a secret to an MCP server, use the `--secret` option:
 ```bash
 thv run --secret <secret-name>,target=<env-var-name> <server-name>
 ```
+
+The `target` parameter specifies the name of the environment variable in the MCP
+server's container. This is useful for passing secrets like API tokens or other
+sensitive information.
 
 For example:
 
@@ -136,11 +112,32 @@ useful for sharing files without allowing the MCP server to modify them.
 ToolHive automatically adds mounted paths to the MCP server's
 [permissions profile](./custom-permissions.md).
 
-For example, to mount a directory to the Filesystem MCP server:
+For example, to mount a local directory to the Filesystem MCP server:
 
 ```bash
 thv run --volume ~/code/toolhive:/projects/toolhive filesystem
 ```
+
+The filesystem server can now access the contents of `~/code/toolhive` as
+`/projects/toolhive` in the container (the filesystem MCP server expects
+directories to be mounted at `/projects` by default).
+
+### Pass additional arguments
+
+Some MCP servers require additional arguments to run correctly. You can pass
+these arguments after the server name in the `thv run` command:
+
+```bash
+thv run <server-name> -- <additional-args>
+```
+
+For example, to run the `fetch` server with custom arguments:
+
+```bash
+thv run fetch -- --arg1 value1 --arg2 value2
+```
+
+Check the MCP server's documentation for the required arguments.
 
 ### Run a server on a specific port
 
@@ -151,79 +148,7 @@ container. To specify the port for an MCP server:
 thv run --port <port-number> <server-name>
 ```
 
-## Monitoring MCP servers
-
-### List running servers
-
-To see all currently running MCP servers:
-
-```bash
-thv list
-```
-
-This shows the server name, status, transport method, port, and URL.
-
-To include stopped servers in the list:
-
-```bash
-thv list --all
-```
-
-### View server logs
-
-To view the logs for a running MCP server:
-
-```bash
-thv logs <server-name>
-```
-
-For example:
-
-```bash
-thv logs fetch
-```
-
-## Managing server lifecycle
-
-### Stop a server
-
-To stop a running MCP server:
-
-```bash
-thv stop <server-name>
-```
-
-This stops the server and the associated proxy process but keeps the container
-for future use.
-
-### Restart a server
-
-To restart a stopped MCP server:
-
-```bash
-thv restart <server-name>
-```
-
-### Remove a server
-
-To remove a stopped MCP server:
-
-```bash
-thv rm <server-name>
-```
-
-This removes the container and cleans up the MCP server's entry in your
-configured client(s).
-
-### Stop and remove in one command
-
-To stop and remove a running MCP server in one command:
-
-```bash
-thv rm -f <server-name>
-```
-
-## Running custom MCP servers
+## Run a custom MCP server
 
 To run an MCP server that is not in the registry, you can use a
 [Docker image](#run-a-server-from-a-docker-image) or a
@@ -271,18 +196,15 @@ Check your MCP server's documentation for the required arguments.
 
 When you run an MCP server from a Docker image, ToolHive:
 
-1. Pulls the image (`my-mcp-server-image:latest`) and launches a container.
-
+1. Pulls the image (`my-mcp-server-image:latest`) and launches a container with
+   the options and arguments you specified.
 2. Launches an HTTP proxy on a random port (optionally, add
    `--port <port-number>` to specify the port).
-
 3. Labels the container so it can be tracked by ToolHive:
-
    ```yaml
    toolhive: true
    toolhive-name: my-mcp-server
    ```
-
 4. Sets up the specified transport method (`--transport stdio` or
    `--transport sse`).
 
@@ -411,10 +333,14 @@ If a server crashes or exits unexpectedly:
 
 4. Check if the server requires any secrets or environment variables
 
+## Next steps
+
+See [Monitor and manage MCP servers](./manage-mcp-servers.md) to monitor and
+control your servers.
+
 ## Related information
 
 - [`thv run` command reference](../reference/cli/thv_run.md)
-- [`thv registry` command reference](../reference/cli/thv_registry.md)
 - [Client configuration](client-configuration.md)
 - [Secrets management](secrets-management.mdx)
 - [Custom permissions](custom-permissions.md)
