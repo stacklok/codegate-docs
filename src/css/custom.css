@@ -159,6 +159,27 @@ html[data-theme='dark'] {
   background-color: var(--ifm-background-color) !important;
 }
 
+/* Mermaid subgraph styling */
+/* Light mode */
+[data-theme='light'] .cluster rect {
+  fill: #e6e6ff !important;
+  stroke: #5750ff !important;
+}
+
+[data-theme='light'] .cluster text {
+  fill: #333344 !important;
+}
+
+/* Dark mode */
+[data-theme='dark'] .cluster rect {
+  fill: #333344 !important;
+  stroke: #5750ff !important;
+}
+
+[data-theme='dark'] .cluster text {
+  fill: #ffffff !important;
+}
+
 /* Tab components */
 
 .tabs-container {

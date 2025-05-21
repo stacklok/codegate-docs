@@ -75,8 +75,8 @@ const config: Config = {
           },
         ],
         theme: {
-          primaryColor: '#e31c79',
-          primaryColorDark: '#e31c79',
+          primaryColor: '#2809a5',
+          primaryColorDark: '#7ab7ff',
         },
       },
     ],
@@ -179,12 +179,15 @@ const config: Config = {
           primaryTextColor: '#FFFFFF',
           lineColor: '#5750FF',
           secondaryColor: '#F3E6EE',
-          tertiaryColor: '#FAF0F6',
+
+          // Base styling
           mainBkg: '#5750FF',
           noteBkgColor: '#444444',
           noteTextColor: '#FFFFFF',
+
           // BEGIN flowchart styles
           nodeTextColor: '#FFFFFF',
+
           // BEGIN sequenceDiagram styles
           actorBorder: '#5750FF',
           actorLineColor: '#5750FF',
