@@ -1,0 +1,302 @@
+---
+title: Install and manage ToolHive
+description: A guide to installing, upgrading, and managing ToolHive.
+sidebar_position: 10
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+This guide walks you through installing, upgrading, and managing the ToolHive
+CLI (`thv`).
+
+## Prerequisites
+
+Before installing ToolHive, make sure your system meets these requirements:
+
+- **Operating systems**: macOS, Linux, or WSL (Windows Subsystem for Linux)
+- **Container runtime**: Docker or Podman
+
+ToolHive requires minimal CPU, memory, and disk space. The exact requirements
+depend on how many MCP servers you run and what resources they use.
+
+## Install ToolHive
+
+You can install ToolHive using several methods:
+
+<Tabs groupId='installer' queryString='installer'>
+<TabItem value='macos' label='Homebrew (macOS)' default>
+If you use Homebrew on macOS, this is the simplest installation method:
+
+```bash
+brew tap stacklok/tap
+brew install thv
+```
+
+</TabItem>
+<TabItem value='binary' label='Pre-compiled binaries'>
+1. Visit the
+   [ToolHive releases page](https://github.com/stacklok/toolhive/releases)
+2. Download the appropriate binary for your platform:
+   - `toolhive_<version>_darwin_amd64.tar.gz` for macOS (Intel)
+   - `toolhive_<version>_darwin_arm64.tar.gz` for macOS (Apple Silicon)
+   - `toolhive_<version>_linux_amd64.tar.gz` for Linux (x86_64)
+   - `toolhive_<version>_linux_arm64.tar.gz` for Linux (ARM64)
+3. Extract the archive:
+
+```bash
+tar -xzf toolhive_<version>_<platform>.tar.gz
+```
+
+4.  Move the binary to a directory in your PATH, for example:
+
+```bash
+sudo mv thv /usr/local/bin/
+```
+
+5.  Make it executable (if needed):
+
+```bash
+sudo chmod +x /usr/local/bin/thv
+```
+
+</TabItem>
+<TabItem value='source' label='Build from source'>
+
+#### Prerequisites for building from source
+
+- Go 1.24 or newer
+- Git
+
+#### Using Go tools
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/stacklok/toolhive.git
+   cd toolhive
+   ```
+
+2. Build and install:
+
+   ```bash
+   go build ./cmd/thv
+   go install ./cmd/thv
+   ```
+
+#### Using Task
+
+If you have [Task](https://taskfile.dev/installation/) installed:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/stacklok/toolhive.git
+   cd toolhive
+   ```
+
+2. Build and install:
+
+   ```bash
+   task build
+   task install
+   ```
+
+</TabItem>
+</Tabs>
+
+## Verify your installation
+
+To verify that ToolHive is installed correctly:
+
+```bash
+thv version
+```
+
+You should see output showing the version number, build date, and Git commit:
+
+```text title="ToolHive version output"
+ToolHive v0.0.33
+Commit: e8efa1b1d7b0776a39339257d30bf6c4a171f2b8
+Built: 2025-05-12 14:31:06 UTC
+Go version: go1.24.1
+Platform: darwin/arm64
+```
+
+## Upgrade ToolHive
+
+ToolHive automatically checks for updates and notifies you when a new version is
+available. When you run a ToolHive command, it will display a message if an
+update exists.
+
+To upgrade ToolHive:
+
+<Tabs groupId='installer' queryString='installer'>
+<TabItem value='macos' label='Homebrew (macOS)' default>
+
+If you installed ToolHive via Homebrew, you can upgrade it with:
+
+```bash
+brew upgrade thv
+```
+
+</TabItem>
+<TabItem value='binary' label='Pre-compiled binaries'>
+
+Follow the same steps as the [initial installation](#install-toolhive),
+downloading the latest release and overwriting the previous binary.
+
+</TabItem>
+<TabItem value='source' label='Build from source'>
+
+If you built ToolHive from source, you can upgrade it by pulling the latest
+changes and rebuilding:
+
+#### Using Go tools
+
+```bash
+git pull
+
+go build ./cmd/thv
+go install ./cmd/thv
+```
+
+#### Using Task:
+
+```bash
+git pull
+
+task build
+task install
+```
+
+</TabItem>
+</Tabs>
+
+## Get help with ToolHive commands
+
+ToolHive has built-in help for all commands:
+
+```bash
+# General help
+thv --help
+
+# Help for a specific command
+thv <command> --help
+```
+
+For detailed documentation on each command, refer to the
+[CLI reference documentation](../reference/cli/thv.md).
+
+## Enable shell completion
+
+ToolHive can generate auto-completion scripts for your shell to make it easier
+to use. The `thv completion` command generates scripts for bash, zsh, fish, and
+PowerShell.
+
+Each shell has different requirements for where to store completion scripts and
+how to enable them. The help output for each shell provides specific
+instructions:
+
+```bash
+# Get help on completion options
+thv completion --help
+
+# Get specific instructions for your shell
+thv completion bash --help
+thv completion zsh --help
+thv completion fish --help
+thv completion powershell --help
+```
+
+## Uninstall ToolHive
+
+If you need to uninstall ToolHive:
+
+1. First, remove any MCP servers managed by ToolHive:
+
+   ```bash
+   # List running servers
+   thv list
+   # Stop and remove each server
+   thv stop <server-name>
+   thv rm <server-name>
+   ```
+
+2. Remove all ToolHive configuration and log files:
+
+   ```bash
+   # Remove the secrets encryption password entry from your OS keyring
+   thv secret reset-keyring
+
+   # Delete the ToolHive configuration and log files
+   # macOS:
+   rm -rf ~/Library/Application\ Support/toolhive/
+   # Linux:
+   rm -rf ~/.config/toolhive/
+   ```
+
+3. Remove the ToolHive CLI:
+
+{/* prettier-ignore */}
+   <Tabs groupId='installer' queryString='installer'>
+     <TabItem value='homebrew' label='Homebrew (macOS)' default>
+       If you installed ToolHive via Homebrew, you can uninstall it with:
+
+       ```bash
+       brew uninstall thv
+       ```
+     </TabItem>
+     <TabItem value='binary' label='Pre-compiled binaries'>
+       Delete the binary from your PATH:
+
+       ```bash
+       sudo rm /usr/local/bin/thv
+       ```
+     </TabItem>
+     <TabItem value='source' label='Build from source'>
+       Remove the binary from your `$GOPATH`:
+
+       ```bash
+       rm $(go env GOPATH)/bin/thv
+       ```
+     </TabItem>
+
+   </Tabs>
+
+## Troubleshooting
+
+### Permission denied errors
+
+If you see "permission denied" errors when running ToolHive:
+
+1. Make sure the binary is executable:
+
+   ```bash
+   chmod +x /path/to/thv
+   ```
+
+2. If using Docker on Linux, ensure your user has permission to access the
+   Docker socket:
+
+   ```bash
+   sudo usermod -aG docker $USER
+   ```
+
+   (Log out and back in or run `newgrp docker` for this to take effect)
+
+   See
+   [Docker documentation](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
+   for more details.
+
+### Other issues
+
+For other installation issues, check the
+[GitHub issues page](https://github.com/stacklok/toolhive/issues) or join the
+[Discord community](https://discord.gg/stacklok).
+
+## Related information
+
+- Quickstart: [Getting started with ToolHive](../quickstart.mdx)
+- [Run and manage MCP servers](run-mcp-servers.mdx)
+- [Client configuration](client-configuration.md)

@@ -1,0 +1,259 @@
+---
+title: Quickstart - run your first MCP server
+description:
+  A step-by-step guide to installing ToolHive and running your first MCP server.
+sidebar_position: 10
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+In this tutorial, you'll learn how to install ToolHive and run your first MCP
+server. By the end, you'll have a working MCP server that can be used by AI
+assistants to fetch content from websites.
+
+## What you'll learn
+
+- How to install ToolHive on your system
+- How to find available MCP servers
+- How to run an MCP server
+- How to verify the server is working
+- How to use the server with an AI assistant
+
+## Prerequisites
+
+Before starting this tutorial, make sure you have:
+
+- A macOS or Linux system (or WSL on Windows)
+- Docker or Podman installed and running
+- A supported client (VS Code with Copilot, Cursor, or Roo Code)
+
+## Step 1: Install ToolHive
+
+First, let's install ToolHive on your system. For detailed installation
+instructions, see the [Installing ToolHive](./how-to/install.mdx) guide.
+
+Here's a quick summary:
+
+<Tabs groupId='installer' queryString='installer'>
+  <TabItem value='homebrew' label='Homebrew (macOS)' default>
+
+    ```bash
+    brew tap stacklok/tap
+    brew install thv
+    ```
+
+  </TabItem>
+  <TabItem value='binary' label='Pre-compiled binaries'>
+    Download the appropriate binary for your platform from the
+    [ToolHive releases page](https://github.com/stacklok/toolhive/releases).
+
+    ```bash
+    # Extract the archive
+    tar -xzf toolhive_<version>_<platform>.tar.gz
+    # Move the binary to a directory in your PATH
+    sudo mv thv /usr/local/bin/
+    # Make it executable (if needed)
+    sudo chmod +x /usr/local/bin/thv
+    ```
+
+  </TabItem>
+</Tabs>
+
+### Verify your installation
+
+After installing, verify that ToolHive is working correctly:
+
+```bash
+thv version
+```
+
+You should see the current version of ToolHive displayed.
+
+## Step 2: Enable client auto-discovery
+
+Next, enable auto-discovery so ToolHive can automatically configure your client:
+
+```bash
+thv config auto-discovery true
+```
+
+You should see a confirmation message that auto-discovery has been enabled.
+
+:::info What's happening?
+
+When auto-discovery is enabled, ToolHive will automatically find and configure
+[supported clients](./reference/client-compatibility.md) on your system. This
+saves you from having to manually set up each client to work with your MCP
+servers.
+
+:::
+
+## Step 3: Find an MCP server to run
+
+Let's see what MCP servers are available in the registry:
+
+```bash
+thv registry list
+```
+
+You'll see a list of available servers with their names and descriptions.
+
+:::info What's happening?
+
+ToolHive maintains a curated registry of MCP servers that have been verified to
+work correctly. The registry includes information about what each server does
+and how to use it.
+
+:::
+
+For this tutorial, we'll use the "fetch" server, which is a simple MCP server
+that allows AI assistants to get the contents of a website. To learn more about
+the server before running it, run:
+
+```bash
+thv registry info fetch
+```
+
+This will show you detailed information about the server, including what tools
+it provides and any configuration options.
+
+## Step 4: Run the Fetch MCP server
+
+Now, let's run the Fetch server:
+
+```bash
+thv run fetch
+```
+
+ToolHive will pull the container image and start the server. You'll see output
+similar to this:
+
+```text
+Image [mcp/fetch:latest] has 'latest' tag, pulling to ensure we have the most recent version...
+Pulling image: [mcp/fetch:latest]
+...
+Successfully pulled image: [mcp/fetch:latest]
+Using host port: [49226]
+Logging to: [~/Library/Application Support/toolhive/logs/fetch.log]
+MCP server is running in the background (PID: [80087])
+Use 'thv stop [fetch]' to stop the server
+```
+
+:::info What's happening?
+
+ToolHive downloads the container image for the fetch server (if you don't
+already have it), creates a container with the appropriate security settings,
+and starts the server. It also sets up a proxy that allows your AI assistant to
+communicate with the server.
+
+:::
+
+## Step 5: Verify the server is running
+
+Check that the server is running:
+
+```bash
+thv list
+```
+
+You should see output similar to this:
+
+```text
+CONTAINER ID   NAME    IMAGE              STATE     TRANSPORT   PORT    URL
+f01ed0263286   fetch   mcp/fetch:latest   running   stdio       49226   http://localhost:49226/sse#fetch
+```
+
+This confirms that the fetch server is running and available on port 49226.
+
+:::info What's happening?
+
+ToolHive keeps track of all the MCP servers it's managing. The `list` command
+shows you which servers are running and how they're configured.
+
+:::
+
+## Step 6: Use the MCP server with your AI assistant
+
+Now that your MCP server is running, you can use it with your AI assistant. Open
+your supported client (VS Code, Cursor, etc.) and ask the AI to fetch content
+from a website. Note that you might need to restart your client for the changes
+to take effect.
+
+For example, try asking: "Can you fetch the content from https://stacklok.com
+and summarize it for me?"
+
+The AI should be able to use the Fetch MCP server to retrieve the content and
+provide a summary.
+
+:::info What's happening?
+
+When you ask the AI to fetch content, it detects that it needs external data. It
+discovers the fetch tool provided by your MCP server, calls the tool with the
+URL you specified, receives the webpage content, and then processes that content
+to create a summary.
+
+:::
+
+## Step 7: Stop the server when you're done
+
+When you're finished using the server, you can stop it:
+
+```bash
+thv stop fetch
+```
+
+If you want to remove it completely:
+
+```bash
+thv rm fetch
+```
+
+:::info What's happening?
+
+Stopping a server pauses it and terminates the associated proxy process but
+keeps the container around so you can restart it quickly later using
+`thv restart` or `thv run`. Removing a server completely deletes the container,
+freeing up resources.
+
+:::
+
+## Troubleshooting
+
+### Server fails to start
+
+If the server fails to start, check:
+
+- Is Docker or Podman running?
+- Do you have internet access to pull the container image?
+- Is the port already in use by another application?
+
+Try running with a specific port:
+
+```bash
+thv run --port 8081 fetch
+```
+
+### AI assistant can't use the server
+
+If your AI assistant can't use the server:
+
+- Make sure auto-discovery is enabled (see Step 2)
+- Check that your client is supported
+- Restart your client to pick up the new configuration
+- Verify the server is running with `thv list`
+
+## What's next?
+
+Congratulations! You've successfully installed ToolHive and run your first MCP
+server. Here are some next steps to explore:
+
+- Try running other MCP servers from the registry with `thv registry list` and
+  `thv run <server-name>`
+- Learn about [secrets management](./how-to/secrets-management.mdx) for MCP
+  servers that require authentication
+- Explore [custom permissions](./how-to/custom-permissions.md) for MCP servers
+- Set up [shell completion](./how-to/install.mdx#enable-shell-completion) to
+  make ToolHive commands easier to use
+- Learn how to [upgrade ToolHive](./how-to/install.mdx#upgrade-toolhive) when
+  new versions are available
