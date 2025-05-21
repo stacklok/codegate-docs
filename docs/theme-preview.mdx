@@ -214,6 +214,33 @@ import ThemedImage from '@theme/ThemedImage';
   }}
 />
 
+## Diagrams
+
+A mermaid flowchart
+([reference](https://docusaurus.io/docs/markdown-features/diagrams))
+
+```mermaid
+flowchart LR
+  node1["Node"] -- Label --> node2
+  node2["Node"] -- Label --> node3
+  subgraph container["**Subgraph**"]
+    direction LR
+    subgraph container1["Nested subgraph"]
+        node3["Node"]
+    end
+  end
+```
+
+A mermaid sequence diagram
+
+```mermaid
+sequenceDiagram
+  Alice->>+John: Hello John, how are you?
+  note right of John: Note
+  John-->>-Alice: Great!
+  Alice-)John: See you later!
+```
+
 ## Other standard elements
 
 Here's some **bold** and _italic_ text.
