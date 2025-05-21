@@ -1,6 +1,9 @@
-import { themes as prismThemes } from 'prism-react-renderer';
+//import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+
+import PrismLight from './src/utils/prismLight';
+import PrismDark from './src/utils/prismDark';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -165,8 +168,8 @@ const config: Config = {
       copyright: `Copyright © ${new Date().getFullYear()} Stacklok, Inc.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      theme: PrismLight,
+      darkTheme: PrismDark,
       additionalLanguages: ['bash', 'json', 'powershell', 'docker', 'lua'],
     },
     mermaid: {
