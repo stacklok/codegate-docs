@@ -8,9 +8,6 @@ sidebar_position: 1
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import ThemedImage from '@theme/ThemedImage';
 
-import Columns from '@site/src/components/Columns';
-import Column from '@site/src/components/Column';
-
 <ThemedImage
   alt='ToolHive logo'
   sources={{
@@ -20,27 +17,43 @@ import Column from '@site/src/components/Column';
   title='ToolHive logo'
   height={'80'}
 />
+<br />
 
-<Columns style={{ marginTop: '2rem' }}>
-  <Column style={{ paddingLeft: '0px' }}>
-    ## What is ToolHive?
+<img
+  src='/img/toolhive-mascot.png'
+  alt='ToolHive mascot'
+  height='240px'
+  style={{ float: 'right' }}
+/>
 
-    ToolHive is a lightweight utility designed to simplify the deployment and
-    management of Model Context Protocol (MCP) servers. It ensures ease of use,
-    consistency, and security by running containers in a locked-down environment
-    with minimal permissions.
+## What is ToolHive?
 
-    Follow the [getting started guide](./quickstart.mdx) to install ToolHive and run
-    your first MCP server.
+ToolHive simplifies the deployment and management of Model Context Protocol
+(MCP) servers. It ensures ease of use, consistency, and security by running
+containers in a locked-down environment with minimal permissions.
 
-    To learn more about the Model Context Protocol, see our
-    [MCP primer](./concepts/mcp-primer.md).
+Follow the [getting started guide](./quickstart.mdx) to install ToolHive and run
+your first MCP server.
 
-  </Column>
-  <Column className='text--center' style={{ maxWidth: '300px' }}>
-    <img src='/img/toolhive-mascot.png' alt='ToolHive mascot' height='200px' />
-  </Column>
-</Columns>
+To learn more about the Model Context Protocol, see our
+[MCP primer](./concepts/mcp-primer.md).
+
+## Why ToolHive?
+
+We want to help you get real value from MCP servers. While there are plenty of
+tools to help you quickly build MCP servers, the obstacles to using those
+servers effectively are largely operational. ToolHive addresses the runtime,
+security, and other considerations necessary to use MCP servers with confidence
+and in production.
+
+We address those considerations with proven, familiar technologies like
+containers and Kubernetes.
+
+ToolHive lets you run any MCP server, regardless of its underlying technology
+stack, even when the original author(s) did not provide container images. We
+containerize the MCP server and let you use a simple CLI or Kubernetes to manage
+MCP deployments at any scale. Coordinate all your MCP servers from one place
+with sensible security controls and container-native simplicity.
 
 ## Architecture overview
 
@@ -68,19 +81,6 @@ flowchart LR
     T ~~~ C
 ```
 
-## Why ToolHive?
-
-Deploying MCP servers often involves complex, multi-step processes that can
-introduce friction, such as running potentially unsafe commands (e.g., uv or npx
-which can execute arbitrary code), manually managing security credentials (e.g.,
-storing API tokens in plaintext), and dealing with inconsistent packaging
-methods.
-
-ToolHive aims to solve these challenges by running containers in a consistent
-and locked-down environment, granting only the minimal permissions required to
-run. This significantly reduces the attack surface, improves usability, and
-enforces best practices for container security.
-
 ## Key features
 
 ToolHive offers the following features to simplify MCP deployment:
@@ -90,7 +90,7 @@ ToolHive offers the following features to simplify MCP deployment:
   (`uvx://`, `npx://`, `go://`). Access a curated registry of verified MCP
   servers that you can discover and run effortlessly.
 
-- **Comprehensive security**: Run containers in isolated containers with
+- **Comprehensive security**: Run MCP servers in isolated containers with
   customizable, fine-grained permissions using JSON profiles. Securely manage
   secrets and configurations using built-in encrypted storage or 1Password
   integration, eliminating plaintext secrets in configuration files.
