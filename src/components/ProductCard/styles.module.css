@@ -1,21 +1,4 @@
-.landing-subtitle {
-  color: var(--ifm-color-content-secondary);
-  font-size: 1.2rem;
-  max-width: 45ch;
-  margin: auto;
-  text-align: center;
-}
-
-/* Landing page product card styles. These began as a copy of the pagination-nav classes. */
-
-.product-nav {
-  margin-top: 3rem;
-  display: grid;
-  gap: var(--ifm-spacing-horizontal);
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-.product-nav__item {
+.card {
   background-color: #ededed;
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 24px;
@@ -28,15 +11,16 @@
     var(--ifm-transition-timing-default);
 }
 
-[data-theme='dark'] .product-nav__item {
+[data-theme='dark'] .card {
   background-color: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--ifm-color-emphasis-300);
 }
 
-.product-nav__item:hover {
+.card:hover {
   border-color: var(--ifm-color-primary);
   background-color: var(--ifm-color-emphasis-100);
-  background-image: url('/img/product-card-hover.png');
+  /* Use relative path for better component portability */
+  background-image: url('./assets/product-card-hover.png');
   background-repeat: no-repeat;
   background-size: cover;
   color: #ffffff;
@@ -44,16 +28,17 @@
   text-decoration: none;
 }
 
-.product-nav__logo > img {
+.logo > img {
   height: 24px;
 }
 
-[data-theme='light'] .product-nav__item:hover .product-nav__logo {
+/* Only invert the logo color when explicitly specified */
+[data-theme='light'] .card:hover .invertOnHover {
   -webkit-filter: invert(100%);
   filter: invert(100%);
 }
 
-.product-nav__body {
+.body {
   color: var(--ifm-color-content-secondary);
   font-size: var(--ifm-h5-font-size);
   font-weight: var(--ifm-font-weight-semibold);
@@ -61,17 +46,17 @@
   margin-bottom: 0.25rem;
 }
 
-.product-nav__item:hover .product-nav__body {
+.card:hover .body {
   color: #ffffff;
 }
 
-.product-nav__link {
+.link {
   font-size: var(--ifm-font-size-base);
   font-weight: var(--ifm-font-weight-normal);
   margin-top: auto;
   word-break: break-word;
 }
 
-.product-nav__item .product-nav__link::after {
+.card .link::after {
   content: ' ↗';
 }

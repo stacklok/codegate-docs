@@ -10,8 +10,8 @@ hide_table_of_contents: true
 custom_edit_url: null
 ---
 
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import ThemedImage from '@theme/ThemedImage';
+import ProductGrid from '@site/src/components/ProductGrid';
+import ProductCard from '@site/src/components/ProductCard';
 
 <h1 className='text--center'>Our Projects</h1>
 
@@ -20,45 +20,30 @@ import ThemedImage from '@theme/ThemedImage';
   confidence.
 </div>
 
-<div className="product-nav">
-  <a className="product-nav__item" href='/codegate/'>
-    <div className='product-nav__logo'>
-      <ThemedImage alt='CodeGate logo' title='CodeGate logo'
-        sources={{
-          light: useBaseUrl('/img/codegate-wordmark-black.svg'),
-          dark: useBaseUrl('/img/codegate-wordmark-white.svg'),
-        }}
-      />
-    </div>
-
-    <div className="product-nav__body">
-      CodeGate is a local prompt gateway that sits between your AI coding assistant
-      and LLM to enhance privacy and security. CodeGate performs code security
-      reviews, identifies vulnerabilities in package dependencies, and prevents
-      sensitive data like secrets from being shared with AI models.
-    </div>
-
-    <div className="product-nav__link">Read documentation</div>
-
-  </a>
-
-  <a className="product-nav__item" href='/toolhive'>
-    <div className='product-nav__logo'>
-      <ThemedImage alt='ToolHive logo' title='ToolHive logo'
-        sources={{
-          light: useBaseUrl('/img/toolhive-wordmark-black.svg'),
-          dark: useBaseUrl('/img/toolhive-wordmark-white.svg'),
-        }}
-      />
-    </div>
-
-    <div className='product-nav__body'>
-      ToolHive is a lightweight utility designed to simplify the deployment and
-      management of MCP (Model Context Protocol) servers, ensuring ease of use,
-      consistency, and security.
-    </div>
-
-    <div className='product-nav__link'>Read documentation</div>
-
-  </a>
-</div>
+<ProductGrid>
+  <ProductCard
+    href='/codegate/'
+    logo='/img/codegate-wordmark-black.svg'
+    logoDark='/img/codegate-wordmark-white.svg'
+    logoAlt='CodeGate logo'
+    logoTitle='CodeGate logo'
+    linkText='Read documentation'
+  >
+    CodeGate is a local prompt gateway that sits between your AI coding
+    assistant and LLM to enhance privacy and security. CodeGate performs code
+    security reviews, identifies vulnerabilities in package dependencies, and
+    prevents sensitive data like secrets from being shared with AI models.
+  </ProductCard>
+  <ProductCard
+    href='/toolhive'
+    logo='/img/toolhive-wordmark-black.svg'
+    logoDark='/img/toolhive-wordmark-white.svg'
+    logoAlt='ToolHive logo'
+    logoTitle='ToolHive logo'
+    linkText='Read documentation'
+  >
+    ToolHive is a lightweight utility designed to simplify the deployment and
+    management of MCP (Model Context Protocol) servers, ensuring ease of use,
+    consistency, and security.
+  </ProductCard>
+</ProductGrid>

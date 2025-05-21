@@ -1,0 +1,9 @@
+.grid {
+  margin-top: 3rem;
+  display: grid;
+  gap: var(--ifm-spacing-horizontal);
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+  /* Make sure rows are equal height */
+  grid-auto-rows: 1fr;
+}

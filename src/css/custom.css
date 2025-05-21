@@ -8,7 +8,6 @@
 
 @import './icons.css';
 @import './footer.css';
-@import './landing-page.css';
 
 /* Default Infima variable overrides. */
 :root {
@@ -72,6 +71,15 @@ html[data-theme='dark'] {
   display: none;
 }
 
+/* Subtitle for the landing page */
+.landing-subtitle {
+  color: var(--ifm-color-content-secondary);
+  font-size: 1.2rem;
+  max-width: 45ch;
+  margin: auto;
+  text-align: center;
+}
+
 /* Custom classes for the navbar links */
 .navbar__product-link--custom {
   padding: 0.5rem 1rem;
@@ -108,7 +116,6 @@ html[data-theme='dark'] {
 }
 
 /* Custom styles for the DocSearch component */
-
 .DocSearch {
   font-family: var(--ifm-font-family-base);
   --docsearch-text-color: var(--ifm-font-color-base);
@@ -160,7 +167,6 @@ html[data-theme='dark'] {
 }
 
 /* Mermaid subgraph styling */
-/* Light mode */
 [data-theme='light'] .cluster rect {
   fill: #e6e6ff !important;
   stroke: #5750ff !important;
@@ -170,7 +176,6 @@ html[data-theme='dark'] {
   fill: #333344 !important;
 }
 
-/* Dark mode */
 [data-theme='dark'] .cluster rect {
   fill: #333344 !important;
   stroke: #5750ff !important;
@@ -181,7 +186,6 @@ html[data-theme='dark'] {
 }
 
 /* Tab components */
-
 .tabs-container {
   background-color: var(--ifm-card-background-color);
   border: 1px solid var(--ifm-table-border-color);
