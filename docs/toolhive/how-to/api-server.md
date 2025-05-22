@@ -1,6 +1,6 @@
 ---
-title: Launch the API server
-description: How to launch the ToolHive API server
+title: Run the API server
+description: How to run the local ToolHive API server
 sidebar_position: 60
 ---
 
