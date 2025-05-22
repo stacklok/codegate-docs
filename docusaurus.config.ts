@@ -1,3 +1,4 @@
+import path from 'path';
 //import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
@@ -75,6 +76,12 @@ const config: Config = {
           {
             id: 'codegate-api',
             spec: 'https://raw.githubusercontent.com/stacklok/codegate/refs/heads/main/api/openapi.json',
+            config: path.join(__dirname, 'src/redocly/redocly-codegate.yaml'),
+          },
+          {
+            id: 'toolhive-api',
+            spec: 'https://raw.githubusercontent.com/stacklok/toolhive/refs/heads/main/docs/server/swagger.yaml',
+            config: path.join(__dirname, 'src/redocly/redocly-toolhive.yaml'),
           },
         ],
         theme: {
