@@ -5,6 +5,13 @@ description:
 sidebar_position: 15
 ---
 
+:::warning TODO
+
+Need to put the chart values reference somewhere - is there any good way to keep
+that up-to-date?
+
+:::
+
 ## Prerequisites
 
 - A Kubernetes cluster (v1.19+)

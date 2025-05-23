@@ -11,6 +11,12 @@ sidebar_position: 10
 - Permissions to create resources in the cluster
 - `kubectl` configured to communicate with your cluster
 
+:::warning TODO
+
+Just apply the manifests straight from git URL, no need to clone the repo?
+
+:::
+
 ## Clone the repository
 
 To get the latest version of the ToolHive operator, clone the repository:
