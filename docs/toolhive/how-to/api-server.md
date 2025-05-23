@@ -14,7 +14,7 @@ The API server is not intended for production use. It is designed for local
 automation and UI development, and does not implement any authentication or
 authorization mechanisms.
 
-For production use cases, consider using the ToolHive Kubernetes Operator, which
+For production use cases, consider using the ToolHive Kubernetes operator, which
 provides a more robust and secure way to manage ToolHive instances in a
 multi-user environment.
 
