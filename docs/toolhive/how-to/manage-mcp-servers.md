@@ -29,11 +29,11 @@ thv list --all
 ### View server logs
 
 To view the logs of a running or stopped MCP server, use the `thv logs` command.
-You can optionally follow the logs with the `--tail` option, which shows the
+You can optionally follow the logs with the `--follow` option, which shows the
 most recent log entries and updates in real time.
 
 ```bash
-thv logs <server-name> [--tail]
+thv logs <server-name> [--follow]
 ```
 
 Logs are stored in the ToolHive application directory. The path depends on your
