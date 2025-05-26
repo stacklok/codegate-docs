@@ -93,9 +93,9 @@ needed to meet your security policies.
 
 :::tip
 
-Add `--format json` to get the output in JSON format for easier customization.
-Use the contents of the `permissions` section as a starting point for creating a
-custom profile.
+Add `--format json` to the `thv registry info` command to get the output in JSON
+format for easier customization. Use the contents of the `permissions` section
+as a starting point for creating a custom profile.
 
 :::
 
