@@ -2,8 +2,13 @@
 title: Deploy the operator using kubectl
 description:
   How to deploy the ToolHive operator in a Kubernetes cluster using kubectl
-sidebar_position: 10
+sidebar_position: 15
 ---
+
+While Helm is the recommended way to install the ToolHive operator in a
+Kubernetes cluster, you can also install it using `kubectl`. This method is
+suitable if you prefer to manage your Kubernetes resources using `kubectl`
+commands or want to avoid using Helm for any reason.
 
 ## Prerequisites
 

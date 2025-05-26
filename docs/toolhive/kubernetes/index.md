@@ -17,3 +17,17 @@ The operator introduces a new Custom Resource Definition (CRD) called
 2. Sets up a Service to expose the MCP server
 3. Configures the appropriate permissions and settings
 4. Manages the lifecycle of the MCP server
+
+## Installation
+
+To install the ToolHive operator in your Kubernetes cluster, you can use either
+Helm or `kubectl`. The recommended method is to use Helm, as it simplifies the
+installation process and allows you to manage the operator using Helm charts.
+
+[Deploy the operator using Helm](./deploy-operator-helm.md)
+[Deploy the operator using kubectl](./deploy-operator-kubectl.md)
+
+Once the operator is installed, you can create and manage MCP servers using the
+`MCPServer` custom resource.
+
+[Run MCP servers in Kubernetes](./run-mcp-k8s.md)

@@ -2,7 +2,7 @@
 title: Deploy the operator using Helm
 description:
   How to deploy the ToolHive operator in a Kubernetes cluster using Helm
-sidebar_position: 15
+sidebar_position: 10
 ---
 
 :::warning TODO
@@ -12,12 +12,16 @@ that up-to-date?
 
 :::
 
+Helm is the recommended way to install the ToolHive operator in a Kubernetes
+cluster. It simplifies the installation process and allows you to manage the
+operator using Helm charts.
+
 ## Prerequisites
 
 - A Kubernetes cluster (v1.19+)
 - Permissions to create resources in the cluster
 - `kubectl` configured to communicate with your cluster
-- Helm (3.10+ minimum, 3.14+ recommended)
+- Helm (v3.10 minimum, v3.14+ recommended)
 
 ## Install the operator
 
