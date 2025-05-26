@@ -33,13 +33,29 @@ Permissions are defined using JSON permission profiles. These profiles specify:
 
 :::note
 
-Since the MCP server runs in a container, it cannot access the host file system.
-File system access is relative to the container's file system.
+Since the MCP server runs in a container, it cannot access the host file system
+by default. File system access is relative to the container's file system.
 
 When you run a server with the `--volume` flag to mount a local path, ToolHive
 adds the path to the MCP server's permission profile automatically.
 
 :::
+
+Profiles include the following sections:
+
+- `read`: List of file system paths that the MCP server can read, relative to
+  the container's file system.
+- `write`: List of file system paths that the MCP server can write to (this also
+  implies read access).
+- `network`: Network access rules for outbound connections.
+  - `outbound`: Outbound network access rules, which include:
+    - `insecure_allow_all`: If set to `true`, allows unrestricted outbound
+      network access. This is not recommended for production use.
+    - `allow_transport`: List of allowed transport protocols (e.g., `tcp`,
+      `udp`).
+    - `allow_host`: List of allowed hostnames or IP addresses for outbound
+      connections.
+    - `allow_port`: List of allowed ports for outbound connections.
 
 ## Default permissions in the ToolHive registry
 
@@ -131,8 +147,6 @@ This profile:
   also implies read access)
 - Allows outbound TCP or UDP connections to localhost and google.com on ports 80
   and 443
-- Requires certificate validation for TLS connections (`insecure_allow_all` set
-  to `false`)
 
 ## Apply a permissions profile
 
@@ -196,8 +210,8 @@ When creating and using permission profiles:
 - Use the `none` profile when possible (for MCP servers that do not require
   network or file access)
 - Only grant necessary permissions
-- Avoid enabling `network.outbound.insecure_allow_all`, as this bypasses TLS
-  certificate validation and can expose your system to man-in-the-middle attacks
+- Avoid enabling `network.outbound.insecure_allow_all`, as this allows
+  unrestricted outbound network access
 - Review and test custom profiles thoroughly
 - Keep permission profiles in version control to track changes and share them
   with your team
