@@ -59,7 +59,7 @@ ToolHive works with client configurations in their default locations.
 
 ### VS Code with Copilot
 
-VS Code with GitHub Copilot stores its
+GitHub Copilot in Visual Studio Code stores its
 [global MCP configuration](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_add-an-mcp-server-to-your-user-settings)
 in your VS Code user settings file.
 
@@ -160,9 +160,9 @@ claude mcp add --scope <user|project> --transport sse fetch http://localhost:438
 
 ### Roo Code and Cline
 
-[Roo Code](https://roocode.com/) (previously Roo Cline) and Cline store their
-global MCP configurations in their VS Code extension settings directory. Their
-configuration format is identical.
+[Roo Code](https://roocode.com/) (previously Roo Cline) and
+[Cline](https://cline.bot/) store their global MCP configurations in their VS
+Code extension settings directory. Their configuration format is identical.
 
 **Roo Code**:
 
@@ -212,7 +212,7 @@ server = MCPServerHTTP(url='http://localhost:43832/sse#fetch')
 
 ### Example: Continue
 
-For the [Continue](continue.dev) extension in VS Code, edit your
+For the [Continue](https://continue.dev) extension in VS Code, edit your
 `~/.continue/config.yaml` file or project-specific
 `.continue/mcpServers/<name>.yaml` file to include the MCP server URL:
 
