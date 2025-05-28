@@ -202,10 +202,35 @@ If your client can't connect to the MCP server:
 3. Ensure the URL is correct and accessible. Use `curl` to test the connection:
 
    ```bash
-   curl <url-from-thv-list>
+   curl <mcp-server-url>
    ```
 
 4. Restart your client application
+
+### Client can connect but tools aren't available
+
+If your client connects to the MCP server but tools aren't available:
+
+1. Make sure the MCP server is running and accessible:
+
+   ```bash
+   thv list
+
+   curl <mcp-server-url>
+   ```
+
+2. Check the MCP server logs:
+
+   ```bash
+   thv logs <server-name>
+   ```
+
+3. Make sure the MCP server is properly configured in your client
+4. For VS Code, ensure the MCP server is started in the settings (see the VS
+   Code with Copilot section in the
+   [Client compatibility reference](../reference/client-compatibility.md#vs-code-with-copilot))
+5. If you've implemented authentication for your MCP server, ensure the client
+   has the necessary permissions to access the tools
 
 ## Related information
 
