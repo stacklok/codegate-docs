@@ -9,9 +9,9 @@ slug: /toolhive/quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In this tutorial, you'll learn how to install ToolHive and run your first MCP
-server. By the end, you'll have a working MCP server that can be used by AI
-assistants to fetch content from websites.
+In this tutorial, you'll install ToolHive and run your first MCP server. By the
+end, you'll have a working MCP server that can fetch content from websites and
+be used by AI assistants like GitHub Copilot or Cursor.
 
 ## What you'll learn
 
@@ -31,10 +31,11 @@ Before starting this tutorial, make sure you have:
 
 ## Step 1: Install ToolHive
 
-First, let's install ToolHive on your system. For detailed installation
-instructions, see the [Installing ToolHive](../how-to/install.mdx) guide.
+First, install ToolHive on your system. ToolHive provides the `thv` command-line
+tool that manages MCP servers in secure containers.
 
-Here's a quick summary:
+For detailed installation instructions, see the
+[installing ToolHive](../how-to/install.mdx) guide. Here's a quick summary:
 
 <Tabs groupId='installer' queryString='installer'>
   <TabItem value='homebrew' label='Homebrew (macOS)' default>
@@ -46,7 +47,9 @@ Here's a quick summary:
 
   </TabItem>
   <TabItem value='binary' label='Pre-compiled binaries'>
-    Download the appropriate binary for your platform from the [ToolHive releases page](https://github.com/stacklok/toolhive/releases).
+
+    Download the appropriate binary for your platform from the
+    [ToolHive releases page](https://github.com/stacklok/toolhive/releases).
 
     ```bash
     # Extract the archive
@@ -68,7 +71,17 @@ After installing, verify that ToolHive is working correctly:
 thv version
 ```
 
-You should see the current version of ToolHive displayed.
+You should see output similar to this:
+
+```text
+ToolHive v0.0.38
+Commit: c321ba873f5dcb1d33035d4f8496eb3e22f8b37e
+Built: 2025-05-29 12:03:02 UTC
+Go version: go1.24.1
+Platform: darwin/arm64
+```
+
+This confirms ToolHive is installed and ready to use.
 
 ## Step 2: Enable client auto-discovery
 
@@ -78,7 +91,14 @@ Next, enable auto-discovery so ToolHive can automatically configure your client:
 thv config auto-discovery true
 ```
 
-You should see a confirmation message that auto-discovery has been enabled.
+You should see output similar to this:
+
+```text
+Auto-discovery of MCP clients enabled
+```
+
+This confirms that ToolHive will automatically find and configure supported
+clients on your system.
 
 :::info What's happening?
 
@@ -95,13 +115,23 @@ to learn how to explicitly register a client.
 
 ## Step 3: Find an MCP server to run
 
-Let's see what MCP servers are available in the registry:
+See what MCP servers are available in the registry:
 
 ```bash
 thv registry list
 ```
 
-You'll see a list of available servers with their names and descriptions.
+You'll see output similar to this:
+
+```text
+NAME      DESCRIPTION                                                    TRANSPORT   STARS   PULLS
+fetch     A Model Context Protocol server that provides web content...   stdio       49668   7062
+github    The GitHub MCP Server provides seamless integration with ...   stdio       14545   5000
+postgres  A Model Context Protocol server that provides read-only a...   stdio       49668   9095
+...
+```
+
+This shows all the MCP servers available in the ToolHive registry.
 
 :::info What's happening?
 
@@ -111,7 +141,7 @@ and how to use it.
 
 :::
 
-For this tutorial, we'll use the "fetch" server, which is a simple MCP server
+For this tutorial, you'll use the "fetch" server, which is a simple MCP server
 that lets AI assistants get the contents of a website. To learn more about the
 server before running it, run:
 
@@ -124,7 +154,7 @@ provides and any configuration options.
 
 ## Step 4: Run the Fetch MCP server
 
-Now, let's run the Fetch server:
+Now, run the Fetch server:
 
 ```bash
 thv run fetch
