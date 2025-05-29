@@ -10,7 +10,6 @@ sidebar_position: 20
 - Permissions to create resources in the cluster
 - `kubectl` configured to communicate with your cluster
 - The ToolHive operator installed in your cluster (see
-  [Deploy the operator using kubectl](./deploy-operator-kubectl.md) or
   [Deploy the operator using Helm](./deploy-operator-helm.md))
 
 ## Create an MCP Server
