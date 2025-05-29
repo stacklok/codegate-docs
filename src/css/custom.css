@@ -227,3 +227,18 @@ thead th {
 div[role='tabpanel'] {
   padding: var(--ifm-global-spacing);
 }
+
+/* Screenshot styling with subtle border */
+.screenshot {
+  border: 1px solid var(--ifm-table-border-color);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Light shadow for dark mode */
+[data-theme='dark'] .screenshot {
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
