@@ -28,6 +28,10 @@
   --ifm-breadcrumb-color-active: #111111;
   --ifm-breadcrumb-item-background-active: rgba(40, 9, 165, 0.1);
 
+  --ifm-table-head-background: rgba(0, 0, 0, 0.08);
+  --ifm-table-stripe-background: rgba(0, 0, 0, 0.03);
+  --ifm-table-border-color: #dadde1;
+
   --ifm-color-primary: #2809a5;
   --ifm-color-primary-dark: #240894;
   --ifm-color-primary-darker: #22088c;
@@ -55,6 +59,10 @@ html[data-theme='dark'] {
   --ifm-breadcrumb-color-active: #ffffff;
   --ifm-breadcrumb-item-background-active: rgba(122, 183, 255, 0.1);
 
+  --ifm-table-head-background: var(--ifm-card-background-color);
+  --ifm-table-stripe-background: rgba(96, 103, 112, 0.1);
+  --ifm-table-border-color: #606770;
+
   --ifm-color-primary: #7ab7ff;
   --ifm-color-primary-dark: #54a3ff;
   --ifm-color-primary-darker: #4198ff;
@@ -63,6 +71,10 @@ html[data-theme='dark'] {
   --ifm-color-primary-lighter: #b3d6ff;
   --ifm-color-primary-lightest: #ebf4ff;
   --docusaurus-highlighted-code-line-bg: rgb(66 66 66 / 35%);
+}
+
+thead th {
+  font-size: 0.875rem;
 }
 
 /* Enables GitHub-style light/dark mode switching without the ThemedImage component */
