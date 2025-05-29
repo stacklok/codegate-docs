@@ -34,23 +34,21 @@ By the end of this tutorial, you'll have:
 
 Before starting this tutorial, make sure you have:
 
-- [`kubectl`](https://kubernetes.io/docs/tasks/tools/) installed and configured
-- [Docker](https://docs.docker.com/get-docker/) installed and running
+- [Helm](https://helm.sh/docs/intro/install/) (v3.10 minimum, v3.14+
+  recommended) installed
+- [`kubectl`](https://kubernetes.io/docs/tasks/tools/) installed
+- [Docker](https://docs.docker.com/get-docker/) or
+  [Podman](https://podman-desktop.io/downloads) installed and running
 - [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation) installed
 - Basic familiarity with Kubernetes concepts (pods, deployments, services)
+- An MCP client (VS Code with Copilot is used in this tutorial, but you can use
+  any [supported client](../reference/client-compatibility.mdx))
 
 ## Quickstart with Task (TL;DR)
 
-If you want to get up and running quickly, you can use our automated setup.
-
-### Prerequisites for quickstart
-
-You'll need these tools installed:
-
-- [Task](https://taskfile.dev/installation/) - task runner for automation
-- [Helm](https://helm.sh/docs/intro/install/) - Kubernetes package manager
-
-### Automated setup
+If you want to get up and running quickly and have
+[Task](https://taskfile.dev/installation/) installed, you can use our automated
+setup:
 
 1. Clone the ToolHive repository:
 
@@ -71,8 +69,8 @@ cluster creation and operator deployment. Once complete, skip to
 [Step 3: Create your first MCP server](#step-3-create-your-first-mcp-server) to
 continue with the tutorial.
 
-If you prefer to understand each step or don't have Task and Helm installed,
-continue with the manual setup below.
+If you prefer to understand each step or don't have Task installed, continue
+with the manual setup below.
 
 ## Step 1: Create a kind cluster
 
@@ -110,33 +108,19 @@ from your main system and can be easily deleted when you're done.
 
 ## Step 2: Deploy the ToolHive operator
 
-Now deploy the ToolHive operator to your cluster. The operator will watch for
-MCP server resources and manage their lifecycle automatically.
+Now deploy the ToolHive operator to your cluster using Helm. The operator will
+watch for MCP server resources and manage their lifecycle automatically.
 
-First, install the Custom Resource Definition (CRD) that defines what an MCP
-server looks like to Kubernetes:
+First, install the operator CRDs:
 
 ```bash
-kubectl apply --server-side -f https://raw.githubusercontent.com/stacklok/toolhive/main/deploy/operator/crds/toolhive.stacklok.dev_mcpservers.yaml
+helm upgrade -i toolhive-operator-crds oci://ghcr.io/stacklok/toolhive/toolhive-operator-crds
 ```
 
-Create a namespace for the operator:
+Then install the operator:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/stacklok/toolhive/main/deploy/operator/namespace.yaml
-```
-
-Set up the necessary permissions (RBAC):
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/stacklok/toolhive/main/deploy/operator/rbac.yaml
-kubectl apply -f https://raw.githubusercontent.com/stacklok/toolhive/main/deploy/operator/toolhive_rbac.yaml
-```
-
-Finally, deploy the operator itself:
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/stacklok/toolhive/main/deploy/operator/operator.yaml
+helm upgrade -i toolhive-operator oci://ghcr.io/stacklok/toolhive/toolhive-operator -n toolhive-system --create-namespace
 ```
 
 Verify that the operator deployed successfully:

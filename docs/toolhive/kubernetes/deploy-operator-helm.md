@@ -12,16 +12,18 @@ that up-to-date?
 
 :::
 
-Helm is the recommended way to install the ToolHive operator in a Kubernetes
-cluster. It simplifies the installation process and allows you to manage the
-operator using Helm charts.
+Helm is the supported way to install the ToolHive operator in a Kubernetes
+cluster. It simplifies the installation process and lets you manage the operator
+using Helm charts.
 
 ## Prerequisites
 
 - A Kubernetes cluster (v1.19+)
 - Permissions to create resources in the cluster
-- `kubectl` configured to communicate with your cluster
-- Helm (v3.10 minimum, v3.14+ recommended)
+- [`kubectl`](https://kubernetes.io/docs/tasks/tools/) configured to communicate
+  with your cluster
+- [Helm](https://helm.sh/docs/intro/install/) (v3.10 minimum, v3.14+
+  recommended)
 
 ## Install the operator
 
@@ -53,18 +55,18 @@ To install the ToolHive operator using Helm, follow these steps:
    kubectl logs -f -n toolhive-system <toolhive-operator-pod-name>
    ```
 
-   This will show you the logs of the operator pod, which can help you debug any
+   This shows you the logs of the operator pod, which can help you debug any
    issues.
 
 ## Uninstall the operator
 
-To uninstall/delete the operator and CRDs, run the following commands:
+To uninstall the operator and CRDs, run the following commands:
 
 ```bash
 helm uninstall toolhive-operator -n toolhive-system
-helm uninstall toolhive-operator-crd
+helm uninstall toolhive-operator-crds
 ```
 
 This removes all the Kubernetes components associated with the chart and deletes
-the release. You will have to delete the namespace manually if you used Helm to
+the release. You'll need to delete the namespace manually if you used Helm to
 create it.
