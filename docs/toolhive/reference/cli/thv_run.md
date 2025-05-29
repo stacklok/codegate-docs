@@ -21,9 +21,11 @@ ToolHive supports three ways to run an MCP server:
    $ thv run uvx://package-name [-- args...]
    $ thv run npx://package-name [-- args...]
    $ thv run go://package-name [-- args...]
+   $ thv run go://./local-path [-- args...]
    Automatically generates a container that runs the specified package
    using either uvx (Python with uv package manager), npx (Node.js),
-   or go (Golang)
+   or go (Golang). For Go, you can also specify local paths starting
+   with './' or '../' to build and run local Go projects.
 
 The container will be started with the specified transport mode and
 permission profile. Additional configuration can be provided via flags.
@@ -41,7 +43,7 @@ thv run [flags] SERVER_OR_IMAGE_OR_PROTOCOL [-- ARGS...]
   -f, --foreground                  Run in foreground mode (block until container exits)
   -h, --help                        help for run
       --host string                 Host for the HTTP proxy to listen on (IP or hostname) (default "127.0.0.1")
-      --k8s-pod-patch string        JSON string to patch the Kubernetes pod template (only applicable when using Kubernetes runtime)
+      --image-verification string   Set image verification mode (warn, enabled, disabled) (default "warn")
       --name string                 Name of the MCP server (auto-generated from image if not provided)
       --oidc-audience string        Expected audience for the token
       --oidc-client-id string       OIDC client ID
