@@ -6,6 +6,9 @@ description:
 sidebar_position: 20
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage';
+
 In this tutorial, you'll learn how to deploy the ToolHive Kubernetes operator
 and use it to manage MCP servers in a Kubernetes cluster. By the end, you'll
 have a working operator deployment that automatically manages MCP servers using
@@ -250,6 +253,16 @@ access your user settings:
 1. Open the command palette (Cmd/Ctrl+Shift+P)
 2. Type "Preferences: Open User Settings (JSON)" and select it
 
+<ThemedImage
+  alt='VS Code user settings in command palette'
+  sources={{
+    light: useBaseUrl('/img/toolhive/quickstart/vscode-settings-light.webp'),
+    dark: useBaseUrl('/img/toolhive/quickstart/vscode-settings-dark.webp'),
+  }}
+  title='VS Code user settings in command palette'
+  width='800'
+/>
+
 Add the MCP server configuration to your `settings.json` file. If you have
 existing settings, merge the following configuration into it:
 
@@ -268,15 +281,54 @@ existing settings, merge the following configuration into it:
 }
 ```
 
-Save the file and click "Start" to initiate the connection. The indicator should
-change to "Running" and show "1 tools".
+Save the file and click **Start** to initiate the connection. The indicator
+should change to "Running" and show "1 tools".
+
+<ThemedImage
+  alt='VS Code MCP settings'
+  sources={{
+    light: useBaseUrl('/img/toolhive/quickstart/vscode-mcp-start-light.webp'),
+    dark: useBaseUrl('/img/toolhive/quickstart/vscode-mcp-start-dark.webp'),
+  }}
+  title='VS Code MCP settings'
+  width='450'
+/>
+<ThemedImage
+  alt='VS Code MCP running'
+  sources={{
+    light: useBaseUrl('/img/toolhive/quickstart/vscode-mcp-running-light.webp'),
+    dark: useBaseUrl('/img/toolhive/quickstart/vscode-mcp-running-dark.webp'),
+  }}
+  title='VS Code MCP running'
+  width='450'
+/>
 
 Now test the connection by asking GitHub Copilot to fetch content from a
 website. Open Copilot Chat in **Agent** mode and ask: "Can you fetch the content
 from https://stacklok.com and summarize it for me?"
 
+<ThemedImage
+  alt='VS Code Copilot agent mode selection'
+  sources={{
+    light: useBaseUrl('/img/toolhive/quickstart/vscode-agent-mode-light.webp'),
+    dark: useBaseUrl('/img/toolhive/quickstart/vscode-agent-mode-dark.webp'),
+  }}
+  title='VS Code Copilot agent mode selection'
+  width='560'
+/>
+
 GitHub Copilot should be able to use your Kubernetes-hosted MCP server to
 retrieve the content and provide a summary.
+
+<ThemedImage
+  alt='VS Code Copilot tool use confirmation'
+  sources={{
+    light: useBaseUrl('/img/toolhive/quickstart/vscode-tool-use-light.webp'),
+    dark: useBaseUrl('/img/toolhive/quickstart/vscode-tool-use-dark.webp'),
+  }}
+  title='VS Code Copilot tool use confirmation'
+  width='570'
+/>
 
 :::info What's happening?
 
