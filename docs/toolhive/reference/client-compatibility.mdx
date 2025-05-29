@@ -6,60 +6,46 @@ description:
 sidebar_position: 5
 ---
 
-This document details which AI assistant clients are compatible with ToolHive
-and how they interact with MCP servers.
+import ClientTable from '../_partials/_client-compat-table.md';
+
+This page shows which AI assistant clients work with ToolHive and how they
+connect to MCP servers.
 
 ## Supported clients
 
-ToolHive has been tested with the following clients:
+We've tested ToolHive with these clients:
 
-| Client                     | Supported | Auto-discovery | Notes                                     |
-| -------------------------- | --------- | -------------- | ----------------------------------------- |
-| GitHub Copilot (VS Code)   | ✅        | ✅             | v1.99.0+ or Insiders version              |
-| Cursor                     | ✅        | ✅             | v0.47.0+                                  |
-| Roo Code                   | ✅        | ✅             | v3.9.0+                                   |
-| Cline                      | ✅        | ✅             | v3.8.5+                                   |
-| Claude Code                | ✅        | ✅             | v0.2.54+                                  |
-| PydanticAI                 | ✅        | ❌             |                                           |
-| Continue                   | ✅        | ❌             | Pre-release extension v1.39+ ([issue][1]) |
-| GitHub Copilot (JetBrains) | ❌        | ❌             | No support for HTTP/SSE MCPs ([issue][2]) |
-| Claude Desktop             | ❌        | ❌             | No support for HTTP/SSE MCPs ([issue][3]) |
-
-[1]: https://github.com/continuedev/continue/issues/5359
-[2]: https://github.com/microsoft/copilot-intellij-feedback/issues/224
-[3]: https://github.com/orgs/modelcontextprotocol/discussions/16
+<ClientTable />
 
 You can also use other clients and development libraries that support the SSE
-protocol with ToolHive, but they may require manual configuration.
+protocol, but you'll need to configure them manually.
 
 ## Client requirements
 
-For your client to work with ToolHive, it must:
+To work with ToolHive, your client needs to:
 
 1. Support the Model Context Protocol (MCP)
-2. Be able to connect to MCP servers via the server-sent events (SSE) transport
-   protocol
-3. Be properly configured with the MCP server URL
+2. Connect to MCP servers using the server-sent events (SSE) transport protocol
+3. Have the correct MCP server URL configured
 
 ## Automatic configuration support
 
-ToolHive can manage the configuration of supported clients to connect to MCP
-servers. You can register clients manually with ToolHive, or use auto-discovery.
-Auto-discovery lets ToolHive automatically find and configure supported clients
-on your system.
+ToolHive can automatically configure supported clients to connect to MCP
+servers. You can either register clients manually or use auto-discovery, which
+finds and configures supported clients on your system automatically.
 
-See the table above for the list of clients that support configuration
-management and auto-discovery.
+Check the table above to see which clients support automatic configuration and
+auto-discovery.
 
-For other clients, you'll need to manually configure the MCP server URL.
+For other clients, you'll need to set up the MCP server URL yourself.
 
 ## Configuration locations
 
-ToolHive works with client configurations in their default locations.
+ToolHive manages client configurations in their standard locations.
 
 ### VS Code with Copilot
 
-GitHub Copilot in Visual Studio Code stores its
+GitHub Copilot in VS Code stores its
 [global MCP configuration](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_add-an-mcp-server-to-your-user-settings)
 in your VS Code user settings file.
 
@@ -90,22 +76,22 @@ Example configuration:
 
 :::note
 
-You must "start" MCP servers manually from the settings file ("Preferences: Open
-User Settings (JSON)" in the command palette).
+You need to manually start MCP servers from the settings file. Open the command
+palette and select "Preferences: Open User Settings (JSON)".
 
 ![Screenshot of the VS Code MCP settings](/img/toolhive/vscode-mcp-start.webp)
 
 :::
 
 When you register VS Code as a client or enable auto-discovery, ToolHive
-automatically updates the global MCP configuration file when you run an MCP
+automatically updates the global MCP configuration file whenever you run an MCP
 server. You can also
 [configure project-specific MCP servers](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_add-an-mcp-server-to-your-workspace)
 by creating a `.vscode/mcp.json` file in your project directory.
 
 ### Cursor
 
-[Cursor](https://cursor.so/) stores its global MCP configurations in a JSON file
+[Cursor](https://cursor.so/) stores its global MCP configuration in a JSON file
 in your home directory.
 
 - **All platforms**: `~/.cursor/mcp.json`
@@ -122,15 +108,15 @@ Example configuration:
 ```
 
 When you register Cursor as a client or enable auto-discovery, ToolHive
-automatically updates the global MCP configuration file when you run an MCP
+automatically updates the global MCP configuration file whenever you run an MCP
 server. You can also
 [configure project-specific MCP servers](https://docs.cursor.com/context/model-context-protocol#configuration-locations)
 by creating a `.cursor/mcp.json` file in your project directory.
 
 ### Claude Code
 
-[Claude Code](https://www.anthropic.com/claude-code) stores its global (`user`
-scope) MCP configurations in a JSON file in your home directory.
+[Claude Code](https://www.anthropic.com/claude-code) stores its global (user
+scope) MCP configuration in a JSON file in your home directory.
 
 - **All platforms**: `~/.claude.json`
 
@@ -148,7 +134,7 @@ Example configuration:
 ```
 
 When you register Claude Code as a client or enable auto-discovery, ToolHive
-automatically updates the global MCP configuration file when you run an MCP
+automatically updates the global MCP configuration file whenever you run an MCP
 server. You can also
 [configure project-specific MCP servers](https://docs.anthropic.com/en/docs/claude-code/tutorials#understanding-mcp-server-scopes)
 by creating a `.cursor/mcp.json` file in your project directory, or add servers
@@ -161,8 +147,8 @@ claude mcp add --scope <user|project> --transport sse fetch http://localhost:438
 ### Roo Code and Cline
 
 [Roo Code](https://roocode.com/) (previously Roo Cline) and
-[Cline](https://cline.bot/) store their global MCP configurations in their VS
-Code extension settings directory. Their configuration format is identical.
+[Cline](https://cline.bot/) store their global MCP configuration in their VS
+Code extension settings directory. Both use the same configuration format.
 
 **Roo Code**:
 
@@ -190,15 +176,15 @@ Example configuration:
 ```
 
 When you register Roo Code or Cline as a client or enable auto-discovery,
-ToolHive automatically updates the global MCP configuration file when you run an
-MCP server. With Roo Code, you can also configure
+ToolHive automatically updates the global MCP configuration file whenever you
+run an MCP server. With Roo Code, you can also configure
 [project-specific MCP servers](https://docs.roocode.com/features/mcp/using-mcp-in-roo#editing-mcp-settings-files)
 by creating a `.roo/mcp.json` file in your project directory.
 
 ## Manual configuration
 
-If auto-configuration isn't supported for your client, manually configure the
-MCP server URL.
+If your client doesn't support automatic configuration, you'll need to set up
+the MCP server URL manually.
 
 ### Example: PydanticAI
 
