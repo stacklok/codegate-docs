@@ -28,9 +28,10 @@ thv list --all
 
 ### View server logs
 
-To view the logs of a running or stopped MCP server, use the `thv logs` command.
-You can optionally follow the logs with the `--follow` option, which shows the
-most recent log entries and updates in real time.
+To view the logs of a running or stopped MCP server, use the
+[`thv logs`](../reference/cli/thv_logs.md) command. You can optionally follow
+the logs with the `--follow` option, which shows the most recent log entries and
+updates in real time.
 
 ```bash
 thv logs <server-name> [--follow]
@@ -42,12 +43,13 @@ platform:
 - **macOS**: `~/Library/Application Support/toolhive/logs/<server-name>.log`
 - **Linux**: `~/.local/share/toolhive/logs/<server-name>.log`
 
-The specific log file path is displayed when you start a server with `thv run`.
+The specific log file path is displayed when you start a server with
+[`thv run`](../reference/cli/thv_run.md).
 
 ## Lifecycle management
 
 MCP servers can be started, stopped, restarted, and removed using the ToolHive
-CLI. The commands are similar to Docker commands, but they are designed to work
+CLI. The commands are similar to Docker commands, but they're designed to work
 with the ToolHive CLI and MCP servers.
 
 ### Stop a server
@@ -78,13 +80,13 @@ thv rm <server-name>
 ```
 
 This removes the container and cleans up the MCP server's entry in your
-configured client(s).
+configured clients.
 
 :::note
 
-If you use `docker rm` to remove an MCP container that ToolHive created, it will
-not clean up the MCP server's entry in your configured client(s). Use `thv rm`
-to ensure the entry is removed.
+If you use `docker rm` to remove an MCP container that ToolHive created, it
+won't clean up the MCP server's entry in your configured clients. Use
+[`thv rm`](../reference/cli/thv_rm.md) to make sure the entry is removed.
 
 :::
 

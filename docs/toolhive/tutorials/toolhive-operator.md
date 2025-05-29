@@ -7,22 +7,23 @@ sidebar_position: 20
 ---
 
 The ToolHive Kubernetes operator manages MCP (Model Context Protocol) servers in
-Kubernetes clusters. It allows you to define MCP servers as Kubernetes resources
-and automates their deployment and management.
+Kubernetes clusters. It lets you define MCP servers as Kubernetes resources and
+automates their deployment and management.
 
 ## Prerequisites
 
-- `kubectl` configured to communicate with your cluster
-- Kind installed
+- [`kubectl`](https://kubernetes.io/docs/tasks/tools/) configured to communicate
+  with your cluster
+- [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation) installed
 - Optional: [Task](https://taskfile.dev/installation/) to run automated steps
   with a cloned copy of the ToolHive repository
   (`git clone https://github.com/stacklok/toolhive`)
 
 ## TL;DR
 
-To setup a kind cluster and deploy the operator, we have created a Task so that
-you can do this with one command. You will need to clone this repository to run
-the command.
+To set up a kind cluster and deploy the operator, we've created a Task so you
+can do this with one command. You'll need to clone this repository to run the
+command.
 
 Run:
 
@@ -30,17 +31,15 @@ Run:
 task kind-with-toolhive-operator
 ```
 
-This will create the kind cluster, install an nginx ingress controller and then
-install the latest built ToolHive operator image.
-
-## Installation
+This creates the kind cluster, installs an nginx ingress controller, and then
+installs the latest built ToolHive operator image.
 
 ## Installing the operator into a new kind cluster
 
 ### Automated via Task
 
-To setup a kind cluster and deploy the operator, we have created a Task so that
-you can do this with one command.
+To set up a kind cluster and deploy the operator, we've created a Task so you
+can do this with one command.
 
 Run:
 
@@ -92,11 +91,11 @@ We have a dedicated Task that installs the operator into a cluster.
 Run:
 
 ```bash
-# If you want to install the latest built operator image from Github (recommended)
-$ task operator-deploy-latest
+# If you want to install the latest built operator image from GitHub (recommended)
+task operator-deploy-latest
 
-# If you want to built the operator image locally and deploy it (only recommended if you're doing development around the operator)
-$ task operator-deploy-local
+# If you want to build the operator image locally and deploy it (only recommended if you're doing development around the operator)
+task operator-deploy-local
 ```
 
 ### Manual installation

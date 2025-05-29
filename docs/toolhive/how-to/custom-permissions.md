@@ -15,9 +15,9 @@ servers, including built-in profiles and examples of common use cases.
 
 :::important
 
-Network access rules referenced in this document are not currently implemented
-in ToolHive. They are a roadmap feature planned for future releases. For now,
-only file system permissions are enforced.
+Network access rules referenced in this document aren't currently implemented in
+ToolHive. They're a roadmap feature planned for future releases. For now, only
+file system permissions are enforced.
 
 Contributions to help implement this feature are welcome! You can contribute by
 visiting our [GitHub repository](https://github.com/stacklok/toolhive).
@@ -33,7 +33,7 @@ Permissions are defined using JSON permission profiles. These profiles specify:
 
 :::note
 
-Since the MCP server runs in a container, it cannot access the host file system
+Since the MCP server runs in a container, it can't access the host file system
 by default. File system access is relative to the container's file system.
 
 When you run a server with the `--volume` flag to mount a local path, ToolHive
@@ -50,7 +50,7 @@ Profiles include the following sections:
 - `network`: Network access rules for outbound connections.
   - `outbound`: Outbound network access rules, which include:
     - `insecure_allow_all`: If set to `true`, allows unrestricted outbound
-      network access. This is not recommended for production use.
+      network access. This isn't recommended for production use.
     - `allow_transport`: List of allowed transport protocols (e.g., `tcp`,
       `udp`).
     - `allow_host`: List of allowed hostnames or IP addresses for outbound
@@ -61,7 +61,7 @@ Profiles include the following sections:
 
 ToolHive includes default least-privilege permissions for MCP servers in the
 built-in registry. These defaults are designed to balance functionality and
-security, but you should review them to ensure they meet your specific
+security, but you should review them to make sure they meet your specific
 requirements.
 
 View these permissions using the following command:
@@ -84,18 +84,19 @@ Permissions:
     Allow Port: 443
 ```
 
-The above example shows that the MCP server has read access to `/data`,
-read/write access to `/tmp`, and can make outbound TCP connections to
-`google.com` on port 443.
+This example shows that the MCP server has read access to `/data`, read/write
+access to `/tmp`, and can make outbound TCP connections to `google.com` on
+port 443.
 
 Always verify the default permissions and override them with a custom profile if
 needed to meet your security policies.
 
 :::tip
 
-Add `--format json` to the `thv registry info` command to get the output in JSON
-format for easier customization. Use the contents of the `permissions` section
-as a starting point for creating a custom profile.
+Add `--format json` to the
+[`thv registry info`](../reference/cli/thv_registry_info.md) command to get the
+output in JSON format for easier customization. Use the contents of the
+`permissions` section as a starting point for creating a custom profile.
 
 :::
 
@@ -104,7 +105,7 @@ as a starting point for creating a custom profile.
 ToolHive includes two built-in profiles that you can use without creating a
 custom file:
 
-- The `network` profile permits outbound network access. It is the default
+- The `network` profile permits outbound network access. It's the default
   profile applied to MCP servers when you run a server without the
   `--permission-profile` flag.
 
@@ -116,7 +117,7 @@ custom file:
 
   :::
 
-- The `none` profile provides no network access. It is useful for MCP servers
+- The `none` profile provides no network access. It's useful for MCP servers
   that don't require any external connectivity. File system access is limited to
   paths you explicitly mount using the `--volume` flag.
 
@@ -143,8 +144,8 @@ For example:
 This profile:
 
 - Allows read-only access to `/example/path1` and `/example/path2`
-- Allows read and write access to `/example/path3` (note the `write` setting
-  also implies read access)
+- Allows read and write access to `/example/path3` (note that the `write`
+  setting also implies read access)
 - Allows outbound TCP or UDP connections to localhost and google.com on ports 80
   and 443
 
@@ -207,7 +208,7 @@ This restricts the GitHub MCP server to make HTTPS connections only to
 
 When creating and using permission profiles:
 
-- Use the `none` profile when possible (for MCP servers that do not require
+- Use the `none` profile when possible (for MCP servers that don't require
   network or file access)
 - Only grant necessary permissions
 - Avoid enabling `network.outbound.insecure_allow_all`, as this allows
@@ -224,9 +225,9 @@ If your MCP server can't access the file system as expected:
 
 1. Verify that the path(s) in your profile are correct
 2. Check that the permissions are set correctly (read/write)
-3. Ensure that the paths are accessible from within the container You can
-   execute a shell in the container to check (this assumes the container
-   includes an interactive shell):
+3. Make sure the paths are accessible from within the container. You can execute
+   a shell in the container to check (this assumes the container includes an
+   interactive shell):
 
    ```bash
    docker exec -it <server-name> /bin/sh

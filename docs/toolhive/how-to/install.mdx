@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 This guide walks you through installing, upgrading, and managing the ToolHive
-CLI (`thv`).
+CLI ([`thv`](../reference/cli/thv.md)).
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ You can install ToolHive using several methods:
 
 <Tabs groupId='installer' queryString='installer'>
 <TabItem value='macos' label='Homebrew (macOS)' default>
-If you use Homebrew on macOS, this is the simplest installation method:
+If you use Homebrew on macOS, this is the easiest installation method:
 
 ```bash
 brew tap stacklok/tap
@@ -35,8 +35,7 @@ brew install thv
 
 </TabItem>
 <TabItem value='binary' label='Pre-compiled binaries'>
-1. Visit the
-   [ToolHive releases page](https://github.com/stacklok/toolhive/releases)
+1. Visit the [ToolHive releases page](https://github.com/stacklok/toolhive/releases)
 2. Download the appropriate binary for your platform:
    - `toolhive_<version>_darwin_amd64.tar.gz` for macOS (Intel)
    - `toolhive_<version>_darwin_arm64.tar.gz` for macOS (Apple Silicon)
@@ -48,13 +47,13 @@ brew install thv
 tar -xzf toolhive_<version>_<platform>.tar.gz
 ```
 
-4.  Move the binary to a directory in your PATH, for example:
+4. Move the binary to a directory in your PATH, for example:
 
 ```bash
 sudo mv thv /usr/local/bin/
 ```
 
-5.  Make it executable (if needed):
+5. Make it executable (if needed):
 
 ```bash
 sudo chmod +x /usr/local/bin/thv
@@ -126,15 +125,15 @@ Platform: darwin/arm64
 ## Upgrade ToolHive
 
 ToolHive automatically checks for updates and notifies you when a new version is
-available. When you run a ToolHive command, it will display a message if an
-update exists.
+available. When you run a ToolHive command, it displays a message if an update
+exists.
 
 To upgrade ToolHive:
 
 <Tabs groupId='installer' queryString='installer'>
 <TabItem value='macos' label='Homebrew (macOS)' default>
 
-If you installed ToolHive via Homebrew, you can upgrade it with:
+If you installed ToolHive via Homebrew, upgrade it with:
 
 ```bash
 brew upgrade thv
@@ -149,8 +148,8 @@ downloading the latest release and overwriting the previous binary.
 </TabItem>
 <TabItem value='source' label='Build from source'>
 
-If you built ToolHive from source, you can upgrade it by pulling the latest
-changes and rebuilding:
+If you built ToolHive from source, upgrade it by pulling the latest changes and
+rebuilding:
 
 #### Using Go tools
 
@@ -185,14 +184,14 @@ thv --help
 thv <command> --help
 ```
 
-For detailed documentation on each command, refer to the
+For detailed documentation on each command, see the
 [CLI reference documentation](../reference/cli/thv.md).
 
 ## Enable shell completion
 
 ToolHive can generate auto-completion scripts for your shell to make it easier
-to use. The `thv completion` command generates scripts for bash, zsh, fish, and
-PowerShell.
+to use. The [`thv completion`](../reference/cli/thv_completion.md) command
+generates scripts for bash, zsh, fish, and PowerShell.
 
 Each shell has different requirements for where to store completion scripts and
 how to enable them. The help output for each shell provides specific
@@ -211,7 +210,7 @@ thv completion powershell --help
 
 ## Uninstall ToolHive
 
-If you need to uninstall ToolHive:
+To uninstall ToolHive:
 
 1. First, remove any MCP servers managed by ToolHive:
 
@@ -241,7 +240,7 @@ If you need to uninstall ToolHive:
 {/* prettier-ignore */}
    <Tabs groupId='installer' queryString='installer'>
      <TabItem value='homebrew' label='Homebrew (macOS)' default>
-       If you installed ToolHive via Homebrew, you can uninstall it with:
+       If you installed ToolHive via Homebrew, uninstall it with:
 
        ```bash
        brew uninstall thv
@@ -276,7 +275,7 @@ If you see "permission denied" errors when running ToolHive:
    chmod +x /path/to/thv
    ```
 
-2. If using Docker on Linux, ensure your user has permission to access the
+2. If using Docker on Linux, make sure your user has permission to access the
    Docker socket:
 
    ```bash

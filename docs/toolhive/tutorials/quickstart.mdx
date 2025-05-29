@@ -46,8 +46,7 @@ Here's a quick summary:
 
   </TabItem>
   <TabItem value='binary' label='Pre-compiled binaries'>
-    Download the appropriate binary for your platform from the
-    [ToolHive releases page](https://github.com/stacklok/toolhive/releases).
+    Download the appropriate binary for your platform from the [ToolHive releases page](https://github.com/stacklok/toolhive/releases).
 
     ```bash
     # Extract the archive
@@ -83,14 +82,14 @@ You should see a confirmation message that auto-discovery has been enabled.
 
 :::info What's happening?
 
-When auto-discovery is enabled, ToolHive will automatically find and configure
-[supported clients](../reference/client-compatibility.md) on your system. This
+When auto-discovery is enabled, ToolHive automatically finds and configures
+[supported clients](../reference/client-compatibility.mdx) on your system. This
 saves you from having to manually set up each client to work with your MCP
 servers.
 
 Skip this step if you prefer to manually configure your client, or run
-`thv config register-client --help` to learn how to explicitly register a
-client.
+[`thv config register-client --help`](../reference/cli/thv_config_register-client.md)
+to learn how to explicitly register a client.
 
 :::
 
@@ -113,15 +112,15 @@ and how to use it.
 :::
 
 For this tutorial, we'll use the "fetch" server, which is a simple MCP server
-that allows AI assistants to get the contents of a website. To learn more about
-the server before running it, run:
+that lets AI assistants get the contents of a website. To learn more about the
+server before running it, run:
 
 ```bash
 thv registry info fetch
 ```
 
-This will show you detailed information about the server, including what tools
-it provides and any configuration options.
+This shows you detailed information about the server, including what tools it
+provides and any configuration options.
 
 ## Step 4: Run the Fetch MCP server
 
@@ -149,7 +148,7 @@ Use 'thv stop [fetch]' to stop the server
 
 ToolHive downloads the container image for the fetch server (if you don't
 already have it), creates a container with the appropriate security settings,
-and starts the server. It also sets up a proxy that allows your AI assistant to
+and starts the server. It also sets up a proxy that lets your AI assistant
 communicate with the server.
 
 :::
@@ -173,8 +172,9 @@ This confirms that the fetch server is running and available on port 49226.
 
 :::info What's happening?
 
-ToolHive keeps track of all the MCP servers it's managing. The `list` command
-shows you which servers are running and how they're configured.
+ToolHive keeps track of all the MCP servers it's managing. The
+[`list`](../reference/cli/thv_list.md) command shows you which servers are
+running and how they're configured.
 
 :::
 
@@ -218,8 +218,9 @@ thv rm fetch
 
 Stopping a server pauses it and terminates the associated proxy process but
 keeps the container around so you can restart it quickly later using
-`thv restart` or `thv run`. Removing a server completely deletes the container,
-freeing up resources.
+[`thv restart`](../reference/cli/thv_restart.md) or
+[`thv run`](../reference/cli/thv_run.md). Removing a server completely deletes
+the container, freeing up resources.
 
 :::
 
@@ -246,15 +247,16 @@ If your AI assistant can't use the server:
 - Make sure auto-discovery is enabled (see Step 2)
 - Check that your client is supported
 - Restart your client to pick up the new configuration
-- Verify the server is running with `thv list`
+- Verify the server is running with [`thv list`](../reference/cli/thv_list.md)
 
 ## What's next?
 
 Congratulations! You've successfully installed ToolHive and run your first MCP
 server. Here are some next steps to explore:
 
-- Try running other MCP servers from the registry with `thv registry list` and
-  `thv run <server-name>`
+- Try running other MCP servers from the registry with
+  [`thv registry list`](../reference/cli/thv_registry_list.md) and
+  [`thv run <server-name>`](../reference/cli/thv_run.md)
 - Learn about [secrets management](../how-to/secrets-management.mdx) for MCP
   servers that require authentication
 - Explore [custom permissions](../how-to/custom-permissions.md) for MCP servers

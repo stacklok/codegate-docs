@@ -16,9 +16,9 @@ To list all MCP servers in the ToolHive registry, run:
 thv registry list
 ```
 
-This command displays a list of servers with their name, and description,
-transport method, and the number of stars and downloads to help you identify the
-most popular and useful servers.
+This command displays a list of servers with their name, description, transport
+method, and the number of stars and downloads to help you identify the most
+popular and useful servers.
 
 Example output:
 
@@ -111,7 +111,8 @@ Example Command:
 This information helps you understand the server's capabilities, requirements,
 and security profile before running it.
 
-- **Server name** (line 1): The server name to use with the `thv run` command
+- **Server name** (line 1): The server name to use with the
+  [`thv run`](../reference/cli/thv_run.md) command
 - **Metadata** (lines 2-7): Details about the server, including the image name,
   description, transport method, repository URL, popularity, and last updated
   date
@@ -124,8 +125,8 @@ and security profile before running it.
 
 ## Contribute to the registry
 
-If you have an MCP server that you would like to add to the ToolHive registry,
-you can [open an issue](https://github.com/stacklok/toolhive/issues) or submit a
+If you have an MCP server that you'd like to add to the ToolHive registry, you
+can [open an issue](https://github.com/stacklok/toolhive/issues) or submit a
 pull request to the ToolHive GitHub repository. The ToolHive team will review
 your submission and consider adding it to the registry.
 
