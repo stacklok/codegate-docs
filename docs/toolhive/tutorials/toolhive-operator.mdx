@@ -20,15 +20,7 @@ Kubernetes resources.
 - How to deploy the ToolHive operator to your cluster
 - How to create your first MCP server using Kubernetes resources
 - How to verify that your MCP server is running correctly
-- How to manage MCP servers using kubectl
-
-## What you'll build
-
-By the end of this tutorial, you'll have:
-
-- A local Kubernetes cluster running the ToolHive operator
-- A working MCP server (the fetch server) deployed as a Kubernetes resource
-- Understanding of how to manage MCP servers using Kubernetes resources
+- How to connect an AI agent (like GitHub Copilot) to your MCP server
 
 ## Prerequisites
 
@@ -53,7 +45,7 @@ setup:
 1. Clone the ToolHive repository:
 
    ```bash
-   git clone https://github.com/stacklok/toolhive
+   git clone https://github.com/stacklok/toolhive.git
    cd toolhive
    ```
 
@@ -150,13 +142,12 @@ in your cluster.
 ## Step 3: Create your first MCP server
 
 Now for the exciting part - create an MCP server using Kubernetes resources.
-You'll deploy the fetch server, which allows AI assistants to retrieve web
-content.
+You'll deploy the fetch server, which allows AI agents to retrieve web content.
 
-Apply the sample MCP server from the ToolHive repository:
+Apply the example `fetch` MCP server from the ToolHive repository:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/stacklok/toolhive/main/deploy/operator/samples/mcpserver_fetch.yaml
+kubectl apply -f https://raw.githubusercontent.com/stacklok/toolhive/refs/heads/main/examples/operator/mcp-servers/mcpserver_fetch.yaml
 ```
 
 :::info What's happening?
@@ -215,14 +206,14 @@ This confirms your MCP server is running and responding correctly.
 
 The ToolHive operator automatically creates a Kubernetes service for each MCP
 server. This service provides a stable network endpoint that other applications
-(like AI assistants) can use to communicate with your MCP server.
+(like AI agents) can use to communicate with your MCP server.
 
 :::
 
-## Step 5: Connect your AI assistant to the MCP server
+## Step 5: Connect your AI client to the MCP server
 
-Now that your MCP server is running in Kubernetes, connect it to an AI
-assistant. You'll use Visual Studio Code with GitHub Copilot as an example.
+Now that your MCP server is running in Kubernetes, connect it to an AI client
+application. We'll use Visual Studio Code with GitHub Copilot as an example.
 
 Make sure you still have the port-forward running from Step 4. If not, restart
 it in a separate terminal:

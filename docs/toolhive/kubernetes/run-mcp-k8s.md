@@ -15,16 +15,18 @@ sidebar_position: 20
 ## Create an MCP Server
 
 To create an MCP server, define an `MCPServer` resource and apply it to your
-cluster. This example creates the `fetch` MCP server.
+cluster. This example creates the
+[`osv` MCP server](https://github.com/StacklokLabs/osv-mcp).
 
 ```yaml title="my-mcpserver.yaml"
 apiVersion: toolhive.stacklok.dev/v1alpha1
 kind: MCPServer
 metadata:
-  name: fetch
+  name: osv
+  namespace: toolhive-system
 spec:
-  image: docker.io/mcp/fetch
-  transport: stdio
+  image: ghcr.io/stackloklabs/osv-mcp/server
+  transport: sse
   port: 8080
   permissionProfile:
     type: builtin
@@ -56,10 +58,11 @@ apiVersion: toolhive.stacklok.dev/v1alpha1
 kind: MCPServer
 metadata:
   name: github
+  namespace: toolhive-system
 spec:
-  image: docker.io/mcp/github
+  image: ghcr.io/github/github-mcp-server
   transport: stdio
-  port: 8080
+  port: 8081
   permissionProfile:
     type: builtin
     name: network
@@ -74,7 +77,7 @@ namespace as the MCP server and the key must match the one specified in the
 `MCPServer` resource.
 
 ```bash
-kubectl create secret generic github-token --from-literal=token=<YOUR_TOKEN>
+kubectl -n toolhive-system create secret generic github-token --from-literal=token=<YOUR_TOKEN>
 ```
 
 Apply the MCPServer resource:
@@ -96,7 +99,7 @@ TODO: Need info!
 To check the status of your MCP servers:
 
 ```bash
-kubectl get mcpservers
+kubectl -n toolhive-system get mcpservers
 ```
 
 This will show the status, URL, and age of each MCP server.
@@ -104,7 +107,7 @@ This will show the status, URL, and age of each MCP server.
 For more details about a specific MCP server:
 
 ```bash
-kubectl describe mcpserver <NAME>
+kubectl -n toolhive-system describe mcpserver <NAME>
 ```
 
 ## Configuration reference
@@ -175,5 +178,5 @@ The ConfigMap should contain a JSON permission profile.
 ## Examples
 
 See the
-[`deploy/operator/samples/` directory](https://github.com/stacklok/toolhive/tree/main/deploy/operator/samples)
+[example MCP server manifests](https://github.com/stacklok/toolhive/tree/main/examples/operator/mcp-servers)
 in the ToolHive repo for example MCPServer resources.
