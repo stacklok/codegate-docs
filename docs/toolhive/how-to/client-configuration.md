@@ -10,7 +10,7 @@ servers. This guide shows you how to set up and manage client configurations.
 
 ## Understanding client configuration
 
-AI assistants need to know where to find MCP servers before they can use them.
+AI applications need to know where to find MCP servers before they can use them.
 You can configure clients with ToolHive in three ways:
 
 1. **Auto-discovery**: ToolHive automatically finds and configures supported

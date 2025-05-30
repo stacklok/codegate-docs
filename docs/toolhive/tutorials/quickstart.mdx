@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 In this tutorial, you'll install ToolHive and run your first MCP server. By the
 end, you'll have a working MCP server that can fetch content from websites and
-be used by AI assistants like GitHub Copilot or Cursor.
+be used by AI applications like GitHub Copilot or Cursor.
 
 ## What you'll learn
 
@@ -19,7 +19,7 @@ be used by AI assistants like GitHub Copilot or Cursor.
 - How to find available MCP servers
 - How to run an MCP server
 - How to verify the server is working
-- How to use the server with an AI assistant
+- How to use the server with an AI client application
 
 ## Prerequisites
 
@@ -145,7 +145,7 @@ and how to use it.
 :::
 
 For this tutorial, you'll use the "fetch" server, which is a simple MCP server
-that lets AI assistants get the contents of a website. To learn more about the
+that lets AI agents get the contents of a website. To learn more about the
 server before running it, run:
 
 ```bash
@@ -181,7 +181,7 @@ Use 'thv stop [fetch]' to stop the server
 
 ToolHive downloads the container image for the fetch server (if you don't
 already have it), creates a container with the appropriate security settings,
-and starts the server. It also sets up a proxy that lets your AI assistant
+and starts the server. It also sets up a proxy that lets your AI agent
 communicate with the server.
 
 :::
@@ -211,12 +211,12 @@ running and how they're configured.
 
 :::
 
-## Step 6: Use the MCP server with your AI assistant
+## Step 6: Use the MCP server with your AI cline_mcp_settings
 
-Now that your MCP server is running, you can use it with your AI assistant. Open
-your supported client (VS Code, Cursor, etc.) and ask the AI to fetch content
-from a website. Note that you might need to restart your client for the changes
-to take effect.
+Now that your MCP server is running, you can use it with your AI client
+application. Open your supported client (VS Code, Cursor, etc.) and ask the AI
+to fetch content from a website. Note that you might need to restart your client
+for the changes to take effect.
 
 For example, try asking: "Can you fetch the content from https://stacklok.com
 and summarize it for me?"
@@ -273,9 +273,9 @@ Try running with a specific port:
 thv run --port 8081 fetch
 ```
 
-### AI assistant can't use the server
+### Client can't use the server
 
-If your AI assistant can't use the server:
+If your AI client application can't use the server:
 
 - Make sure auto-discovery is enabled (see Step 2)
 - Check that your client is supported
