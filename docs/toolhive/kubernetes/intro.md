@@ -1,6 +1,8 @@
 ---
 title: ToolHive Kubernetes operator
 description: Manage MCP servers in Kubernetes with the ToolHive operator
+sidebar_position: 1
+sidebar_label: Introduction
 ---
 
 The ToolHive Kubernetes operator manages MCP servers in Kubernetes clusters. It
