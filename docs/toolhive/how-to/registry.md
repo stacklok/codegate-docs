@@ -78,7 +78,7 @@ thv registry info <server-name> --format json
 
 ### Example output
 
-```text {1,8,16,21} showLineNumbers
+```yaml {1,8,16,21} showLineNumbers
 Name: github
 Image: ghcr.io/github/github-mcp-server:latest
 Description: The GitHub MCP Server provides seamless integration with GitHub APIs, enabling advanced automation and interaction capabilities for developers and tools
@@ -123,6 +123,56 @@ and security profile before running it.
   including file system and network access (see
   [Custom permissions](./custom-permissions.md))
 
+## Use a remote registry
+
+By default, ToolHive uses a built-in registry of verified MCP servers. You can
+configure ToolHive to use a custom remote registry instead. This is useful for
+organizations that want to maintain their own private registry of MCP servers.
+
+### Set a remote registry URL
+
+To configure ToolHive to use a remote registry, set the registry URL:
+
+```bash
+thv config set-registry-url <url>
+```
+
+For example:
+
+```bash
+thv config set-registry-url https://example.com/registry.json
+```
+
+The remote registry must be a JSON file that follows the same format as the
+[built-in registry](https://github.com/stacklok/toolhive/blob/main/pkg/registry/data/registry.json).
+Once you configure a remote registry, all registry commands
+([`thv registry list`](../reference/cli/thv_registry_list.md),
+[`thv registry info`](../reference/cli/thv_registry_info.md),
+[`thv search`](../reference/cli/thv_search.md)) will use the remote registry
+instead of the built-in one.
+
+### Check the current registry URL
+
+To see which registry URL is currently configured:
+
+```bash
+thv config get-registry-url
+```
+
+If no custom registry is configured, this command indicates that the built-in
+registry is being used.
+
+### Revert to the built-in registry
+
+To remove the custom registry configuration and revert to using the built-in
+registry:
+
+```bash
+thv config unset-registry-url
+```
+
+This restores the default behavior of using ToolHive's built-in registry.
+
 ## Contribute to the registry
 
 If you have an MCP server that you'd like to add to the ToolHive registry, you
@@ -143,3 +193,6 @@ registry.
 
 - [`thv registry` command reference](../reference/cli/thv_registry.md)
 - [`thv search` command reference](../reference/cli/thv_search.md)
+- [`thv config set-registry-url` command reference](../reference/cli/thv_config_set-registry-url.md)
+- [`thv config get-registry-url` command reference](../reference/cli/thv_config_get-registry-url.md)
+- [`thv config unset-registry-url` command reference](../reference/cli/thv_config_unset-registry-url.md)
