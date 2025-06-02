@@ -24,14 +24,6 @@ when you start or remove an MCP server. For a complete list of supported clients
 and compatibility details, see the
 [Client compatibility reference](../reference/client-compatibility.mdx).
 
-:::note
-
-Automatic configuration only works on macOS and Linux. If you're running
-ToolHive on Windows using WSL, you can still use ToolHive to run MCP servers,
-but you'll need to manually configure your Windows-based clients.
-
-:::
-
 ## Enable auto-discovery
 
 Auto-discovery is the easiest way to configure supported clients. When enabled,

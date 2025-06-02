@@ -14,7 +14,7 @@ CLI ([`thv`](../reference/cli/thv.md)).
 
 Before installing ToolHive, make sure your system meets these requirements:
 
-- **Operating systems**: macOS, Linux, or WSL (Windows Subsystem for Linux)
+- **Operating systems**: macOS, Linux, or Windows
 - **Container runtime**: Docker or Podman
 
 ToolHive requires minimal CPU, memory, and disk space. The exact requirements
@@ -36,28 +36,28 @@ brew install thv
 </TabItem>
 <TabItem value='binary' label='Pre-compiled binaries'>
 1. Visit the [ToolHive releases page](https://github.com/stacklok/toolhive/releases)
+
 2. Download the appropriate binary for your platform:
+
    - `toolhive_<version>_darwin_amd64.tar.gz` for macOS (Intel)
    - `toolhive_<version>_darwin_arm64.tar.gz` for macOS (Apple Silicon)
    - `toolhive_<version>_linux_amd64.tar.gz` for Linux (x86_64)
    - `toolhive_<version>_linux_arm64.tar.gz` for Linux (ARM64)
-3. Extract the archive:
+   - `toolhive_<version>_windows_amd64.zip` for Windows (x86_64)
+   - `toolhive_<version>_windows_arm64.zip` for Linux (ARM64)
 
-```bash
-tar -xzf toolhive_<version>_<platform>.tar.gz
-```
+3. Extract the archive and copy the binary to a directory in your PATH:
 
-4. Move the binary to a directory in your PATH, for example:
+   macOS/Linux:
 
-```bash
-sudo mv thv /usr/local/bin/
-```
+   ```bash
+   tar -xzf toolhive_<version>_<platform>.tar.gz
+   sudo mv thv /usr/local/bin/
+   sudo chmod +x /usr/local/bin/thv
+   ```
 
-5. Make it executable (if needed):
-
-```bash
-sudo chmod +x /usr/local/bin/thv
-```
+   On Windows, extract the ZIP file to a folder and add that folder to your PATH
+   environment variable.
 
 </TabItem>
 <TabItem value='source' label='Build from source'>
@@ -66,24 +66,16 @@ sudo chmod +x /usr/local/bin/thv
 
 - Go 1.24 or newer
 - Git
+- Your `$GOPATH/bin` directory should be in your PATH
 
-#### Using Go tools
+#### Using Task (recommended)
 
-1. Clone the repository:
+:::note
 
-   ```bash
-   git clone https://github.com/stacklok/toolhive.git
-   cd toolhive
-   ```
+The Task scripts currently only support macOS and Linux. Windows users should
+use the pre-compiled binaries or build from source using Go tools.
 
-2. Build and install:
-
-   ```bash
-   go build ./cmd/thv
-   go install ./cmd/thv
-   ```
-
-#### Using Task
+:::
 
 If you have [Task](https://taskfile.dev/installation/) installed:
 
@@ -94,11 +86,25 @@ If you have [Task](https://taskfile.dev/installation/) installed:
    cd toolhive
    ```
 
-2. Build and install:
+2. Build and install the binary in your `$GOPATH/bin`:
 
    ```bash
-   task build
    task install
+   ```
+
+#### Using Go tools
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/stacklok/toolhive.git
+   cd toolhive
+   ```
+
+2. Build and install the binary in your `$GOPATH/bin`:
+
+   ```bash
+   go install ./cmd/thv
    ```
 
 </TabItem>
@@ -151,22 +157,20 @@ downloading the latest release and overwriting the previous binary.
 If you built ToolHive from source, upgrade it by pulling the latest changes and
 rebuilding:
 
-#### Using Go tools
-
-```bash
-git pull
-
-go build ./cmd/thv
-go install ./cmd/thv
-```
-
 #### Using Task:
 
 ```bash
 git pull
 
-task build
 task install
+```
+
+#### Using Go tools
+
+```bash
+git pull
+
+go install ./cmd/thv
 ```
 
 </TabItem>
