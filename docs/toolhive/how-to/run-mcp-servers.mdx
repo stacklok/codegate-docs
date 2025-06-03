@@ -282,6 +282,20 @@ suffix is **required**.
 thv run --name grafana go://github.com/grafana/mcp-grafana/cmd/mcp-grafana@latest
 ```
 
+You can also run a local Go module by specifying the path to the module:
+
+```bash
+# Run from a relative path
+thv run go://./cmd/my-mcp-server
+
+# Run from the current directory
+cd my-go-mcp-project
+thv run go://.
+
+# Run from an absolute path
+thv run go:///path/to/my-go-project
+```
+
 </TabItem>
 </Tabs>
 
