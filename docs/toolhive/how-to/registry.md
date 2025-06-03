@@ -180,6 +180,11 @@ can [open an issue](https://github.com/stacklok/toolhive/issues) or submit a
 pull request to the ToolHive GitHub repository. The ToolHive team will review
 your submission and consider adding it to the registry.
 
+Criteria for adding an MCP server to the ToolHive registry are outlined in
+[Registry criteria](../concepts/registry-criteria.md). These criteria ensure
+that the servers in the registry meet the standards of security, quality, and
+usability that ToolHive aims to uphold.
+
 Registry entries are defined in the
 [`pkg/registry/data/registry.json`](https://github.com/stacklok/toolhive/blob/main/pkg/registry/data/registry.json)
 file in the ToolHive repository.
