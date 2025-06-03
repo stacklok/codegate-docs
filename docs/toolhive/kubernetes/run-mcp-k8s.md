@@ -25,7 +25,7 @@ necessary infrastructure to run your MCP servers securely within the cluster.
 
 ```mermaid
 flowchart LR
-  Client["Client"] --> Proxy["ToolHive Proxy"]
+  Client["Client"] --> Proxy["ToolHive<br>Proxy/Runner"]
   Proxy --> MCP["MCP Server"]
 
   subgraph K8s["Kubernetes Cluster"]

@@ -36,12 +36,14 @@ flowchart TB
   subgraph K8s["<h3>Kubernetes cluster</h3>"]
     subgraph K8s1["**Deployment**"]
       Svc1["SSE Proxy<br>Service"] -- http/sse --> Proxy1["SSE Proxy<br>Pod"] -- stdio or http/sse --> MCP1["MCP Server<br>Pod"]
+      Proxy1 -.->|creates| MCP1
     end
     subgraph K8s2["**Deployment**"]
       Svc2["SSE Proxy<br>Service"] -- http/sse --> Proxy2["SSE Proxy<br>Pod"] -- stdio or http/sse --> MCP2["MCP Server<br>Pod"]
+      Proxy2 -.->|creates| MCP2
     end
     Ingress["Ingress"] -- http/sse --> Svc1 & Svc2
-    Operator["ToolHive<br>Operator"] -- creates --> K8s1 & K8s2
+    Operator["ToolHive<br>Operator"] -.->|creates| K8s1 & K8s2
   end
 
   Client["MCP Client<br>[ex: Copilot]"] -- http/sse --> Ingress
