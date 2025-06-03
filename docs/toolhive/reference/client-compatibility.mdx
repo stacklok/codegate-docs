@@ -140,8 +140,8 @@ When you register Claude Code as a client or enable auto-discovery, ToolHive
 automatically updates the global MCP configuration file whenever you run an MCP
 server. You can also
 [configure project-specific MCP servers](https://docs.anthropic.com/en/docs/claude-code/tutorials#understanding-mcp-server-scopes)
-by creating a `.cursor/mcp.json` file in your project directory, or add servers
-using the `claude` CLI:
+by creating a `.mcp.json` file in your project directory, or add servers using
+the `claude` CLI:
 
 ```bash
 claude mcp add --scope <user|project> --transport sse fetch http://localhost:43832/sse#fetch
