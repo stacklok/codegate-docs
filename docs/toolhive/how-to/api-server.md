@@ -56,6 +56,18 @@ address to bind to using the `--host` option:
 thv serve --host <host-name>
 ```
 
+## UNIX socket support
+
+The API server can also be exposed via a UNIX socket instead of a TCP port. Use
+the `--socket` option to specify a socket path:
+
+```bash
+thv serve --socket /tmp/toolhive.sock
+```
+
+When using a UNIX socket, the `--socket` argument overrides the host:port
+address configuration.
+
 ## API documentation
 
 See the [ToolHive API documentation](../reference/api.mdx) for details on
