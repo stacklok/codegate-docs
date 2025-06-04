@@ -19,6 +19,13 @@ Kubernetes cluster.
 
 ## Install the operator
 
+:::note
+
+You must first be authenticated to ghcr.io following
+[these instructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic).
+
+:::
+
 To install the ToolHive operator using Helm and the default settings, follow
 these steps:
 

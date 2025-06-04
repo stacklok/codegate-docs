@@ -51,13 +51,9 @@ flowchart TB
 
 ## Installation
 
-To install the ToolHive operator in your Kubernetes cluster, use Helm. Helm
-simplifies the installation process and lets you manage the operator using Helm
-charts.
-
-[Deploy the operator using Helm](./deploy-operator-helm.md)
+[Use Helm to install the ToolHive operator](./deploy-operator-helm.md) in your
+Kubernetes cluster. Helm simplifies the installation process and lets you manage
+the operator using Helm charts.
 
 Once the operator is installed, you can create and manage MCP servers using the
-`MCPServer` custom resource.
-
-[Run MCP servers in Kubernetes](./run-mcp-k8s.md)
+[`MCPServer` custom resource](./run-mcp-k8s.md).
