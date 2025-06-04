@@ -331,11 +331,12 @@ The `secrets` field has the following parameters:
 
 The `volumes` field has the following parameters:
 
-:::warning TODO
-
-Need info!
-
-:::
+- `name`: The name of the volume (required)
+- `hostPath`: The path on the host to mount (required)
+- `mountPath`: The path in the container where the volume will be mounted
+  (required)
+- `readOnly`: Whether the volume should be mounted as read-only (optional,
+  defaults to false)
 
 ### Permission Profiles
 
