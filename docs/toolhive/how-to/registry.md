@@ -175,10 +175,11 @@ This restores the default behavior of using ToolHive's built-in registry.
 
 ## Contribute to the registry
 
-If you have an MCP server that you'd like to add to the ToolHive registry, you can
+If you have an MCP server that you'd like to add to the ToolHive registry, you
+can
 [open an issue](https://github.com/stacklok/toolhive/issues/new?template=add-an-mcp-server.md)
-or submit a pull request to the ToolHive GitHub repository. The ToolHive team will review
-your submission and consider adding it to the registry.
+or submit a pull request to the ToolHive GitHub repository. The ToolHive team
+will review your submission and consider adding it to the registry.
 
 Criteria for adding an MCP server to the ToolHive registry are outlined in
 [Registry criteria](../concepts/registry-criteria.md). These criteria ensure
