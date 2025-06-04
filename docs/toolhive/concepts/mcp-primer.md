@@ -50,19 +50,6 @@ models to emit and parse.**
   Every MCP response carries both _content_ and a lightweight _provenance_
   object (source, timestamp, hash). Models can decide to retry, ignore, or cite.
 
-## How it looks in practice
-
-```text
-# Model prompt
-"Refactor the payment handler. Use latest code from
-mcp://github?repo=acme/payments&path=handlers/payment.js
-and consult docs at
-mcp://web?url=https://stripe.com/docs/payments/checkout"
-```
-
-Your client library intercepts those mcp:// URIs, fetches the artifacts, and
-splices them back into the model's context window—typically under 100ms.
-
 ## The emergence of open community
 
 A community has sprung up around the MCP protocol incredibly quickly.
