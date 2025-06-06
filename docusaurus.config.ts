@@ -68,6 +68,14 @@ const config: Config = {
   ],
 
   themeConfig: {
+    announcementBar: {
+      id: 'codegate_eol',
+      content:
+        'The CodeGate project is end of life and no longer maintained. <a href="https://discord.gg/stacklok">Join our Discord</a> for more information.',
+      backgroundColor: '#b61a1a',
+      textColor: '#f8f8f8',
+      isCloseable: false,
+    },
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
