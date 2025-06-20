@@ -1,3 +1,9 @@
+# ⚠️ DEPRECATED ⚠️ <!-- omit in toc -->
+
+The [CodeGate](https://github.com/stacklok/codegate) project is deprecated and
+archived. The information in this repository is no longer maintained or updated,
+and the `docs.codegate.ai` site is no longer available.
+
 # CodeGate docs <!-- omit in toc -->
 
 [![GitHub deployments](https://img.shields.io/github/deployments/stacklok/codegate-docs/Production?logo=vercel&style=flat&label=Vercel%20deployment)](https://github.com/stacklok/codegate-docs/deployments/Production)
@@ -75,3 +81,5 @@ the `main` branch.
 
 This site is built with [Docusaurus](https://docusaurus.io/), a modern static
 website generator.
+
+<!-- markdownlint-disable-file MD025 -->
